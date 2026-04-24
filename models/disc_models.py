@@ -68,7 +68,7 @@ class DiscreteDiagSheafDiffusion(SheafDiffusion):
 
     def forward(self, x):
 
-        print(f"Input x size: {x.detach().cpu().numpy().shape}")
+        #print(f"Input x size: {x.detach().cpu().numpy().shape}")
 
         x = F.dropout(x, p=self.input_dropout, training=self.training)
         x = self.lin1(x)
@@ -161,7 +161,7 @@ class DiscreteBundleSheafDiffusion(SheafDiffusion):
                 self.weight_learners.append(EdgeWeightLearner(self.hidden_dim, edge_index))
         self.laplacian_builder = lb.NormConnectionLaplacianBuilder(
             self.graph_size, edge_index, d=self.d, add_hp=self.add_hp,
-            add_lp=self.add_lp, orth_map=self.orth_trans)
+            add_lp=self.add_lp, orth_map=self.orth_trans, normalised=self.normalised)
 
         self.epsilons = nn.ParameterList()
         for i in range(self.layers):
@@ -205,6 +205,10 @@ class DiscreteBundleSheafDiffusion(SheafDiffusion):
         x = x.view(self.graph_size * self.final_d, -1)
 
         x0, L = x, None
+        self._last_maps = {}
+        self._last_trans_maps = {}
+        self._last_laplacian = {}
+
         for layer in range(self.layers):
             if layer == 0 or self.nonlinear:
                 x_maps = F.dropout(x, p=self.dropout if layer > 0 else 0., training=self.training)
@@ -213,6 +217,10 @@ class DiscreteBundleSheafDiffusion(SheafDiffusion):
                 edge_weights = self.weight_learners[layer](x_maps, self.edge_index) if self.use_edge_weights else None
                 L, trans_maps = self.laplacian_builder(maps, edge_weights)
                 self.sheaf_learners[layer].set_L(trans_maps)
+                self._last_maps[layer] = maps
+                self._last_trans_maps[layer] = trans_maps
+                self._last_laplacian[layer] = L
+
 
             x = F.dropout(x, p=self.dropout, training=self.training)
 
@@ -297,12 +305,20 @@ class DiscreteGeneralSheafDiffusion(SheafDiffusion):
         x = x.view(self.graph_size * self.final_d, -1)
 
         x0, L = x, None
+        self._last_maps = {}
+        self._last_trans_maps = {}
+        self._last_laplacian = {}
+
         for layer in range(self.layers):
             if layer == 0 or self.nonlinear:
                 x_maps = F.dropout(x, p=self.dropout if layer > 0 else 0., training=self.training)
                 maps = self.sheaf_learners[layer](x_maps.reshape(self.graph_size, -1), self.edge_index)
                 L, trans_maps = self.laplacian_builder(maps)
                 self.sheaf_learners[layer].set_L(trans_maps)
+
+                self._last_maps[layer] = maps
+                self._last_trans_maps[layer] = trans_maps
+                self._last_laplacian[layer] = L
 
             x = F.dropout(x, p=self.dropout, training=self.training)
 

@@ -168,8 +168,8 @@ def run_exp(args, dataset, model_cls, fold):
 
         for layer, maps in model._last_maps.items():
             
-            print(type(maps))
-            print(maps)
+            #print(type(maps))
+            #print(maps)
             maps = maps.detach().cpu()
             # print(f"{layer}: {maps.detach().cpu().numpy()}")
             lap_indices = model._last_laplacian[layer][0].detach().cpu()
@@ -192,7 +192,7 @@ def run_exp(args, dataset, model_cls, fold):
             maps_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}_seed{args['seed']}.pt"
             maps_path = os.path.join(maps_dir, maps_filename)
             torch.save(maps_matrix, maps_path)
-            print(f"Saved edge-map matrix to {maps_path} with shape {tuple(maps_matrix.shape)}")
+            #print(f"Saved edge-map matrix to {maps_path} with shape {tuple(maps_matrix.shape)}")
 
     wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch})
     keep_running = False if test_acc < args['min_acc'] else True
@@ -221,16 +221,27 @@ if __name__ == '__main__':
     else:
         raise ValueError(f'Unknown model {args.model}')
 
-    dataset = get_dataset(args.dataset)
+    dataset = get_dataset(args.dataset,args)
     if args.evectors > 0:
         dataset = append_top_k_evectors(dataset, args.evectors)
 
     # Add extra arguments
     args.sha = sha
     args.graph_size = dataset[0].x.size(0)
-    args.input_dim = dataset.num_features
-    args.output_dim = dataset.num_classes
+
+    # ADAPTING FROM FERRAN'S CODE
+    #args.input_dim = dataset.num_features
+    #args.output_dim = dataset.num_classes
+    args.input_dim = dataset[0].x.shape[1]          # ← already fixed (same as my suggestion)
+    try:
+        args.output_dim = dataset.num_classes        # ← tries the InMemoryDataset property first
+    except: 
+        args.output_dim = torch.unique(dataset[0].y).shape[0]  # ← fallback for plain lists
+
+
     args.device = torch.device(f'cuda:{args.cuda}' if torch.cuda.is_available() else 'cpu')
+
+    # I AM COMMENTING THIS TO TRY UNNORMALISATION
     # assert args.normalised or args.deg_normalised
     if args.sheaf_decay is None:
         args.sheaf_decay = args.weight_decay

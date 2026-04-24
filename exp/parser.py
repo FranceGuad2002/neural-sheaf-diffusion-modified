@@ -1,6 +1,8 @@
 # Copyright 2022 Twitter, Inc.
 # SPDX-License-Identifier: Apache-2.0
 
+from email import parser
+
 from distutils.util import strtobool
 import argparse
 import os
@@ -14,6 +16,8 @@ def str2bool(x):
     else:
         raise ValueError(f'Unrecognised type {type(x)}')
 
+def list_of_floats(arg):
+    return list(map(float, arg.split(',')))
 
 def get_parser():
     parser = argparse.ArgumentParser()
@@ -89,5 +93,31 @@ def get_parser():
     parser.add_argument("--max_test_steps", type=int, default=100,
                         help="Maximum number steps for the dopri5Early test integrator. "
                              "used if getting OOM errors at test time")
+    
+    ## PARSER FOR SYNTHETIC DATASETS 
+    # Synthetic dataset parameters
+    parser.add_argument("--num_nodes", type=int, default=200,
+                    help="Number of nodes in the synthetic graph.")
+    parser.add_argument("--num_classes", type=int, default=2,
+                    help="Number of classes in the synthetic graph.")
+    parser.add_argument("--num_feats", type=int, default=10,
+                    help="Number of node features.")
+    parser.add_argument("--het_coef", type=float, default=0.9,
+                    help="Heterophily coefficient. 0=homophilic, 1=fully heterophilic.")
+    parser.add_argument("--edge_noise", type=float, default=0.05,
+                    help="Probability of randomly removing an edge.")
+    parser.add_argument("--node_degree", type=int, default=10,
+                    help="Average node degree in the synthetic graph.")
+    parser.add_argument("--feat_noise", type=float, default=0.25,
+                    help="Standard deviation of Gaussian noise added to features.")
+    parser.add_argument("--ellipsoid_radius", type=float, default=1,
+                    help="Radius of the ellipsoid for feature generation.")
+    parser.add_argument("--just_add_noise", type=str2bool, default=False,
+                    help="If True, reuse saved features and only add new noise.")
+    parser.add_argument("--ellipsoids", type=str2bool, default=True,
+                    help="If True, use ellipsoid mode. If False, use Gaussian mode.")
+    parser.add_argument("--classes_corr", type=list_of_floats, default=None,
+                    help="Custom class correlation matrix, as a flat comma-separated list.")
+
     
     return parser

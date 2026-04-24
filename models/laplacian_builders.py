@@ -173,10 +173,11 @@ class DiagLaplacianBuilder(LaplacianBuilder):
 
 class NormConnectionLaplacianBuilder(LaplacianBuilder):
     """Learns a a Sheaf Laplacian with diagonal restriction maps"""
-
-    def __init__(self, size, edge_index, d, add_hp=False, add_lp=False, orth_map=None, augmented=True):
+    # CAREFUL HERE, SOMETIMES I MODIFY AND PUT normalised = False to see what happens
+    # But the default mode is normalised = True 
+    def __init__(self, size, edge_index, d, add_hp=False, add_lp=False, orth_map=None, augmented=True, normalised=True):
         super(NormConnectionLaplacianBuilder, self).__init__(
-            size, edge_index, d, add_hp=add_hp, add_lp=add_lp, normalised=True, augmented=augmented)
+            size, edge_index, d, add_hp=add_hp, add_lp=add_lp, normalised=normalised, augmented=augmented)
         self.orth_transform = Orthogonal(d=self.d, orthogonal_map=orth_map)
         self.orth_map = orth_map
 
@@ -189,7 +190,7 @@ class NormConnectionLaplacianBuilder(LaplacianBuilder):
         assert edge_index.max() <= self.size
         new_builder = self.__class__(
             self.size, edge_index, self.d, add_hp=self.add_hp, add_lp=self.add_lp, augmented=self.augmented,
-            orth_map=self.orth_map)
+            orth_map=self.orth_map, normalised=self.normalised)
         new_builder.train(self.training)
         return new_builder
 
@@ -244,7 +245,8 @@ class NormConnectionLaplacianBuilder(LaplacianBuilder):
         saved_tril_maps = tril_maps.detach().clone()
 
         # Normalise the entries if the normalised Laplacian is used.
-        diag_maps, tril_maps = self.scalar_normalise(diag_maps, tril_maps, tril_row, tril_col)
+        if self.normalised:
+            diag_maps, tril_maps = self.scalar_normalise(diag_maps, tril_maps, tril_row, tril_col)
         tril_maps, diag_maps = tril_maps.view(-1), diag_maps.expand(-1, self.d).reshape(-1)
 
         # Append fixed diagonal values in the non-learnable dimensions.

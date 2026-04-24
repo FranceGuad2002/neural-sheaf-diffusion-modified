@@ -54,7 +54,8 @@ class LocalConcatSheafLearner(SheafLearner):
 
         # sign = maps.sign()
         # maps = maps.abs().clamp(0.05, 1.0) * sign
-
+        # BE CAREFUL, THIS IS ROW-MAJOR ORDER, NOT COLUMN-MAJOR
+        # [a11, a12, a21, a22] -> [[a11, a21], [a12, a22]]
         if len(self.out_shape) == 2:
             return maps.view(-1, self.out_shape[0], self.out_shape[1])
         else:

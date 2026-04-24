@@ -234,7 +234,7 @@ class BundleSheafDiffusion(SheafDiffusion):
                                                      sheaf_act=self.sheaf_act)
         self.laplacian_builder = lb.NormConnectionLaplacianBuilder(
             self.graph_size, edge_index, d=self.d, add_hp=self.add_hp,
-            add_lp=self.add_lp, orth_map=self.orth_trans)
+            add_lp=self.add_lp, orth_map=self.orth_trans, normalised = self.normalised)
 
         self.odefunc = LaplacianODEFunc(
             self.final_d, self.sheaf_learner, self.laplacian_builder, edge_index, self.graph_size, self.hidden_channels,
