@@ -11,7 +11,7 @@ python -m exp.run \
     --folds=10 \
     --hidden_channels=16 \
     --input_dropout=0 \
-    --layers=5 \
+    --layers=2 \
     --lr=0.02 \
     --model=DiagSheaf \
     --orth=householder \

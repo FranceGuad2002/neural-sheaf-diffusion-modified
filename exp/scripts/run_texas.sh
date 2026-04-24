@@ -3,7 +3,7 @@
 python -m exp.run \
     --dataset=texas \
     --d=1 \
-    --layers=5 \
+    --layers=2 \
     --hidden_channels=16 \
     --left_weights=True \
     --right_weights=True \
