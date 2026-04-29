@@ -147,7 +147,7 @@ def run_exp(args, dataset, model_cls, fold):
         #     print(f"{layer} Laplacian indices: {lap[0].detach().cpu().numpy()}")
         
         maps_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'maps',f'{args["dataset"]}', f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
-        lap_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'laplacians',f'{args["dataset"]}', f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
+        lap_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'laplacians', f"normalised-{str(args['normalised']).lower()}",f'{args["dataset"]}', f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
         
         os.makedirs(maps_dir, exist_ok=True)
         os.makedirs(lap_dir, exist_ok=True)
@@ -161,7 +161,7 @@ def run_exp(args, dataset, model_cls, fold):
 
             lap_matrix = torch.cat([lap_indices, lap_values.unsqueeze(0)], dim=0)
 
-            lap_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}_seed{args['seed']}.pt"
+            lap_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}_seed{args['seed']}.pt"
             lap_path = os.path.join(lap_dir, lap_filename)
             torch.save(lap_matrix, lap_path)
             print(f"Saved Laplacian to {lap_path} with shape {tuple(lap_matrix.shape)}")

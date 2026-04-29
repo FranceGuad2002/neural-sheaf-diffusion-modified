@@ -9,3 +9,4 @@ wandb/
 *exp/scripts/*
 .venv/
 to_read_list.md
+*datasets/*
