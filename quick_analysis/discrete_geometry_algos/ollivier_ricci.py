@@ -48,13 +48,17 @@ class OllivierRicci(FloydWarshall):
     build: Alternative constructor that generate the edge weights from the closed form geodesic distance between two
         nodes laying into the underlying manifold.
     """
-    __slots__ = ['adjacency', 'wasserstein_1_approximation']
+    __slots__ = ['adjacency', 'wasserstein_1_approximation', 'alpha', 'limit_ricci', 'true_weights', 'nodes_num']
 
     def __init__(self,
                  edge_index: List[Tuple[int, int]],
                  weights: Optional[torch.Tensor],
                  epsilon: float,
-                 rc: Tuple[torch.Tensor, torch.Tensor] = None) -> None:
+                 rc: Tuple[torch.Tensor, torch.Tensor] = None,
+                 alpha: float = 0.4,
+                 limit_ricci: bool = False,
+                 true_weights: bool = False,
+                 nodes_num: Optional[int] = None) -> None:
         """
         Constructor for the Olliver-Ricci curvature. It is assumed that the graph is undirected.
 
@@ -64,14 +68,33 @@ class OllivierRicci(FloydWarshall):
         @type weights: torch.Tensor
         @param epsilon: Entropy regularization scale factor
         @type epsilon: float
+        @param alpha: Probability mass assigned to the center node in the lazy neighborhood measure
+        @type alpha: float
+        @param limit_ricci: If True, return curvature / (1 - alpha) to approximate the alpha -> 1 limit
+        @type limit_ricci: bool
+        @param true_weights: If True, compute lazy random-walk measures from edge weights instead of binary degrees
+        @type true_weights: bool
+        @param nodes_num: Optional total number of graph nodes, useful when isolated nodes should be represented
+        @type nodes_num: int
         @param rc: Pair of marginal distributions for rows (r) and columns (c) of the joint distribution matrix used
                     for the Wasserstein distance
         @type rc: Tuple[Tensor, Tensor]
         """
+        if alpha < 0.0 or alpha > 1.0:
+            raise ValueError(f'Alpha {alpha} should be [0.0, 1.0]')
+        if limit_ricci and alpha == 1.0:
+            raise ValueError('Alpha should be < 1.0 when limit_ricci is True')
+        if true_weights and weights is None:
+            raise ValueError('To have a true-weights probability distribution you should provide a weights Tensor')
+
         super(OllivierRicci, self).__init__(edge_index=edge_index, is_undirected=True, weights=weights)
 
+        self.nodes_num = nodes_num
+        self.true_weights = true_weights
+        self.limit_ricci = limit_ricci
+        self.alpha = alpha
         self.adjacency = FloydWarshall.create_adjacency(edge_index=edge_index, is_indirect=True)
-        (r, c) = rc if rc is not None else OllivierRicci.__get_marginal_distributions(self.adjacency)
+        (r, c) = rc if rc is not None else self.__get_marginal_distributions(self.adjacency, alpha)
         self.wasserstein_1_approximation = SinkhornKnopp.build(r, c, self, epsilon)
 
     @classmethod
@@ -79,7 +102,11 @@ class OllivierRicci(FloydWarshall):
               edge_index: List[Tuple[int, int]],
               geodesic_distance: Callable[[int], torch.Tensor],
               epsilon: float,
-              rc: Tuple[torch.Tensor, torch.Tensor] = None):
+              rc: Tuple[torch.Tensor, torch.Tensor] = None,
+              alpha: float = 0.4,
+              limit_ricci: bool = False,
+              true_weights: bool = False,
+              nodes_num: Optional[int] = None):
         """
         Alternative constructor for the computation of the Olliver-Ricci curvature of a mesh or a graph. Contrary
         to the default constructor, this method take a closed-form of the geodesic distance on the underlying
@@ -91,6 +118,14 @@ class OllivierRicci(FloydWarshall):
         @type geodesic_distance: Callable[[int], torch.Tensor]
         @param epsilon: Entropy regularization scale factor
         @type epsilon: float
+        @param alpha: Probability mass assigned to the center node in the lazy neighborhood measure
+        @type alpha: float
+        @param limit_ricci: If True, return curvature / (1 - alpha) to approximate the alpha -> 1 limit
+        @type limit_ricci: bool
+        @param true_weights: If True, compute lazy random-walk measures from edge weights instead of binary degrees
+        @type true_weights: bool
+        @param nodes_num: Optional total number of graph nodes, useful when isolated nodes should be represented
+        @type nodes_num: int
         @param rc: Pair of marginal distributions for rows (r) and columns (c) of the joint distribution matrix used
                     for the Wasserstein distance
         @type rc: Tuple[Tensor, Tensor]
@@ -98,7 +133,7 @@ class OllivierRicci(FloydWarshall):
         @rtype: OllivierRicci
         """
         weights = geodesic_distance(len(edge_index))
-        return cls(edge_index, weights, epsilon, rc)
+        return cls(edge_index, weights, epsilon, rc, alpha, limit_ricci, true_weights, nodes_num)
 
     def curvature(self, n_iters: int, early_stop_threshold: float) -> torch.Tensor:
         """
@@ -114,9 +149,9 @@ class OllivierRicci(FloydWarshall):
         @return: Discrete curvature
         @rtype: torch.Tensor
         """
-        curvature = torch.zeros_like(self.adjacency)
         # Load the shortest paths as the cost matrix in the Wasserstein distance
         shortest_paths = self.wasserstein_1_approximation.cost_matrix
+        curvature = torch.zeros_like(shortest_paths)
 
         edges = torch.nonzero(self.adjacency)
         for u, v in edges:
@@ -128,13 +163,15 @@ class OllivierRicci(FloydWarshall):
             curvature[u, v] = 1 - (w1 / shortest_path_uv)
             if self.is_undirected:
                 curvature[v, u] = curvature[u, v]
+        if self.limit_ricci:
+            curvature = curvature / (1 - self.alpha)
         return curvature
 
     """ -------------------------  Private Helper Methods -------------------------  """
 
-    @staticmethod
-    def __get_marginal_distributions(adjacency: torch.Tensor) -> tuple[torch.Tensor, torch.Tensor]:
-        joint_probability_measures = OllivierRicci.__compute_prob_measures(adjacency)
+    def __get_marginal_distributions(self, adjacency: torch.Tensor, alpha: float) -> tuple[torch.Tensor, torch.Tensor]:
+        joint_probability_measures = self.__compute_prob_measures_true_weights(alpha) \
+            if self.true_weights else OllivierRicci.__compute_prob_measures(adjacency, alpha)
         # Extract the marginal distribution from the joint distribution
         r = joint_probability_measures.sum(dim=1)
         c = joint_probability_measures.sum(dim=0)
@@ -149,5 +186,25 @@ class OllivierRicci(FloydWarshall):
         eye = torch.eye(n)
 
         # Probability measures for all nodes: (N, N)
-        probs = (alpha * eye) + ((1 - alpha) * adjacency / degrees.unsqueeze(1))
+        probs = (alpha * eye) + ((1 - alpha) * adjacency / degrees.clamp_min(1).unsqueeze(1))
+        isolated_nodes = degrees == 0
+        probs[isolated_nodes] = eye[isolated_nodes]
+        return probs
+
+    def __compute_prob_measures_true_weights(self, alpha: float = 0.4) -> torch.Tensor:
+        n_nodes = self.nodes_num if self.nodes_num is not None else max(sum(self.edge_index, ())) + 1
+        A = torch.zeros((n_nodes, n_nodes), dtype=self.weights.dtype, device=self.weights.device)
+        edge_index = torch.tensor(self.edge_index, device=self.weights.device)
+
+        i = edge_index[:, 0]
+        j = edge_index[:, 1]
+
+        A[i, j] = self.weights
+        A[j, i] = self.weights
+        weighted_degrees = A.sum(dim=1)
+        eye = torch.eye(A.shape[0], dtype=A.dtype, device=A.device)
+
+        probs = (alpha * eye) + ((1 - alpha) * A / weighted_degrees.clamp_min(1e-12).unsqueeze(1))
+        isolated_nodes = weighted_degrees == 0
+        probs[isolated_nodes] = eye[isolated_nodes]
         return probs

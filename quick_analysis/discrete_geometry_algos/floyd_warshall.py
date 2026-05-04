@@ -55,7 +55,7 @@ class FloydWarshall(object):
         """
         if weights is not None and len(edge_index) != len(weights):
             raise ValueError(f'Number of edges {len(edge_index)} differs from weights {len(weights.size())}')
-
+        
         self.edge_index = edge_index
         self.is_undirected = is_undirected
         self.weights = torch.ones(len(edge_index))/len(edge_index) if weights is None else weights/weights.sum()
@@ -100,7 +100,12 @@ class FloydWarshall(object):
     def __init_shortest_distances(self) -> torch.Tensor:
         # Initialize the shortest distance tensor as infinite for non-diagonal values, 0 for diagonal values
         num_nodes = max(sum(self.edge_index, ()))+1
-        distances = torch.full(size=(num_nodes, num_nodes), fill_value=FloydWarshall.INF)
+        distances = torch.full(
+            size=(num_nodes, num_nodes),
+            fill_value=FloydWarshall.INF,
+            dtype=self.weights.dtype,
+            device=self.weights.device
+        )
         distances.fill_diagonal_(0)
         # Apply weights
         for idx, (i, j) in enumerate(self.edge_index):
@@ -108,5 +113,4 @@ class FloydWarshall(object):
             if self.is_undirected:
                 distances[j][i] = distances[i][j]
         return distances
-
 

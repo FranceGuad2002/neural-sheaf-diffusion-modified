@@ -73,6 +73,11 @@ class SinkhornKnopp(Wasserstein1Approximation):
         if c.shape[0] != cost_matrix.shape[1]:
             raise ValueError(f'Shape of c distribution {c.shape[0]} should match cost_matrix {cost_matrix.shape[1]}')
 
+        dtype = torch.promote_types(torch.promote_types(r.dtype, c.dtype), cost_matrix.dtype)
+        cost_matrix = cost_matrix.to(dtype=dtype)
+        r = r.to(dtype=dtype, device=cost_matrix.device)
+        c = c.to(dtype=dtype, device=cost_matrix.device)
+
         r, c = SinkhornKnopp.__normalize_r_c(r, c)
         super(SinkhornKnopp, self).__init__(r, c)
 
