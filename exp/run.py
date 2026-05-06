@@ -2,6 +2,7 @@
 # Copyright 2022 Twitter, Inc.
 # SPDX-License-Identifier: Apache-2.0
 
+from ast import arg
 import enum
 from math import e
 import sys
@@ -137,17 +138,12 @@ def run_exp(args, dataset, model_cls, fold):
         and (hasattr(model, '_last_laplacian') and model._last_laplacian[0] is not None) \
         and (hasattr(model, '_last_laplacian') and model._last_laplacian[1] is not None):
         
-        # print(f"maps: {model._last_maps.detach().cpu().numpy()}")
-        # print(f"maps dimensions: {model._last_maps.detach().cpu().numpy().shape}")
-
-        # lap_indices = model._last_laplacian[0].detach().cpu()
-        # maps = model._last_maps.detach().cpu()
-        
-        # for layer, lap in model._last_laplacian.items():
-        #     print(f"{layer} Laplacian indices: {lap[0].detach().cpu().numpy()}")
-        
-        maps_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'maps',f'{args["dataset"]}', f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
-        lap_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'laplacians', f"normalised-{str(args['normalised']).lower()}",f'{args["dataset"]}', f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
+        if args["dataset"] == "synthetic_exp":
+            maps_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'maps', f'{args["dataset"]}', f"normalised-{str(args['normalised']).lower()}", f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
+            lap_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'laplacians', f'{args["dataset"]}', f"normalised-{str(args['normalised']).lower()}", f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
+        else:        
+            maps_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'maps', f'{args["dataset"]}', f"normalised-{str(args['normalised']).lower()}", f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
+            lap_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'laplacians', f'{args["dataset"]}', f"normalised-{str(args['normalised']).lower()}", f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
         
         os.makedirs(maps_dir, exist_ok=True)
         os.makedirs(lap_dir, exist_ok=True)
@@ -161,17 +157,18 @@ def run_exp(args, dataset, model_cls, fold):
 
             lap_matrix = torch.cat([lap_indices, lap_values.unsqueeze(0)], dim=0)
 
-            lap_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}_seed{args['seed']}.pt"
+            if args["model"] == "synthetic_exp":
+                lap_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}_seed{args['seed']}.pt"
+            else:
+                lap_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}_seed{args['seed']}.pt"
+            
             lap_path = os.path.join(lap_dir, lap_filename)
             torch.save(lap_matrix, lap_path)
             print(f"Saved Laplacian to {lap_path} with shape {tuple(lap_matrix.shape)}")
 
         for layer, maps in model._last_maps.items():
             
-            #print(type(maps))
-            #print(maps)
             maps = maps.detach().cpu()
-            # print(f"{layer}: {maps.detach().cpu().numpy()}")
             lap_indices = model._last_laplacian[layer][0].detach().cpu()
         
             if maps.dim() == 0:
@@ -188,11 +185,13 @@ def run_exp(args, dataset, model_cls, fold):
             edge_cols = lap_indices[:, :num_entries].t().to(maps_cols.dtype)
             maps_matrix = torch.cat([edge_cols, maps_cols[:num_entries]], dim=1)
 
-            # timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-            maps_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}_seed{args['seed']}.pt"
+            if args["model"] == "synthetic_exp":
+                maps_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}_seed{args['seed']}.pt"
+            else:
+                maps_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}_seed{args['seed']}.pt"
+
             maps_path = os.path.join(maps_dir, maps_filename)
             torch.save(maps_matrix, maps_path)
-            #print(f"Saved edge-map matrix to {maps_path} with shape {tuple(maps_matrix.shape)}")
 
     wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch})
     keep_running = False if test_acc < args['min_acc'] else True
