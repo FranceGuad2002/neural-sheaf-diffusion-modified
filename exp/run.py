@@ -157,7 +157,7 @@ def run_exp(args, dataset, model_cls, fold):
 
             lap_matrix = torch.cat([lap_indices, lap_values.unsqueeze(0)], dim=0)
 
-            if args["model"] == "synthetic_exp":
+            if args["dataset"] == "synthetic_exp":
                 lap_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}_seed{args['seed']}.pt"
             else:
                 lap_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}_seed{args['seed']}.pt"
@@ -185,7 +185,7 @@ def run_exp(args, dataset, model_cls, fold):
             edge_cols = lap_indices[:, :num_entries].t().to(maps_cols.dtype)
             maps_matrix = torch.cat([edge_cols, maps_cols[:num_entries]], dim=1)
 
-            if args["model"] == "synthetic_exp":
+            if args["dataset"] == "synthetic_exp":
                 maps_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}_seed{args['seed']}.pt"
             else:
                 maps_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}_seed{args['seed']}.pt"
