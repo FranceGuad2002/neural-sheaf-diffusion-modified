@@ -510,7 +510,7 @@ def get_fixed_splits(data, dataset_name, seed):
 
 
 
-def get_dataset(name, args):
+def get_dataset(name, args=None):
     data_root = osp.join(ROOT_DIR, 'datasets')
     if name in ['cornell', 'texas', 'wisconsin']:
         dataset = WebKB(root=data_root, name=name, transform=T.NormalizeFeatures())

@@ -16,6 +16,8 @@ import git
 import numpy as np
 import wandb
 from tqdm import tqdm
+from sklearn.metrics import roc_auc_score
+
 
 # This is required here by wandb sweeps.
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
@@ -23,8 +25,22 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from exp.parser import get_parser
 from models.positional_encodings import append_top_k_evectors
 from models.cont_models import DiagSheafDiffusion, BundleSheafDiffusion, GeneralSheafDiffusion
-from models.disc_models import DiscreteDiagSheafDiffusion, DiscreteBundleSheafDiffusion, DiscreteGeneralSheafDiffusion
+from models.disc_models import (DiscreteDiagSheafDiffusion, DiscreteBundleSheafDiffusion,
+    DiscreteGeneralSheafDiffusion, DiscreteVanillaDiffusion, DiscreteVanillaDiffusionAlt,
+    DiscreteJointSheafVanillaDiffusion, DiscreteJointSheafDiffusionParams,
+    DiscreteJointSheafDiffusionParamsAlt)
 from utils.heterophilic import get_dataset, get_fixed_splits
+
+AUC_DATASETS = {'minesweeper', 'tolokers', 'questions'}
+
+
+def precompute_sheaf_mappings(data, d, args):
+    diff_model = DiscreteJointSheafVanillaDiffusion(data.edge_index, args).to(args['device'])
+    U, S, V = torch.pca_lowrank(data.x)
+    x_d = torch.matmul(data.x, V[:, 0:d])
+    with torch.no_grad():
+        sheaf_init = diff_model(x_d)
+    return sheaf_init
 
 
 def reset_wandb_env():
@@ -53,7 +69,7 @@ def train(model, optimizer, data):
 def test(model, data):
     model.eval()
     with torch.no_grad():
-        logits, accs, losses, preds = model(data.x), [], [], []
+        logits, accs, losses, preds, probs = model(data.x), [], [], [], []
         for _, mask in data('train_mask', 'val_mask', 'test_mask'):
             pred = logits[mask].max(1)[1]
             acc = pred.eq(data.y[mask]).sum().item() / mask.sum().item()
@@ -63,7 +79,8 @@ def test(model, data):
             preds.append(pred.detach().cpu())
             accs.append(acc)
             losses.append(loss.detach().cpu())
-        return accs, preds, losses
+            probs.append(torch.softmax(logits[mask], dim = 1).detach().cpu())
+        return accs, preds, losses, probs
 
 
 def run_exp(args, dataset, model_cls, fold):
@@ -71,17 +88,23 @@ def run_exp(args, dataset, model_cls, fold):
     data = get_fixed_splits(data, args['dataset'], fold)
     data = data.to(args['device'])
 
-    model = model_cls(data.edge_index, args)
+    if args['sheaf_init'] and model_cls in (DiscreteJointSheafDiffusionParams, DiscreteJointSheafDiffusionParamsAlt):
+        sheaf_init = precompute_sheaf_mappings(data, args['d'], args)
+        model = model_cls(data.edge_index, args, sheaf_init=sheaf_init)
+    else:
+        model = model_cls(data.edge_index, args)
     model = model.to(args['device'])
 
     sheaf_learner_params, other_params = model.grouped_parameters()
+    maps_lr = args['maps_lr'] if args['maps_lr'] is not None else args['lr']
     optimizer = torch.optim.Adam([
-        {'params': sheaf_learner_params, 'weight_decay': args['sheaf_decay']},
+        {'params': sheaf_learner_params, 'lr': maps_lr, 'weight_decay': args['sheaf_decay']},
         {'params': other_params, 'weight_decay': args['weight_decay']}
     ], lr=args['lr'])
 
     epoch = 0
     best_val_acc = test_acc = 0
+    test_auc = 0.0
     best_val_loss = float('inf')
     val_loss_history = []
     val_acc_history = []
@@ -92,7 +115,7 @@ def run_exp(args, dataset, model_cls, fold):
         train(model, optimizer, data)
 
         [train_acc, val_acc, tmp_test_acc], preds, [
-            train_loss, val_loss, tmp_test_loss] = test(model, data)
+            train_loss, val_loss, tmp_test_loss], probs = test(model, data)
         if fold == 0:
             res_dict = {
                 f'fold{fold}_train_acc': train_acc,
@@ -111,6 +134,13 @@ def run_exp(args, dataset, model_cls, fold):
             test_acc = tmp_test_acc
             best_epoch = epoch
             bad_counter = 0
+            if args['dataset'] in AUC_DATASETS:
+                y_true = data.y[data.test_mask].cpu().numpy()
+                y_probs = probs[2].cpu().numpy()
+                try:
+                    test_auc = roc_auc_score(y_true, y_probs[:,1])
+                except ValueError:
+                    test_auc = float('nan')
         else:
             bad_counter += 1
 
@@ -120,6 +150,9 @@ def run_exp(args, dataset, model_cls, fold):
     print(f"Fold {fold} | Epochs: {epoch} | Best epoch: {best_epoch}")
     print(f"Test acc: {test_acc:.4f}")
     print(f"Best val acc: {best_val_acc:.4f}")
+
+    if args['dataset'] in AUC_DATASETS:
+        print(f"Test AUC: {test_auc:.4f}")
 
     if "ODE" not in args['model']:
         # Debugging for discrete models
@@ -133,6 +166,9 @@ def run_exp(args, dataset, model_cls, fold):
         with np.printoptions(precision=3, suppress=True):
             for i in range(0, args['layers']):
                 print(f"Epsilons {i}: {model.epsilons[i].detach().cpu().numpy().flatten()}")
+            if hasattr(model, 'dual_epsilons'):
+                for i in range(0, args['layers'] - 1):
+                    print(f"DualEpsilons {i}: {model.dual_epsilons[i].detach().cpu().numpy().flatten()}")
 
     if (hasattr(model, '_last_maps') and model._last_maps is not None) \
         and (hasattr(model, '_last_laplacian') and model._last_laplacian[0] is not None) \
@@ -148,6 +184,8 @@ def run_exp(args, dataset, model_cls, fold):
         os.makedirs(maps_dir, exist_ok=True)
         os.makedirs(lap_dir, exist_ok=True)
 
+        lfm_tag = f"_learn_first_maps-{str(args['learn_first_maps']).lower()}" if args['model'] == 'JointSheafParamsAlt' else ""
+
         for layer, lap in model._last_laplacian.items():
             lap_indices = lap[0].detach().cpu()
             lap_values = lap[1].detach().cpu()
@@ -158,9 +196,9 @@ def run_exp(args, dataset, model_cls, fold):
             lap_matrix = torch.cat([lap_indices, lap_values.unsqueeze(0)], dim=0)
 
             if args["dataset"] == "synthetic_exp":
-                lap_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}_seed{args['seed']}.pt"
+                lap_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}{lfm_tag}_seed{args['seed']}.pt"
             else:
-                lap_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}_seed{args['seed']}.pt"
+                lap_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}{lfm_tag}_seed{args['seed']}.pt"
             
             lap_path = os.path.join(lap_dir, lap_filename)
             torch.save(lap_matrix, lap_path)
@@ -186,17 +224,39 @@ def run_exp(args, dataset, model_cls, fold):
             maps_matrix = torch.cat([edge_cols, maps_cols[:num_entries]], dim=1)
 
             if args["dataset"] == "synthetic_exp":
-                maps_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}_seed{args['seed']}.pt"
+                maps_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}{lfm_tag}_seed{args['seed']}.pt"
             else:
-                maps_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}_seed{args['seed']}.pt"
+                maps_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}{lfm_tag}_seed{args['seed']}.pt"
 
             maps_path = os.path.join(maps_dir, maps_filename)
             torch.save(maps_matrix, maps_path)
+    
+    if hasattr(model, '_last_node_norms') and model._last_node_norms:
+        norms_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'node_norms',
+        f'{args["dataset"]}',
+        f"normalised-{str(args['normalised']).lower()}",
+        f'stalk_dim-{args["d"]}',
+        f'{args["layers"]}-layers',
+        f'{args["hidden_channels"]}-hidden',
+        f'{args["epochs"]}-epochs'))
+        os.makedirs(norms_dir, exist_ok=True)
 
-    wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch})
+        if args["dataset"] == "synthetic_exp":
+            norms_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}{lfm_tag}_fold{fold}_seed{args['seed']}.pt"
+        else:
+            norms_filename = f"{args['model']}_{args['dataset']}{lfm_tag}_fold{fold}_seed{args['seed']}.pt"
+
+        norms_path = os.path.join(norms_dir, norms_filename)
+        torch.save(model._last_node_norms, norms_path)
+        print(f"Saved node norms to {norms_path}")
+
+    if args['dataset'] in AUC_DATASETS:
+        wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch, 'best_test_auc': test_auc})
+    else:
+        wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch})
     keep_running = False if test_acc < args['min_acc'] else True
 
-    return test_acc, best_val_acc, keep_running
+    return test_acc, best_val_acc, test_auc, keep_running
 
 if __name__ == '__main__':
     parser = get_parser()
@@ -217,6 +277,16 @@ if __name__ == '__main__':
         model_cls = DiscreteBundleSheafDiffusion
     elif args.model == 'GeneralSheaf':
         model_cls = DiscreteGeneralSheafDiffusion
+    elif args.model == 'JointSheafParams':
+        model_cls = DiscreteJointSheafDiffusionParams
+    elif args.model == 'JointSheafParamsAlt':
+        model_cls = DiscreteJointSheafDiffusionParamsAlt
+    elif args.model == 'JointSheafVanilla':
+        model_cls = DiscreteJointSheafVanillaDiffusion
+    elif args.model == 'VanillaSheaf':
+        model_cls = DiscreteVanillaDiffusion
+    elif args.model == 'ConvSheaf':
+        model_cls = DiscreteVanillaDiffusionAlt
     else:
         raise ValueError(f'Unknown model {args.model}')
 
@@ -255,11 +325,16 @@ if __name__ == '__main__':
     results = []
     print(f"Running with wandb account: {args.entity}")
     print(args)
-    wandb.init(project="sheaf", config=vars(args), entity=args.entity)
+    lfm_suffix = f"_learn_first_maps-{str(args.learn_first_maps).lower()}" if args.model == 'JointSheafParamsAlt' else ""
+    if args.dataset == "synthetic_exp":
+        run_name = f"{args.model}_nodes-{args.num_nodes}_node-deg-{args.node_degree}_normalised-{str(args.normalised).lower()}_stalk-{args.d}_{args.layers}layers_{args.hidden_channels}hidden_{args.epochs}epochs_pct-hetero-{int(float(args.het_coef)*100)}_classes-{args.num_classes}_feats-{args.num_feats}{lfm_suffix}_seed{args.seed}"
+    else:
+        run_name = f"{args.model}_{args.dataset}_normalised-{str(args.normalised).lower()}_stalk-{args.d}_{args.layers}layers_{args.hidden_channels}hidden_{args.epochs}epochs{lfm_suffix}_seed{args.seed}"
+    wandb.init(project="sheaf", config=vars(args), entity=args.entity, name=run_name)
 
     for fold in tqdm(range(args.folds)):
-        test_acc, best_val_acc, keep_running = run_exp(wandb.config, dataset, model_cls, fold)
-        results.append([test_acc, best_val_acc])
+        test_acc, best_val_acc, test_auc, keep_running = run_exp(wandb.config, dataset, model_cls, fold)
+        results.append([test_acc, best_val_acc, test_auc])
         if not keep_running:
             break
 
@@ -272,13 +347,24 @@ if __name__ == '__main__':
     #     torch.save(model_cls._last_maps.detach().cpu(), maps_path)
     #     print(f"Saved last restriction maps to {maps_path}")
 
-    test_acc_mean, val_acc_mean = np.mean(results, axis=0) * 100
-    test_acc_std = np.sqrt(np.var(results, axis=0)[0]) * 100
+    results_arr = np.array(results)
+    test_acc_mean = results_arr[:, 0].mean() * 100
+    val_acc_mean  = results_arr[:, 1].mean() * 100
+    test_acc_std  = results_arr[:, 0].std() * 100
 
     wandb_results = {'test_acc': test_acc_mean, 'val_acc': val_acc_mean, 'test_acc_std': test_acc_std}
+
+    if args.dataset in AUC_DATASETS:
+        test_auc_mean = results_arr[:, 2].mean()
+        test_auc_std  = results_arr[:, 2].std()
+        wandb_results['test_auc']     = test_auc_mean
+        wandb_results['test_auc_std'] = test_auc_std
+
     wandb.log(wandb_results)
     wandb.finish()
 
     model_name = args.model if args.evectors == 0 else f"{args.model}+LP{args.evectors}"
     print(f'{model_name} on {args.dataset} | SHA: {sha}')
     print(f'Test acc: {test_acc_mean:.4f} +/- {test_acc_std:.4f} | Val acc: {val_acc_mean:.4f}')
+    if args.dataset in AUC_DATASETS:
+        print(f'Test AUC: {test_auc_mean:.4f} +/- {test_auc_std:.4f}')

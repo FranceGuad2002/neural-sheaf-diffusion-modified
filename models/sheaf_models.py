@@ -182,3 +182,210 @@ class QuadraticFormSheafLearner(SheafLearner):
         else:
             return torch.tanh(maps).view(-1, self.out_shape[0])
 
+
+
+
+class OpinionDynamicsSheafInitLearner(SheafLearner):
+    def __init__(self, hidden_channels, d, num_maps):
+        super(OpinionDynamicsSheafInitLearner, self).__init__()
+        self.d = d
+        self.hidden_channels = hidden_channels
+        #initialize maps as identity matrices
+        #self.maps = torch.eye(self.d).reshape(1,self.d,self.d).repeat(num_maps,1,1)
+        self.maps = nn.Parameter(torch.eye(self.d).reshape(1,self.d,self.d).repeat(num_maps,1,1),requires_grad=True)
+
+    def forward(self, x, edge_index, maps, diff_strength = 1):
+        
+        if diff_strength == 0:
+            res_maps = maps.clone().detach()
+            return res_maps
+        row = edge_index[0]
+        col = edge_index[1]
+        #we reshape the vector to have graph size x dimension x hidden channels
+        #and change the order of the dimensions to easily acces each vector of
+        #each channel and each node
+        x2 = x.reshape(-1,self.d,self.hidden_channels)
+        self.left_right_idx, self.vertex_tril_idx = lap.compute_left_right_map_index(edge_index)
+        left_idx, right_idx = self.left_right_idx
+        #update the sheaf with the data
+        #select all the node vectors of the left maps
+        xu = torch.index_select(x2, dim=0, index=row)
+        xu = torch.index_select(xu, dim = 0, index = left_idx)
+        #select all the node vectors of the right maps
+        xv = torch.index_select(x2, dim=0, index=col)
+        xv = torch.index_select(xv, dim = 0, index = left_idx)
+        res_maps = maps.clone().detach()
+        #select all the maps
+        left_maps = torch.index_select(res_maps, index=left_idx, dim=0)
+        right_maps = torch.index_select(res_maps, index=right_idx, dim=0)
+
+        #update the maps according to the ODE
+        left_maps = left_maps - diff_strength*torch.bmm((torch.bmm(left_maps,xu)-torch.bmm(right_maps,xv)),torch.transpose(xu,-2,-1))
+        right_maps = right_maps - diff_strength*torch.bmm((torch.bmm(right_maps,xv)-torch.bmm(left_maps,xu)),torch.transpose(xv,-2,-1))
+
+        #save changes
+        res_maps[left_idx] = left_maps
+        res_maps[right_idx] = right_maps
+        return res_maps
+
+
+
+class OpinionDynamicsFixedSheaf(SheafLearner):
+    def __init__(self, hidden_channels, d, num_maps):
+        super(OpinionDynamicsFixedSheaf, self).__init__()
+        self.d = d
+        self.hidden_channels = hidden_channels
+
+    def forward(self, x, edge_index, maps, diff_strength = 1):
+        if diff_strength == 0:
+            res_maps = maps.clone().detach()
+            return res_maps
+        row, col = edge_index
+        
+        #we want to select the left and right maps
+        self.left_right_idx, self.vertex_tril_idx = lap.compute_left_right_map_index(edge_index)
+        left_idx, right_idx = self.left_right_idx
+        #update the sheaf with the data
+        #select all the node vectors of the left maps
+        xu = torch.index_select(x, dim=0, index=row)
+        xu = torch.index_select(xu, dim = 0, index = left_idx)
+        #select all the node vectors of the right maps
+        xv = torch.index_select(x, dim=0, index=col)
+        #here it's left_idx because selecting index=col we are already selecting the other edge
+        xv = torch.index_select(xv, dim = 0, index = left_idx)
+        res_maps = maps.clone().detach()
+        #select all the maps
+        left_maps = torch.index_select(res_maps, index=left_idx, dim=0)
+        right_maps = torch.index_select(res_maps, index=right_idx, dim=0)
+
+        #update the maps according to the ODE
+        left_maps = left_maps - diff_strength*torch.bmm((torch.bmm(left_maps,xu)-torch.bmm(right_maps,xv)),torch.transpose(xu,-2,-1))
+        right_maps = right_maps - diff_strength*torch.bmm((torch.bmm(right_maps,xv)-torch.bmm(left_maps,xu)),torch.transpose(xv,-2,-1))
+
+        #save changes
+        res_maps[left_idx] = left_maps
+        res_maps[right_idx] = right_maps
+        return res_maps
+
+
+class RotationInvariantSheafLearner(SheafLearner):
+    def __init__(self, d: int, hidden_channels: int, edge_index, graph_size, out_shape: Tuple[int, ...], time_dep: bool, transform = None, 
+                 sheaf_act="tanh"):
+        super(RotationInvariantSheafLearner, self).__init__()
+        assert len(out_shape) in [1, 2]
+        self.out_shape = out_shape
+        self.d = d
+        self.hidden_channels = hidden_channels
+        self.linear1 = torch.nn.Linear(d*d, int(np.prod(out_shape)), bias=True)
+
+        self.time_dep = time_dep
+        self.left_right_idx, _ = lap.compute_left_right_map_index(edge_index)
+        right_left_idx = torch.cat((self.left_right_idx[1].reshape(1,-1),self.left_right_idx[0].reshape(1,-1)),0)
+        sheaf_edge_index_unsorted = torch.cat((self.left_right_idx,right_left_idx),1)
+        self.graph_size = graph_size
+        self.dual_laplacian_builder = lb.GeneralLaplacianBuilder(
+            edge_index.shape[1],sheaf_edge_index_unsorted, d = self.d,
+            normalised=False,deg_normalised = True, augmented=False)
+        
+        self.transform = transform
+
+        if sheaf_act == 'id':
+            self.act = lambda x: x
+        elif sheaf_act == 'tanh':
+            self.act = torch.tanh
+        elif sheaf_act == 'elu':
+            self.act = F.elu
+
+    def forward(self, x, edge_index, Maps):
+
+        if Maps == None or not self.time_dep:
+            Maps2 = torch.eye(self.d).reshape(1,self.d,self.d).repeat(edge_index.shape[1],1,1).to(x.device)
+        elif self.transform is not None:
+            if self.transform == torch.diag:
+                Maps2 = torch.stack([self.transform(map1) for map1 in Maps])
+            else:
+                Maps2 = self.transform(Maps)
+        else:
+            Maps2 = Maps
+        xT = torch.index_select(torch.transpose(x.reshape(self.graph_size,-1,self.hidden_channels)[:,0:self.d,:], -2, -1), 
+                                dim = 0, index = edge_index[0])
+        OldMaps = torch.transpose(Maps2,-1,-2).reshape(-1,self.d)
+        
+        xTmaps = torch.cat((torch.index_select(xT,0,self.left_right_idx[0]),
+                            torch.index_select(xT,0,self.left_right_idx[1])), 0)
+        Lsheaf, _ = self.dual_laplacian_builder(xTmaps)
+        node_edge_sims = 2*torch.transpose(torch_sparse.spmm(Lsheaf[0], Lsheaf[1], OldMaps.size(0), OldMaps.size(0), OldMaps).reshape((-1,self.d,self.d)),-2,-1)
+
+        node_edge_sims = self.linear1(node_edge_sims.reshape(-1,self.d*self.d))
+        maps = self.act(node_edge_sims)
+        if len(self.out_shape) == 2:
+            maps = maps.view(-1, self.out_shape[0], self.out_shape[1])
+        else:
+            maps = maps.view(-1, self.out_shape[0])
+        return maps    
+
+
+class AttentionSheafLearner(SheafLearner):
+
+    def __init__(self, in_channels, d):
+        super(AttentionSheafLearner, self).__init__()
+        self.d = d
+        self.linear1 = torch.nn.Linear(in_channels*2, d**2, bias=False)
+
+    def forward(self, x, edge_index):
+        row, col = edge_index
+        x_row = torch.index_select(x, dim=0, index=row)
+        x_col = torch.index_select(x, dim=0, index=col)
+        maps = self.linear1(torch.cat([x_row, x_col], dim=1)).view(-1, self.d, self.d)
+
+        id = torch.eye(self.d, device=edge_index.device, dtype=maps.dtype).unsqueeze(0)
+        return id - torch.softmax(maps, dim=-1)
+
+
+class EdgeWeightLearner(SheafLearner):
+    """Learns a sheaf by concatenating the local node features and passing them through a linear layer + activation."""
+
+    def __init__(self, in_channels: int, edge_index):
+        super(EdgeWeightLearner, self).__init__()
+        self.in_channels = in_channels
+        self.linear1 = torch.nn.Linear(in_channels*2, 1, bias=False)
+        self.full_left_right_idx, _ = lap.compute_left_right_map_index(edge_index, full_matrix=True)
+
+    def forward(self, x, edge_index):
+        _, full_right_idx = self.full_left_right_idx
+
+        row, col = edge_index
+        x_row = torch.index_select(x, dim=0, index=row)
+        x_col = torch.index_select(x, dim=0, index=col)
+        weights = self.linear1(torch.cat([x_row, x_col], dim=1))
+        weights = torch.sigmoid(weights)
+
+        edge_weights = weights * torch.index_select(weights, index=full_right_idx, dim=0)
+        return edge_weights
+
+    def update_edge_index(self, edge_index):
+        self.full_left_right_idx, _ = lap.compute_left_right_map_index(edge_index, full_matrix=True)
+
+
+class QuadraticFormSheafLearner(SheafLearner):
+    """Learns a sheaf by concatenating the local node features and passing them through a linear layer + activation."""
+
+    def __init__(self, in_channels: int, out_shape: Tuple[int]):
+        super(QuadraticFormSheafLearner, self).__init__()
+        assert len(out_shape) in [1, 2]
+        self.out_shape = out_shape
+
+        tensor = torch.eye(in_channels).unsqueeze(0).tile(int(np.prod(out_shape)), 1, 1)
+        self.tensor = nn.Parameter(tensor)
+
+    def forward(self, x, edge_index):
+        row, col = edge_index
+        x_row = torch.index_select(x, dim=0, index=row)
+        x_col = torch.index_select(x, dim=0, index=col)
+        maps = self.map_builder(torch.cat([x_row, x_col], dim=1))
+
+        if len(self.out_shape) == 2:
+            return torch.tanh(maps).view(-1, self.out_shape[0], self.out_shape[1])
+        else:
+            return torch.tanh(maps).view(-1, self.out_shape[0])
+

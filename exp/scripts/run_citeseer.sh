@@ -10,10 +10,10 @@ python -m exp.run \
     --epochs=500 \
     --folds=10 \
     --hidden_channels=16 \
-    --input_dropout=0.7 \
-    --layers=2 \
+    --input_dropout=0.2 \
+    --layers=4 \
     --lr=0.01 \
-    --model=BundleSheaf \
+    --model=GeneralSheaf \
     --second_linear=True \
     --sheaf_decay=0.0012638885974822734 \
     --weight_decay=0.0002969905682317406 \

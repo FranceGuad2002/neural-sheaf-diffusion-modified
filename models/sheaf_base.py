@@ -47,6 +47,13 @@ class SheafDiffusion(nn.Module):
         self.t = args['max_t']
         self.time_range = torch.tensor([0.0, self.t], device=self.device)
         self.laplacian_builder = None
+        self.dual_left_linear = args['dual_left_linear']
+        self.dual_right_linear = args['dual_right_linear']
+        self.dual_linear = args['dual_linear']
+        self.learn_first_maps = args['learn_first_maps']
+        self.diff_strength = args['dual_diff_strength']
+        self.dual_diag = args['dual_diag']
+        self.use_embedding = args['use_embedding']
 
     def update_edge_index(self, edge_index):
         assert edge_index.max() <= self.graph_size
@@ -60,6 +67,6 @@ class SheafDiffusion(nn.Module):
                 sheaf_learners.append(param)
             else:
                 others.append(param)
-        assert len(sheaf_learners) > 0
+        #assert len(sheaf_learners) > 0
         assert len(sheaf_learners) + len(others) == len(list(self.parameters()))
         return sheaf_learners, others

@@ -19,6 +19,9 @@ def str2bool(x):
 def list_of_floats(arg):
     return list(map(float, arg.split(',')))
 
+def list_of_ints(arg):
+    return list(map(int, arg.split(',')))
+
 def get_parser():
     parser = argparse.ArgumentParser()
     # Optimisation params
@@ -66,7 +69,9 @@ def get_parser():
     parser.add_argument('--cuda', type=int, default=0)
     parser.add_argument('--folds', type=int, default=10)
     parser.add_argument('--model', type=str, choices=['DiagSheaf', 'BundleSheaf', 'GeneralSheaf', 'DiagSheafODE',
-                                                      'BundleSheafODE', 'GeneralSheafODE'], default=None)
+                                                      'BundleSheafODE', 'GeneralSheafODE', 'JointSheafParams',
+                                                      'JointSheafParamsAlt', 'JointSheafVanilla',
+                                                      'VanillaSheaf', 'ConvSheaf'], default=None)
     parser.add_argument('--entity', type=str, default=None)
     parser.add_argument('--evectors', type=int, default=0, help="Number of Laplacian PE eigenvectors to use.")
 
@@ -119,5 +124,25 @@ def get_parser():
     parser.add_argument("--classes_corr", type=list_of_floats, default=None,
                     help="Custom class correlation matrix, as a flat comma-separated list.")
 
-    
+
+    # Joint sheaf diffusion args
+    parser.add_argument('--dual_diff_strength', type=float, default=1.0,
+                        help="Regulates the diffusion strength of the dual sheaf diffusion")
+    parser.add_argument('--dual_normalised', type=str2bool, default=True)
+    parser.add_argument('--sheaf_init', type=str2bool, default=False,
+                        help="Precompute initial sheaf via DiscreteJointSheafVanillaDiffusion + PCA")
+    parser.add_argument('--dual_left_linear', type=str2bool, default=False)
+    parser.add_argument('--dual_right_linear', type=str2bool, default=False)
+    parser.add_argument('--dual_linear', type=str2bool, default=True)
+    parser.add_argument('--learn_first_maps', type=str2bool, default=False)
+    parser.add_argument('--dual_diag', type=str2bool, default=False)
+    parser.add_argument('--rotation_invariant_sheaf_learner', type=str2bool, default=False)
+    parser.add_argument('--node_edge_sims_time_dependent', type=str2bool, default=False)
+    parser.add_argument('--num_of_convolutions', type=int, default=1)
+    parser.add_argument('--dim_list', type=list_of_ints, default=[])
+    parser.add_argument('--zero_laplacian', type=str2bool, default=False)
+    parser.add_argument('--maps_lr', type=float, default=None)
+    parser.add_argument('--use_epsilons', type=str2bool, default=True)
+    parser.add_argument('--use_embedding', type=str2bool, default=True)
+
     return parser
