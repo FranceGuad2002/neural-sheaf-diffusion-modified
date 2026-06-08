@@ -545,6 +545,13 @@ def get_dataset(name, args=None):
         dataset = [Data(x=torch.tensor(np.load(data_root+'/minesweeper/raw/node_features.npy')),
                      edge_index = edge_index,
                      y = torch.tensor(np.load(data_root+'/minesweeper/raw/node_labels.npy')))]
+    elif name in ['amazon_ratings', 'tolokers', 'questions']:
+        edge_index = torch.tensor(np.transpose(np.load(data_root+f'/{name}/raw/edges.npy')))
+        edge_index2 = torch.cat([edge_index[1].reshape(1,-1),edge_index[0].reshape(1,-1)], dim=0)
+        edge_index = torch.cat((edge_index,edge_index2),dim=1)
+        dataset = [Data(x=torch.tensor(np.load(data_root+f'/{name}/raw/node_features.npy')),
+                     edge_index = edge_index,
+                     y = torch.tensor(np.load(data_root+f'/{name}/raw/node_labels.npy')))]
     else:
         raise ValueError(f'dataset {name} not supported in dataloader')
     return dataset
