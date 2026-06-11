@@ -145,4 +145,10 @@ def get_parser():
     parser.add_argument('--use_epsilons', type=str2bool, default=True)
     parser.add_argument('--use_embedding', type=str2bool, default=True)
 
+    parser.add_argument('--checkpoint_epochs', type=list_of_ints, default=[],
+                        help='Comma-separated epoch numbers at which to save Laplacian checkpoints. '
+                             '0 = pre-training (before any gradient step). '
+                             'N = after N gradient steps. '
+                             'Example: --checkpoint_epochs 0,1,5,15,200')
+
     return parser

@@ -7,6 +7,7 @@ import enum
 from math import e
 import sys
 import os
+import json
 import random
 from datetime import datetime
 import torch
@@ -83,6 +84,51 @@ def test(model, data):
         return accs, preds, losses, probs
 
 
+def _lap_base_dir(args):
+    return os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..', 'results', 'laplacians',
+        args['dataset'],
+        f"normalised-{str(args['normalised']).lower()}",
+        f"stalk_dim-{args['d']}",
+        f"{args['layers']}-layers",
+        f"{args['hidden_channels']}-hidden",
+        f"{args['epochs']}-epochs",
+    ))
+
+
+def _save_laplacians(laplacian_dict, args, fold, lap_dir):
+    os.makedirs(lap_dir, exist_ok=True)
+    lfm_tag = (f"_learn_first_maps-{str(args['learn_first_maps']).lower()}"
+               if args['model'] == 'JointSheafParamsAlt' else "")
+
+    for layer, lap in laplacian_dict.items():
+        lap_indices = lap[0].detach().cpu()
+        lap_values = lap[1].detach().cpu()
+
+        if lap_indices.dim() != 2 or lap_indices.size(0) != 2:
+            raise ValueError(
+                f"Expected Laplacian indices of shape [2, N], got {tuple(lap_indices.shape)}")
+
+        lap_matrix = torch.cat([lap_indices, lap_values.unsqueeze(0)], dim=0)
+
+        if args['dataset'] == 'synthetic_exp':
+            lap_filename = (
+                f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
+                f"_layer{layer}_pct-hetero-{int(float(args['het_coef']) * 100)}"
+                f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
+                f"{lfm_tag}_seed{args['seed']}.pt"
+            )
+        else:
+            lap_filename = (
+                f"{args['model']}_{args['dataset']}_layer{layer}"
+                f"_fold{fold}{lfm_tag}_seed{args['seed']}.pt"
+            )
+
+        lap_path = os.path.join(lap_dir, lap_filename)
+        torch.save(lap_matrix, lap_path)
+        print(f"Saved Laplacian to {lap_path} with shape {tuple(lap_matrix.shape)}")
+
+
 def run_exp(args, dataset, model_cls, fold):
     data = dataset[0]
     data = get_fixed_splits(data, args['dataset'], fold)
@@ -111,6 +157,26 @@ def run_exp(args, dataset, model_cls, fold):
     best_epoch = 0
     bad_counter = 0
 
+    checkpoint_set = set(args.get('checkpoint_epochs') or [])
+    best_laplacian_snapshot = None
+    checkpoint_accuracy = {}   # {label: {train_acc, val_acc, test_acc}}
+    best_acc_snapshot = {}
+
+    # Epoch 0: save pre-training Laplacian (random init, zero gradient steps).
+    # test() populates _last_laplacian and gives accuracy at no extra cost.
+    if 0 in checkpoint_set:
+        [ta0, va0, tta0], _, _, _ = test(model, data)
+        if hasattr(model, '_last_laplacian') \
+                and model._last_laplacian[0] is not None \
+                and model._last_laplacian[1] is not None:
+            _save_laplacians(
+                model._last_laplacian, args, fold,
+                os.path.join(_lap_base_dir(args), 'checkpoints', 'epoch-0'),
+            )
+        checkpoint_accuracy['epoch-0'] = {
+            'train_acc': float(ta0), 'val_acc': float(va0), 'test_acc': float(tta0),
+        }
+
     for epoch in range(args['epochs']):
         train(model, optimizer, data)
 
@@ -127,6 +193,19 @@ def run_exp(args, dataset, model_cls, fold):
             }
             wandb.log(res_dict, step=epoch)
 
+        # Checkpoint save: epoch N = after N gradient steps (loop variable = N-1 here).
+        if checkpoint_set and (epoch + 1) in checkpoint_set:
+            if hasattr(model, '_last_laplacian') \
+                    and model._last_laplacian[0] is not None \
+                    and model._last_laplacian[1] is not None:
+                _save_laplacians(
+                    model._last_laplacian, args, fold,
+                    os.path.join(_lap_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'),
+                )
+            checkpoint_accuracy[f'epoch-{epoch + 1}'] = {
+                'train_acc': float(train_acc), 'val_acc': float(val_acc), 'test_acc': float(tmp_test_acc),
+            }
+
         new_best_trigger = val_acc > best_val_acc if args['stop_strategy'] == 'acc' else val_loss < best_val_loss
         if new_best_trigger:
             best_val_acc = val_acc
@@ -134,6 +213,17 @@ def run_exp(args, dataset, model_cls, fold):
             test_acc = tmp_test_acc
             best_epoch = epoch
             bad_counter = 0
+            # Snapshot the Laplacian at the best validation epoch for later saving.
+            if hasattr(model, '_last_laplacian') \
+                    and model._last_laplacian[0] is not None \
+                    and model._last_laplacian[1] is not None:
+                best_laplacian_snapshot = {
+                    layer: (lap[0].detach().clone().cpu(), lap[1].detach().clone().cpu())
+                    for layer, lap in model._last_laplacian.items()
+                }
+            best_acc_snapshot = {
+                'train_acc': float(train_acc), 'val_acc': float(val_acc), 'test_acc': float(tmp_test_acc),
+            }
             if args['dataset'] in AUC_DATASETS:
                 y_true = data.y[data.test_mask].cpu().numpy()
                 y_probs = probs[2].cpu().numpy()
@@ -147,12 +237,23 @@ def run_exp(args, dataset, model_cls, fold):
         if bad_counter == args['early_stopping']:
             break
 
+    last_test_acc = tmp_test_acc
+    if args['dataset'] in AUC_DATASETS:
+        y_true_last = data.y[data.test_mask].cpu().numpy()
+        y_probs_last = probs[2].cpu().numpy()
+        try:
+            last_test_auc = roc_auc_score(y_true_last, y_probs_last[:, 1])
+        except ValueError:
+            last_test_auc = float('nan')
+
     print(f"Fold {fold} | Epochs: {epoch} | Best epoch: {best_epoch}")
-    print(f"Test acc: {test_acc:.4f}")
+    print(f"Test acc (best epoch): {test_acc:.4f}")
+    print(f"Test acc (last epoch): {last_test_acc:.4f}")
     print(f"Best val acc: {best_val_acc:.4f}")
 
     if args['dataset'] in AUC_DATASETS:
-        print(f"Test AUC: {test_auc:.4f}")
+        print(f"Test AUC (best epoch): {test_auc:.4f}")
+        print(f"Test AUC (last epoch): {last_test_auc:.4f}")
 
     if "ODE" not in args['model']:
         # Debugging for discrete models
@@ -170,66 +271,44 @@ def run_exp(args, dataset, model_cls, fold):
                 for i in range(0, args['layers'] - 1):
                     print(f"DualEpsilons {i}: {model.dual_epsilons[i].detach().cpu().numpy().flatten()}")
 
-    if (hasattr(model, '_last_maps') and model._last_maps is not None) \
-        and (hasattr(model, '_last_laplacian') and model._last_laplacian[0] is not None) \
-        and (hasattr(model, '_last_laplacian') and model._last_laplacian[1] is not None):
-        
-        if args["dataset"] == "synthetic_exp":
-            maps_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'maps', f'{args["dataset"]}', f"normalised-{str(args['normalised']).lower()}", f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
-            lap_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'laplacians', f'{args["dataset"]}', f"normalised-{str(args['normalised']).lower()}", f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
-        else:        
-            maps_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'maps', f'{args["dataset"]}', f"normalised-{str(args['normalised']).lower()}", f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
-            lap_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'laplacians', f'{args["dataset"]}', f"normalised-{str(args['normalised']).lower()}", f'stalk_dim-{args["d"]}',f'{args["layers"]}-layers', f'{args["hidden_channels"]}-hidden', f'{args["epochs"]}-epochs'))
-        
-        os.makedirs(maps_dir, exist_ok=True)
-        os.makedirs(lap_dir, exist_ok=True)
+    # Save the Laplacian from the best validation epoch (snapshotted during training).
+    if best_laplacian_snapshot is not None:
+        _save_laplacians(
+            best_laplacian_snapshot, args, fold,
+            os.path.join(_lap_base_dir(args), 'checkpoints', 'best-epoch'),
+        )
+        print(f"Saved best-epoch Laplacian (epoch {best_epoch}) to checkpoints/best-epoch/")
 
-        lfm_tag = f"_learn_first_maps-{str(args['learn_first_maps']).lower()}" if args['model'] == 'JointSheafParamsAlt' else ""
+    # Record last-epoch accuracy now that the loop has finished.
+    checkpoint_accuracy['last'] = {
+        'epoch': int(epoch),
+        'train_acc': float(train_acc), 'val_acc': float(val_acc), 'test_acc': float(last_test_acc),
+    }
+    if best_acc_snapshot:
+        checkpoint_accuracy['best-epoch'] = dict(best_acc_snapshot, epoch=int(best_epoch))
 
-        for layer, lap in model._last_laplacian.items():
-            lap_indices = lap[0].detach().cpu()
-            lap_values = lap[1].detach().cpu()
+    # Accumulate per-fold accuracy and best-epoch info into a single JSON file.
+    best_epochs_path = os.path.join(_lap_base_dir(args), 'best_epochs.json')
+    os.makedirs(_lap_base_dir(args), exist_ok=True)
+    best_epochs_data = {}
+    if os.path.exists(best_epochs_path):
+        with open(best_epochs_path, 'r') as f:
+            best_epochs_data = json.load(f)
+    best_epochs_data[f'fold_{fold}'] = {
+        'best_epoch': int(best_epoch),
+        'best_val_acc': float(best_val_acc),
+        'best_test_acc': float(test_acc),
+        'checkpoints': checkpoint_accuracy,
+    }
+    with open(best_epochs_path, 'w') as f:
+        json.dump(best_epochs_data, f, indent=2)
+    print(f"Updated best_epochs.json: fold_{fold} -> epoch {best_epoch}")
 
-            if lap_indices.dim() != 2 or lap_indices.size(0) != 2:
-                raise ValueError(f"Expected Laplacian indices of shape [2, N], got {tuple(lap_indices.shape)}")
-
-            lap_matrix = torch.cat([lap_indices, lap_values.unsqueeze(0)], dim=0)
-
-            if args["dataset"] == "synthetic_exp":
-                lap_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}{lfm_tag}_seed{args['seed']}.pt"
-            else:
-                lap_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}{lfm_tag}_seed{args['seed']}.pt"
-            
-            lap_path = os.path.join(lap_dir, lap_filename)
-            torch.save(lap_matrix, lap_path)
-            print(f"Saved Laplacian to {lap_path} with shape {tuple(lap_matrix.shape)}")
-
-        for layer, maps in model._last_maps.items():
-            
-            maps = maps.detach().cpu()
-            lap_indices = model._last_laplacian[layer][0].detach().cpu()
-        
-            if maps.dim() == 0:
-                maps = maps.unsqueeze(0)
-            if maps.dim() == 1:
-                maps_cols = maps.unsqueeze(1)
-            else:
-                maps_cols = maps.reshape(maps.shape[0], -1)
-
-            if lap_indices.dim() != 2 or lap_indices.size(0) != 2:
-                raise ValueError(f"Expected Laplacian indices of shape [2, N], got {tuple(lap_indices.shape)}")
-
-            num_entries = min(lap_indices.size(1), maps_cols.size(0))
-            edge_cols = lap_indices[:, :num_entries].t().to(maps_cols.dtype)
-            maps_matrix = torch.cat([edge_cols, maps_cols[:num_entries]], dim=1)
-
-            if args["dataset"] == "synthetic_exp":
-                maps_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_layer{layer}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}{lfm_tag}_seed{args['seed']}.pt"
-            else:
-                maps_filename = f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}{lfm_tag}_seed{args['seed']}.pt"
-
-            maps_path = os.path.join(maps_dir, maps_filename)
-            torch.save(maps_matrix, maps_path)
+    # Save the Laplacian from the last epoch (existing behaviour, path unchanged).
+    if hasattr(model, '_last_laplacian') \
+        and model._last_laplacian[0] is not None \
+        and model._last_laplacian[1] is not None:
+        _save_laplacians(model._last_laplacian, args, fold, _lap_base_dir(args))
     
     if hasattr(model, '_last_node_norms') and model._last_node_norms:
         norms_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'node_norms',
@@ -241,19 +320,24 @@ def run_exp(args, dataset, model_cls, fold):
         f'{args["epochs"]}-epochs'))
         os.makedirs(norms_dir, exist_ok=True)
 
+        _lfm_tag = (f"_learn_first_maps-{str(args['learn_first_maps']).lower()}"
+                    if args['model'] == 'JointSheafParamsAlt' else "")
+
         if args["dataset"] == "synthetic_exp":
-            norms_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}{lfm_tag}_fold{fold}_seed{args['seed']}.pt"
+            norms_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}{_lfm_tag}_fold{fold}_seed{args['seed']}.pt"
         else:
-            norms_filename = f"{args['model']}_{args['dataset']}{lfm_tag}_fold{fold}_seed{args['seed']}.pt"
+            norms_filename = f"{args['model']}_{args['dataset']}{_lfm_tag}_fold{fold}_seed{args['seed']}.pt"
 
         norms_path = os.path.join(norms_dir, norms_filename)
         torch.save(model._last_node_norms, norms_path)
         print(f"Saved node norms to {norms_path}")
 
     if args['dataset'] in AUC_DATASETS:
-        wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch, 'best_test_auc': test_auc})
+        wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch, 'best_test_auc': test_auc,
+                   'last_test_acc': last_test_acc, 'last_test_auc': last_test_auc})
     else:
-        wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch})
+        wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch,
+                   'last_test_acc': last_test_acc})
     keep_running = False if test_acc < args['min_acc'] else True
 
     return test_acc, best_val_acc, test_auc, keep_running

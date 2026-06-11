@@ -23,7 +23,7 @@ python -m exp.run \
     --add_hp=False \
     --add_lp=False \
     --d=5 \
-    --dataset=amazon_ratings \
+    --dataset=roman_empire \
     --dropout=0.3 \
     --early_stopping=200 \
     --epochs=500 \
