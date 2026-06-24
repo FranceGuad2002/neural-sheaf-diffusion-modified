@@ -1,0 +1,244 @@
+Running with wandb account: 
+Namespace(epochs=500, lr=0.02, weight_decay=0.0006914841722570725, sheaf_decay=0.00031764232712732976, early_stopping=200, min_acc=0.0, stop_strategy='loss', d=2, layers=2, normalised=True, deg_normalised=False, linear=False, hidden_channels=16, input_dropout=0.2, dropout=0.5, left_weights=True, right_weights=True, add_lp=False, add_hp=False, use_act=True, second_linear=False, orth='householder', sheaf_act='tanh', edge_weights=True, sparse_learner=False, dataset='cornell', seed=43, cuda=0, folds=10, model='GeneralSheaf', entity='', evectors=0, max_t=1.0, int_method=None, step_size=1, max_iters=100, adjoint_method='adaptive_heun', adjoint=False, adjoint_step_size=1, tol_scale=1.0, tol_scale_adjoint=1.0, max_nfe=1000, no_early=False, earlystopxT=3, max_test_steps=100, num_nodes=200, num_classes=2, num_feats=10, het_coef=0.9, edge_noise=0.05, node_degree=10, feat_noise=0.25, ellipsoid_radius=1, just_add_noise=False, ellipsoids=True, classes_corr=None, dual_diff_strength=1.0, dual_normalised=True, sheaf_init=False, dual_left_linear=False, dual_right_linear=False, dual_linear=True, learn_first_maps=False, dual_diag=False, rotation_invariant_sheaf_learner=False, node_edge_sims_time_dependent=False, num_of_convolutions=1, dim_list=[], zero_laplacian=False, maps_lr=None, use_epsilons=True, use_embedding=True, checkpoint_epochs=[0, 1, 5, 15, 50, 200], save_laplacians=True, save_norms=False, sha='04b0f2da1b8e61766df1e4d09ed93fbf726b5185', graph_size=183, input_dim=1703, output_dim=5, device=device(type='cuda', index=0))
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold0_seed43.npy shape=(183, 2)
+Fold 0 | Epochs: 347 | Best epoch: 147
+Test acc (best epoch): 0.6757
+Test acc (last epoch): 0.6757
+Best val acc: 0.8136
+Laplacian 0: Max: 0.3788, Min: -0.4940, Avg: -0.0730, Abs avg: 0.1547
+Laplacian 1: Max: 1.3891, Min: -1.6932, Avg: -0.2282, Abs avg: 0.5781
+Epsilons 0: [1.646 1.492]
+Epsilons 1: [1.639 1.497]
+Updated best_epochs.json: fold_0 -> epoch 147
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold0_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold0_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold0_seed43.npy
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold1_seed43.npy shape=(183, 2)
+Fold 1 | Epochs: 274 | Best epoch: 74
+Test acc (best epoch): 0.8649
+Test acc (last epoch): 0.7568
+Best val acc: 0.7966
+Laplacian 0: Max: 0.3873, Min: -1.0458, Avg: -0.3692, Abs avg: 0.3943
+Laplacian 1: Max: 1.0431, Min: -1.9792, Avg: -0.4521, Abs avg: 0.6296
+Epsilons 0: [1.475 1.52 ]
+Epsilons 1: [1.511 1.491]
+Updated best_epochs.json: fold_1 -> epoch 74
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold1_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold1_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold1_seed43.npy
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold2_seed43.npy shape=(183, 2)
+Fold 2 | Epochs: 499 | Best epoch: 344
+Test acc (best epoch): 0.9459
+Test acc (last epoch): 0.8919
+Best val acc: 0.8814
+Laplacian 0: Max: 0.4651, Min: -0.6116, Avg: 0.0001, Abs avg: 0.1394
+Laplacian 1: Max: 1.0373, Min: -1.5424, Avg: -0.2349, Abs avg: 0.5550
+Epsilons 0: [1.686 1.724]
+Epsilons 1: [1.693 1.714]
+Updated best_epochs.json: fold_2 -> epoch 344
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold2_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold2_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold2_seed43.npy
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold3_seed43.npy shape=(183, 2)
+Fold 3 | Epochs: 388 | Best epoch: 188
+Test acc (best epoch): 0.7027
+Test acc (last epoch): 0.7027
+Best val acc: 0.8136
+Laplacian 0: Max: 0.4223, Min: -0.5109, Avg: -0.0289, Abs avg: 0.1667
+Laplacian 1: Max: 1.4985, Min: -1.7983, Avg: -0.0721, Abs avg: 0.5516
+Epsilons 0: [1.654 1.566]
+Epsilons 1: [1.665 1.592]
+Updated best_epochs.json: fold_3 -> epoch 188
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold3_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold3_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold3_seed43.npy
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold4_seed43.npy shape=(183, 2)
+Fold 4 | Epochs: 344 | Best epoch: 144
+Test acc (best epoch): 0.8919
+Test acc (last epoch): 0.8378
+Best val acc: 0.8475
+Laplacian 0: Max: 0.6116, Min: -0.8588, Avg: -0.0875, Abs avg: 0.2338
+Laplacian 1: Max: 1.8391, Min: -1.6937, Avg: 0.0746, Abs avg: 0.4827
+Epsilons 0: [1.565 1.667]
+Epsilons 1: [1.55  1.662]
+Updated best_epochs.json: fold_4 -> epoch 144
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold4_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold4_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold4_seed43.npy
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold5_seed43.npy shape=(183, 2)
+Fold 5 | Epochs: 438 | Best epoch: 238
+Test acc (best epoch): 0.7838
+Test acc (last epoch): 0.6757
+Best val acc: 0.9153
+Laplacian 0: Max: 0.3249, Min: -0.4784, Avg: -0.0344, Abs avg: 0.1114
+Laplacian 1: Max: 1.2189, Min: -1.5335, Avg: -0.2317, Abs avg: 0.3655
+Epsilons 0: [1.707 1.698]
+Epsilons 1: [1.717 1.718]
+Updated best_epochs.json: fold_5 -> epoch 238
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold5_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold5_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold5_seed43.npy
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold6_seed43.npy shape=(183, 2)
+Fold 6 | Epochs: 260 | Best epoch: 60
+Test acc (best epoch): 0.8108
+Test acc (last epoch): 0.7297
+Best val acc: 0.7627
+Laplacian 0: Max: 0.2138, Min: -0.7719, Avg: -0.1794, Abs avg: 0.1894
+Laplacian 1: Max: 0.8895, Min: -1.3966, Avg: -0.3635, Abs avg: 0.5519
+Epsilons 0: [1.471 1.524]
+Epsilons 1: [1.506 1.517]
+Updated best_epochs.json: fold_6 -> epoch 60
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold6_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold6_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold6_seed43.npy
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold7_seed43.npy shape=(183, 2)
+Fold 7 | Epochs: 359 | Best epoch: 159
+Test acc (best epoch): 0.7568
+Test acc (last epoch): 0.8108
+Best val acc: 0.8475
+Laplacian 0: Max: 0.2538, Min: -0.5462, Avg: -0.1361, Abs avg: 0.1619
+Laplacian 1: Max: 1.8720, Min: -1.1172, Avg: 0.0744, Abs avg: 0.4546
+Epsilons 0: [1.651 1.575]
+Epsilons 1: [1.669 1.599]
+Updated best_epochs.json: fold_7 -> epoch 159
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold7_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold7_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold7_seed43.npy
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold8_seed43.npy shape=(183, 2)
+Fold 8 | Epochs: 499 | Best epoch: 329
+Test acc (best epoch): 0.8378
+Test acc (last epoch): 0.7568
+Best val acc: 0.8644
+Laplacian 0: Max: 0.5830, Min: -0.9687, Avg: -0.0422, Abs avg: 0.1813
+Laplacian 1: Max: 1.9114, Min: -1.9786, Avg: 0.1199, Abs avg: 0.5442
+Epsilons 0: [1.793 1.709]
+Epsilons 1: [1.8   1.703]
+Updated best_epochs.json: fold_8 -> epoch 329
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold8_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold8_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold8_seed43.npy
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer0_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_cornell_layer1_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer0_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_cornell_layer1_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer0_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_cornell_layer1_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer0_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_cornell_layer1_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer0_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_cornell_layer1_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer0_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_cornell_layer1_fold9_seed43.npy shape=(183, 2)
+Fold 9 | Epochs: 499 | Best epoch: 432
+Test acc (best epoch): 0.8378
+Test acc (last epoch): 0.7568
+Best val acc: 0.8305
+Laplacian 0: Max: 0.3470, Min: -0.7287, Avg: -0.1806, Abs avg: 0.2065
+Laplacian 1: Max: 1.7160, Min: -0.9038, Avg: 0.3713, Abs avg: 0.5023
+Epsilons 0: [1.635 1.792]
+Epsilons 1: [1.666 1.752]
+Updated best_epochs.json: fold_9 -> epoch 432
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer0_fold9_seed43.npy shape=(183, 2)
+Saved Forman eigs to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/GeneralSheaf_cornell_layer1_fold9_seed43.npy shape=(183, 2)
+Saved f0_top to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/forman_eigs/cornell/normalised-true/stalk_dim-2/2-layers/16-hidden/500-epochs/f0_top_cornell_n183_fold9_seed43.npy
+GeneralSheaf on cornell | SHA: 04b0f2da1b8e61766df1e4d09ed93fbf726b5185
+Test acc: 81.0811 +/- 7.9259 | Val acc: 83.7288

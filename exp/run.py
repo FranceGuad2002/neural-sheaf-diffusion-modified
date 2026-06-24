@@ -15,6 +15,8 @@ import pandas as pd
 import torch.nn.functional as F
 import git
 import numpy as np
+import networkx as nx
+import scipy.sparse as sp
 import wandb
 from tqdm import tqdm
 from sklearn.metrics import roc_auc_score
@@ -96,6 +98,36 @@ def _lap_base_dir(args):
     ))
 
 
+def _norms_base_dir(args):
+    return os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..', 'results', 'node_norms',
+        args['dataset'],
+        f"normalised-{str(args['normalised']).lower()}",
+        f"stalk_dim-{args['d']}",
+        f"{args['layers']}-layers",
+        f"{args['hidden_channels']}-hidden",
+        f"{args['epochs']}-epochs",
+    ))
+
+
+def _save_norms(norms_dict, args, fold, norms_dir):
+    os.makedirs(norms_dir, exist_ok=True)
+    lfm_tag = (f"_learn_first_maps-{str(args['learn_first_maps']).lower()}"
+               if args['model'] == 'JointSheafParamsAlt' else "")
+    if args['dataset'] == 'synthetic_exp':
+        filename = (
+            f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
+            f"_pct-hetero-{int(float(args['het_coef'])*100)}"
+            f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
+            f"{lfm_tag}_fold{fold}_seed{args['seed']}.pt"
+        )
+    else:
+        filename = f"{args['model']}_{args['dataset']}{lfm_tag}_fold{fold}_seed{args['seed']}.pt"
+    path = os.path.join(norms_dir, filename)
+    torch.save(norms_dict, path)
+    print(f"Saved node norms to {path}")
+
+
 def _save_laplacians(laplacian_dict, args, fold, lap_dir):
     os.makedirs(lap_dir, exist_ok=True)
     lfm_tag = (f"_learn_first_maps-{str(args['learn_first_maps']).lower()}"
@@ -129,10 +161,108 @@ def _save_laplacians(laplacian_dict, args, fold, lap_dir):
         print(f"Saved Laplacian to {lap_path} with shape {tuple(lap_matrix.shape)}")
 
 
+def _forman_eigs_base_dir(args):
+    return os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..', 'results', 'forman_eigs',
+        args['dataset'],
+        f"normalised-{str(args['normalised']).lower()}",
+        f"stalk_dim-{args['d']}",
+        f"{args['layers']}-layers",
+        f"{args['hidden_channels']}-hidden",
+        f"{args['epochs']}-epochs",
+    ))
+
+
+def _compute_F_diags(lap_indices, lap_values, n, d):
+    """Forman curvature diagonal blocks F_{u,u} from COO (indices [2,M], values [M])."""
+    row_idx = lap_indices[0].numpy().astype(np.int64)
+    col_idx = lap_indices[1].numpy().astype(np.int64)
+    values  = lap_values.numpy()
+
+    block_row, block_col = row_idx // d, col_idx // d
+    local_r,   local_c   = row_idx  % d, col_idx  % d
+    is_diag = (block_row == block_col)
+
+    diag_blocks = np.zeros((n, d, d))
+    dm = is_diag
+    np.add.at(diag_blocks, (block_row[dm], local_r[dm], local_c[dm]), values[dm])
+
+    off        = ~is_diag
+    block_ids  = block_row[off] * n + block_col[off]
+    unique_ids, inv = np.unique(block_ids, return_inverse=True)
+    all_blocks = np.zeros((len(unique_ids), d, d))
+    np.add.at(all_blocks, (inv, local_r[off], local_c[off]), values[off])
+
+    nz = np.any(all_blocks != 0, axis=(1, 2))
+    abs_blocks = np.zeros_like(all_blocks)
+    if np.any(nz):
+        U, S, _ = np.linalg.svd(all_blocks[nz])
+        abs_blocks[nz] = np.einsum("bij,bj,bkj->bik", U, S, U)
+
+    B_diag = np.zeros((n, d, d))
+    np.add.at(B_diag, (unique_ids // n).astype(np.int64), abs_blocks)
+    return diag_blocks - B_diag
+
+
+def _build_f0_top(edge_index, n):
+    """Topological Forman curvature from PyG edge_index (node-level indices)."""
+    ei    = edge_index.cpu().numpy()
+    edges = {(min(int(u), int(v)), max(int(u), int(v)))
+             for u, v in zip(ei[0], ei[1]) if u != v}
+
+    G = nx.Graph()
+    G.add_nodes_from(range(n))
+    G.add_edges_from(sorted(edges))
+
+    L_un       = nx.laplacian_matrix(G, nodelist=list(range(n))).astype(float)
+    D_inv_sqrt = sp.diags(1.0 / np.sqrt(np.array(L_un.diagonal()) + 1))
+    L_norm     = D_inv_sqrt @ L_un @ D_inv_sqrt
+    diag_vals  = np.array(L_norm.diagonal())
+    return 2 * diag_vals - np.array(np.abs(L_norm).sum(axis=1)).ravel()
+
+
+def _forman_eigs_filename(args, layer, fold):
+    lfm_tag = (f"_learn_first_maps-{str(args['learn_first_maps']).lower()}"
+               if args['model'] == 'JointSheafParamsAlt' else "")
+    return f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}{lfm_tag}_seed{args['seed']}.npy"
+
+
+def _save_forman_eigs(laplacian_dict, args, fold, eigs_dir, n, d):
+    """Compute and save Forman eigenvalues (n,d) float32 .npy from COO Laplacian dict."""
+    os.makedirs(eigs_dir, exist_ok=True)
+    for layer, lap in laplacian_dict.items():
+        lap_idx = lap[0].detach().cpu()
+        lap_val = lap[1].detach().cpu()
+        eigs    = np.linalg.eigvalsh(_compute_F_diags(lap_idx, lap_val, n, d)).astype(np.float32)
+        path    = os.path.join(eigs_dir, _forman_eigs_filename(args, layer, fold))
+        np.save(path, eigs)
+        print(f"Saved Forman eigs to {path} shape={eigs.shape}")
+
+
+def _save_forman_eigs_arrays(eigs_dict, args, fold, eigs_dir):
+    """Save pre-computed Forman eigenvalue arrays {layer: (n,d)} to .npy files."""
+    os.makedirs(eigs_dir, exist_ok=True)
+    for layer, eigs in eigs_dict.items():
+        path = os.path.join(eigs_dir, _forman_eigs_filename(args, layer, fold))
+        np.save(path, eigs)
+        print(f"Saved Forman eigs to {path} shape={eigs.shape}")
+
+
+def _save_f0_top(f0_top, args, fold, base_dir):
+    """Save topological Forman curvature array as .npy."""
+    os.makedirs(base_dir, exist_ok=True)
+    n        = len(f0_top)
+    filename = f"f0_top_{args['dataset']}_n{n}_fold{fold}_seed{args['seed']}.npy"
+    np.save(os.path.join(base_dir, filename), f0_top)
+    print(f"Saved f0_top to {base_dir}/{filename}")
+
+
 def run_exp(args, dataset, model_cls, fold):
     data = dataset[0]
     data = get_fixed_splits(data, args['dataset'], fold)
     data = data.to(args['device'])
+    n = data.x.size(0)
+    d = args['d']
 
     if args['sheaf_init'] and model_cls in (DiscreteJointSheafDiffusionParams, DiscreteJointSheafDiffusionParamsAlt):
         sheaf_init = precompute_sheaf_mappings(data, args['d'], args)
@@ -158,20 +288,32 @@ def run_exp(args, dataset, model_cls, fold):
     bad_counter = 0
 
     checkpoint_set = set(args.get('checkpoint_epochs') or [])
-    best_laplacian_snapshot = None
+    best_norms_snapshot = None
     checkpoint_accuracy = {}   # {label: {train_acc, val_acc, test_acc}}
     best_acc_snapshot = {}
 
-    # Epoch 0: save pre-training Laplacian (random init, zero gradient steps).
-    # test() populates _last_laplacian and gives accuracy at no extra cost.
+    save_laps = args.get('save_laplacians', True)
+    save_norms = args.get('save_norms', True)
+
+    # Build topological reference once per fold (pure graph topology, no training).
+    f0_top = _build_f0_top(data.edge_index, n) if save_laps else None
+
+    # Epoch 0: save pre-training Laplacian/norms (random init, zero gradient steps).
+    # test() populates _last_laplacian/_last_node_norms and gives accuracy at no extra cost.
     if 0 in checkpoint_set:
         [ta0, va0, tta0], _, _, _ = test(model, data)
-        if hasattr(model, '_last_laplacian') \
+        if save_laps and hasattr(model, '_last_laplacian') \
                 and model._last_laplacian[0] is not None \
                 and model._last_laplacian[1] is not None:
-            _save_laplacians(
+            _save_forman_eigs(
                 model._last_laplacian, args, fold,
-                os.path.join(_lap_base_dir(args), 'checkpoints', 'epoch-0'),
+                os.path.join(_forman_eigs_base_dir(args), 'checkpoints', 'epoch-0'),
+                n, d,
+            )
+        if save_norms and hasattr(model, '_last_node_norms') and model._last_node_norms:
+            _save_norms(
+                model._last_node_norms, args, fold,
+                os.path.join(_norms_base_dir(args), 'checkpoints', 'epoch-0'),
             )
         checkpoint_accuracy['epoch-0'] = {
             'train_acc': float(ta0), 'val_acc': float(va0), 'test_acc': float(tta0),
@@ -195,12 +337,18 @@ def run_exp(args, dataset, model_cls, fold):
 
         # Checkpoint save: epoch N = after N gradient steps (loop variable = N-1 here).
         if checkpoint_set and (epoch + 1) in checkpoint_set:
-            if hasattr(model, '_last_laplacian') \
+            if save_laps and hasattr(model, '_last_laplacian') \
                     and model._last_laplacian[0] is not None \
                     and model._last_laplacian[1] is not None:
-                _save_laplacians(
+                _save_forman_eigs(
                     model._last_laplacian, args, fold,
-                    os.path.join(_lap_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'),
+                    os.path.join(_forman_eigs_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'),
+                    n, d,
+                )
+            if save_norms and hasattr(model, '_last_node_norms') and model._last_node_norms:
+                _save_norms(
+                    model._last_node_norms, args, fold,
+                    os.path.join(_norms_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'),
                 )
             checkpoint_accuracy[f'epoch-{epoch + 1}'] = {
                 'train_acc': float(train_acc), 'val_acc': float(val_acc), 'test_acc': float(tmp_test_acc),
@@ -213,13 +361,10 @@ def run_exp(args, dataset, model_cls, fold):
             test_acc = tmp_test_acc
             best_epoch = epoch
             bad_counter = 0
-            # Snapshot the Laplacian at the best validation epoch for later saving.
-            if hasattr(model, '_last_laplacian') \
-                    and model._last_laplacian[0] is not None \
-                    and model._last_laplacian[1] is not None:
-                best_laplacian_snapshot = {
-                    layer: (lap[0].detach().clone().cpu(), lap[1].detach().clone().cpu())
-                    for layer, lap in model._last_laplacian.items()
+            if save_norms and hasattr(model, '_last_node_norms') and model._last_node_norms:
+                best_norms_snapshot = {
+                    layer: norms.detach().clone().cpu()
+                    for layer, norms in model._last_node_norms.items()
                 }
             best_acc_snapshot = {
                 'train_acc': float(train_acc), 'val_acc': float(val_acc), 'test_acc': float(tmp_test_acc),
@@ -271,13 +416,12 @@ def run_exp(args, dataset, model_cls, fold):
                 for i in range(0, args['layers'] - 1):
                     print(f"DualEpsilons {i}: {model.dual_epsilons[i].detach().cpu().numpy().flatten()}")
 
-    # Save the Laplacian from the best validation epoch (snapshotted during training).
-    if best_laplacian_snapshot is not None:
-        _save_laplacians(
-            best_laplacian_snapshot, args, fold,
-            os.path.join(_lap_base_dir(args), 'checkpoints', 'best-epoch'),
+    if best_norms_snapshot is not None:
+        _save_norms(
+            best_norms_snapshot, args, fold,
+            os.path.join(_norms_base_dir(args), 'checkpoints', 'best-epoch'),
         )
-        print(f"Saved best-epoch Laplacian (epoch {best_epoch}) to checkpoints/best-epoch/")
+        print(f"Saved best-epoch node norms (epoch {best_epoch}) to checkpoints/best-epoch/")
 
     # Record last-epoch accuracy now that the loop has finished.
     checkpoint_accuracy['last'] = {
@@ -288,8 +432,8 @@ def run_exp(args, dataset, model_cls, fold):
         checkpoint_accuracy['best-epoch'] = dict(best_acc_snapshot, epoch=int(best_epoch))
 
     # Accumulate per-fold accuracy and best-epoch info into a single JSON file.
-    best_epochs_path = os.path.join(_lap_base_dir(args), 'best_epochs.json')
-    os.makedirs(_lap_base_dir(args), exist_ok=True)
+    best_epochs_path = os.path.join(_forman_eigs_base_dir(args), 'best_epochs.json')
+    os.makedirs(_forman_eigs_base_dir(args), exist_ok=True)
     best_epochs_data = {}
     if os.path.exists(best_epochs_path):
         with open(best_epochs_path, 'r') as f:
@@ -304,33 +448,15 @@ def run_exp(args, dataset, model_cls, fold):
         json.dump(best_epochs_data, f, indent=2)
     print(f"Updated best_epochs.json: fold_{fold} -> epoch {best_epoch}")
 
-    # Save the Laplacian from the last epoch (existing behaviour, path unchanged).
-    if hasattr(model, '_last_laplacian') \
+    # Save Forman eigenvalues and f0_top from the last epoch.
+    if save_laps and hasattr(model, '_last_laplacian') \
         and model._last_laplacian[0] is not None \
         and model._last_laplacian[1] is not None:
-        _save_laplacians(model._last_laplacian, args, fold, _lap_base_dir(args))
-    
-    if hasattr(model, '_last_node_norms') and model._last_node_norms:
-        norms_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'results', 'node_norms',
-        f'{args["dataset"]}',
-        f"normalised-{str(args['normalised']).lower()}",
-        f'stalk_dim-{args["d"]}',
-        f'{args["layers"]}-layers',
-        f'{args["hidden_channels"]}-hidden',
-        f'{args["epochs"]}-epochs'))
-        os.makedirs(norms_dir, exist_ok=True)
+        _save_forman_eigs(model._last_laplacian, args, fold, _forman_eigs_base_dir(args), n, d)
+        _save_f0_top(f0_top, args, fold, _forman_eigs_base_dir(args))
 
-        _lfm_tag = (f"_learn_first_maps-{str(args['learn_first_maps']).lower()}"
-                    if args['model'] == 'JointSheafParamsAlt' else "")
-
-        if args["dataset"] == "synthetic_exp":
-            norms_filename = f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}_pct-hetero-{int(float(args['het_coef'])*100)}_classes-{args['num_classes']}_feats-{args['num_feats']}{_lfm_tag}_fold{fold}_seed{args['seed']}.pt"
-        else:
-            norms_filename = f"{args['model']}_{args['dataset']}{_lfm_tag}_fold{fold}_seed{args['seed']}.pt"
-
-        norms_path = os.path.join(norms_dir, norms_filename)
-        torch.save(model._last_node_norms, norms_path)
-        print(f"Saved node norms to {norms_path}")
+    if save_norms and hasattr(model, '_last_node_norms') and model._last_node_norms:
+        _save_norms(model._last_node_norms, args, fold, _norms_base_dir(args))
 
     if args['dataset'] in AUC_DATASETS:
         wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch, 'best_test_auc': test_auc,

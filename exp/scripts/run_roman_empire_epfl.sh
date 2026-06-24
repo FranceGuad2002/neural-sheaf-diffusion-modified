@@ -38,7 +38,7 @@ python -m exp.run \
     --left_weights=True \
     --right_weights=True \
     --use_act=True \
-    --normalised=True \
+    --normalised=False \
     --edge_weights=False \
     --sparse_learner=False \
     --deg_normalised=False \
@@ -52,5 +52,7 @@ python -m exp.run \
     --dual_diag=False \
     --sheaf_init=False \
     --use_embedding=True \
-    --checkpoint_epochs=0,1,5,15,200 \
+    --checkpoint_epochs=0,1,5,15,50,200 \
+    --save_laplacians=True \
+    --save_norms=False \
     --entity="${WANDB_ENTITY}"

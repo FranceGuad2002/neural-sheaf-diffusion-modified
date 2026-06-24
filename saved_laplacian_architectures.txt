@@ -1,0 +1,43 @@
+Saved Laplacian Architectures — inventory before deletion
+Generated: 2026-06-23
+================================================================================
+
+All experiments use: model=GeneralSheaf, normalised=True, seed=43, hidden=16
+Exception: cornell uses model=JointSheafParamsAlt
+
+Format: dataset | model | d | layers | epochs | folds | checkpoints | disk
+--------------------------------------------------------------------------------
+
+amazon_ratings   | GeneralSheaf        | d=5 | 5 layers | 500 epochs | 10 folds |
+citeseer         | GeneralSheaf        | d=5 | 4 layers | 500 epochs | 10 folds |
+cora (d=3)       | GeneralSheaf        | d=2 | 3 layers | 500 epochs | 10 folds |
+cora (d=5)       | GeneralSheaf        | d=5 | 3 layers | 500 epochs | 10 folds |
+cornell          | GeneralSheaf        | d=2 | 2 layers | 500 epochs | 10 folds | 
+minesweeper      | GeneralSheaf        | d=5 | 5 layers | 500 epochs | 10 folds | 
+pubmed           | GeneralSheaf        | d=5 | 4 layers | 500 epochs | 10 folds |
+questions        | GeneralSheaf        | d=2 | 5 layers | 500 epochs |  10 folds | 
+roman_empire     | GeneralSheaf        | d=5 | 5 layers | 500 epochs | 10 folds | 
+tolokers         | GeneralSheaf        | d=3 | 4 layers | 500 epochs | 10 folds | 
+wisconsin        | GeneralSheaf        | d=2 | 2 layers | 500 epochs | 10 folds | 
+
+===========================================
+NOTE: All laplacians have been deleted. The new pipeline saves Forman eigenvalues
+(n×d float32 .npy arrays) instead of full COO Laplacians (~200× smaller per file).
+
+Output directory: results/forman_eigs/
+
+New file structure:
+  results/forman_eigs/<dataset>/normalised-true/stalk_dim-<d>/<L>-layers/<H>-hidden/<E>-epochs/
+    GeneralSheaf_<dataset>_layer<l>_fold<f>_seed<s>.npy   # shape (n, d) — last epoch
+    f0_top_<dataset>_n<n>_fold<f>_seed<s>.npy             # shape (n,)   — topological ref
+    best_epochs.json                                        # best epoch number + accuracy per fold
+    checkpoints/
+      epoch-0/   epoch-1/   epoch-5/   epoch-15/   epoch-50/   epoch-200/
+        GeneralSheaf_<dataset>_layer<l>_fold<f>_seed<s>.npy
+
+Scripts to re-run:
+  exp/scripts/run_amazon_ratings_epfl.sh   (--qos=normal, 12h)
+  exp/scripts/run_tolokers_epfl.sh         (--qos=normal,  6h)
+  exp/scripts/run_roman_empire_epfl.sh
+  (+ other datasets as needed)
+================================================================================

@@ -151,4 +151,9 @@ def get_parser():
                              'N = after N gradient steps. '
                              'Example: --checkpoint_epochs 0,1,5,15,200')
 
+    parser.add_argument('--save_laplacians', type=str2bool, default=True,
+                        help="Save the sheaf Laplacian at checkpoints and at the end of training.")
+    parser.add_argument('--save_norms', type=str2bool, default=True,
+                        help="Save node hidden-representation norms at checkpoints and at the end of training.")
+
     return parser
