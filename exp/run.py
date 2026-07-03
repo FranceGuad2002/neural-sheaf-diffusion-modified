@@ -86,10 +86,25 @@ def test(model, data):
         return accs, preds, losses, probs
 
 
+_JOINT_MODELS = {'JointSheafParams', 'JointSheafParamsAlt'}
+_TYPE_SHORT   = {'diagonal': 'diag', 'bundle': 'bundle', 'general': 'general'}
+
+
+def _map_tag(args):
+    """Filename suffix encoding the first-map type for Joint models; empty for all others."""
+    if args['model'] not in _JOINT_MODELS:
+        return ""
+    if not args['learn_first_maps']:
+        return "_first_maps_identity"
+    short = _TYPE_SHORT.get(args['learnt_map_type'], args['learnt_map_type'])
+    return f"_first_maps_{short}"
+
+
 def _lap_base_dir(args):
     return os.path.abspath(os.path.join(
         os.path.dirname(__file__), '..', 'results', 'laplacians',
         args['dataset'],
+        args['model'] + _map_tag(args),
         f"normalised-{str(args['normalised']).lower()}",
         f"stalk_dim-{args['d']}",
         f"{args['layers']}-layers",
@@ -102,6 +117,7 @@ def _norms_base_dir(args):
     return os.path.abspath(os.path.join(
         os.path.dirname(__file__), '..', 'results', 'node_norms',
         args['dataset'],
+        args['model'] + _map_tag(args),
         f"normalised-{str(args['normalised']).lower()}",
         f"stalk_dim-{args['d']}",
         f"{args['layers']}-layers",
@@ -112,17 +128,16 @@ def _norms_base_dir(args):
 
 def _save_norms(norms_dict, args, fold, norms_dir):
     os.makedirs(norms_dir, exist_ok=True)
-    lfm_tag = (f"_learn_first_maps-{str(args['learn_first_maps']).lower()}"
-               if args['model'] == 'JointSheafParamsAlt' else "")
+    tag = _map_tag(args)
     if args['dataset'] == 'synthetic_exp':
         filename = (
             f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
             f"_pct-hetero-{int(float(args['het_coef'])*100)}"
             f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
-            f"{lfm_tag}_fold{fold}_seed{args['seed']}.pt"
+            f"{tag}_fold{fold}_seed{args['seed']}.pt"
         )
     else:
-        filename = f"{args['model']}_{args['dataset']}{lfm_tag}_fold{fold}_seed{args['seed']}.pt"
+        filename = f"{args['model']}_{args['dataset']}{tag}_fold{fold}_seed{args['seed']}.pt"
     path = os.path.join(norms_dir, filename)
     torch.save(norms_dict, path)
     print(f"Saved node norms to {path}")
@@ -130,8 +145,7 @@ def _save_norms(norms_dict, args, fold, norms_dir):
 
 def _save_laplacians(laplacian_dict, args, fold, lap_dir):
     os.makedirs(lap_dir, exist_ok=True)
-    lfm_tag = (f"_learn_first_maps-{str(args['learn_first_maps']).lower()}"
-               if args['model'] == 'JointSheafParamsAlt' else "")
+    tag = _map_tag(args)
 
     for layer, lap in laplacian_dict.items():
         lap_indices = lap[0].detach().cpu()
@@ -148,12 +162,12 @@ def _save_laplacians(laplacian_dict, args, fold, lap_dir):
                 f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
                 f"_layer{layer}_pct-hetero-{int(float(args['het_coef']) * 100)}"
                 f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
-                f"{lfm_tag}_seed{args['seed']}.pt"
+                f"{tag}_seed{args['seed']}.pt"
             )
         else:
             lap_filename = (
                 f"{args['model']}_{args['dataset']}_layer{layer}"
-                f"_fold{fold}{lfm_tag}_seed{args['seed']}.pt"
+                f"_fold{fold}{tag}_seed{args['seed']}.pt"
             )
 
         lap_path = os.path.join(lap_dir, lap_filename)
@@ -165,12 +179,17 @@ def _forman_eigs_base_dir(args):
     return os.path.abspath(os.path.join(
         os.path.dirname(__file__), '..', 'results', 'forman_eigs',
         args['dataset'],
+        args['model'] + _map_tag(args),
         f"normalised-{str(args['normalised']).lower()}",
         f"stalk_dim-{args['d']}",
         f"{args['layers']}-layers",
         f"{args['hidden_channels']}-hidden",
         f"{args['epochs']}-epochs",
     ))
+
+
+def _forman_eigs_other_base_dir(args):
+    return os.path.join(_forman_eigs_base_dir(args), 'other_Laplacian')
 
 
 def _compute_F_diags(lap_indices, lap_values, n, d):
@@ -222,9 +241,7 @@ def _build_f0_top(edge_index, n):
 
 
 def _forman_eigs_filename(args, layer, fold):
-    lfm_tag = (f"_learn_first_maps-{str(args['learn_first_maps']).lower()}"
-               if args['model'] == 'JointSheafParamsAlt' else "")
-    return f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}{lfm_tag}_seed{args['seed']}.npy"
+    return f"{args['model']}_{args['dataset']}_layer{layer}_fold{fold}{_map_tag(args)}_seed{args['seed']}.npy"
 
 
 def _save_forman_eigs(laplacian_dict, args, fold, eigs_dir, n, d):
@@ -270,6 +287,7 @@ def run_exp(args, dataset, model_cls, fold):
     else:
         model = model_cls(data.edge_index, args)
     model = model.to(args['device'])
+    model.save_other_laplacian = args.get('save_others', False)
 
     sheaf_learner_params, other_params = model.grouped_parameters()
     maps_lr = args['maps_lr'] if args['maps_lr'] is not None else args['lr']
@@ -292,8 +310,9 @@ def run_exp(args, dataset, model_cls, fold):
     checkpoint_accuracy = {}   # {label: {train_acc, val_acc, test_acc}}
     best_acc_snapshot = {}
 
-    save_laps = args.get('save_laplacians', True)
-    save_norms = args.get('save_norms', True)
+    save_laps   = args.get('save_laplacians', True)
+    save_norms  = args.get('save_norms', True)
+    save_others = args.get('save_others', False)
 
     # Build topological reference once per fold (pure graph topology, no training).
     f0_top = _build_f0_top(data.edge_index, n) if save_laps else None
@@ -310,6 +329,12 @@ def run_exp(args, dataset, model_cls, fold):
                 os.path.join(_forman_eigs_base_dir(args), 'checkpoints', 'epoch-0'),
                 n, d,
             )
+            if save_others and hasattr(model, '_last_laplacian_other') and model._last_laplacian_other:
+                _save_forman_eigs(
+                    model._last_laplacian_other, args, fold,
+                    os.path.join(_forman_eigs_other_base_dir(args), 'checkpoints', 'epoch-0'),
+                    n, d,
+                )
         if save_norms and hasattr(model, '_last_node_norms') and model._last_node_norms:
             _save_norms(
                 model._last_node_norms, args, fold,
@@ -345,6 +370,12 @@ def run_exp(args, dataset, model_cls, fold):
                     os.path.join(_forman_eigs_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'),
                     n, d,
                 )
+                if save_others and hasattr(model, '_last_laplacian_other') and model._last_laplacian_other:
+                    _save_forman_eigs(
+                        model._last_laplacian_other, args, fold,
+                        os.path.join(_forman_eigs_other_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'),
+                        n, d,
+                    )
             if save_norms and hasattr(model, '_last_node_norms') and model._last_node_norms:
                 _save_norms(
                     model._last_node_norms, args, fold,
@@ -453,6 +484,8 @@ def run_exp(args, dataset, model_cls, fold):
         and model._last_laplacian[0] is not None \
         and model._last_laplacian[1] is not None:
         _save_forman_eigs(model._last_laplacian, args, fold, _forman_eigs_base_dir(args), n, d)
+        if save_others and hasattr(model, '_last_laplacian_other') and model._last_laplacian_other:
+            _save_forman_eigs(model._last_laplacian_other, args, fold, _forman_eigs_other_base_dir(args), n, d)
         _save_f0_top(f0_top, args, fold, _forman_eigs_base_dir(args))
 
     if save_norms and hasattr(model, '_last_node_norms') and model._last_node_norms:
@@ -535,11 +568,11 @@ if __name__ == '__main__':
     results = []
     print(f"Running with wandb account: {args.entity}")
     print(args)
-    lfm_suffix = f"_learn_first_maps-{str(args.learn_first_maps).lower()}" if args.model == 'JointSheafParamsAlt' else ""
+    map_suffix = _map_tag(vars(args))
     if args.dataset == "synthetic_exp":
-        run_name = f"{args.model}_nodes-{args.num_nodes}_node-deg-{args.node_degree}_normalised-{str(args.normalised).lower()}_stalk-{args.d}_{args.layers}layers_{args.hidden_channels}hidden_{args.epochs}epochs_pct-hetero-{int(float(args.het_coef)*100)}_classes-{args.num_classes}_feats-{args.num_feats}{lfm_suffix}_seed{args.seed}"
+        run_name = f"{args.model}_nodes-{args.num_nodes}_node-deg-{args.node_degree}_normalised-{str(args.normalised).lower()}_stalk-{args.d}_{args.layers}layers_{args.hidden_channels}hidden_{args.epochs}epochs_pct-hetero-{int(float(args.het_coef)*100)}_classes-{args.num_classes}_feats-{args.num_feats}{map_suffix}_seed{args.seed}"
     else:
-        run_name = f"{args.model}_{args.dataset}_normalised-{str(args.normalised).lower()}_stalk-{args.d}_{args.layers}layers_{args.hidden_channels}hidden_{args.epochs}epochs{lfm_suffix}_seed{args.seed}"
+        run_name = f"{args.model}_{args.dataset}_normalised-{str(args.normalised).lower()}_stalk-{args.d}_{args.layers}layers_{args.hidden_channels}hidden_{args.epochs}epochs{map_suffix}_seed{args.seed}"
     wandb.init(project="sheaf", config=vars(args), entity=args.entity, name=run_name)
 
     for fold in tqdm(range(args.folds)):

@@ -135,7 +135,10 @@ def get_parser():
     parser.add_argument('--dual_right_linear', type=str2bool, default=False)
     parser.add_argument('--dual_linear', type=str2bool, default=True)
     parser.add_argument('--learn_first_maps', type=str2bool, default=False)
-    parser.add_argument('--dual_diag', type=str2bool, default=False)
+    parser.add_argument('--learnt_map_type', type=str,
+                        choices=['diagonal', 'bundle', 'general'], default='diagonal',
+                        help="Type of restriction maps to learn as initial maps: "
+                             "diagonal, bundle (orthogonal), or general (unconstrained d x d).")
     parser.add_argument('--rotation_invariant_sheaf_learner', type=str2bool, default=False)
     parser.add_argument('--node_edge_sims_time_dependent', type=str2bool, default=False)
     parser.add_argument('--num_of_convolutions', type=int, default=1)
@@ -155,5 +158,8 @@ def get_parser():
                         help="Save the sheaf Laplacian at checkpoints and at the end of training.")
     parser.add_argument('--save_norms', type=str2bool, default=True,
                         help="Save node hidden-representation norms at checkpoints and at the end of training.")
+    parser.add_argument('--save_others', type=str2bool, default=False,
+                        help="(GeneralSheaf only) Also save Forman eigs of the opposite-normalisation Laplacian "
+                             "to other_Laplacian/ alongside the primary eigs.")
 
     return parser

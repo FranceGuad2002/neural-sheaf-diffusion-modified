@@ -10,9 +10,9 @@
 #SBATCH --error=logs/%j.err
 
 # ── analysis config ────────────────────────────────────────────────────────────
-NORMALISED="true"          # "true" or "false"
+NORMALISED="false"          # "true" or "false"
 MODEL="GeneralSheaf"       # e.g. GeneralSheaf | JointSheafParamsAlt
-LEARN_FIRST_MAPS="false"   # only matters when MODEL=JointSheafParamsAlt
+MAP_TYPE="identity"        # "identity" or "general" — only matters when MODEL=JointSheafParamsAlt
 
 # Activate your conda environment
 source ~/miniconda3/etc/profile.d/conda.sh
@@ -21,4 +21,4 @@ conda activate Do_nsd
 python quick_analysis/compute_forman_metrics.py \
     --normalised="${NORMALISED}" \
     --model="${MODEL}" \
-    --learn_first_maps="${LEARN_FIRST_MAPS}"
+    --map_type="${MAP_TYPE}"

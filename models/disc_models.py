@@ -278,6 +278,9 @@ class DiscreteGeneralSheafDiffusion(SheafDiffusion):
         self.laplacian_builder = lb.GeneralLaplacianBuilder(
             self.graph_size, edge_index, d=self.d, add_lp=self.add_lp, add_hp=self.add_hp,
             normalised=self.normalised, deg_normalised=self.deg_normalised)
+        self.laplacian_builder_other = lb.GeneralLaplacianBuilder(
+            self.graph_size, edge_index, d=self.d, add_lp=self.add_lp, add_hp=self.add_hp,
+            normalised=not self.normalised, deg_normalised=False)
 
         self.epsilons = nn.ParameterList()
         for i in range(self.layers):
@@ -314,6 +317,7 @@ class DiscreteGeneralSheafDiffusion(SheafDiffusion):
         self._last_maps = {}
         self._last_trans_maps = {}
         self._last_laplacian = {}
+        self._last_laplacian_other = {}
         self._last_node_norms = {}
 
         for layer in range(self.layers):
@@ -327,6 +331,11 @@ class DiscreteGeneralSheafDiffusion(SheafDiffusion):
                 self._last_maps[layer] = maps
                 self._last_trans_maps[layer] = trans_maps
                 self._last_laplacian[layer] = L
+
+                if getattr(self, 'save_other_laplacian', False):
+                    with torch.no_grad():
+                        L_other, _ = self.laplacian_builder_other(maps)
+                    self._last_laplacian_other[layer] = L_other
 
             x = F.dropout(x, p=self.dropout, training=self.training)
 
@@ -651,7 +660,12 @@ class DiscreteJointSheafDiffusionParams(SheafDiffusion):
         
         for i in range(num_sheaf_learners):
             if i == 0 and self.learn_first_maps:
-                outShape = (self.get_param_size(),) if not self.dual_diag else (self.d,)
+                if self.learnt_map_type == 'diagonal':
+                    outShape = (self.d,)
+                elif self.learnt_map_type == 'bundle':
+                    outShape = (self.get_param_size(),)
+                else:  # general
+                    outShape = (self.d, self.d)
                 self.sheaf_learners.append(LocalConcatSheafLearnerVariant(self.final_d,
                     self.hidden_channels, out_shape=outShape, sheaf_act=self.sheaf_act))
             else:
@@ -660,13 +674,17 @@ class DiscreteJointSheafDiffusionParams(SheafDiffusion):
 
             if i == 0 and self.use_edge_weights:
                 self.weight_learners.append(EdgeWeightLearner(self.hidden_dim, edge_index))
-        
+
         if self.learn_first_maps:
-            if self.dual_diag:
+            if self.learnt_map_type == 'diagonal':
                 self.first_laplacian_builder = lb.DiagLaplacianBuilder(
                 self.graph_size, edge_index, d=self.d, add_hp=self.add_hp,
                 add_lp=self.add_lp, normalised=self.normalised,deg_normalised=self.deg_normalised)
-            else:
+            elif self.learnt_map_type == 'bundle':
+                self.first_laplacian_builder = lb.NormConnectionLaplacianBuilder(
+                self.graph_size, edge_index, d=self.d, add_hp=self.add_hp,
+                add_lp=self.add_lp, orth_map=self.orth_trans)
+            else:  # general
                 self.first_laplacian_builder = lb.GeneralLaplacianBuilder(
                 self.graph_size, edge_index, d=self.d, add_hp=self.add_hp,
                 add_lp=self.add_lp)
@@ -779,12 +797,13 @@ class DiscreteJointSheafDiffusionParams(SheafDiffusion):
                 x_maps = x_maps.reshape(self.graph_size,-1)
                 maps = (self.sheaf_learners[layer](x_maps, self.edge_index))
                 #edge_weights = self.weight_learners[layer](x_maps, self.edge_index) if self.use_edge_weights else None
-                if not self.dual_diag:
-                    L, trans_maps = self.first_laplacian_builder(maps)
-                    prev_maps[layer] = maps 
-                else:
-                    L, trans_maps = self.first_laplacian_builder(maps)
+                L, trans_maps = self.first_laplacian_builder(maps)
+                if self.learnt_map_type == 'diagonal':
                     prev_maps[layer] = torch.diag_embed(maps)
+                elif self.learnt_map_type == 'bundle':
+                    prev_maps[layer] = self.first_laplacian_builder.orth_transform(maps)
+                else:  # general
+                    prev_maps[layer] = maps
             else :
                 L, trans_maps = self.laplacian_builder(prev_maps[layer])
 
@@ -873,7 +892,12 @@ class DiscreteJointSheafDiffusionParamsAlt(SheafDiffusion):
         
         for i in range(num_sheaf_learners):
             if i == 0 and self.learn_first_maps:
-                outShape = (self.get_param_size(),) if not self.dual_diag else (self.d,)
+                if self.learnt_map_type == 'diagonal':
+                    outShape = (self.d,)
+                elif self.learnt_map_type == 'bundle':
+                    outShape = (self.get_param_size(),)
+                else:  # general
+                    outShape = (self.d, self.d)
                 self.sheaf_learners.append(LocalConcatSheafLearnerVariant(self.final_d,
                     self.hidden_channels, out_shape=outShape, sheaf_act=self.sheaf_act))
             else:
@@ -882,16 +906,20 @@ class DiscreteJointSheafDiffusionParamsAlt(SheafDiffusion):
 
             if i == 0 and self.use_edge_weights:
                 self.weight_learners.append(EdgeWeightLearner(self.hidden_dim, edge_index))
-        
+
         if self.learn_first_maps:
-            if self.dual_diag:
+            if self.learnt_map_type == 'diagonal':
                 self.first_laplacian_builder = lb.DiagLaplacianBuilder(
                 self.graph_size, edge_index, d=self.d, add_hp=self.add_hp,
                 add_lp=self.add_lp, normalised=self.normalised,deg_normalised=self.deg_normalised)
-            else:
+            elif self.learnt_map_type == 'bundle':
                 self.first_laplacian_builder = lb.NormConnectionLaplacianBuilder(
                 self.graph_size, edge_index, d=self.d, add_hp=self.add_hp,
                 add_lp=self.add_lp, orth_map=self.orth_trans)
+            else:  # general
+                self.first_laplacian_builder = lb.GeneralLaplacianBuilder(
+                self.graph_size, edge_index, d=self.d, add_hp=self.add_hp,
+                add_lp=self.add_lp)
 
         self.laplacian_builder = lb.GeneralLaplacianBuilder(
             self.graph_size, edge_index, d=self.d, add_lp=self.add_lp, add_hp=self.add_hp,

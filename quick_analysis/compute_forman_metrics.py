@@ -5,7 +5,7 @@ Compute Forman Profile metrics for experiments found under results/forman_eigs/.
 Run from the repo root:
     python quick_analysis/compute_forman_metrics.py
     python quick_analysis/compute_forman_metrics.py --normalised false
-    python quick_analysis/compute_forman_metrics.py --model JointSheafParamsAlt --learn_first_maps true
+    python quick_analysis/compute_forman_metrics.py --model JointSheafParamsAlt --map_type general
 """
 
 import re
@@ -42,39 +42,48 @@ PALETTE = [
 ]
 
 
+JOINT_MODELS = {'JointSheafParams', 'JointSheafParamsAlt'}
+
+
+def _make_map_tag(model, map_type):
+    """Filename suffix; empty for non-Joint models."""
+    if model not in JOINT_MODELS:
+        return ""
+    return f"_first_maps_{map_type}"
+
+
 # ── args ───────────────────────────────────────────────────────────────────────
 def _parse_args():
     p = argparse.ArgumentParser()
-    p.add_argument('--normalised',       default='true',  choices=['true', 'false'],
+    p.add_argument('--normalised', default='true', choices=['true', 'false'],
                    help='Which normalised-* folder to scan (default: true)')
-    p.add_argument('--model',            default='GeneralSheaf',
+    p.add_argument('--model',      default='GeneralSheaf',
                    help='Model name (default: GeneralSheaf)')
-    p.add_argument('--learn_first_maps', default='false', choices=['true', 'false'],
-                   help='For JointSheafParamsAlt: learn_first_maps value (default: false)')
+    p.add_argument('--map_type',   default='identity',
+                   choices=['identity', 'diag', 'bundle', 'general'],
+                   help='First-map type for Joint models (default: identity)')
     return p.parse_args()
 
 
 # ── discovery ──────────────────────────────────────────────────────────────────
-def discover_combinations(model, normalised, lfm_tag):
+def discover_combinations(model, normalised, map_tag):
     """
-    Scan FORMAN_ROOT for .npy eigenvalue files under normalised-{normalised}.
+    Scan FORMAN_ROOT for .npy eigenvalue files under {model}/normalised-{normalised}.
     Returns a sorted list of combo dicts, each with complete fold lists.
     """
     index = defaultdict(lambda: defaultdict(set))
 
-    pattern = f"*/normalised-{normalised}/stalk_dim-*/*-layers/*-hidden/*-epochs/{model}_*.npy"
+    pattern = f"*/{model}{map_tag}/normalised-{normalised}/stalk_dim-*/*-layers/*-hidden/*-epochs/{model}_*.npy"
     for pt in FORMAN_ROOT.glob(pattern):
-        if lfm_tag and lfm_tag not in pt.stem:
-            continue
         parts   = pt.relative_to(FORMAN_ROOT).parts
         dataset = parts[0]
         if dataset in EXCLUDE:
             continue
 
-        stalk_dim = int(parts[2].replace("stalk_dim-", ""))
-        layers_n  = int(parts[3].replace("-layers", ""))
-        hidden    = int(parts[4].replace("-hidden", ""))
-        epochs    = int(parts[5].replace("-epochs", ""))
+        stalk_dim = int(parts[3].replace("stalk_dim-", ""))
+        layers_n  = int(parts[4].replace("-layers", ""))
+        hidden    = int(parts[5].replace("-hidden", ""))
+        epochs    = int(parts[6].replace("-epochs", ""))
 
         m_lf = re.search(r"_layer(\d+)_fold(\d+)", pt.stem)
         m_s  = re.search(r"_seed(\d+)",             pt.stem)
@@ -107,7 +116,7 @@ def discover_combinations(model, normalised, lfm_tag):
             "n":          NUM_NODES[dataset],
             "model":      model,
             "normalised": normalised,
-            "lfm_tag":    lfm_tag,
+            "map_tag":    map_tag,
         })
 
     return sorted(combos, key=lambda c: (c["dataset"], c["stalk_dim"]))
@@ -116,7 +125,7 @@ def discover_combinations(model, normalised, lfm_tag):
 # ── per-combination pipeline ───────────────────────────────────────────────────
 def _base_dir(combo):
     c = combo
-    return (FORMAN_ROOT / c["dataset"] / f"normalised-{c['normalised']}" /
+    return (FORMAN_ROOT / c["dataset"] / (c["model"] + c["map_tag"]) / f"normalised-{c['normalised']}" /
             f"stalk_dim-{c['stalk_dim']}" / f"{c['layers']}-layers" /
             f"{c['hidden']}-hidden"        / f"{c['epochs']}-epochs")
 
@@ -124,7 +133,7 @@ def _base_dir(combo):
 def _eigs_path(combo, layer, fold):
     c = combo
     fname = (f"{c['model']}_{c['dataset']}_layer{layer}_fold{fold}"
-             f"{c['lfm_tag']}_seed{c['seed']}.npy")
+             f"{c['map_tag']}_seed{c['seed']}.npy")
     return _base_dir(c) / fname
 
 
@@ -224,13 +233,12 @@ if __name__ == "__main__":
     args       = _parse_args()
     model      = args.model
     normalised = args.normalised
-    lfm_tag    = (f"_learn_first_maps-{args.learn_first_maps}"
-                  if model == 'JointSheafParamsAlt' else "")
+    map_tag    = _make_map_tag(model, args.map_type)
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    combos = discover_combinations(model, normalised, lfm_tag)
-    print(f"\nFound {len(combos)} combinations (model={model}, normalised={normalised}):")
+    combos = discover_combinations(model, normalised, map_tag)
+    print(f"\nFound {len(combos)} combinations (model={model}, normalised={normalised}, map_tag={map_tag!r}):")
     for c in combos:
         print(f"  {c['dataset']:20s}  d={c['stalk_dim']}  "
               f"layers={c['layers']}  folds={c['folds']}")

@@ -1,0 +1,569 @@
+\documentclass[11pt]{beamer}
+
+\title[Forman Profile --- Results]{Forman Profile Alignment: Results}
+\author{Francesco Maria Guadagnuolo}
+\date{\today}
+\usetheme{Madrid}
+\usecolortheme{whale}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{headline}{}
+
+\usepackage{graphicx}
+\usepackage[english]{babel}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\F}{\mathcal{F}}
+\newcommand{\Ltil}{\widetilde{\Delta}_{\F}}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+
+\begin{document}
+
+\frame{\titlepage}
+
+% ══════════════════════════════════════════════════════════════════════════════
+%  METHODS
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{frame}{Models}
+\begin{itemize}
+    \item \textbf{GeneralSheaf}: learns unconstrained restriction maps on each edge via a neural sheaf learner. The learned sheaf Laplacian is used for signal diffusion.
+    \item \textbf{JointSheafParams (Joint Diffusion)}: jointly diffuses both node signals and restriction maps at each layer. Two initial-map configurations are considered:
+    \begin{itemize}
+        \item \textbf{Identity initial maps} (\texttt{learn\_first\_maps=False}): restriction maps are initialised to the identity and then updated by joint diffusion.
+        \item \textbf{Learned general initial maps} (\texttt{learn\_first\_maps=True}, \texttt{learnt\_map\_type=general}): a neural learner provides a general initial map before joint diffusion proceeds.
+    \end{itemize}
+    \item \textbf{Normalisation configurations}: each model is run with \texttt{normalised=True} (symmetric normalisation $\widetilde{\Delta} = D^{-1/2}\Delta D^{-1/2}$) and \texttt{normalised=False} (no normalisation).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Forman Profile and Alignment Metrics}
+\begin{itemize}
+    \item \textbf{Forman curvature profile:} at the last training epoch and for each fold, the diagonal block $F_{u,u}$ of the Forman curvature endomorphism is extracted from the learned sheaf Laplacian. Its $d$ eigenvalues (where $d$ is the stalk dimension) form the per-node \emph{Forman profile}.
+    \item \textbf{Topological reference:} the Forman curvature of the augmented normalised graph Laplacian (fixed, topology-only quantity).
+    \item \textbf{Alignment metrics} (computed for each eigenvalue channel $k=1,\dots,d$, then averaged over folds):
+    \begin{itemize}
+        \item Spearman $\rho$ and Pearson $r$: node-level rank/linear correlation with the topological profile.
+        \item Wasserstein distance: between the z-scored empirical distributions.
+        \item RMSE: $\ell_2$ between raw Forman values and topological values.
+        \item NRMSE: $\ell_2$ between z-scored profiles.
+    \end{itemize}
+    \item \textbf{Heatmaps:} rows = training checkpoints (epoch-0 $\to$ last), columns = layers; each cell = metric value averaged over eigenvalue channels. Fixed colour scales: $[-1,1]$ for correlations (diverging), $[0, 0.9]$ for Wasserstein, $[0, 0.6]$ for RMSE, $[0, 1.8]$ for NRMSE.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Cross-comparison Configurations}
+In addition to comparing the Forman profile of a trained model to the topological reference under the \emph{same} normalisation, two cross-normalization comparisons are performed:
+\begin{itemize}
+    \item \textbf{Norm=True sheaf vs Norm=False topology:} the model is trained with \texttt{normalised=True}; its Forman profile is compared to the topological Forman curvature computed from the \emph{unnormalised} augmented Laplacian.
+    \item \textbf{Norm=False sheaf vs Norm=True topology:} the model is trained with \texttt{normalised=False}; its Forman profile is compared to the topological curvature from the \emph{normalised} augmented Laplacian.
+\end{itemize}
+These cross-comparisons probe whether the learned Forman structure aligns with a topological reference that differs from the one implicitly used during training.
+\end{frame}
+
+% ══════════════════════════════════════════════════════════════════════════════
+%  SECTION 1 — GeneralSheaf, normalised = True
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{frame}{}
+\centering
+\Huge\textbf{GeneralSheaf}\\[6pt]
+\Large Normalised Laplacian (\texttt{normalised=True})
+\end{frame}
+
+\begin{frame}{Amazon Ratings --- GeneralSheaf, $d=5$, $L=5$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Citeseer --- GeneralSheaf, $d=5$, $L=4$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cora --- GeneralSheaf, $d=3$, $L=3$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/cora_GeneralSheaf_d3_3L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cora --- GeneralSheaf, $d=5$, $L=3$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cornell --- GeneralSheaf, $d=2$, $L=2$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Minesweeper --- GeneralSheaf, $d=5$, $L=6$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Pubmed --- GeneralSheaf, $d=5$, $L=4$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Questions --- GeneralSheaf, $d=5$, $L=4$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Roman Empire --- GeneralSheaf, $d=5$, $L=5$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tolokers --- GeneralSheaf, $d=3$, $L=4$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Wisconsin --- GeneralSheaf, $d=2$, $L=2$, Norm=True}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+% ══════════════════════════════════════════════════════════════════════════════
+%  SECTION 2 — GeneralSheaf, normalised = False
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{frame}{}
+\centering
+\Huge\textbf{GeneralSheaf}\\[6pt]
+\Large Unnormalised Laplacian (\texttt{normalised=False})
+\end{frame}
+
+\begin{frame}{Amazon Ratings --- GeneralSheaf, $d=5$, $L=5$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/amazon_ratings_GeneralSheaf_d5_5L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Citeseer --- GeneralSheaf, $d=5$, $L=4$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/citeseer_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cora --- GeneralSheaf, $d=3$, $L=3$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/cora_GeneralSheaf_d3_3L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cora --- GeneralSheaf, $d=5$, $L=3$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/cora_GeneralSheaf_d5_3L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cornell --- GeneralSheaf, $d=2$, $L=2$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/cornell_GeneralSheaf_d2_2L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Minesweeper --- GeneralSheaf, $d=5$, $L=6$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/minesweeper_GeneralSheaf_d5_6L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Pubmed --- GeneralSheaf, $d=5$, $L=4$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/pubmed_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Questions --- GeneralSheaf, $d=5$, $L=4$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/questions_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Roman Empire --- GeneralSheaf, $d=5$, $L=5$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/roman_empire_GeneralSheaf_d5_5L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tolokers --- GeneralSheaf, $d=3$, $L=4$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/tolokers_GeneralSheaf_d3_4L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Wisconsin --- GeneralSheaf, $d=2$, $L=2$, Norm=False}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/wisconsin_GeneralSheaf_d2_2L_Norm_False_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+% ══════════════════════════════════════════════════════════════════════════════
+%  SECTION 3 — Cross-comparison: Norm=True sheaf vs Norm=False topology
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{frame}{}
+\centering
+\Huge\textbf{Cross-Comparison}\\[6pt]
+\Large Norm=True sheaf Forman profile\\vs Norm=False topological reference
+\end{frame}
+
+\begin{frame}{Amazon Ratings --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/amazon_ratings_GeneralSheaf_d5_5L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Citeseer --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/citeseer_GeneralSheaf_d5_4L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cora --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/cora_GeneralSheaf_d5_3L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cornell --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/cornell_GeneralSheaf_d2_2L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Minesweeper --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/minesweeper_GeneralSheaf_d5_6L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Pubmed --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/pubmed_GeneralSheaf_d5_4L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Questions --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/questions_GeneralSheaf_d5_4L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Roman Empire --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/roman_empire_GeneralSheaf_d5_5L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tolokers --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/tolokers_GeneralSheaf_d3_4L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Wisconsin --- Cross: Norm=True sheaf / Norm=False topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/wisconsin_GeneralSheaf_d2_2L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+% ══════════════════════════════════════════════════════════════════════════════
+%  SECTION 4 — Cross-comparison: Norm=False sheaf vs Norm=True topology
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{frame}{}
+\centering
+\Huge\textbf{Cross-Comparison}\\[6pt]
+\Large Norm=False sheaf Forman profile\\vs Norm=True topological reference
+\end{frame}
+
+\begin{frame}{Amazon Ratings --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/amazon_ratings_GeneralSheaf_d5_5L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Citeseer --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/citeseer_GeneralSheaf_d5_4L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cora --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/cora_GeneralSheaf_d5_3L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cornell --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/cornell_GeneralSheaf_d2_2L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Minesweeper --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/minesweeper_GeneralSheaf_d5_6L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Pubmed --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/pubmed_GeneralSheaf_d5_4L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Questions --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/questions_GeneralSheaf_d5_4L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Roman Empire --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/roman_empire_GeneralSheaf_d5_5L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tolokers --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/tolokers_GeneralSheaf_d3_4L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Wisconsin --- Cross: Norm=False sheaf / Norm=True topo}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/wisconsin_GeneralSheaf_d2_2L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+% ══════════════════════════════════════════════════════════════════════════════
+%  SECTION 5 — JointSheafParams, normalised=False, identity maps
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{frame}{}
+\centering
+\Huge\textbf{JointSheafParams}\\[6pt]
+\Large Norm=False, Identity Initial Maps
+\end{frame}
+
+\begin{frame}{Amazon Ratings --- Joint, $d=5$, $L=5$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/amazon_ratings_JointSheafParams_d5_5L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Citeseer --- Joint, $d=5$, $L=4$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/citeseer_JointSheafParams_d5_4L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cora --- Joint, $d=3$, $L=3$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/cora_JointSheafParams_d3_3L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cornell --- Joint, $d=2$, $L=2$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/cornell_JointSheafParams_d2_2L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Minesweeper --- Joint, $d=5$, $L=6$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/minesweeper_JointSheafParams_d5_6L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Pubmed --- Joint, $d=5$, $L=4$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/pubmed_JointSheafParams_d5_4L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Questions --- Joint, $d=5$, $L=4$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/questions_JointSheafParams_d5_4L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Roman Empire --- Joint, $d=5$, $L=5$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/roman_empire_JointSheafParams_d5_5L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Tolokers --- Joint, $d=3$, $L=4$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/tolokers_JointSheafParams_d3_4L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Wisconsin --- Joint, $d=2$, $L=2$, Norm=False, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/wisconsin_JointSheafParams_d2_2L_Norm_False_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+% ══════════════════════════════════════════════════════════════════════════════
+%  SECTION 6 — JointSheafParams, normalised=True, identity maps
+% ══════════════════════════════════════════════════════════════════════════════
+
+\begin{frame}{}
+\centering
+\Huge\textbf{JointSheafParams}\\[6pt]
+\Large Norm=True, Identity Initial Maps
+\end{frame}
+
+\begin{frame}{Amazon Ratings --- Joint, $d=2$, $L=3$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/amazon_ratings_JointSheafParams_d2_3L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Citeseer --- Joint, $d=3$, $L=3$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/citeseer_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cora --- Joint, $d=2$, $L=3$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/cora_JointSheafParams_d2_3L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cora --- Joint, $d=3$, $L=3$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/cora_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Cornell --- Joint, $d=2$, $L=2$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/cornell_JointSheafParams_d2_2L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Minesweeper --- Joint, $d=3$, $L=3$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/minesweeper_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Pubmed --- Joint, $d=2$, $L=3$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/pubmed_JointSheafParams_d2_3L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Pubmed --- Joint, $d=3$, $L=3$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/pubmed_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Questions --- Joint, $d=2$, $L=4$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/questions_JointSheafParams_d2_4L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Roman Empire --- Joint, $d=3$, $L=3$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/roman_empire_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\begin{frame}{Wisconsin --- Joint, $d=2$, $L=2$, Norm=True, Identity}
+\begin{figure}
+    \centering
+    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/wisconsin_JointSheafParams_d2_2L_Norm_True_first_maps_identity_heatmap.pdf}
+\end{figure}
+\end{frame}
+
+\end{document}

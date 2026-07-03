@@ -14,46 +14,70 @@ export WANDB_ENTITY=franceguad2002-epfl
 export WANDB_PROJECT=sheaf
 export WANDB_API_KEY=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
 
-
-# Activate your conda environment
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate nsd
 
-# Run your experiment
-python -m exp.run \
-    --add_hp=False \
-    --add_lp=False \
-    --d=5 \
-    --dataset=amazon_ratings \
-    --dropout=0.3 \
-    --early_stopping=200 \
-    --epochs=500 \
-    --folds=10 \
-    --hidden_channels=16 \
-    --input_dropout=0.2 \
-    --layers=5 \
-    --lr=0.01 \
-    --model=GeneralSheaf \
-    --sheaf_decay=0.00031764232712732976 \
-    --weight_decay=0.0006914841722570725 \
-    --left_weights=True \
-    --right_weights=True \
-    --use_act=True \
-    --normalised=False \
-    --edge_weights=False \
-    --sparse_learner=False \
-    --deg_normalised=False \
-    --dual_normalised=True \
-    --dual_diff_strength=1.0 \
-    --use_epsilons=True \
-    --dual_linear=True \
-    --dual_left_linear=False \
-    --dual_right_linear=False \
-    --learn_first_maps=False \
-    --dual_diag=False \
-    --sheaf_init=False \
-    --use_embedding=True \
-    --checkpoint_epochs=0,1,5,15,50,200 \
-    --save_laplacians=True \
-    --save_norms=False \
+ARGS=(
+    # --- experiment [all models] ---
+    --dataset=amazon_ratings
+    --folds=10
+    --epochs=500
+    --early_stopping=200
+
+    # --- model [all models] ---
+    --model=JointSheafParams
+
+    # --- sheaf architecture [all models] ---
+    --d=2
+    --hidden_channels=16
+    --layers=3
+    --add_hp=False
+    --add_lp=False
+    --normalised=True
+    --deg_normalised=False
+    --left_weights=True
+    --right_weights=True
+    --use_act=True
+
+    # --- sheaf learner [DiagSheaf, BundleSheaf, GeneralSheaf] ---
+    --sparse_learner=False
+
+    # --- connection Laplacian [BundleSheaf, JointSheafParams*] ---
+    --edge_weights=False
+
+    # --- optimizer [all models] ---
+    --lr=0.01
+    --weight_decay=0.0006914841722570725
+    --sheaf_decay=0.00031764232712732976
+
+    # --- regularisation [all models] ---
+    --dropout=0.3
+    --input_dropout=0.2
+
+    # --- residual epsilons [VanillaSheaf, ConvSheaf, JointSheafParams*] ---
+    # (DiagSheaf / BundleSheaf / GeneralSheaf always train epsilons — flag has no effect there)
+    --use_epsilons=True
+
+    # --- joint diffusion only [JointSheafParams, JointSheafParamsAlt] ---
+    --dual_normalised=True
+    --dual_diff_strength=1.0
+    --dual_linear=False
+    --dual_left_linear=True
+    --dual_right_linear=True
+    --learn_first_maps=False
+    --learnt_map_type=general
+    --sheaf_init=False
+
+    # --- VanillaSheaf only ---
+    --use_embedding=True
+
+    # --- logging [all models] ---
+    --checkpoint_epochs=0,1,5,15,50,200
+    --save_laplacians=True
+    # save_others: disabled for JointSheafParams (identity maps, no other_Laplacian needed)
+    --save_others=False
+    --save_norms=False
     --entity="${WANDB_ENTITY}"
+)
+
+python -m exp.run "${ARGS[@]}"

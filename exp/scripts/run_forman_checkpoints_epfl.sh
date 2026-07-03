@@ -10,9 +10,24 @@
 #SBATCH --error=logs/%j.err
 
 # ── analysis config ────────────────────────────────────────────────────────────
-NORMALISED="true"          # "true" or "false"
-MODEL="GeneralSheaf"       # e.g. GeneralSheaf | JointSheafParamsAlt
-LEARN_FIRST_MAPS="false"   # only matters when MODEL=JointSheafParamsAlt
+NORMALISED="true"           # "true" or "false" — which normalised-* folder to scan
+MODEL="JointSheafParams"        # e.g. GeneralSheaf | JointSheafParams | JointSheafParamsAlt
+MAP_TYPE="identity"         # "identity" | "general" | "diag" | "bundle" — Joint models only
+
+# Set to "true" to read eigs from other_Laplacian/ subfolders (opposite-normalisation content).
+# The output folder will gain a _other suffix so it never collides with the primary run.
+USE_OTHER="false"
+
+# Set to "true" to run the cross-comparison pipeline (both directions).
+# Ignores NORMALISED and USE_OTHER — always loads both norm=true and norm=false data.
+DO_OTHER_COMPARISON="false"
+
+# ── build optional flags ───────────────────────────────────────────────────────
+USE_OTHER_FLAG=""
+[ "${USE_OTHER}" = "true" ] && USE_OTHER_FLAG="--use_other"
+
+DO_COMPARISON_FLAG=""
+[ "${DO_OTHER_COMPARISON}" = "true" ] && DO_COMPARISON_FLAG="--do_other_comparison"
 
 # Activate your conda environment
 source ~/miniconda3/etc/profile.d/conda.sh
@@ -21,4 +36,6 @@ conda activate Do_nsd
 python quick_analysis/compute_forman_checkpoints.py \
     --normalised="${NORMALISED}" \
     --model="${MODEL}" \
-    --learn_first_maps="${LEARN_FIRST_MAPS}"
+    --map_type="${MAP_TYPE}" \
+    ${USE_OTHER_FLAG} \
+    ${DO_COMPARISON_FLAG}

@@ -52,7 +52,7 @@ class SheafDiffusion(nn.Module):
         self.dual_linear = args['dual_linear']
         self.learn_first_maps = args['learn_first_maps']
         self.diff_strength = args['dual_diff_strength']
-        self.dual_diag = args['dual_diag']
+        self.learnt_map_type = args['learnt_map_type']
         self.use_embedding = args['use_embedding']
 
     def update_edge_index(self, edge_index):
