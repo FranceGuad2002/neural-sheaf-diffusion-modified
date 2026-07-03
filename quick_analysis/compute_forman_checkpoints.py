@@ -557,7 +557,8 @@ def discover_comparison_pairs(combos_a, combos_b):
     return pairs
 
 
-def run_comparison(combo_a, combo_b, mega_dir, heat_dir, label_a, label_b):
+def run_comparison(combo_a, combo_b, mega_dir, heat_dir, label_a, label_b,
+                   display_label_a=None, display_label_b=None):
     """
     Cross-compare Forman eigs from two sources fold-by-fold.
     Metrics (Spearman, Pearson, Wasserstein, RMSE, NRMSE) are computed
@@ -634,11 +635,11 @@ def run_comparison(combo_a, combo_b, mega_dir, heat_dir, label_a, label_b):
         ('nrmse_mean',       'nrmse_std',       'NRMSE',       (-0.05, 1.8)),
     ]
     heatmap_specs = [
-        ('spearman_mean',    'Spearman ρ',   'RdBu_r', -1,  1,   True),
-        ('pearson_mean',     'Pearson r',    'RdBu_r', -1,  1,   True),
-        ('wasserstein_mean', 'Wasserstein',  'YlOrRd',  0,  0.9, False),
-        ('rmse_mean',        'RMSE',         'YlOrRd',  0,  0.6, False),
-        ('nrmse_mean',       'NRMSE',        'YlOrRd',  0,  1.8, False),
+        ('spearman_mean',    'Spearman ρ',   'RdBu_r', -1,  1,    True),
+        ('pearson_mean',     'Pearson r',    'RdBu_r', -1,  1,    True),
+        ('wasserstein_mean', 'Wasserstein',  'YlOrRd',  0,  None, False),
+        ('rmse_mean',        'RMSE',         'YlOrRd',  0,  None, False),
+        ('nrmse_mean',       'NRMSE',        'YlOrRd',  0,  None, False),
     ]
 
     # ── megaplot ───────────────────────────────────────────────────────────────
@@ -684,9 +685,11 @@ def run_comparison(combo_a, combo_b, mega_dir, heat_dir, label_a, label_b):
             if row == 0 and col == n_cols - 1:
                 ax.legend(fontsize=8, loc='best')
 
+    _dlabel_a = display_label_a or label_a
+    _dlabel_b = display_label_b or label_b
     fig.suptitle(
         f"Forman Cross-Comparison — {dataset}  ({model}, d={d}, {layers}L)\n"
-        f"{label_a}  vs  {label_b}",
+        f"{_dlabel_a}  vs  {_dlabel_b}",
         fontsize=14, y=1.01,
     )
     fig.tight_layout()
@@ -762,7 +765,7 @@ def run_comparison(combo_a, combo_b, mega_dir, heat_dir, label_a, label_b):
 
     fig2.suptitle(
         f"Forman Cross-Comparison — {dataset}  ({model}, d={d}, {layers}L)\n"
-        f"{label_a}  vs  {label_b}\n"
+        f"{_dlabel_a}  vs  {_dlabel_b}\n"
         f"(values = mean across {d} eigenvalues, averaged over folds)",
         fontsize=18, y=1.0,
     )
@@ -791,7 +794,9 @@ if __name__ == "__main__":
         print(f"\nDirection A — {len(pairs_A)} pair(s): norm_true_primary vs other_norm_false")
         for ca, cb in pairs_A:
             run_comparison(ca, cb, mega_A, heat_A,
-                           label_a='norm_true_primary', label_b='other_norm_false')
+                           label_a='norm_true_primary', label_b='other_norm_false',
+                           display_label_a='Trained norm=True  →  normalised LaplacianF (primary)',
+                           display_label_b='Trained norm=False →  normalised LaplacianF (via other_Laplacian)')
 
         # Direction B: primary norm=false  vs  other_Laplacian of norm=true
         #   → both represent unnormalized L, maps trained under different objectives
@@ -803,7 +808,9 @@ if __name__ == "__main__":
         print(f"\nDirection B — {len(pairs_B)} pair(s): norm_false_primary vs other_norm_true")
         for ca, cb in pairs_B:
             run_comparison(ca, cb, mega_B, heat_B,
-                           label_a='norm_false_primary', label_b='other_norm_true')
+                           label_a='norm_false_primary', label_b='other_norm_true',
+                           display_label_a='Trained norm=False →  unnorm. LaplacianF (primary)',
+                           display_label_b='Trained norm=True  →  unnorm. LaplacianF (via other_Laplacian)')
 
     else:
         use_other           = args.use_other
