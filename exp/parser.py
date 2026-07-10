@@ -158,6 +158,10 @@ def get_parser():
                         help="Save the sheaf Laplacian at checkpoints and at the end of training.")
     parser.add_argument('--save_norms', type=str2bool, default=True,
                         help="Save node hidden-representation norms at checkpoints and at the end of training.")
+    parser.add_argument('--save_preds', type=str2bool, default=True,
+                        help="Save per-node predictions, confidence, and correctness at the end of training.")
+    parser.add_argument('--save_saliency', type=str2bool, default=True,
+                        help="Save per-node input-gradient saliency (||dL/dX_i||) at the end of training.")
     parser.add_argument('--save_others', type=str2bool, default=False,
                         help="(GeneralSheaf only) Also save Forman eigs of the opposite-normalisation Laplacian "
                              "to other_Laplacian/ alongside the primary eigs.")

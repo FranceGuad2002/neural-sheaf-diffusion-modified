@@ -143,6 +143,206 @@ def _save_norms(norms_dict, args, fold, norms_dir):
     print(f"Saved node norms to {path}")
 
 
+def _preds_base_dir(args):
+    return os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..', 'results', 'node_preds',
+        args['dataset'],
+        args['model'] + _map_tag(args),
+        f"normalised-{str(args['normalised']).lower()}",
+        f"stalk_dim-{args['d']}",
+        f"{args['layers']}-layers",
+        f"{args['hidden_channels']}-hidden",
+        f"{args['epochs']}-epochs",
+    ))
+
+
+def _save_node_preds(node_preds_dict, args, fold, preds_dir):
+    os.makedirs(preds_dir, exist_ok=True)
+    tag = _map_tag(args)
+    if args['dataset'] == 'synthetic_exp':
+        filename = (
+            f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
+            f"_pct-hetero-{int(float(args['het_coef'])*100)}"
+            f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
+            f"{tag}_fold{fold}_seed{args['seed']}.pt"
+        )
+    else:
+        filename = f"{args['model']}_{args['dataset']}{tag}_fold{fold}_seed{args['seed']}.pt"
+    path = os.path.join(preds_dir, filename)
+    torch.save(node_preds_dict, path)
+    print(f"Saved node predictions to {path}")
+
+
+def _saliency_base_dir(args):
+    return os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..', 'results', 'node_saliency',
+        args['dataset'],
+        args['model'] + _map_tag(args),
+        f"normalised-{str(args['normalised']).lower()}",
+        f"stalk_dim-{args['d']}",
+        f"{args['layers']}-layers",
+        f"{args['hidden_channels']}-hidden",
+        f"{args['epochs']}-epochs",
+    ))
+
+
+def _save_saliency(saliency, args, fold, saliency_dir):
+    os.makedirs(saliency_dir, exist_ok=True)
+    tag = _map_tag(args)
+    if args['dataset'] == 'synthetic_exp':
+        filename = (
+            f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
+            f"_pct-hetero-{int(float(args['het_coef'])*100)}"
+            f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
+            f"{tag}_fold{fold}_seed{args['seed']}.pt"
+        )
+    else:
+        filename = f"{args['model']}_{args['dataset']}{tag}_fold{fold}_seed{args['seed']}.pt"
+    path = os.path.join(saliency_dir, filename)
+    torch.save(saliency, path)
+    print(f"Saved saliency to {path}")
+
+
+def _conf_base_dir(args):
+    return os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..', 'results', 'node_conf',
+        args['dataset'],
+        args['model'] + _map_tag(args),
+        f"normalised-{str(args['normalised']).lower()}",
+        f"stalk_dim-{args['d']}",
+        f"{args['layers']}-layers",
+        f"{args['hidden_channels']}-hidden",
+        f"{args['epochs']}-epochs",
+    ))
+
+
+def _save_conf(conf, args, fold, conf_dir):
+    os.makedirs(conf_dir, exist_ok=True)
+    tag = _map_tag(args)
+    if args['dataset'] == 'synthetic_exp':
+        filename = (
+            f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
+            f"_pct-hetero-{int(float(args['het_coef'])*100)}"
+            f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
+            f"{tag}_fold{fold}_seed{args['seed']}.pt"
+        )
+    else:
+        filename = f"{args['model']}_{args['dataset']}{tag}_fold{fold}_seed{args['seed']}.pt"
+    path = os.path.join(conf_dir, filename)
+    torch.save(conf, path)
+    print(f"Saved confidence to {path}")
+
+
+def _acc_base_dir(args):
+    return os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..', 'results', 'node_accuracy',
+        args['dataset'],
+        args['model'] + _map_tag(args),
+        f"normalised-{str(args['normalised']).lower()}",
+        f"stalk_dim-{args['d']}",
+        f"{args['layers']}-layers",
+        f"{args['hidden_channels']}-hidden",
+        f"{args['epochs']}-epochs",
+    ))
+
+
+def _save_acc(correct, args, fold, acc_dir):
+    os.makedirs(acc_dir, exist_ok=True)
+    tag = _map_tag(args)
+    if args['dataset'] == 'synthetic_exp':
+        filename = (
+            f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
+            f"_pct-hetero-{int(float(args['het_coef'])*100)}"
+            f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
+            f"{tag}_fold{fold}_seed{args['seed']}.pt"
+        )
+    else:
+        filename = f"{args['model']}_{args['dataset']}{tag}_fold{fold}_seed{args['seed']}.pt"
+    path = os.path.join(acc_dir, filename)
+    torch.save(correct, path)
+    print(f"Saved per-node accuracy to {path}")
+
+
+def _weights_base_dir(args):
+    return os.path.abspath(os.path.join(
+        os.path.dirname(__file__), '..', 'results', 'model_weights',
+        args['dataset'],
+        args['model'] + _map_tag(args),
+        f"normalised-{str(args['normalised']).lower()}",
+        f"stalk_dim-{args['d']}",
+        f"{args['layers']}-layers",
+        f"{args['hidden_channels']}-hidden",
+        f"{args['epochs']}-epochs",
+    ))
+
+
+def _save_weights(state_dict, args, fold, weights_dir):
+    os.makedirs(weights_dir, exist_ok=True)
+    tag = _map_tag(args)
+    if args['dataset'] == 'synthetic_exp':
+        filename = (
+            f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
+            f"_pct-hetero-{int(float(args['het_coef'])*100)}"
+            f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
+            f"{tag}_fold{fold}_seed{args['seed']}.pth"
+        )
+    else:
+        filename = f"{args['model']}_{args['dataset']}{tag}_fold{fold}_seed{args['seed']}.pth"
+    path = os.path.join(weights_dir, filename)
+    torch.save(state_dict, path)
+    print(f"Saved model weights to {path}")
+
+
+def _save_training_args(args, weights_base):
+    """Save JSON of training hyperparameters once per experiment (shared across folds)."""
+    os.makedirs(weights_base, exist_ok=True)
+    path = os.path.join(weights_base, 'training_args.json')
+    if os.path.exists(path):
+        return
+    saveable = {k: v for k, v in args.items()
+                if isinstance(v, (str, int, float, bool, list, type(None)))}
+    with open(path, 'w') as f:
+        json.dump(saveable, f, indent=2)
+    print(f"Saved training args to {path}")
+
+
+def _save_masks(data, args, fold, weights_dir):
+    """Save fold-specific train/val/test masks alongside model weights."""
+    os.makedirs(weights_dir, exist_ok=True)
+    tag = _map_tag(args)
+    if args['dataset'] == 'synthetic_exp':
+        filename = (
+            f"{args['model']}_nodes-{args['num_nodes']}_node-deg-{args['node_degree']}"
+            f"_pct-hetero-{int(float(args['het_coef'])*100)}"
+            f"_classes-{args['num_classes']}_feats-{args['num_feats']}"
+            f"{tag}_fold{fold}_seed{args['seed']}_masks.pt"
+        )
+    else:
+        filename = f"{args['model']}_{args['dataset']}{tag}_fold{fold}_seed{args['seed']}_masks.pt"
+    path = os.path.join(weights_dir, filename)
+    torch.save({
+        'train_mask': data.train_mask.cpu(),
+        'val_mask':   data.val_mask.cpu(),
+        'test_mask':  data.test_mask.cpu(),
+    }, path)
+    print(f"Saved fold masks to {path}")
+
+
+def _compute_conf_saliency(model, data):
+    """One forward + one backward pass → per-node confidence and saliency (n,) each."""
+    model.eval()
+    all_mask = data.train_mask | data.val_mask | data.test_mask
+    X_in  = data.x.detach().clone().requires_grad_(True)
+    logits = model(X_in)
+    loss   = F.nll_loss(logits[all_mask], data.y[all_mask])
+    (grad_X,) = torch.autograd.grad(loss, X_in, create_graph=False)
+    logits_d  = logits.detach()
+    pred      = logits_d.max(1)[1].cpu()
+    conf      = torch.softmax(logits_d, dim=1).max(1)[0].cpu()
+    saliency  = grad_X.norm(dim=1).cpu()
+    return pred, conf, saliency
+
+
 def _save_laplacians(laplacian_dict, args, fold, lap_dir):
     os.makedirs(lap_dir, exist_ok=True)
     tag = _map_tag(args)
@@ -306,13 +506,19 @@ def run_exp(args, dataset, model_cls, fold):
     bad_counter = 0
 
     checkpoint_set = set(args.get('checkpoint_epochs') or [])
-    best_norms_snapshot = None
+    best_norms_snapshot    = None
+    best_conf_snapshot     = None
+    best_saliency_snapshot = None
+    best_correct_snapshot  = None
+    best_state_dict        = None
     checkpoint_accuracy = {}   # {label: {train_acc, val_acc, test_acc}}
     best_acc_snapshot = {}
 
-    save_laps   = args.get('save_laplacians', True)
-    save_norms  = args.get('save_norms', True)
-    save_others = args.get('save_others', False)
+    save_laps     = args.get('save_laplacians', True)
+    save_norms    = args.get('save_norms', True)
+    save_preds    = args.get('save_preds', True)
+    save_saliency = args.get('save_saliency', True)
+    save_others   = args.get('save_others', False)
 
     # Build topological reference once per fold (pure graph topology, no training).
     f0_top = _build_f0_top(data.edge_index, n) if save_laps else None
@@ -340,6 +546,16 @@ def run_exp(args, dataset, model_cls, fold):
                 model._last_node_norms, args, fold,
                 os.path.join(_norms_base_dir(args), 'checkpoints', 'epoch-0'),
             )
+        if save_preds or save_saliency:
+            _pred0, _conf0, _sal0 = _compute_conf_saliency(model, data)
+            if save_preds:
+                _save_conf(_conf0, args, fold,
+                           os.path.join(_conf_base_dir(args), 'checkpoints', 'epoch-0'))
+                _save_acc(_pred0.eq(data.y.cpu()), args, fold,
+                          os.path.join(_acc_base_dir(args), 'checkpoints', 'epoch-0'))
+            if save_saliency:
+                _save_saliency(_sal0, args, fold,
+                               os.path.join(_saliency_base_dir(args), 'checkpoints', 'epoch-0'))
         checkpoint_accuracy['epoch-0'] = {
             'train_acc': float(ta0), 'val_acc': float(va0), 'test_acc': float(tta0),
         }
@@ -381,6 +597,16 @@ def run_exp(args, dataset, model_cls, fold):
                     model._last_node_norms, args, fold,
                     os.path.join(_norms_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'),
                 )
+            if save_preds or save_saliency:
+                _pred_ck, _conf_ck, _sal_ck = _compute_conf_saliency(model, data)
+                if save_preds:
+                    _save_conf(_conf_ck, args, fold,
+                               os.path.join(_conf_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'))
+                    _save_acc(_pred_ck.eq(data.y.cpu()), args, fold,
+                              os.path.join(_acc_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'))
+                if save_saliency:
+                    _save_saliency(_sal_ck, args, fold,
+                                   os.path.join(_saliency_base_dir(args), 'checkpoints', f'epoch-{epoch + 1}'))
             checkpoint_accuracy[f'epoch-{epoch + 1}'] = {
                 'train_acc': float(train_acc), 'val_acc': float(val_acc), 'test_acc': float(tmp_test_acc),
             }
@@ -392,11 +618,19 @@ def run_exp(args, dataset, model_cls, fold):
             test_acc = tmp_test_acc
             best_epoch = epoch
             bad_counter = 0
+            best_state_dict = {k: v.cpu().clone() for k, v in model.state_dict().items()}
             if save_norms and hasattr(model, '_last_node_norms') and model._last_node_norms:
                 best_norms_snapshot = {
                     layer: norms.detach().clone().cpu()
                     for layer, norms in model._last_node_norms.items()
                 }
+            if save_preds or save_saliency:
+                _best_pred, _best_conf, _best_sal = _compute_conf_saliency(model, data)
+                if save_preds:
+                    best_conf_snapshot    = _best_conf
+                    best_correct_snapshot = _best_pred.eq(data.y.cpu())
+                if save_saliency:
+                    best_saliency_snapshot = _best_sal
             best_acc_snapshot = {
                 'train_acc': float(train_acc), 'val_acc': float(val_acc), 'test_acc': float(tmp_test_acc),
             }
@@ -453,6 +687,21 @@ def run_exp(args, dataset, model_cls, fold):
             os.path.join(_norms_base_dir(args), 'checkpoints', 'best-epoch'),
         )
         print(f"Saved best-epoch node norms (epoch {best_epoch}) to checkpoints/best-epoch/")
+    if best_conf_snapshot is not None:
+        _save_conf(best_conf_snapshot, args, fold,
+                   os.path.join(_conf_base_dir(args), 'checkpoints', 'best-epoch'))
+    if best_correct_snapshot is not None:
+        _save_acc(best_correct_snapshot, args, fold,
+                  os.path.join(_acc_base_dir(args), 'checkpoints', 'best-epoch'))
+    if best_saliency_snapshot is not None:
+        _save_saliency(best_saliency_snapshot, args, fold,
+                       os.path.join(_saliency_base_dir(args), 'checkpoints', 'best-epoch'))
+    _save_training_args(args, _weights_base_dir(args))
+    if best_state_dict is not None:
+        _ckpt_dir = os.path.join(_weights_base_dir(args), 'checkpoints', 'best-epoch')
+        _save_weights(best_state_dict, args, fold, _ckpt_dir)
+        _save_masks(data, args, fold, _ckpt_dir)
+        print(f"Saved best-epoch model weights and masks (epoch {best_epoch}) to checkpoints/best-epoch/")
 
     # Record last-epoch accuracy now that the loop has finished.
     checkpoint_accuracy['last'] = {
@@ -490,6 +739,26 @@ def run_exp(args, dataset, model_cls, fold):
 
     if save_norms and hasattr(model, '_last_node_norms') and model._last_node_norms:
         _save_norms(model._last_node_norms, args, fold, _norms_base_dir(args))
+
+    if save_preds or save_saliency:
+        _pred_last, _conf_last, _sal_last = _compute_conf_saliency(model, data)
+        if save_preds:
+            _save_node_preds(
+                {
+                    'pred':       _pred_last,
+                    'conf':       _conf_last,
+                    'correct':    _pred_last.eq(data.y.cpu()),
+                    'y':          data.y.cpu(),
+                    'train_mask': data.train_mask.cpu(),
+                    'val_mask':   data.val_mask.cpu(),
+                    'test_mask':  data.test_mask.cpu(),
+                },
+                args, fold, _preds_base_dir(args),
+            )
+            _save_conf(_conf_last, args, fold, _conf_base_dir(args))
+            _save_acc(_pred_last.eq(data.y.cpu()), args, fold, _acc_base_dir(args))
+        if save_saliency:
+            _save_saliency(_sal_last, args, fold, _saliency_base_dir(args))
 
     if args['dataset'] in AUC_DATASETS:
         wandb.log({'best_test_acc': test_acc, 'best_val_acc': best_val_acc, 'best_epoch': best_epoch, 'best_test_auc': test_auc,

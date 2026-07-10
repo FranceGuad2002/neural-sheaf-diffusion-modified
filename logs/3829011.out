@@ -1,0 +1,535 @@
+Running with wandb account: franceguad2002-epfl
+Namespace(epochs=500, lr=0.01, weight_decay=0.0006914841722570725, sheaf_decay=0.00031764232712732976, early_stopping=200, min_acc=0.0, stop_strategy='loss', d=5, layers=4, normalised=False, deg_normalised=False, linear=False, hidden_channels=16, input_dropout=0.2, dropout=0.3, left_weights=True, right_weights=True, add_lp=False, add_hp=False, use_act=True, second_linear=False, orth='householder', sheaf_act='tanh', edge_weights=False, sparse_learner=False, dataset='pubmed', seed=43, cuda=0, folds=10, model='BundleSheaf', entity='franceguad2002-epfl', evectors=0, max_t=1.0, int_method=None, step_size=1, max_iters=100, adjoint_method='adaptive_heun', adjoint=False, adjoint_step_size=1, tol_scale=1.0, tol_scale_adjoint=1.0, max_nfe=1000, no_early=False, earlystopxT=3, max_test_steps=100, num_nodes=200, num_classes=2, num_feats=10, het_coef=0.9, edge_noise=0.05, node_degree=10, feat_noise=0.25, ellipsoid_radius=1, just_add_noise=False, ellipsoids=True, classes_corr=None, dual_diff_strength=1.0, dual_normalised=True, sheaf_init=False, dual_left_linear=True, dual_right_linear=True, dual_linear=False, learn_first_maps=False, learnt_map_type='general', rotation_invariant_sheaf_learner=False, node_edge_sims_time_dependent=False, num_of_convolutions=1, dim_list=[], zero_laplacian=False, maps_lr=None, use_epsilons=True, use_embedding=True, checkpoint_epochs=[0, 1, 5, 15, 50, 200], save_laplacians=False, save_norms=True, save_preds=True, save_saliency=True, save_others=False, sha='76c20f9b6a5a98e71dded402ae983d844519635e', graph_size=19717, input_dim=500, output_dim=3, device=device(type='cuda', index=0))
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold0_seed43.pt
+Fold 0 | Epochs: 499 | Best epoch: 478
+Test acc (best epoch): 0.4113
+Test acc (last epoch): 0.3897
+Best val acc: 0.4138
+Laplacian 0: Max: 0.7996, Min: -1.0000, Avg: -0.1974, Abs avg: 0.2474
+Laplacian 1: Max: 0.9982, Min: -1.0000, Avg: -0.0616, Abs avg: 0.3701
+Laplacian 2: Max: 1.0000, Min: -1.0000, Avg: -0.0420, Abs avg: 0.3702
+Laplacian 3: Max: 1.0000, Min: -1.0000, Avg: 0.0787, Abs avg: 0.3829
+Epsilons 0: [-0.107 -0.059  0.065 -0.124 -0.007]
+Epsilons 1: [-0.226 -0.068 -0.05   0.005 -0.239]
+Epsilons 2: [ 0.065  0.012  0.067 -0.183 -0.032]
+Epsilons 3: [-1.148 -1.077 -1.072 -1.245 -1.025]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold0_seed43.pt
+Saved best-epoch node norms (epoch 478) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold0_seed43.pt
+Saved training args to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/training_args.json
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold0_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold0_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 478) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_0 -> epoch 478
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold0_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold0_seed43.pt
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold1_seed43.pt
+Fold 1 | Epochs: 499 | Best epoch: 499
+Test acc (best epoch): 0.4039
+Test acc (last epoch): 0.4039
+Best val acc: 0.4193
+Laplacian 0: Max: 0.5550, Min: -1.0000, Avg: -0.1975, Abs avg: 0.2372
+Laplacian 1: Max: 0.9976, Min: -0.9999, Avg: -0.1021, Abs avg: 0.3601
+Laplacian 2: Max: 1.0000, Min: -1.0000, Avg: -0.0388, Abs avg: 0.3503
+Laplacian 3: Max: 0.9991, Min: -1.0000, Avg: 0.0586, Abs avg: 0.3672
+Epsilons 0: [ 0.101  0.09  -0.047 -0.064  0.088]
+Epsilons 1: [-0.08   0.138 -0.046 -0.064 -0.052]
+Epsilons 2: [-0.067  0.026  0.047  0.011 -0.015]
+Epsilons 3: [-1.013 -1.055 -0.899 -1.079 -1.065]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold1_seed43.pt
+Saved best-epoch node norms (epoch 499) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold1_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold1_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold1_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 499) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_1 -> epoch 499
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold1_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold1_seed43.pt
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold2_seed43.pt
+Fold 2 | Epochs: 499 | Best epoch: 490
+Test acc (best epoch): 0.3991
+Test acc (last epoch): 0.3836
+Best val acc: 0.3968
+Laplacian 0: Max: 0.9906, Min: -1.0000, Avg: -0.1903, Abs avg: 0.2469
+Laplacian 1: Max: 0.9995, Min: -1.0000, Avg: -0.0406, Abs avg: 0.3714
+Laplacian 2: Max: 0.9976, Min: -1.0000, Avg: -0.0185, Abs avg: 0.3318
+Laplacian 3: Max: 1.0000, Min: -1.0000, Avg: -0.0076, Abs avg: 0.3643
+Epsilons 0: [ 0.381 -0.12  -0.147  0.059 -0.237]
+Epsilons 1: [-0.03   0.137  0.426  0.136 -0.039]
+Epsilons 2: [-0.32  -0.012 -0.002  0.118 -0.274]
+Epsilons 3: [-1.61  -0.973 -1.143 -1.581 -1.067]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold2_seed43.pt
+Saved best-epoch node norms (epoch 490) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold2_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold2_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold2_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 490) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_2 -> epoch 490
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold2_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold2_seed43.pt
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold3_seed43.pt
+Fold 3 | Epochs: 499 | Best epoch: 498
+Test acc (best epoch): 0.3502
+Test acc (last epoch): 0.3479
+Best val acc: 0.3601
+Laplacian 0: Max: 0.7607, Min: -1.0000, Avg: -0.1977, Abs avg: 0.2476
+Laplacian 1: Max: 0.9988, Min: -0.9998, Avg: -0.0479, Abs avg: 0.3692
+Laplacian 2: Max: 0.9999, Min: -1.0000, Avg: -0.0027, Abs avg: 0.3668
+Laplacian 3: Max: 1.0000, Min: -1.0000, Avg: 0.0423, Abs avg: 0.3672
+Epsilons 0: [-0.124 -0.081 -0.001 -0.072 -0.15 ]
+Epsilons 1: [-0.058 -0.123  0.22   0.085 -0.192]
+Epsilons 2: [ 0.035  0.04  -0.051 -0.12  -0.142]
+Epsilons 3: [-0.639 -1.02  -0.878 -0.837 -0.818]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold3_seed43.pt
+Saved best-epoch node norms (epoch 498) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold3_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold3_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold3_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 498) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_3 -> epoch 498
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold3_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold3_seed43.pt
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold4_seed43.pt
+Fold 4 | Epochs: 499 | Best epoch: 494
+Test acc (best epoch): 0.3390
+Test acc (last epoch): 0.3474
+Best val acc: 0.3254
+Laplacian 0: Max: 0.7688, Min: -1.0000, Avg: -0.1972, Abs avg: 0.2442
+Laplacian 1: Max: 0.9992, Min: -0.9999, Avg: -0.0770, Abs avg: 0.3649
+Laplacian 2: Max: 1.0000, Min: -1.0000, Avg: -0.0607, Abs avg: 0.3629
+Laplacian 3: Max: 0.9970, Min: -1.0000, Avg: 0.0363, Abs avg: 0.3703
+Epsilons 0: [-0.109  0.     0.044 -0.037 -0.053]
+Epsilons 1: [-0.018 -0.093 -0.032 -0.064 -0.106]
+Epsilons 2: [ 0.004  0.106 -0.16  -0.117  0.   ]
+Epsilons 3: [-0.543 -0.366 -0.624 -0.45  -0.762]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold4_seed43.pt
+Saved best-epoch node norms (epoch 494) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold4_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold4_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold4_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 494) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_4 -> epoch 494
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold4_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold4_seed43.pt
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold5_seed43.pt
+Fold 5 | Epochs: 499 | Best epoch: 456
+Test acc (best epoch): 0.3522
+Test acc (last epoch): 0.3484
+Best val acc: 0.3574
+Laplacian 0: Max: 0.7710, Min: -1.0000, Avg: -0.1910, Abs avg: 0.2552
+Laplacian 1: Max: 0.9982, Min: -0.9999, Avg: -0.1179, Abs avg: 0.3561
+Laplacian 2: Max: 0.9978, Min: -1.0000, Avg: 0.0048, Abs avg: 0.3590
+Laplacian 3: Max: 1.0000, Min: -1.0000, Avg: -0.0220, Abs avg: 0.3624
+Epsilons 0: [ 0.018 -0.086 -0.051 -0.106 -0.011]
+Epsilons 1: [-0.001 -0.035  0.016  0.008 -0.026]
+Epsilons 2: [-0.02   0.031  0.009 -0.211 -0.042]
+Epsilons 3: [-0.513 -0.552 -0.217 -0.531 -0.515]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold5_seed43.pt
+Saved best-epoch node norms (epoch 456) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold5_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold5_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold5_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 456) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_5 -> epoch 456
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold5_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold5_seed43.pt
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold6_seed43.pt
+Fold 6 | Epochs: 499 | Best epoch: 454
+Test acc (best epoch): 0.3524
+Test acc (last epoch): 0.3362
+Best val acc: 0.3487
+Laplacian 0: Max: 0.9201, Min: -1.0000, Avg: -0.1936, Abs avg: 0.2535
+Laplacian 1: Max: 0.9976, Min: -1.0000, Avg: -0.0722, Abs avg: 0.3705
+Laplacian 2: Max: 0.9999, Min: -1.0000, Avg: -0.0062, Abs avg: 0.3717
+Laplacian 3: Max: 0.9989, Min: -1.0000, Avg: 0.0419, Abs avg: 0.3568
+Epsilons 0: [-0.028 -0.021 -0.089 -0.125 -0.076]
+Epsilons 1: [-0.127 -0.106  0.241  0.043  0.22 ]
+Epsilons 2: [-0.037 -0.215  0.054 -0.086  0.117]
+Epsilons 3: [-1.127 -0.961 -0.911 -0.967 -1.043]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold6_seed43.pt
+Saved best-epoch node norms (epoch 454) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold6_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold6_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold6_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 454) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_6 -> epoch 454
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold6_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold6_seed43.pt
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold7_seed43.pt
+Fold 7 | Epochs: 499 | Best epoch: 452
+Test acc (best epoch): 0.3329
+Test acc (last epoch): 0.3689
+Best val acc: 0.3254
+Laplacian 0: Max: 0.8079, Min: -1.0000, Avg: -0.1875, Abs avg: 0.2625
+Laplacian 1: Max: 0.9985, Min: -0.9996, Avg: -0.0401, Abs avg: 0.3700
+Laplacian 2: Max: 1.0000, Min: -1.0000, Avg: -0.0625, Abs avg: 0.3636
+Laplacian 3: Max: 1.0000, Min: -1.0000, Avg: -0.0760, Abs avg: 0.3604
+Epsilons 0: [ 0.116 -0.046 -0.067 -0.07  -0.021]
+Epsilons 1: [-0.138 -0.046 -0.042 -0.089 -0.21 ]
+Epsilons 2: [-0.047  0.147  0.138  0.057 -0.001]
+Epsilons 3: [-0.768 -0.795 -0.646 -0.844 -0.706]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold7_seed43.pt
+Saved best-epoch node norms (epoch 452) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold7_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold7_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold7_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 452) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_7 -> epoch 452
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold7_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold7_seed43.pt
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold8_seed43.pt
+Fold 8 | Epochs: 499 | Best epoch: 493
+Test acc (best epoch): 0.3578
+Test acc (last epoch): 0.3190
+Best val acc: 0.3715
+Laplacian 0: Max: 0.6950, Min: -1.0000, Avg: -0.1967, Abs avg: 0.2500
+Laplacian 1: Max: 0.9990, Min: -0.9994, Avg: -0.0708, Abs avg: 0.3660
+Laplacian 2: Max: 1.0000, Min: -1.0000, Avg: 0.0310, Abs avg: 0.3761
+Laplacian 3: Max: 0.9994, Min: -1.0000, Avg: -0.0040, Abs avg: 0.3719
+Epsilons 0: [ 0.086  0.123 -0.081 -0.06  -0.057]
+Epsilons 1: [ 0.009  0.092 -0.054  0.038 -0.027]
+Epsilons 2: [-0.098 -0.015 -0.139 -0.089 -0.242]
+Epsilons 3: [-0.423 -0.414 -0.477 -0.815 -0.873]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold8_seed43.pt
+Saved best-epoch node norms (epoch 493) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold8_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold8_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold8_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 493) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_8 -> epoch 493
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold8_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold8_seed43.pt
+Non zero masks tensor(19717)
+Nodes 19717
+Non valid 0
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/BundleSheaf_pubmed_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/BundleSheaf_pubmed_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/BundleSheaf_pubmed_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/BundleSheaf_pubmed_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/BundleSheaf_pubmed_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/BundleSheaf_pubmed_fold9_seed43.pt
+Fold 9 | Epochs: 499 | Best epoch: 487
+Test acc (best epoch): 0.3408
+Test acc (last epoch): 0.3322
+Best val acc: 0.3403
+Laplacian 0: Max: 0.6768, Min: -1.0000, Avg: -0.1966, Abs avg: 0.2527
+Laplacian 1: Max: 0.9991, Min: -1.0000, Avg: -0.0526, Abs avg: 0.3699
+Laplacian 2: Max: 1.0000, Min: -1.0000, Avg: -0.1129, Abs avg: 0.3002
+Laplacian 3: Max: 1.0000, Min: -1.0000, Avg: 0.0407, Abs avg: 0.3528
+Epsilons 0: [ 0.198  0.145 -0.15   0.002 -0.103]
+Epsilons 1: [ 0.091 -0.019  0.062  0.047  0.081]
+Epsilons 2: [-0.397 -0.196 -0.179 -0.017 -0.279]
+Epsilons 3: [-0.955 -1.077 -1.146 -0.914 -1.022]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold9_seed43.pt
+Saved best-epoch node norms (epoch 487) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold9_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold9_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/BundleSheaf_pubmed_fold9_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 487) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_9 -> epoch 487
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold9_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/pubmed/BundleSheaf/normalised-false/stalk_dim-5/4-layers/16-hidden/500-epochs/BundleSheaf_pubmed_fold9_seed43.pt
+BundleSheaf on pubmed | SHA: 76c20f9b6a5a98e71dded402ae983d844519635e
+Test acc: 36.3945 +/- 2.7735 | Val acc: 36.5848

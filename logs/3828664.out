@@ -1,0 +1,526 @@
+Running with wandb account: franceguad2002-epfl
+Namespace(epochs=500, lr=0.01, weight_decay=0.0006914841722570725, sheaf_decay=0.00031764232712732976, early_stopping=200, min_acc=0.0, stop_strategy='loss', d=3, layers=4, normalised=True, deg_normalised=False, linear=False, hidden_channels=16, input_dropout=0.2, dropout=0.3, left_weights=True, right_weights=True, add_lp=False, add_hp=False, use_act=True, second_linear=False, orth='householder', sheaf_act='tanh', edge_weights=False, sparse_learner=False, dataset='tolokers', seed=43, cuda=0, folds=10, model='GeneralSheaf', entity='franceguad2002-epfl', evectors=0, max_t=1.0, int_method=None, step_size=1, max_iters=100, adjoint_method='adaptive_heun', adjoint=False, adjoint_step_size=1, tol_scale=1.0, tol_scale_adjoint=1.0, max_nfe=1000, no_early=False, earlystopxT=3, max_test_steps=100, num_nodes=200, num_classes=2, num_feats=10, het_coef=0.9, edge_noise=0.05, node_degree=10, feat_noise=0.25, ellipsoid_radius=1, just_add_noise=False, ellipsoids=True, classes_corr=None, dual_diff_strength=1.0, dual_normalised=True, sheaf_init=False, dual_left_linear=True, dual_right_linear=True, dual_linear=False, learn_first_maps=False, learnt_map_type='general', rotation_invariant_sheaf_learner=False, node_edge_sims_time_dependent=False, num_of_convolutions=1, dim_list=[], zero_laplacian=False, maps_lr=None, use_epsilons=True, use_embedding=True, checkpoint_epochs=[0, 1, 5, 15, 50, 200], save_laplacians=False, save_norms=True, save_preds=True, save_saliency=True, save_others=False, sha='76c20f9b6a5a98e71dded402ae983d844519635e', graph_size=11758, input_dim=10, output_dim=2, device=device(type='cuda', index=0))
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold0_seed43.pt
+Fold 0 | Epochs: 499 | Best epoch: 457
+Test acc (best epoch): 0.8187
+Test acc (last epoch): 0.8180
+Best val acc: 0.8190
+Test AUC (best epoch): 0.8484
+Test AUC (last epoch): 0.8450
+Laplacian 0: Max: 1.2278, Min: -1.8084, Avg: -0.0644, Abs avg: 0.4370
+Laplacian 1: Max: 2.6016, Min: -2.4253, Avg: -0.0237, Abs avg: 0.3998
+Laplacian 2: Max: 3.0000, Min: -3.0000, Avg: -0.4738, Abs avg: 1.3416
+Laplacian 3: Max: 3.0000, Min: -3.0000, Avg: -0.1360, Abs avg: 2.0450
+Epsilons 0: [-0.02   0.261 -0.178]
+Epsilons 1: [-0.349  0.217  0.015]
+Epsilons 2: [-0.009 -0.012  0.29 ]
+Epsilons 3: [-0.063 -0.103  0.088]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved best-epoch node norms (epoch 457) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved training args to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/training_args.json
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold0_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold0_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 457) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_0 -> epoch 457
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold1_seed43.pt
+Fold 1 | Epochs: 499 | Best epoch: 430
+Test acc (best epoch): 0.8177
+Test acc (last epoch): 0.8180
+Best val acc: 0.8241
+Test AUC (best epoch): 0.8551
+Test AUC (last epoch): 0.8552
+Laplacian 0: Max: 1.4134, Min: -1.6856, Avg: -0.3865, Abs avg: 0.3969
+Laplacian 1: Max: 2.0303, Min: -2.9618, Avg: -0.3427, Abs avg: 0.4211
+Laplacian 2: Max: 2.9773, Min: -2.4646, Avg: -0.2211, Abs avg: 0.4064
+Laplacian 3: Max: 3.0000, Min: -3.0000, Avg: -0.1754, Abs avg: 1.7698
+Epsilons 0: [ 0.133  0.049 -0.401]
+Epsilons 1: [-0.083 -0.033 -0.005]
+Epsilons 2: [-0.048 -0.087  0.203]
+Epsilons 3: [-0.07  -0.045  0.085]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved best-epoch node norms (epoch 430) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold1_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold1_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 430) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_1 -> epoch 430
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold2_seed43.pt
+Fold 2 | Epochs: 499 | Best epoch: 493
+Test acc (best epoch): 0.8327
+Test acc (last epoch): 0.8320
+Best val acc: 0.8159
+Test AUC (best epoch): 0.8612
+Test AUC (last epoch): 0.8597
+Laplacian 0: Max: 1.6806, Min: -2.6061, Avg: -0.0434, Abs avg: 0.5306
+Laplacian 1: Max: 2.6026, Min: -2.7290, Avg: 0.0534, Abs avg: 0.5528
+Laplacian 2: Max: 3.0000, Min: -3.0000, Avg: -0.0691, Abs avg: 1.5969
+Laplacian 3: Max: 2.9998, Min: -2.9999, Avg: -0.0812, Abs avg: 0.9099
+Epsilons 0: [ 0.287 -0.384 -0.076]
+Epsilons 1: [ 0.107 -0.252  0.186]
+Epsilons 2: [-0.08   0.049 -0.018]
+Epsilons 3: [0.1   0.005 0.161]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved best-epoch node norms (epoch 493) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold2_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold2_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 493) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_2 -> epoch 493
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold3_seed43.pt
+Fold 3 | Epochs: 499 | Best epoch: 497
+Test acc (best epoch): 0.8241
+Test acc (last epoch): 0.8204
+Best val acc: 0.8132
+Test AUC (best epoch): 0.8531
+Test AUC (last epoch): 0.8469
+Laplacian 0: Max: 1.3888, Min: -2.1398, Avg: -0.0257, Abs avg: 0.3065
+Laplacian 1: Max: 2.1868, Min: -2.6194, Avg: -0.0373, Abs avg: 0.3952
+Laplacian 2: Max: 2.9987, Min: -2.9989, Avg: 0.0314, Abs avg: 0.8985
+Laplacian 3: Max: 3.0000, Min: -3.0000, Avg: 0.0499, Abs avg: 1.0121
+Epsilons 0: [-0.058 -0.241  0.031]
+Epsilons 1: [ 0.108 -0.042 -0.031]
+Epsilons 2: [ 0.068  0.125 -0.239]
+Epsilons 3: [ 0.147  0.062 -0.124]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved best-epoch node norms (epoch 497) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold3_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold3_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 497) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_3 -> epoch 497
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold4_seed43.pt
+Fold 4 | Epochs: 499 | Best epoch: 488
+Test acc (best epoch): 0.8276
+Test acc (last epoch): 0.8248
+Best val acc: 0.8169
+Test AUC (best epoch): 0.8659
+Test AUC (last epoch): 0.8607
+Laplacian 0: Max: 1.2604, Min: -1.5572, Avg: -0.0953, Abs avg: 0.1673
+Laplacian 1: Max: 1.4644, Min: -2.4713, Avg: -0.2118, Abs avg: 0.2670
+Laplacian 2: Max: 2.9911, Min: -2.9897, Avg: -0.1152, Abs avg: 0.8711
+Laplacian 3: Max: 1.9742, Min: -3.0000, Avg: -2.4272, Abs avg: 2.4323
+Epsilons 0: [0.11  0.008 0.166]
+Epsilons 1: [-0.32   0.176 -0.075]
+Epsilons 2: [ 0.085  0.046 -0.252]
+Epsilons 3: [ 0.398  0.02  -0.013]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved best-epoch node norms (epoch 488) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold4_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold4_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 488) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_4 -> epoch 488
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold5_seed43.pt
+Fold 5 | Epochs: 499 | Best epoch: 424
+Test acc (best epoch): 0.8136
+Test acc (last epoch): 0.8146
+Best val acc: 0.8227
+Test AUC (best epoch): 0.8431
+Test AUC (last epoch): 0.8441
+Laplacian 0: Max: 1.2015, Min: -1.8513, Avg: -0.6985, Abs avg: 0.7021
+Laplacian 1: Max: 2.2609, Min: -2.4764, Avg: -0.2408, Abs avg: 0.3684
+Laplacian 2: Max: 3.0000, Min: -3.0000, Avg: -0.2094, Abs avg: 1.6783
+Laplacian 3: Max: 2.8505, Min: -2.9994, Avg: -0.4111, Abs avg: 0.8409
+Epsilons 0: [ 0.106  0.058 -0.193]
+Epsilons 1: [-0.017  0.106  0.009]
+Epsilons 2: [-0.003 -0.23   0.166]
+Epsilons 3: [ 0.015 -0.107  0.205]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved best-epoch node norms (epoch 424) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold5_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold5_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 424) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_5 -> epoch 424
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold6_seed43.pt
+Fold 6 | Epochs: 499 | Best epoch: 437
+Test acc (best epoch): 0.8177
+Test acc (last epoch): 0.8170
+Best val acc: 0.8193
+Test AUC (best epoch): 0.8560
+Test AUC (last epoch): 0.8573
+Laplacian 0: Max: 1.4609, Min: -1.9518, Avg: -0.1219, Abs avg: 0.2333
+Laplacian 1: Max: 2.2327, Min: -2.9230, Avg: -0.3488, Abs avg: 0.8159
+Laplacian 2: Max: 2.8885, Min: -2.9236, Avg: -0.1111, Abs avg: 0.7712
+Laplacian 3: Max: 2.9639, Min: -2.9963, Avg: -0.2329, Abs avg: 0.8973
+Epsilons 0: [-0.263  0.296 -0.403]
+Epsilons 1: [-0.024 -0.143  0.521]
+Epsilons 2: [ 0.005 -0.146  0.38 ]
+Epsilons 3: [-0.062 -0.194  0.279]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved best-epoch node norms (epoch 437) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold6_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold6_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 437) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_6 -> epoch 437
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold7_seed43.pt
+Fold 7 | Epochs: 499 | Best epoch: 499
+Test acc (best epoch): 0.8150
+Test acc (last epoch): 0.8150
+Best val acc: 0.8203
+Test AUC (best epoch): 0.8429
+Test AUC (last epoch): 0.8429
+Laplacian 0: Max: 1.2714, Min: -1.5345, Avg: -0.0469, Abs avg: 0.1836
+Laplacian 1: Max: 2.8266, Min: -2.7549, Avg: 0.0148, Abs avg: 0.3458
+Laplacian 2: Max: 2.9571, Min: -2.9853, Avg: 0.0058, Abs avg: 0.7553
+Laplacian 3: Max: 3.0000, Min: -3.0000, Avg: -0.2483, Abs avg: 2.3242
+Epsilons 0: [-0.174  0.359 -0.149]
+Epsilons 1: [-0.246  0.218  0.298]
+Epsilons 2: [-0.015 -0.142  0.192]
+Epsilons 3: [ 0.03  -0.05   0.133]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved best-epoch node norms (epoch 499) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold7_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold7_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 499) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_7 -> epoch 499
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold8_seed43.pt
+Fold 8 | Epochs: 499 | Best epoch: 489
+Test acc (best epoch): 0.8194
+Test acc (last epoch): 0.8163
+Best val acc: 0.8200
+Test AUC (best epoch): 0.8535
+Test AUC (last epoch): 0.8479
+Laplacian 0: Max: 1.4545, Min: -1.5486, Avg: -0.0061, Abs avg: 0.3455
+Laplacian 1: Max: 2.8631, Min: -2.8142, Avg: -0.1910, Abs avg: 0.4091
+Laplacian 2: Max: 2.9885, Min: -2.9998, Avg: -0.6238, Abs avg: 0.8947
+Laplacian 3: Max: 3.0000, Min: -3.0000, Avg: -0.2787, Abs avg: 1.7496
+Epsilons 0: [-0.189  0.215 -0.031]
+Epsilons 1: [-0.018  0.096  0.109]
+Epsilons 2: [ 0.23  -0.218 -0.102]
+Epsilons 3: [ 0.086  0.228 -0.153]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved best-epoch node norms (epoch 489) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold8_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold8_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 489) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_8 -> epoch 489
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_tolokers_fold9_seed43.pt
+Fold 9 | Epochs: 499 | Best epoch: 423
+Test acc (best epoch): 0.8228
+Test acc (last epoch): 0.8207
+Best val acc: 0.8217
+Test AUC (best epoch): 0.8569
+Test AUC (last epoch): 0.8565
+Laplacian 0: Max: 0.9490, Min: -1.9527, Avg: -0.0272, Abs avg: 0.2833
+Laplacian 1: Max: 2.6040, Min: -2.6704, Avg: -0.1022, Abs avg: 0.4009
+Laplacian 2: Max: 2.9190, Min: -2.9845, Avg: -0.2409, Abs avg: 0.6278
+Laplacian 3: Max: 2.9836, Min: -3.0000, Avg: -1.0260, Abs avg: 1.4360
+Epsilons 0: [ 0.049  0.098 -0.319]
+Epsilons 1: [ 0.237  0.098 -0.021]
+Epsilons 2: [ 0.132 -0.146  0.095]
+Epsilons 3: [ 0.04  -0.208  0.175]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved best-epoch node norms (epoch 423) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold9_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_tolokers_fold9_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 423) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_9 -> epoch 423
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/tolokers/GeneralSheaf/normalised-true/stalk_dim-3/4-layers/16-hidden/500-epochs/GeneralSheaf_tolokers_fold9_seed43.pt
+GeneralSheaf on tolokers | SHA: 76c20f9b6a5a98e71dded402ae983d844519635e
+Test acc: 82.0918 +/- 0.5592 | Val acc: 81.9326
+Test AUC: 0.8536 +/- 0.0069

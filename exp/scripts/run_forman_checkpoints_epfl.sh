@@ -11,7 +11,7 @@
 
 # ── analysis config ────────────────────────────────────────────────────────────
 NORMALISED="true"           # "true" or "false" — which normalised-* folder to scan
-MODEL="JointSheafParams"        # e.g. GeneralSheaf | JointSheafParams | JointSheafParamsAlt
+MODEL="GeneralSheaf"        # e.g. GeneralSheaf | JointSheafParams | JointSheafParamsAlt
 MAP_TYPE="identity"         # "identity" | "general" | "diag" | "bundle" — Joint models only
 
 # Set to "true" to read eigs from other_Laplacian/ subfolders (opposite-normalisation content).

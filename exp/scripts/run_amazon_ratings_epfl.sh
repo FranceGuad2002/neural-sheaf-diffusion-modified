@@ -25,15 +25,15 @@ ARGS=(
     --early_stopping=200
 
     # --- model [all models] ---
-    --model=JointSheafParams
+    --model=BundleSheaf
 
     # --- sheaf architecture [all models] ---
-    --d=2
+    --d=5
     --hidden_channels=16
-    --layers=3
+    --layers=5
     --add_hp=False
     --add_lp=False
-    --normalised=True
+    --normalised=False
     --deg_normalised=False
     --left_weights=True
     --right_weights=True
@@ -73,10 +73,11 @@ ARGS=(
 
     # --- logging [all models] ---
     --checkpoint_epochs=0,1,5,15,50,200
-    --save_laplacians=True
-    # save_others: disabled for JointSheafParams (identity maps, no other_Laplacian needed)
+    --save_laplacians=False
     --save_others=False
-    --save_norms=False
+    --save_norms=True
+    --save_preds=True
+    --save_saliency=True
     --entity="${WANDB_ENTITY}"
 )
 

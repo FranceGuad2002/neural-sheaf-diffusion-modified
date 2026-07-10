@@ -1,0 +1,36 @@
+/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/utils/classic.py:27: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
+  self.data, self.slices = torch.load(self.processed_paths[0])
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from WANDB_API_KEY.
+wandb: Currently logged in as: franceguad2002 (franceguad2002-epfl) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run 6542qj37
+wandb: Tracking run with wandb version 0.26.1
+wandb: Run data is saved locally in /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/wandb/run-20260709_213446-6542qj37
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run GeneralSheaf_pubmed_normalised-true_stalk-5_4layers_16hidden_500epochs_seed43
+wandb: ⭐️ View project at https://wandb.ai/franceguad2002-epfl/sheaf
+wandb: 🚀 View run at https://wandb.ai/franceguad2002-epfl/sheaf/runs/6542qj37
+  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [00:39<05:51, 39.05s/it] 20%|██        | 2/10 [01:18<05:14, 39.35s/it] 30%|███       | 3/10 [01:56<04:32, 38.90s/it] 30%|███       | 3/10 [02:36<06:04, 52.10s/it]
+Traceback (most recent call last):
+  File "/home/fguadagn/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 197, in _run_module_as_main
+    return _run_code(code, main_globals, None,
+  File "/home/fguadagn/miniconda3/envs/nsd/lib/python3.9/runpy.py", line 87, in _run_code
+    exec(code, run_globals)
+  File "/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/exp/run.py", line 848, in <module>
+    test_acc, best_val_acc, test_auc, keep_running = run_exp(wandb.config, dataset, model_cls, fold)
+  File "/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/exp/run.py", line 567, in run_exp
+    train_loss, val_loss, tmp_test_loss], probs = test(model, data)
+  File "/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/exp/run.py", line 75, in test
+    logits, accs, losses, preds, probs = model(data.x), [], [], [], []
+  File "/home/fguadagn/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/fguadagn/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/models/disc_models.py", line 328, in forward
+    L, trans_maps = self.laplacian_builder(maps)
+  File "/home/fguadagn/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1736, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "/home/fguadagn/miniconda3/envs/nsd/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1747, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/models/laplacian_builders.py", line 316, in forward
+    assert torch.all(torch.isfinite(maps))
+AssertionError

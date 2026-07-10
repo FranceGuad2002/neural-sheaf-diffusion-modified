@@ -1,0 +1,45 @@
+wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from WANDB_API_KEY.
+wandb: Currently logged in as: franceguad2002 (franceguad2002-epfl) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
+wandb: setting up run kkbg4apq
+wandb: Tracking run with wandb version 0.26.1
+wandb: Run data is saved locally in /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/wandb/run-20260709_213446-kkbg4apq
+wandb: Run `wandb offline` to turn off syncing.
+wandb: Syncing run GeneralSheaf_amazon_ratings_normalised-true_stalk-5_5layers_16hidden_500epochs_seed43
+wandb: ⭐️ View project at https://wandb.ai/franceguad2002-epfl/sheaf
+wandb: 🚀 View run at https://wandb.ai/franceguad2002-epfl/sheaf/runs/kkbg4apq
+  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [01:42<15:21, 102.41s/it] 20%|██        | 2/10 [03:04<12:04, 90.58s/it]  30%|███       | 3/10 [04:35<10:34, 90.66s/it] 40%|████      | 4/10 [06:12<09:20, 93.35s/it] 50%|█████     | 5/10 [07:46<07:46, 93.31s/it] 60%|██████    | 6/10 [09:18<06:11, 92.85s/it] 70%|███████   | 7/10 [10:52<04:39, 93.19s/it] 80%|████████  | 8/10 [12:19<03:03, 91.52s/it] 90%|█████████ | 9/10 [14:03<01:35, 95.40s/it]100%|██████████| 10/10 [15:45<00:00, 97.43s/it]100%|██████████| 10/10 [15:45<00:00, 94.59s/it]
+wandb: updating run metadata
+wandb: uploading output.log; uploading wandb-summary.json; uploading config.yaml
+wandb: uploading output.log; uploading wandb-summary.json
+wandb: uploading history steps 480-481, summary, console lines 494-521
+wandb: 
+wandb: Run history:
+wandb:          best_epoch █▁▄▆▅▄▅▃█▇
+wandb:       best_test_acc █▃▁▄▆▃▅▄▇▆
+wandb:        best_val_acc ▄▄▂▂▆▁▆▅██
+wandb:  fold0_tmp_test_acc ▁▂▃▃▅▆▄▅▆▆▆▆▇▇▆▇▆▇▇▇▇▇▇▇▇█▇▇█▇▇███▇██▇██
+wandb: fold0_tmp_test_loss █▇▅▅▄▄▄▃▃▃▂▂▂▁▁▁▂▁▁▁▂▂▂▂▂▁▃▃▃▂▂▃▂▂▃▃▃▄▃▃
+wandb:     fold0_train_acc ▁▂▂▂▃▂▃▃▃▄▄▄▄▅▅▅▅▅▆▆▆▆▇▆▇▇▇▇▇▇▇▇██▇█████
+wandb:    fold0_train_loss █▇▆▅▅▅▅▄▄▄▃▃▃▃▃▃▃▃▃▂▂▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁
+wandb:       fold0_val_acc ▁▂▄▄▅▄▆▄▅▅▆▆▆▇▇▆▆▆▇▇▇▇▇██▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
+wandb:      fold0_val_loss ██▇▄▄▃▃▃▂▂▂▂▂▁▂▁▁▂▂▂▂▂▂▂▁▂▂▂▃▂▄▃▃▃▃▃▃▄▃▃
+wandb:       last_test_acc ▇▇▁▄▆▅█▄█▆
+wandb:                  +3 ...
+wandb: 
+wandb: Run summary:
+wandb:          best_epoch 268
+wandb:       best_test_acc 0.46644
+wandb:        best_val_acc 0.47542
+wandb:  fold0_tmp_test_acc 0.47346
+wandb: fold0_tmp_test_loss 1.29879
+wandb:     fold0_train_acc 0.65728
+wandb:    fold0_train_loss 0.86053
+wandb:       fold0_val_acc 0.46268
+wandb:      fold0_val_loss 1.3073
+wandb:       last_test_acc 0.4697
+wandb:                  +3 ...
+wandb: 
+wandb: 🚀 View run GeneralSheaf_amazon_ratings_normalised-true_stalk-5_5layers_16hidden_500epochs_seed43 at: https://wandb.ai/franceguad2002-epfl/sheaf/runs/kkbg4apq
+wandb: ⭐️ View project at: https://wandb.ai/franceguad2002-epfl/sheaf
+wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
+wandb: Find logs at: ./wandb/run-20260709_213446-kkbg4apq/logs

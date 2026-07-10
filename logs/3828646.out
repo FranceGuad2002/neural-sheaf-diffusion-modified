@@ -1,0 +1,21 @@
+Discovering: model=GeneralSheaf  normalised=true
+  found: roman_empire  d=5  L=5  folds=10
+
+Found 1 experiment(s).
+
+============================================================
+  roman_empire  |  GeneralSheaf  d=5  L=5  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.859  conf=0.891
+  fold 1 done  |  baseline acc=0.874  conf=0.884
+  fold 2 done  |  baseline acc=0.871  conf=0.890
+  fold 3 done  |  baseline acc=0.877  conf=0.887
+  fold 4 done  |  baseline acc=0.871  conf=0.888
+  fold 5 done  |  baseline acc=0.878  conf=0.894
+  fold 6 done  |  baseline acc=0.873  conf=0.886
+  fold 7 done  |  baseline acc=0.872  conf=0.891
+  fold 8 done  |  baseline acc=0.857  conf=0.891
+  fold 9 done  |  baseline acc=0.873  conf=0.884
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/accuracy_ranking/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_conviction_masking.pdf
+
+Done. Plots in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/accuracy_ranking/GeneralSheaf/normalised_true

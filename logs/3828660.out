@@ -1,0 +1,566 @@
+Running with wandb account: franceguad2002-epfl
+Namespace(epochs=500, lr=0.01, weight_decay=0.0006914841722570725, sheaf_decay=0.00031764232712732976, early_stopping=200, min_acc=0.0, stop_strategy='loss', d=5, layers=6, normalised=True, deg_normalised=False, linear=False, hidden_channels=16, input_dropout=0.2, dropout=0.3, left_weights=True, right_weights=True, add_lp=False, add_hp=False, use_act=True, second_linear=False, orth='householder', sheaf_act='tanh', edge_weights=True, sparse_learner=False, dataset='minesweeper', seed=43, cuda=0, folds=10, model='GeneralSheaf', entity='franceguad2002-epfl', evectors=0, max_t=1.0, int_method=None, step_size=1, max_iters=100, adjoint_method='adaptive_heun', adjoint=False, adjoint_step_size=1, tol_scale=1.0, tol_scale_adjoint=1.0, max_nfe=1000, no_early=False, earlystopxT=3, max_test_steps=100, num_nodes=200, num_classes=2, num_feats=10, het_coef=0.9, edge_noise=0.05, node_degree=10, feat_noise=0.25, ellipsoid_radius=1, just_add_noise=False, ellipsoids=True, classes_corr=None, dual_diff_strength=1.0, dual_normalised=True, sheaf_init=False, dual_left_linear=True, dual_right_linear=True, dual_linear=False, learn_first_maps=False, learnt_map_type='general', rotation_invariant_sheaf_learner=False, node_edge_sims_time_dependent=False, num_of_convolutions=1, dim_list=[], zero_laplacian=False, maps_lr=None, use_epsilons=True, use_embedding=True, checkpoint_epochs=[0, 1, 5, 15, 50, 200], save_laplacians=False, save_norms=True, save_preds=True, save_saliency=True, save_others=False, sha='76c20f9b6a5a98e71dded402ae983d844519635e', graph_size=10000, input_dim=7, output_dim=2, device=device(type='cuda', index=0))
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold0_seed43.pt
+Fold 0 | Epochs: 499 | Best epoch: 410
+Test acc (best epoch): 0.9000
+Test acc (last epoch): 0.8990
+Best val acc: 0.9000
+Test AUC (best epoch): 0.9506
+Test AUC (last epoch): 0.9511
+Laplacian 0: Max: 1.9492, Min: -2.3541, Avg: -0.0446, Abs avg: 0.3380
+Laplacian 1: Max: 3.8150, Min: -3.5824, Avg: 0.0031, Abs avg: 0.3972
+Laplacian 2: Max: 3.8306, Min: -4.8769, Avg: -0.3739, Abs avg: 0.8216
+Laplacian 3: Max: 4.5393, Min: -4.8395, Avg: -0.1589, Abs avg: 0.8450
+Laplacian 4: Max: 4.5884, Min: -4.7743, Avg: -0.2306, Abs avg: 0.7823
+Laplacian 5: Max: 4.9305, Min: -4.9732, Avg: -0.1609, Abs avg: 1.1100
+Epsilons 0: [ 0.046 -0.038 -0.101 -0.243 -0.156]
+Epsilons 1: [ 0.103  0.108 -0.004 -0.193 -0.065]
+Epsilons 2: [-0.084  0.009  0.059 -0.075  0.072]
+Epsilons 3: [-0.051 -0.025  0.096 -0.157 -0.051]
+Epsilons 4: [-0.044 -0.065  0.076 -0.143  0.025]
+Epsilons 5: [-0.098 -0.004 -0.023 -0.078  0.114]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved best-epoch node norms (epoch 410) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved training args to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/training_args.json
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold0_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold0_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 410) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_0 -> epoch 410
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold0_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold1_seed43.pt
+Fold 1 | Epochs: 499 | Best epoch: 469
+Test acc (best epoch): 0.9095
+Test acc (last epoch): 0.9070
+Best val acc: 0.8980
+Test AUC (best epoch): 0.9602
+Test AUC (last epoch): 0.9574
+Laplacian 0: Max: 1.3724, Min: -1.8620, Avg: -0.0151, Abs avg: 0.1326
+Laplacian 1: Max: 2.4996, Min: -3.9025, Avg: -0.0134, Abs avg: 0.3099
+Laplacian 2: Max: 3.0724, Min: -3.8199, Avg: -0.0732, Abs avg: 0.4749
+Laplacian 3: Max: 3.7418, Min: -3.9656, Avg: -0.1101, Abs avg: 0.7424
+Laplacian 4: Max: 4.2491, Min: -4.5725, Avg: -0.4605, Abs avg: 0.9351
+Laplacian 5: Max: 4.7987, Min: -4.9975, Avg: -0.8966, Abs avg: 1.4262
+Epsilons 0: [-0.289  0.024 -0.156 -0.012 -0.017]
+Epsilons 1: [-0.159  0.074 -0.064  0.019  0.032]
+Epsilons 2: [ 0.196 -0.146 -0.185 -0.053  0.009]
+Epsilons 3: [ 0.098 -0.089 -0.025 -0.14  -0.074]
+Epsilons 4: [ 0.026 -0.03  -0.058 -0.065 -0.04 ]
+Epsilons 5: [ 0.189 -0.066  0.026 -0.076 -0.054]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved best-epoch node norms (epoch 469) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold1_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold1_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 469) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_1 -> epoch 469
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold1_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold2_seed43.pt
+Fold 2 | Epochs: 499 | Best epoch: 443
+Test acc (best epoch): 0.9095
+Test acc (last epoch): 0.9145
+Best val acc: 0.8940
+Test AUC (best epoch): 0.9616
+Test AUC (last epoch): 0.9630
+Laplacian 0: Max: 1.1867, Min: -2.0540, Avg: -0.0379, Abs avg: 0.2233
+Laplacian 1: Max: 3.2269, Min: -3.7465, Avg: -0.0210, Abs avg: 0.3533
+Laplacian 2: Max: 4.0560, Min: -4.7066, Avg: -0.0719, Abs avg: 0.6253
+Laplacian 3: Max: 4.6717, Min: -4.6503, Avg: 0.0759, Abs avg: 0.7419
+Laplacian 4: Max: 4.1784, Min: -4.9542, Avg: -0.3466, Abs avg: 1.1328
+Laplacian 5: Max: 3.9347, Min: -4.9791, Avg: -0.5874, Abs avg: 1.0883
+Epsilons 0: [ 0.03   0.015 -0.121 -0.151 -0.066]
+Epsilons 1: [ 0.05  -0.051 -0.061  0.087  0.005]
+Epsilons 2: [ 0.082 -0.    -0.184  0.06   0.088]
+Epsilons 3: [-0.103  0.026  0.101 -0.12  -0.076]
+Epsilons 4: [ 0.117 -0.02  -0.089 -0.116 -0.039]
+Epsilons 5: [-0.036 -0.04   0.166 -0.054 -0.082]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved best-epoch node norms (epoch 443) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold2_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold2_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 443) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_2 -> epoch 443
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold2_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold3_seed43.pt
+Fold 3 | Epochs: 499 | Best epoch: 399
+Test acc (best epoch): 0.8905
+Test acc (last epoch): 0.8830
+Best val acc: 0.9105
+Test AUC (best epoch): 0.9422
+Test AUC (last epoch): 0.9430
+Laplacian 0: Max: 1.7373, Min: -2.0407, Avg: -0.0751, Abs avg: 0.2027
+Laplacian 1: Max: 2.7320, Min: -3.2939, Avg: -0.1407, Abs avg: 0.3879
+Laplacian 2: Max: 2.6960, Min: -3.3663, Avg: -0.0504, Abs avg: 0.4667
+Laplacian 3: Max: 3.3870, Min: -3.8049, Avg: -0.1249, Abs avg: 0.6248
+Laplacian 4: Max: 4.0147, Min: -4.4602, Avg: -0.0667, Abs avg: 0.6445
+Laplacian 5: Max: 4.7875, Min: -4.7010, Avg: -0.1290, Abs avg: 0.9218
+Epsilons 0: [ 0.185 -0.011 -0.071 -0.22  -0.067]
+Epsilons 1: [ 0.184  0.06   0.041 -0.073 -0.09 ]
+Epsilons 2: [-0.027 -0.092 -0.181  0.187  0.002]
+Epsilons 3: [-0.151  0.01   0.077 -0.108 -0.148]
+Epsilons 4: [-0.353 -0.044 -0.132  0.223  0.018]
+Epsilons 5: [-0.063 -0.068 -0.064  0.145  0.033]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved best-epoch node norms (epoch 399) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold3_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold3_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 399) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_3 -> epoch 399
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold3_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold4_seed43.pt
+Fold 4 | Epochs: 499 | Best epoch: 446
+Test acc (best epoch): 0.8950
+Test acc (last epoch): 0.8955
+Best val acc: 0.9085
+Test AUC (best epoch): 0.9474
+Test AUC (last epoch): 0.9473
+Laplacian 0: Max: 1.4523, Min: -2.0070, Avg: -0.0135, Abs avg: 0.1257
+Laplacian 1: Max: 2.4293, Min: -3.0652, Avg: -0.1326, Abs avg: 0.3485
+Laplacian 2: Max: 3.2502, Min: -3.5139, Avg: -0.0633, Abs avg: 0.3455
+Laplacian 3: Max: 3.8872, Min: -4.2306, Avg: -0.1397, Abs avg: 0.6615
+Laplacian 4: Max: 4.5923, Min: -4.9369, Avg: -0.5013, Abs avg: 1.0399
+Laplacian 5: Max: 4.3214, Min: -4.6042, Avg: -0.0279, Abs avg: 0.7829
+Epsilons 0: [-0.004 -0.117 -0.008 -0.119 -0.075]
+Epsilons 1: [-0.017 -0.072  0.06  -0.141 -0.069]
+Epsilons 2: [-0.031 -0.053  0.043 -0.017 -0.099]
+Epsilons 3: [-0.146 -0.07   0.037 -0.042 -0.069]
+Epsilons 4: [-0.082  0.065 -0.076  0.074 -0.202]
+Epsilons 5: [ 0.016  0.073 -0.067  0.052 -0.036]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved best-epoch node norms (epoch 446) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold4_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold4_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 446) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_4 -> epoch 446
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold4_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold5_seed43.pt
+Fold 5 | Epochs: 499 | Best epoch: 498
+Test acc (best epoch): 0.9045
+Test acc (last epoch): 0.8995
+Best val acc: 0.9055
+Test AUC (best epoch): 0.9571
+Test AUC (last epoch): 0.9578
+Laplacian 0: Max: 1.4204, Min: -2.1927, Avg: -0.0199, Abs avg: 0.2144
+Laplacian 1: Max: 3.3696, Min: -3.4281, Avg: 0.0479, Abs avg: 0.3566
+Laplacian 2: Max: 3.5051, Min: -3.9703, Avg: -0.1014, Abs avg: 0.5336
+Laplacian 3: Max: 4.5507, Min: -4.4215, Avg: -0.1139, Abs avg: 0.7364
+Laplacian 4: Max: 4.9473, Min: -4.9488, Avg: -0.0730, Abs avg: 0.9362
+Laplacian 5: Max: 4.8775, Min: -4.9839, Avg: -0.1200, Abs avg: 0.9927
+Epsilons 0: [ 0.01   0.043  0.079 -0.089 -0.264]
+Epsilons 1: [ 0.011  0.166  0.172  0.03  -0.244]
+Epsilons 2: [ 0.007 -0.136  0.04   0.096 -0.094]
+Epsilons 3: [-0.088 -0.273  0.083 -0.132  0.067]
+Epsilons 4: [-0.224  0.19   0.048 -0.105  0.059]
+Epsilons 5: [-0.066  0.151  0.025 -0.023  0.046]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved best-epoch node norms (epoch 498) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold5_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold5_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 498) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_5 -> epoch 498
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold5_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold6_seed43.pt
+Fold 6 | Epochs: 499 | Best epoch: 427
+Test acc (best epoch): 0.9065
+Test acc (last epoch): 0.9130
+Best val acc: 0.9085
+Test AUC (best epoch): 0.9631
+Test AUC (last epoch): 0.9615
+Laplacian 0: Max: 1.9839, Min: -2.4329, Avg: -0.0389, Abs avg: 0.3266
+Laplacian 1: Max: 3.8089, Min: -3.6876, Avg: 0.0174, Abs avg: 0.4581
+Laplacian 2: Max: 3.1518, Min: -3.0655, Avg: -0.0998, Abs avg: 0.4897
+Laplacian 3: Max: 3.8885, Min: -4.5296, Avg: -0.1345, Abs avg: 0.6097
+Laplacian 4: Max: 4.5923, Min: -4.8876, Avg: 0.0887, Abs avg: 0.9342
+Laplacian 5: Max: 4.9161, Min: -4.9415, Avg: -0.3508, Abs avg: 1.2146
+Epsilons 0: [ 0.125 -0.091 -0.217 -0.224  0.005]
+Epsilons 1: [ 0.124  0.009  0.017 -0.21   0.098]
+Epsilons 2: [ 0.098 -0.054 -0.089  0.032  0.071]
+Epsilons 3: [-0.112 -0.053 -0.053 -0.091  0.089]
+Epsilons 4: [-0.006 -0.056 -0.253  0.127 -0.004]
+Epsilons 5: [ 0.009 -0.08  -0.159  0.166 -0.067]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved best-epoch node norms (epoch 427) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold6_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold6_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 427) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_6 -> epoch 427
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold6_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold7_seed43.pt
+Fold 7 | Epochs: 499 | Best epoch: 497
+Test acc (best epoch): 0.9035
+Test acc (last epoch): 0.9110
+Best val acc: 0.9090
+Test AUC (best epoch): 0.9536
+Test AUC (last epoch): 0.9540
+Laplacian 0: Max: 1.5098, Min: -2.4776, Avg: -0.0235, Abs avg: 0.2764
+Laplacian 1: Max: 3.3999, Min: -4.4826, Avg: -0.1486, Abs avg: 0.4612
+Laplacian 2: Max: 3.1661, Min: -4.1358, Avg: -0.1950, Abs avg: 0.8453
+Laplacian 3: Max: 4.2468, Min: -4.8909, Avg: -0.2473, Abs avg: 0.8240
+Laplacian 4: Max: 4.8619, Min: -4.9925, Avg: -0.5627, Abs avg: 1.5457
+Laplacian 5: Max: 4.9509, Min: -4.9324, Avg: -0.4768, Abs avg: 1.2753
+Epsilons 0: [-0.05   0.055 -0.192 -0.142 -0.073]
+Epsilons 1: [-0.053 -0.067 -0.145 -0.013  0.065]
+Epsilons 2: [-0.023 -0.041 -0.239 -0.032  0.043]
+Epsilons 3: [-0.143  0.071 -0.092 -0.054  0.004]
+Epsilons 4: [-0.102  0.012 -0.106  0.114 -0.193]
+Epsilons 5: [-0.004 -0.074 -0.084  0.137 -0.107]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved best-epoch node norms (epoch 497) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold7_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold7_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 497) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_7 -> epoch 497
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold7_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold8_seed43.pt
+Fold 8 | Epochs: 499 | Best epoch: 455
+Test acc (best epoch): 0.9080
+Test acc (last epoch): 0.9070
+Best val acc: 0.8955
+Test AUC (best epoch): 0.9568
+Test AUC (last epoch): 0.9577
+Laplacian 0: Max: 2.1238, Min: -3.3258, Avg: -0.0455, Abs avg: 0.2376
+Laplacian 1: Max: 2.9304, Min: -3.5891, Avg: -0.0532, Abs avg: 0.4743
+Laplacian 2: Max: 3.9559, Min: -4.5210, Avg: -0.0676, Abs avg: 0.6348
+Laplacian 3: Max: 3.8879, Min: -4.5588, Avg: -0.1703, Abs avg: 0.9049
+Laplacian 4: Max: 4.3481, Min: -4.4814, Avg: -0.2154, Abs avg: 0.8291
+Laplacian 5: Max: 4.9364, Min: -4.9920, Avg: -0.2310, Abs avg: 1.3249
+Epsilons 0: [-0.089 -0.216 -0.147 -0.068  0.158]
+Epsilons 1: [ 0.05   0.001 -0.084 -0.233  0.111]
+Epsilons 2: [ 0.039 -0.203  0.154 -0.051  0.096]
+Epsilons 3: [ 0.103  0.126 -0.381 -0.221  0.148]
+Epsilons 4: [ 0.051  0.082 -0.028 -0.111 -0.109]
+Epsilons 5: [ 0.055  0.292 -0.025 -0.072 -0.053]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved best-epoch node norms (epoch 455) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold8_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold8_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 455) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_8 -> epoch 455
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold8_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-0/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-1/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-5/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-15/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-50/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/epoch-200/GeneralSheaf_minesweeper_fold9_seed43.pt
+Fold 9 | Epochs: 499 | Best epoch: 461
+Test acc (best epoch): 0.9045
+Test acc (last epoch): 0.8985
+Best val acc: 0.9030
+Test AUC (best epoch): 0.9534
+Test AUC (last epoch): 0.9531
+Laplacian 0: Max: 0.9510, Min: -2.0076, Avg: -0.0103, Abs avg: 0.1598
+Laplacian 1: Max: 2.0522, Min: -3.4713, Avg: -0.0700, Abs avg: 0.3210
+Laplacian 2: Max: 3.4200, Min: -4.0377, Avg: -0.0711, Abs avg: 0.4376
+Laplacian 3: Max: 4.0431, Min: -4.6270, Avg: -0.1536, Abs avg: 0.6757
+Laplacian 4: Max: 4.3257, Min: -4.6739, Avg: -0.2319, Abs avg: 0.8221
+Laplacian 5: Max: 4.6245, Min: -4.6856, Avg: 0.0549, Abs avg: 1.0161
+Epsilons 0: [-0.037 -0.139 -0.164 -0.034  0.1  ]
+Epsilons 1: [-0.045 -0.192 -0.004  0.015  0.095]
+Epsilons 2: [-0.11  -0.172  0.098  0.01   0.007]
+Epsilons 3: [-0.147 -0.121 -0.079  0.059  0.024]
+Epsilons 4: [-0.082  0.411 -0.183 -0.032 -0.078]
+Epsilons 5: [-0.06   0.23  -0.04  -0.014 -0.121]
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved best-epoch node norms (epoch 461) to checkpoints/best-epoch/
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved model weights to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold9_seed43.pth
+Saved fold masks to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/model_weights/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/checkpoints/best-epoch/GeneralSheaf_minesweeper_fold9_seed43_masks.pt
+Saved best-epoch model weights and masks (epoch 461) to checkpoints/best-epoch/
+Updated best_epochs.json: fold_9 -> epoch 461
+Saved node norms to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_norms/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved node predictions to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_preds/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved confidence to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_conf/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved per-node accuracy to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_accuracy/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold9_seed43.pt
+Saved saliency to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/results/node_saliency/minesweeper/GeneralSheaf/normalised-true/stalk_dim-5/6-layers/16-hidden/500-epochs/GeneralSheaf_minesweeper_fold9_seed43.pt
+GeneralSheaf on minesweeper | SHA: 76c20f9b6a5a98e71dded402ae983d844519635e
+Test acc: 90.3150 +/- 0.5963 | Val acc: 90.3250
+Test AUC: 0.9546 +/- 0.0062
