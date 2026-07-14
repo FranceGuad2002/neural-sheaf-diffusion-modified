@@ -13,13 +13,17 @@ import os
 import re
 import glob
 import json
+import collections
 from dataclasses import dataclass
 
 import numpy as np
 import torch
+import torch.nn.functional as F
 from scipy.sparse import coo_matrix
 from scipy.sparse.csgraph import connected_components
+from sklearn.metrics import roc_auc_score
 from torch_geometric.data import Data
+from torch_geometric.utils import degree as pyg_degree
 
 from definitions import ROOT_DIR
 from exp.parser import get_parser
@@ -154,6 +158,84 @@ def confidence_ranking(args, fold, pool='train'):
     confidence = load_confidence(args, fold)
     return idx[torch.argsort(confidence[idx], descending=False)]
 
+# ── candidate selection (shared by the forward-eval and retrain scripts) ───────
+
+def load_fold_rankings(args, fold, edge_index, num_nodes, score='last', pool='train'):
+    """Bundle of everything select_candidates needs for one fold: the candidate
+    pool, per-node degree, and the deterministic strategy rankings (conviction
+    hi/lo, degree hi/lo, confidence lo). Computing this once per fold and handing
+    the same dict to select_candidates is what guarantees the forward-eval and
+    retrain scripts pick identical candidates for the same (strategy, budget, fold)."""
+    pool_idx     = _pool_idx(load_masks(args, fold), pool)
+    deg          = pyg_degree(edge_index[0].cpu(), num_nodes=num_nodes).long()
+    deg_pool     = deg[pool_idx]
+    rank_conv_lo = conviction_ranking(args, fold, score=score, pool=pool)
+    rank_conv_hi = torch.flip(rank_conv_lo, dims=[0])
+    rank_deg_hi  = pool_idx[torch.argsort(deg_pool, descending=True)]
+    rank_deg_lo  = pool_idx[torch.argsort(deg_pool, descending=False)]
+    rank_conf_lo = confidence_ranking(args, fold, pool=pool)
+    return {
+        'pool_idx': pool_idx, 'deg': deg,
+        'rank_conv_lo': rank_conv_lo, 'rank_conv_hi': rank_conv_hi,
+        'rank_deg_hi': rank_deg_hi, 'rank_deg_lo': rank_deg_lo,
+        'rank_conf_lo': rank_conf_lo,
+    }
+
+
+def _degree_matched_sample(hi_idx, all_deg, pool_idx, rng):
+    """k random nodes from the pool (excluding hi_idx) whose degree distribution
+    matches hi_idx's, one draw per fold. Greedy nearest-degree matching without
+    replacement; falls back to the closest available degree bucket if a node's
+    exact degree is exhausted."""
+    pool = set(pool_idx.tolist()) - set(hi_idx.tolist())
+    by_deg = collections.defaultdict(list)
+    for v in pool:
+        by_deg[int(all_deg[v].item())].append(v)
+    for bucket in by_deg.values():
+        rng.shuffle(bucket)
+    used, result = set(), []
+    for u in hi_idx.tolist():
+        d_u   = int(all_deg[u].item())
+        avail = [v for v in by_deg.get(d_u, []) if v not in used]
+        if avail:
+            chosen = avail[0]
+        else:
+            best, best_diff = None, float('inf')
+            for dv, bucket in by_deg.items():
+                a2 = [v for v in bucket if v not in used]
+                if abs(dv - d_u) < best_diff and a2:
+                    best_diff, best = abs(dv - d_u), a2[0]
+            chosen = best
+        used.add(chosen); result.append(chosen)
+    return torch.tensor(result, dtype=torch.long)
+
+
+def select_candidates(strategy, k, *, pool_idx, deg, rank_conv_lo, rank_conv_hi,
+                       rank_deg_hi, rank_deg_lo, rank_conf_lo, rng):
+    """Return the k candidate node ids for one of the 8 canonical strategies
+    (high/low conviction, high/low degree, degree-matched high/low, low
+    confidence, random). Shared dispatch so the forward-eval and retrain scripts
+    draw identical candidates for the same (strategy, k, fold) — note 'random'
+    and 'deg_matched_*' consume rng, so they only match across scripts if called
+    in the same order with the same seed."""
+    if strategy == 'high':
+        return rank_conv_hi[:k]
+    if strategy == 'low':
+        return rank_conv_lo[:k]
+    if strategy == 'deg_high':
+        return rank_deg_hi[:k]
+    if strategy == 'deg_low':
+        return rank_deg_lo[:k]
+    if strategy == 'deg_matched_high':
+        return _degree_matched_sample(rank_conv_hi[:k], deg, pool_idx, rng)
+    if strategy == 'deg_matched_low':
+        return _degree_matched_sample(rank_conv_lo[:k], deg, pool_idx, rng)
+    if strategy == 'conf_low':
+        return rank_conf_lo[:k]
+    if strategy == 'random':
+        return torch.tensor(rng.choice(pool_idx.numpy(), size=k, replace=False), dtype=torch.long)
+    raise ValueError(f"Unknown strategy: {strategy}")
+
 # ── interventions ─────────────────────────────────────────────────────────────
 
 def _class_balance(y, mask):
@@ -266,6 +348,50 @@ def build_message_gate(n_nodes, conviction, gate_ids, mode='hard', min_scale=0.1
         raise ValueError(f"Unknown gate mode: {mode}")
     return gate
 
+# ── evaluation (shared by the forward-eval and retrain scripts) ────────────────
+
+def forward_eval(model, data, eval_idx, device, is_auc=False, gate=None):
+    """Forward pass + metrics on eval_idx. model must already match data's
+    node count/edge_index (relevant after pruning, where a fresh model is built
+    for the smaller graph). gate is the optional per-node outgoing-message
+    multiplier (see _apply_gate in disc_models.py); None (default) is a
+    complete no-op for every model."""
+    model.eval()
+    with torch.no_grad():
+        logits = model(data.x, gate=gate)
+    if len(eval_idx) == 0:
+        return float('nan'), float('nan'), float('nan')
+    probs    = F.softmax(logits[eval_idx], dim=1).cpu()
+    pred     = probs.argmax(1)
+    y_true   = data.y[eval_idx].cpu()
+    acc      = (pred == y_true).float().mean().item()
+    conf     = probs.max(1).values.mean().item()
+    if is_auc:
+        try:
+            auc = roc_auc_score(y_true.numpy(), probs[:, 1].numpy())
+        except ValueError:
+            auc = float('nan')
+    else:
+        auc = float('nan')
+    return acc, conf, auc
+
+
+def evaluate_checkpoint(args, fold, model_cls, data, device, is_auc=False):
+    """Load the frozen best-epoch checkpoint and forward-eval it on the
+    unperturbed test set. This is the 'reference' number for the retrain
+    experiments (run_conviction_experiments.py): what the model that's
+    actually trained and saved got, as opposed to a fresh retrain's baseline.
+    One forward pass, not a retrain — effectively free."""
+    wp = weights_path(args, fold)
+    if not os.path.exists(wp):
+        raise FileNotFoundError(f"No checkpoint found for fold {fold}: {wp}")
+    model = model_cls(data.edge_index, args).to(device)
+    state_dict = torch.load(wp, map_location=device, weights_only=False)
+    model.load_state_dict(state_dict)
+    test_idx = data.test_mask.nonzero(as_tuple=True)[0]
+    acc, conf, auc = forward_eval(model, data, test_idx, device, is_auc)
+    return {'acc': acc, 'conf': conf, 'auc': auc}
+
 # ── model registry ────────────────────────────────────────────────────────────
 
 def model_classes():
@@ -319,9 +445,13 @@ def infer_args_from_path(best_epoch_dir, model_name, normalised_str):
     return defaults
 
 
-def discover_experiments(model_name, normalised_str, tag):
+def discover_experiments(model_name, normalised_str, tag, dataset_filter=None):
+    """dataset_filter restricts discovery to one dataset directory instead of
+    globbing '*' — lets a single SLURM job own exactly one dataset (needed for
+    the retrain sweep, where each discovered experiment is far more expensive
+    to process than in the forward-eval script)."""
     weights_root = os.path.join(ROOT_DIR, 'results', 'model_weights')
-    pattern = os.path.join(weights_root, '*', model_name + tag,
+    pattern = os.path.join(weights_root, dataset_filter or '*', model_name + tag,
                            f'normalised-{normalised_str}',
                            'stalk_dim-*', '*-layers', '*-hidden', '*-epochs',
                            'checkpoints', 'best-epoch')

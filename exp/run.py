@@ -57,10 +57,10 @@ def reset_wandb_env():
             del os.environ[k]
 
 
-def train(model, optimizer, data):
+def train(model, optimizer, data, gate=None):
     model.train()
     optimizer.zero_grad()
-    out = model(data.x)[data.train_mask]
+    out = model(data.x, gate=gate)[data.train_mask]
     nll = F.nll_loss(out, data.y[data.train_mask])
     loss = nll
     loss.backward()
@@ -69,10 +69,10 @@ def train(model, optimizer, data):
     del out
 
 
-def test(model, data):
+def test(model, data, gate=None):
     model.eval()
     with torch.no_grad():
-        logits, accs, losses, preds, probs = model(data.x), [], [], [], []
+        logits, accs, losses, preds, probs = model(data.x, gate=gate), [], [], [], []
         for _, mask in data('train_mask', 'val_mask', 'test_mask'):
             pred = logits[mask].max(1)[1]
             acc = pred.eq(data.y[mask]).sum().item() / mask.sum().item()

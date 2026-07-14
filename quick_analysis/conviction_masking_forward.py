@@ -55,20 +55,17 @@ import collections
 
 import numpy as np
 import torch
-import torch.nn.functional as F
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
-from torch_geometric.utils import degree as pyg_degree
-from sklearn.metrics import roc_auc_score
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, ROOT)
 
 from utils.conviction import (
     JOINT_MODELS, TYPE_SHORT, map_tag, weights_path, load_masks,
-    conviction_ranking, confidence_ranking, model_classes, discover_experiments,
-    mask_features, prune_nodes, build_message_gate, load_conviction,
+    load_fold_rankings, select_candidates, model_classes, discover_experiments,
+    mask_features, prune_nodes, build_message_gate, load_conviction, forward_eval,
 )
 
 # ── constants ─────────────────────────────────────────────────────────────────
@@ -83,57 +80,7 @@ COLORS      = ['firebrick', 'steelblue', 'darkorange','seagreen',  'goldenrod', 
 LINESTYLES  = ['-',         '--',        '-',         '--',        ':',                  ':',                 '-',         ':']
 MARKERS     = ['o',         'o',         's',         's',         'o',                  'D',                 'v',         '^']
 
-# ── sampling ──────────────────────────────────────────────────────────────────
-
-def _degree_matched_sample(hi_idx, all_deg, pool_idx, rng):
-    pool = set(pool_idx.tolist()) - set(hi_idx.tolist())
-    by_deg = collections.defaultdict(list)
-    for v in pool:
-        by_deg[int(all_deg[v].item())].append(v)
-    for bucket in by_deg.values():
-        rng.shuffle(bucket)
-    used, result = set(), []
-    for u in hi_idx.tolist():
-        d_u   = int(all_deg[u].item())
-        avail = [v for v in by_deg.get(d_u, []) if v not in used]
-        if avail:
-            chosen = avail[0]
-        else:
-            best, best_diff = None, float('inf')
-            for dv, bucket in by_deg.items():
-                a2 = [v for v in bucket if v not in used]
-                if abs(dv - d_u) < best_diff and a2:
-                    best_diff, best = abs(dv - d_u), a2[0]
-            chosen = best
-        used.add(chosen); result.append(chosen)
-    return torch.tensor(result, dtype=torch.long)
-
 # ── evaluation ────────────────────────────────────────────────────────────────
-
-def _forward_eval(model, data, eval_idx, device, is_auc=False, gate=None):
-    """Forward pass + metrics on eval_idx. model must already match data's
-    node count/edge_index (see _eval_pruning for why that matters). gate is
-    the optional per-node outgoing-message multiplier (see _apply_gate in
-    disc_models.py); None (default) is a complete no-op for every model."""
-    model.eval()
-    with torch.no_grad():
-        logits = model(data.x, gate=gate)
-    if len(eval_idx) == 0:
-        return float('nan'), float('nan'), float('nan')
-    probs    = F.softmax(logits[eval_idx], dim=1).cpu()
-    pred     = probs.argmax(1)
-    y_true   = data.y[eval_idx].cpu()
-    acc      = (pred == y_true).float().mean().item()
-    conf     = probs.max(1).values.mean().item()
-    if is_auc:
-        try:
-            auc = roc_auc_score(y_true.numpy(), probs[:, 1].numpy())
-        except ValueError:
-            auc = float('nan')
-    else:
-        auc = float('nan')
-    return acc, conf, auc
-
 
 def _eval_masking(model, data, mask_idx, mask_mode, device, is_auc=False):
     """Zero/mean-replace mask_idx's features, forward through the SAME model
@@ -143,7 +90,7 @@ def _eval_masking(model, data, mask_idx, mask_mode, device, is_auc=False):
     test_idx = masked_data.test_mask.nonzero(as_tuple=True)[0]
     keep     = ~torch.isin(test_idx, mask_idx.to(device))
     eval_idx = test_idx[keep]
-    acc, conf, auc = _forward_eval(model, masked_data, eval_idx, device, is_auc)
+    acc, conf, auc = forward_eval(model, masked_data, eval_idx, device, is_auc)
     return acc, conf, auc, None
 
 
@@ -160,7 +107,7 @@ def _eval_pruning(model_cls, args, state_dict, data, prune_idx, device, is_auc=F
     new_model = model_cls(new_data.edge_index, new_args).to(device)
     new_model.load_state_dict(state_dict)
     eval_idx = new_data.test_mask.nonzero(as_tuple=True)[0]
-    acc, conf, auc = _forward_eval(new_model, new_data, eval_idx, device, is_auc)
+    acc, conf, auc = forward_eval(new_model, new_data, eval_idx, device, is_auc)
     return acc, conf, auc, diagnostics
 
 
@@ -174,7 +121,7 @@ def _eval_gating_hard(model, data, conviction, gate_idx, device, is_auc=False):
     test_idx = data.test_mask.nonzero(as_tuple=True)[0]
     keep     = ~torch.isin(test_idx, gate_idx.to(device))
     eval_idx = test_idx[keep]
-    acc, conf, auc = _forward_eval(model, data, eval_idx, device, is_auc, gate=gate)
+    acc, conf, auc = forward_eval(model, data, eval_idx, device, is_auc, gate=gate)
     return acc, conf, auc, None
 
 
@@ -188,7 +135,7 @@ def _eval_gating_soft(model, data, conviction, train_idx, device, is_auc=False, 
     n = data.num_nodes
     gate = build_message_gate(n, conviction, train_idx, mode='soft', min_scale=min_scale, device=device)
     eval_idx = data.test_mask.nonzero(as_tuple=True)[0]
-    return _forward_eval(model, data, eval_idx, device, is_auc, gate=gate)
+    return forward_eval(model, data, eval_idx, device, is_auc, gate=gate)
 
 # ── per-fold experiment ───────────────────────────────────────────────────────
 
@@ -229,14 +176,8 @@ def _run_fold(args, dataset, model_cls, fold, device, rng, intervention, mask_mo
             'soft_gate': {'acc': acc1, 'conf': conf1, 'auc': auc1},
         }
 
-    pool_idx     = data.train_mask.nonzero(as_tuple=True)[0].cpu()
-    deg          = pyg_degree(data.edge_index[0].cpu(), num_nodes=n).long()
-    deg_pool     = deg[pool_idx]
-    rank_conv_lo = conviction_ranking(args, fold, score=score, pool='train')
-    rank_conv_hi = torch.flip(rank_conv_lo, dims=[0])
-    rank_deg_hi  = pool_idx[torch.argsort(deg_pool, descending=True)]
-    rank_deg_lo  = pool_idx[torch.argsort(deg_pool, descending=False)]
-    rank_conf_lo = confidence_ranking(args, fold, pool='train')
+    rankings     = load_fold_rankings(args, fold, data.edge_index, n, score=score, pool='train')
+    pool_idx     = rankings['pool_idx']
     conviction   = load_conviction(args, fold, score=score) if intervention == 'gating' else None
 
     def _eval(idx):
@@ -255,16 +196,8 @@ def _run_fold(args, dataset, model_cls, fold, device, rng, intervention, mask_mo
 
     for frac in MASK_LEVELS:
         k = max(1, int(frac * len(pool_idx)))
-        for strat, idx in [
-            ('high',             rank_conv_hi[:k]),
-            ('low',              rank_conv_lo[:k]),
-            ('deg_high',         rank_deg_hi[:k]),
-            ('deg_low',          rank_deg_lo[:k]),
-            ('deg_matched_high', _degree_matched_sample(rank_conv_hi[:k], deg, pool_idx, rng)),
-            ('deg_matched_low',  _degree_matched_sample(rank_conv_lo[:k], deg, pool_idx, rng)),
-            ('conf_low',         rank_conf_lo[:k]),
-            ('random',           torch.tensor(rng.choice(pool_idx.numpy(), size=k, replace=False), dtype=torch.long)),
-        ]:
+        for strat in STRATEGIES:
+            idx = select_candidates(strat, k, rng=rng, **rankings)
             a, c, u, diag = _eval(idx)
             fold_result[strat]['acc'].append(a)
             fold_result[strat]['conf'].append(c)
@@ -375,12 +308,14 @@ def _plot_soft_gate(all_results, args, out_path):
     plt.close(fig)
 
 
-def _save_pruning_diagnostics(all_results, args, out_path):
+def _save_pruning_diagnostics(all_results, args, out_path, strategies=None):
     """Alessio's required table: for each (strategy, budget), pct nodes/edges
     remaining, # connected components, class balance per split, split
-    composition drift, giant component size — averaged across folds."""
+    composition drift, giant component size — averaged across folds.
+    strategies defaults to this module's full 8-strategy STRATEGIES list;
+    run_conviction_experiments.py passes its own (shorter) RETRAIN_STRATEGIES."""
     table = []
-    for strat in STRATEGIES:
+    for strat in (strategies if strategies is not None else STRATEGIES):
         by_frac = collections.defaultdict(list)
         for r in all_results:
             for entry in r[strat]['diagnostics']:
