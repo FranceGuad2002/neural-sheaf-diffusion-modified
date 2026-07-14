@@ -424,9 +424,9 @@ if __name__ == '__main__':
     else:
         map_tag = ''
 
-    out_dir     = os.path.join(ROOT_DIR, 'quick_analysis', 'conviction_heatmap',
+    out_dir     = os.path.join(ROOT_DIR, 'quick_analysis', 'Norm_Analysis', 'conviction_heatmap',
                                cli.model, f"normalised_{cli.normalised}")
-    scatter_dir = os.path.join(ROOT_DIR, 'quick_analysis', 'conviction_scatter',
+    scatter_dir = os.path.join(ROOT_DIR, 'quick_analysis', 'Norm_Analysis', 'conviction_scatter',
                                cli.model, f"normalised_{cli.normalised}")
     os.makedirs(out_dir,     exist_ok=True)
     os.makedirs(scatter_dir, exist_ok=True)

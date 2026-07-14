@@ -1,0 +1,330 @@
+Discovering: model=GeneralSheaf  normalised=true
+  found: amazon_ratings  d=5  L=5  folds=10
+  found: citeseer  d=5  L=4  folds=10
+  found: cora  d=5  L=3  folds=10
+  found: cornell  d=2  L=2  folds=10
+  found: minesweeper  d=5  L=6  folds=10
+  found: pubmed  d=3  L=4  folds=10
+  found: questions  d=5  L=4  folds=10
+  found: roman_empire  d=5  L=5  folds=10
+  found: tolokers  d=3  L=4  folds=10
+  found: wisconsin  d=2  L=2  folds=10
+
+Found 10 experiment(s).
+
+============================================================
+  amazon_ratings  |  GeneralSheaf  d=5  L=5  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.474  conf=0.503
+  fold 1 done  |  baseline acc=0.457  conf=0.438
+  fold 2 done  |  baseline acc=0.452  conf=0.473
+  fold 3 done  |  baseline acc=0.461  conf=0.466
+  fold 4 done  |  baseline acc=0.468  conf=0.484
+  fold 5 done  |  baseline acc=0.459  conf=0.482
+  fold 6 done  |  baseline acc=0.466  conf=0.496
+  fold 7 done  |  baseline acc=0.462  conf=0.485
+  fold 8 done  |  baseline acc=0.472  conf=0.505
+  fold 9 done  |  baseline acc=0.466  conf=0.492
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_conv-last_conviction_masking.pdf
+
+============================================================
+  citeseer  |  GeneralSheaf  d=5  L=4  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.624  conf=0.708
+  fold 1 done  |  baseline acc=0.694  conf=0.690
+  fold 2 done  |  baseline acc=0.656  conf=0.765
+  fold 3 done  |  baseline acc=0.615  conf=0.696
+  fold 4 done  |  baseline acc=0.637  conf=0.545
+  fold 5 done  |  baseline acc=0.586  conf=0.637
+  fold 6 done  |  baseline acc=0.709  conf=0.869
+  fold 7 done  |  baseline acc=0.666  conf=0.714
+  fold 8 done  |  baseline acc=0.660  conf=0.627
+  fold 9 done  |  baseline acc=0.684  conf=0.649
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conv-last_conviction_masking.pdf
+
+============================================================
+  cora  |  GeneralSheaf  d=5  L=3  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.813  conf=0.824
+  fold 1 done  |  baseline acc=0.855  conf=0.862
+  fold 2 done  |  baseline acc=0.843  conf=0.826
+  fold 3 done  |  baseline acc=0.807  conf=0.823
+  fold 4 done  |  baseline acc=0.851  conf=0.862
+  fold 5 done  |  baseline acc=0.809  conf=0.809
+  fold 6 done  |  baseline acc=0.809  conf=0.827
+  fold 7 done  |  baseline acc=0.813  conf=0.836
+  fold 8 done  |  baseline acc=0.845  conf=0.843
+  fold 9 done  |  baseline acc=0.849  conf=0.859
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conv-last_conviction_masking.pdf
+
+============================================================
+  cornell  |  GeneralSheaf  d=2  L=2  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.676  conf=0.845
+  fold 1 done  |  baseline acc=0.865  conf=0.873
+  fold 2 done  |  baseline acc=0.946  conf=0.857
+  fold 3 done  |  baseline acc=0.703  conf=0.818
+  fold 4 done  |  baseline acc=0.892  conf=0.869
+  fold 5 done  |  baseline acc=0.784  conf=0.806
+  fold 6 done  |  baseline acc=0.811  conf=0.856
+  fold 7 done  |  baseline acc=0.757  conf=0.802
+  fold 8 done  |  baseline acc=0.838  conf=0.822
+  fold 9 done  |  baseline acc=0.838  conf=0.783
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_conv-last_conviction_masking.pdf
+
+============================================================
+  minesweeper  |  GeneralSheaf  d=5  L=6  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.900  conf=0.901  auc=0.951
+  fold 1 done  |  baseline acc=0.910  conf=0.900  auc=0.960
+  fold 2 done  |  baseline acc=0.910  conf=0.910  auc=0.962
+  fold 3 done  |  baseline acc=0.891  conf=0.901  auc=0.942
+  fold 4 done  |  baseline acc=0.895  conf=0.893  auc=0.947
+  fold 5 done  |  baseline acc=0.905  conf=0.896  auc=0.957
+  fold 6 done  |  baseline acc=0.906  conf=0.903  auc=0.963
+  fold 7 done  |  baseline acc=0.904  conf=0.909  auc=0.954
+  fold 8 done  |  baseline acc=0.908  conf=0.914  auc=0.957
+  fold 9 done  |  baseline acc=0.905  conf=0.900  auc=0.953
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_conv-last_conviction_masking.pdf
+
+============================================================
+  pubmed  |  GeneralSheaf  d=3  L=4  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.892  conf=0.898
+  fold 1 done  |  baseline acc=0.899  conf=0.909
+  fold 2 done  |  baseline acc=0.886  conf=0.838
+  fold 3 done  |  baseline acc=0.891  conf=0.883
+  fold 4 done  |  baseline acc=0.895  conf=0.875
+  fold 5 done  |  baseline acc=0.888  conf=0.868
+  fold 6 done  |  baseline acc=0.893  conf=0.888
+  fold 7 done  |  baseline acc=0.888  conf=0.887
+  fold 8 done  |  baseline acc=0.883  conf=0.860
+  fold 9 done  |  baseline acc=0.892  conf=0.882
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d3_4L_Norm_True_conv-last_conviction_masking.pdf
+
+============================================================
+  questions  |  GeneralSheaf  d=5  L=4  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.971  conf=0.972  auc=0.766
+  fold 1 done  |  baseline acc=0.972  conf=0.972  auc=0.765
+  fold 2 done  |  baseline acc=0.971  conf=0.969  auc=0.765
+  fold 3 done  |  baseline acc=0.972  conf=0.971  auc=0.761
+  fold 4 done  |  baseline acc=0.971  conf=0.972  auc=0.779
+  fold 5 done  |  baseline acc=0.971  conf=0.970  auc=0.771
+  fold 6 done  |  baseline acc=0.972  conf=0.973  auc=0.730
+  fold 7 done  |  baseline acc=0.972  conf=0.973  auc=0.787
+  fold 8 done  |  baseline acc=0.972  conf=0.972  auc=0.774
+  fold 9 done  |  baseline acc=0.972  conf=0.978  auc=0.768
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_conv-last_conviction_masking.pdf
+
+============================================================
+  roman_empire  |  GeneralSheaf  d=5  L=5  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.860  conf=0.891
+  fold 1 done  |  baseline acc=0.874  conf=0.884
+  fold 2 done  |  baseline acc=0.871  conf=0.890
+  fold 3 done  |  baseline acc=0.870  conf=0.891
+  fold 4 done  |  baseline acc=0.871  conf=0.888
+  fold 5 done  |  baseline acc=0.879  conf=0.895
+  fold 6 done  |  baseline acc=0.874  conf=0.887
+  fold 7 done  |  baseline acc=0.872  conf=0.892
+  fold 8 done  |  baseline acc=0.857  conf=0.891
+  fold 9 done  |  baseline acc=0.873  conf=0.884
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_conv-last_conviction_masking.pdf
+
+============================================================
+  tolokers  |  GeneralSheaf  d=3  L=4  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.819  conf=0.830  auc=0.848
+  fold 1 done  |  baseline acc=0.818  conf=0.822  auc=0.855
+  fold 2 done  |  baseline acc=0.833  conf=0.826  auc=0.861
+  fold 3 done  |  baseline acc=0.824  conf=0.817  auc=0.853
+  fold 4 done  |  baseline acc=0.828  conf=0.837  auc=0.866
+  fold 5 done  |  baseline acc=0.814  conf=0.817  auc=0.843
+  fold 6 done  |  baseline acc=0.818  conf=0.833  auc=0.856
+  fold 7 done  |  baseline acc=0.815  conf=0.832  auc=0.843
+  fold 8 done  |  baseline acc=0.819  conf=0.823  auc=0.853
+  fold 9 done  |  baseline acc=0.823  conf=0.819  auc=0.857
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_conv-last_conviction_masking.pdf
+
+============================================================
+  wisconsin  |  GeneralSheaf  d=2  L=2  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.824  conf=0.873
+  fold 1 done  |  baseline acc=0.882  conf=0.831
+  fold 2 done  |  baseline acc=0.863  conf=0.825
+  fold 3 done  |  baseline acc=0.902  conf=0.846
+  fold 4 done  |  baseline acc=0.863  conf=0.883
+  fold 5 done  |  baseline acc=0.902  conf=0.869
+  fold 6 done  |  baseline acc=0.863  conf=0.819
+  fold 7 done  |  baseline acc=0.863  conf=0.810
+  fold 8 done  |  baseline acc=0.843  conf=0.817
+  fold 9 done  |  baseline acc=0.882  conf=0.891
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_conv-last_conviction_masking.pdf
+
+Done. Plots in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/last/GeneralSheaf/normalised_true
+Discovering: model=GeneralSheaf  normalised=true
+  found: amazon_ratings  d=5  L=5  folds=10
+  found: citeseer  d=5  L=4  folds=10
+  found: cora  d=5  L=3  folds=10
+  found: cornell  d=2  L=2  folds=10
+  found: minesweeper  d=5  L=6  folds=10
+  found: pubmed  d=3  L=4  folds=10
+  found: questions  d=5  L=4  folds=10
+  found: roman_empire  d=5  L=5  folds=10
+  found: tolokers  d=3  L=4  folds=10
+  found: wisconsin  d=2  L=2  folds=10
+
+Found 10 experiment(s).
+
+============================================================
+  amazon_ratings  |  GeneralSheaf  d=5  L=5  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.474  conf=0.503
+  fold 1 done  |  baseline acc=0.457  conf=0.438
+  fold 2 done  |  baseline acc=0.452  conf=0.473
+  fold 3 done  |  baseline acc=0.461  conf=0.466
+  fold 4 done  |  baseline acc=0.468  conf=0.484
+  fold 5 done  |  baseline acc=0.459  conf=0.482
+  fold 6 done  |  baseline acc=0.466  conf=0.496
+  fold 7 done  |  baseline acc=0.462  conf=0.485
+  fold 8 done  |  baseline acc=0.472  conf=0.505
+  fold 9 done  |  baseline acc=0.466  conf=0.492
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_conv-avg_conviction_masking.pdf
+
+============================================================
+  citeseer  |  GeneralSheaf  d=5  L=4  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.624  conf=0.708
+  fold 1 done  |  baseline acc=0.694  conf=0.690
+  fold 2 done  |  baseline acc=0.656  conf=0.765
+  fold 3 done  |  baseline acc=0.615  conf=0.696
+  fold 4 done  |  baseline acc=0.637  conf=0.545
+  fold 5 done  |  baseline acc=0.586  conf=0.637
+  fold 6 done  |  baseline acc=0.709  conf=0.869
+  fold 7 done  |  baseline acc=0.666  conf=0.714
+  fold 8 done  |  baseline acc=0.660  conf=0.627
+  fold 9 done  |  baseline acc=0.684  conf=0.649
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conv-avg_conviction_masking.pdf
+
+============================================================
+  cora  |  GeneralSheaf  d=5  L=3  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.813  conf=0.824
+  fold 1 done  |  baseline acc=0.855  conf=0.862
+  fold 2 done  |  baseline acc=0.843  conf=0.826
+  fold 3 done  |  baseline acc=0.807  conf=0.823
+  fold 4 done  |  baseline acc=0.851  conf=0.862
+  fold 5 done  |  baseline acc=0.809  conf=0.809
+  fold 6 done  |  baseline acc=0.809  conf=0.827
+  fold 7 done  |  baseline acc=0.813  conf=0.836
+  fold 8 done  |  baseline acc=0.845  conf=0.843
+  fold 9 done  |  baseline acc=0.849  conf=0.859
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conv-avg_conviction_masking.pdf
+
+============================================================
+  cornell  |  GeneralSheaf  d=2  L=2  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.676  conf=0.845
+  fold 1 done  |  baseline acc=0.865  conf=0.873
+  fold 2 done  |  baseline acc=0.946  conf=0.857
+  fold 3 done  |  baseline acc=0.703  conf=0.818
+  fold 4 done  |  baseline acc=0.892  conf=0.869
+  fold 5 done  |  baseline acc=0.784  conf=0.806
+  fold 6 done  |  baseline acc=0.811  conf=0.856
+  fold 7 done  |  baseline acc=0.757  conf=0.802
+  fold 8 done  |  baseline acc=0.838  conf=0.822
+  fold 9 done  |  baseline acc=0.838  conf=0.783
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_conv-avg_conviction_masking.pdf
+
+============================================================
+  minesweeper  |  GeneralSheaf  d=5  L=6  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.900  conf=0.901  auc=0.951
+  fold 1 done  |  baseline acc=0.910  conf=0.900  auc=0.960
+  fold 2 done  |  baseline acc=0.910  conf=0.910  auc=0.962
+  fold 3 done  |  baseline acc=0.891  conf=0.901  auc=0.942
+  fold 4 done  |  baseline acc=0.895  conf=0.893  auc=0.947
+  fold 5 done  |  baseline acc=0.905  conf=0.896  auc=0.957
+  fold 6 done  |  baseline acc=0.906  conf=0.903  auc=0.963
+  fold 7 done  |  baseline acc=0.904  conf=0.909  auc=0.954
+  fold 8 done  |  baseline acc=0.908  conf=0.914  auc=0.957
+  fold 9 done  |  baseline acc=0.905  conf=0.900  auc=0.953
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_conv-avg_conviction_masking.pdf
+
+============================================================
+  pubmed  |  GeneralSheaf  d=3  L=4  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.892  conf=0.898
+  fold 1 done  |  baseline acc=0.899  conf=0.909
+  fold 2 done  |  baseline acc=0.886  conf=0.838
+  fold 3 done  |  baseline acc=0.891  conf=0.883
+  fold 4 done  |  baseline acc=0.895  conf=0.875
+  fold 5 done  |  baseline acc=0.888  conf=0.868
+  fold 6 done  |  baseline acc=0.893  conf=0.888
+  fold 7 done  |  baseline acc=0.888  conf=0.887
+  fold 8 done  |  baseline acc=0.883  conf=0.860
+  fold 9 done  |  baseline acc=0.892  conf=0.882
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d3_4L_Norm_True_conv-avg_conviction_masking.pdf
+
+============================================================
+  questions  |  GeneralSheaf  d=5  L=4  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.971  conf=0.972  auc=0.766
+  fold 1 done  |  baseline acc=0.972  conf=0.972  auc=0.765
+  fold 2 done  |  baseline acc=0.971  conf=0.969  auc=0.765
+  fold 3 done  |  baseline acc=0.972  conf=0.971  auc=0.761
+  fold 4 done  |  baseline acc=0.971  conf=0.972  auc=0.779
+  fold 5 done  |  baseline acc=0.971  conf=0.970  auc=0.771
+  fold 6 done  |  baseline acc=0.972  conf=0.973  auc=0.730
+  fold 7 done  |  baseline acc=0.972  conf=0.973  auc=0.787
+  fold 8 done  |  baseline acc=0.972  conf=0.972  auc=0.774
+  fold 9 done  |  baseline acc=0.972  conf=0.978  auc=0.768
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_conv-avg_conviction_masking.pdf
+
+============================================================
+  roman_empire  |  GeneralSheaf  d=5  L=5  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.860  conf=0.891
+  fold 1 done  |  baseline acc=0.874  conf=0.884
+  fold 2 done  |  baseline acc=0.871  conf=0.890
+  fold 3 done  |  baseline acc=0.870  conf=0.891
+  fold 4 done  |  baseline acc=0.871  conf=0.888
+  fold 5 done  |  baseline acc=0.879  conf=0.895
+  fold 6 done  |  baseline acc=0.874  conf=0.887
+  fold 7 done  |  baseline acc=0.872  conf=0.892
+  fold 8 done  |  baseline acc=0.857  conf=0.891
+  fold 9 done  |  baseline acc=0.873  conf=0.884
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_conv-avg_conviction_masking.pdf
+
+============================================================
+  tolokers  |  GeneralSheaf  d=3  L=4  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.819  conf=0.830  auc=0.848
+  fold 1 done  |  baseline acc=0.818  conf=0.822  auc=0.855
+  fold 2 done  |  baseline acc=0.833  conf=0.826  auc=0.861
+  fold 3 done  |  baseline acc=0.824  conf=0.817  auc=0.853
+  fold 4 done  |  baseline acc=0.828  conf=0.837  auc=0.866
+  fold 5 done  |  baseline acc=0.814  conf=0.817  auc=0.843
+  fold 6 done  |  baseline acc=0.818  conf=0.833  auc=0.856
+  fold 7 done  |  baseline acc=0.815  conf=0.832  auc=0.843
+  fold 8 done  |  baseline acc=0.819  conf=0.823  auc=0.853
+  fold 9 done  |  baseline acc=0.823  conf=0.819  auc=0.857
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_conv-avg_conviction_masking.pdf
+
+============================================================
+  wisconsin  |  GeneralSheaf  d=2  L=2  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.824  conf=0.873
+  fold 1 done  |  baseline acc=0.882  conf=0.831
+  fold 2 done  |  baseline acc=0.863  conf=0.825
+  fold 3 done  |  baseline acc=0.902  conf=0.846
+  fold 4 done  |  baseline acc=0.863  conf=0.883
+  fold 5 done  |  baseline acc=0.902  conf=0.869
+  fold 6 done  |  baseline acc=0.863  conf=0.819
+  fold 7 done  |  baseline acc=0.863  conf=0.810
+  fold 8 done  |  baseline acc=0.843  conf=0.817
+  fold 9 done  |  baseline acc=0.882  conf=0.891
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_conv-avg_conviction_masking.pdf
+
+Done. Plots in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/avg/GeneralSheaf/normalised_true

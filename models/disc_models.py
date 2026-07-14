@@ -13,6 +13,23 @@ from models import laplacian_builders as lb
 from lib import laplace as lap
 from models.sheaf_models import LocalConcatSheafLearner, EdgeWeightLearner, LocalConcatSheafLearnerVariant,  OpinionDynamicsFixedSheaf, OpinionDynamicsSheafInitLearner, RotationInvariantSheafLearner
 
+
+def _apply_gate(L, gate, final_d):
+    """Scale cross-node entries of the sparse diffusion Laplacian L by the
+    source node's outgoing-message gate; self-block entries (row and col
+    belong to the same node) are left at 1.0, so a gated node's own
+    self-retention is untouched — only what it sends to *other* nodes is
+    suppressed/attenuated. No-op (returns L unchanged) if gate is None, so
+    every non-gated forward call is completely unaffected."""
+    if gate is None:
+        return L
+    row, col = L[0]
+    node_row, node_col = row // final_d, col // final_d
+    is_self_block = node_row == node_col
+    entry_gate = torch.where(is_self_block, torch.ones_like(L[1]), gate[node_col])
+    return L[0], L[1] * entry_gate
+
+
 class DiscreteDiagSheafDiffusion(SheafDiffusion):
 
     def __init__(self, edge_index, args):
@@ -66,7 +83,7 @@ class DiscreteDiagSheafDiffusion(SheafDiffusion):
         # self._last_trans_maps = None
         # self._last_laplacian = None
 
-    def forward(self, x):
+    def forward(self, x, gate=None):
 
         #print(f"Input x size: {x.detach().cpu().numpy().shape}")
 
@@ -114,7 +131,8 @@ class DiscreteDiagSheafDiffusion(SheafDiffusion):
             if self.right_weights:
                 x = self.lin_right_weights[layer](x)
 
-            x = torch_sparse.spmm(L[0], L[1], x.size(0), x.size(0), x)
+            L_gated = _apply_gate(L, gate, self.final_d)
+            x = torch_sparse.spmm(L_gated[0], L_gated[1], x.size(0), x.size(0), x)
 
             if self.use_act:
                 x = F.elu(x)
@@ -198,7 +216,7 @@ class DiscreteBundleSheafDiffusion(SheafDiffusion):
         for weight_learner in self.weight_learners:
             weight_learner.update_edge_index(edge_index)
 
-    def forward(self, x):
+    def forward(self, x, gate=None):
         x = F.dropout(x, p=self.input_dropout, training=self.training)
         x = self.lin1(x)
         if self.use_act:
@@ -233,7 +251,8 @@ class DiscreteBundleSheafDiffusion(SheafDiffusion):
             x = self.left_right_linear(x, self.lin_left_weights[layer], self.lin_right_weights[layer])
 
             # Use the adjacency matrix rather than the diagonal
-            x = torch_sparse.spmm(L[0], L[1], x.size(0), x.size(0), x)
+            L_gated = _apply_gate(L, gate, self.final_d)
+            x = torch_sparse.spmm(L_gated[0], L_gated[1], x.size(0), x.size(0), x)
 
             if self.use_act:
                 x = F.elu(x)
@@ -302,7 +321,7 @@ class DiscreteGeneralSheafDiffusion(SheafDiffusion):
 
         return x
 
-    def forward(self, x):
+    def forward(self, x, gate=None):
         x = F.dropout(x, p=self.input_dropout, training=self.training)
         x = self.lin1(x)
         if self.use_act:
@@ -342,7 +361,8 @@ class DiscreteGeneralSheafDiffusion(SheafDiffusion):
             x = self.left_right_linear(x, self.lin_left_weights[layer], self.lin_right_weights[layer])
 
             # Use the adjacency matrix rather than the diagonal
-            x = torch_sparse.spmm(L[0], L[1], x.size(0), x.size(0), x)
+            L_gated = _apply_gate(L, gate, self.final_d)
+            x = torch_sparse.spmm(L_gated[0], L_gated[1], x.size(0), x.size(0), x)
 
             if self.use_act:
                 x = F.elu(x)
@@ -409,10 +429,10 @@ class DiscreteVanillaDiffusion(SheafDiffusion):
             x = right(x)
         return x
 
-    def forward(self, x):
+    def forward(self, x, gate=None):
         if self.use_embedding:
             x = F.dropout(x, p=self.input_dropout, training=self.training)
-            
+
             x = self.lin1(x)
             
             if self.use_act:
@@ -445,8 +465,9 @@ class DiscreteVanillaDiffusion(SheafDiffusion):
             x = self.left_right_linear(x, self.lin_left_weights[2*layer], self.lin_right_weights[2*layer])
             if self.use_act:
                 x = F.elu(x)
-            x = self.left_right_linear(x, self.lin_left_weights[2*layer+1], self.lin_right_weights[2*layer+1])    
-            x = torch_sparse.spmm(self.L[0], self.L[1], x.size(0), x.size(0), x)
+            x = self.left_right_linear(x, self.lin_left_weights[2*layer+1], self.lin_right_weights[2*layer+1])
+            L_gated = _apply_gate(self.L, gate, self.final_d)
+            x = torch_sparse.spmm(L_gated[0], L_gated[1], x.size(0), x.size(0), x)
 
             if self.use_act:
                 x = F.elu(x)
@@ -516,7 +537,7 @@ class DiscreteVanillaDiffusionAlt(SheafDiffusion):
             x = torch.transpose(x, 1, i+1)
         return x.reshape(self.graph_size*self.dim_list[0],-1)
 
-    def forward(self, x1):
+    def forward(self, x1, gate=None):
         x1 = F.dropout(x1, p=self.input_dropout, training=self.training)
         x1 = self.lin1(x1)
         if self.use_act:
@@ -547,7 +568,8 @@ class DiscreteVanillaDiffusionAlt(SheafDiffusion):
 
             x = self.linear_convs(x, layer)
 
-            x = torch_sparse.spmm(self.L[0], self.L[1], x.size(0), x.size(0), x)
+            L_gated = _apply_gate(self.L, gate, self.dim_list[0])
+            x = torch_sparse.spmm(L_gated[0], L_gated[1], x.size(0), x.size(0), x)
 
             if self.use_act:
                 x = F.elu(x)
@@ -602,7 +624,12 @@ class DiscreteJointSheafVanillaDiffusion(SheafDiffusion):
         MapsUpdated = torch.transpose(OldMaps.reshape(-1,self.d,self.d),-2,-1) - self.diff_strength*MapsUpdate
         return MapsUpdated.reshape(-1,self.d,self.d)
 
-    def forward(self, x):
+    def forward(self, x, gate=None):
+        # NOTE: gate is accepted for API consistency but NOT applied here — this
+        # class diffuses the sheaf maps themselves (returns prev_maps[-1], not
+        # classification logits) and has no trained checkpoints in this project;
+        # the node-block gating math in _apply_gate has not been verified against
+        # this class's different x/L structure.
         x = x.reshape(-1,1)
         x0, L = x, None
         prev_maps = [self.init_maps]
@@ -772,7 +799,7 @@ class DiscreteJointSheafDiffusionParams(SheafDiffusion):
         MapsUpdated = torch.transpose(((1 + torch.tanh(self.dual_epsilons[layer])).tile(self.edge_index.shape[1], 1)*OldMaps).reshape(-1,self.d,self.d),-2,-1) - self.diff_strength*MapsUpdate
         return MapsUpdated.reshape(-1,self.d,self.d)
 
-    def forward(self, x):
+    def forward(self, x, gate=None):
         x = F.dropout(x, p=self.input_dropout, training=self.training)
         x = self.lin1(x)
         if self.use_act:
@@ -839,11 +866,12 @@ class DiscreteJointSheafDiffusionParams(SheafDiffusion):
             if self.right_weights:
                 x = self.lin_right_weights[2*layer+1](x)
 
-            x = torch_sparse.spmm(L[0], L[1], x.size(0), x.size(0), x)
+            L_gated = _apply_gate(L, gate, self.final_d)
+            x = torch_sparse.spmm(L_gated[0], L_gated[1], x.size(0), x.size(0), x)
 
             if self.use_act:
                 x = F.elu(x)
-            
+
 
             x0 = (1 + torch.tanh(self.epsilons[layer]).tile(self.graph_size, 1)) * x0 - x
             x0 = self.layer_norm[layer](x0)
@@ -1006,7 +1034,7 @@ class DiscreteJointSheafDiffusionParamsAlt(SheafDiffusion):
         MapsUpdated = torch.transpose(((1 + torch.tanh(self.dual_epsilons[layer])).tile(self.graph_size, 1)*OldMaps).reshape(-1,self.d,self.d),-2,-1) - self.diff_strength*MapsUpdate
         return MapsUpdated.reshape(-1,self.d,self.d)
 
-    def forward(self, x):
+    def forward(self, x, gate=None):
         x = F.dropout(x, p=self.input_dropout, training=self.training)
         x = self.lin1(x)
         if self.use_act:
@@ -1052,8 +1080,9 @@ class DiscreteJointSheafDiffusionParamsAlt(SheafDiffusion):
             if self.right_weights:
                 x = self.lin_right_weights[layer](x)
             # Use the adjacency matrix rather than the diagonal
-            x = torch_sparse.spmm(L[0], L[1], x.size(0), x.size(0), x)            
-            
+            L_gated = _apply_gate(L, gate, self.final_d)
+            x = torch_sparse.spmm(L_gated[0], L_gated[1], x.size(0), x.size(0), x)
+
             if self.use_act:
                 x = F.elu(x)
 

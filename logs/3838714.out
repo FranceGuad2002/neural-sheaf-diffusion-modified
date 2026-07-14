@@ -1,0 +1,14 @@
+=== score=last  intervention=masking  mask_mode=zero ===
+Discovering: model=GeneralSheaf  normalised=true  intervention=masking
+  found: amazon_ratings  d=5  L=5  folds=10
+  found: citeseer  d=5  L=4  folds=10
+  found: cora  d=5  L=3  folds=10
+  found: cornell  d=2  L=2  folds=10
+  found: minesweeper  d=5  L=6  folds=10
+  found: pubmed  d=3  L=4  folds=10
+  found: questions  d=5  L=4  folds=10
+  found: roman_empire  d=5  L=5  folds=10
+  found: tolokers  d=3  L=4  folds=10
+  found: wisconsin  d=2  L=2  folds=10
+
+Found 10 experiment(s).
