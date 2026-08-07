@@ -1,0 +1,2117 @@
+[
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8878549695014953,
+    "se": 0.00129635649788785,
+    "pct_nodes_remaining": 0.9952325404473296,
+    "pct_edges_remaining": 0.9220016244021298,
+    "n_connected_components": 747.1,
+    "giant_component_pct": 0.9612699383376648,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21453730387447967,
+        "1": 0.38744796669868714,
+        "2": 0.3980147294268332
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.47744993120317997,
+      "val": 0.3215614330122815,
+      "test": 0.20098863578453854
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8842292129993439,
+    "se": 0.0012607317387412112,
+    "pct_nodes_remaining": 0.9760105492722018,
+    "pct_edges_remaining": 0.7738606623950907,
+    "n_connected_components": 1976.9,
+    "giant_component_pct": 0.8948815215131989,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2175750834260289,
+        "1": 0.38876529477196886,
+        "2": 0.3936596218020022
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46715859488671796,
+      "val": 0.327894408646851,
+      "test": 0.2049469964664311
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8825811266899108,
+    "se": 0.0016217071709387178,
+    "pct_nodes_remaining": 0.9520210985444033,
+    "pct_edges_remaining": 0.6803988809674217,
+    "n_connected_components": 2587.2,
+    "giant_component_pct": 0.8578765116402962,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.22355289421157684,
+        "1": 0.39532699307267816,
+        "2": 0.381120112715745
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45373182036119547,
+      "val": 0.33615683767513715,
+      "test": 0.21011134196366735
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8799442231655121,
+    "se": 0.0015120792118371777,
+    "pct_nodes_remaining": 0.9040421970888065,
+    "pct_edges_remaining": 0.5745984116956955,
+    "n_connected_components": 3130.4,
+    "giant_component_pct": 0.8158877980364657,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.23907013604543653,
+        "1": 0.3975696737551182,
+        "2": 0.36336019019944527
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4247405329593268,
+      "val": 0.35399719495091164,
+      "test": 0.22126227208976157
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8788286030292511,
+    "se": 0.0017879993860398346,
+    "pct_nodes_remaining": 0.8560632956332099,
+    "pct_edges_remaining": 0.5038038083205487,
+    "n_connected_components": 3408.3,
+    "giant_component_pct": 0.785739676521121,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2540377358490566,
+        "1": 0.393811320754717,
+        "2": 0.35215094339622643
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.3924995556608804,
+      "val": 0.37383731263700454,
+      "test": 0.23366313170211506
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8907707870006562,
+    "se": 0.001333393318789215,
+    "pct_nodes_remaining": 0.9952325404473296,
+    "pct_edges_remaining": 0.9973422976265681,
+    "n_connected_components": 5.4,
+    "giant_component_pct": 0.9997350048412577,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21208239940228413,
+        "1": 0.38926246130857084,
+        "2": 0.39865513928914503
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.47744993120317997,
+      "val": 0.3215614330122815,
+      "test": 0.20098863578453854
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8904665291309357,
+    "se": 0.0013262338649809174,
+    "pct_nodes_remaining": 0.9760105492722018,
+    "pct_edges_remaining": 0.985721054056493,
+    "n_connected_components": 28.9,
+    "giant_component_pct": 0.9983267511951777,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2056729699666296,
+        "1": 0.3914349276974416,
+        "2": 0.4028921023359288
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46715859488671796,
+      "val": 0.327894408646851,
+      "test": 0.2049469964664311
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8906947195529937,
+    "se": 0.001287598888544143,
+    "pct_nodes_remaining": 0.9520210985444033,
+    "pct_edges_remaining": 0.9697838642721776,
+    "n_connected_components": 62.9,
+    "giant_component_pct": 0.9961802780885408,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.1959610191381942,
+        "1": 0.39567922977574266,
+        "2": 0.40835975108606315
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45373182036119547,
+      "val": 0.33615683767513715,
+      "test": 0.21011134196366735
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.890872198343277,
+    "se": 0.0013374387169077086,
+    "pct_nodes_remaining": 0.9040421970888065,
+    "pct_edges_remaining": 0.933821406010288,
+    "n_connected_components": 148.9,
+    "giant_component_pct": 0.9902440392706872,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.1801611411966715,
+        "1": 0.40153216219786025,
+        "2": 0.4183066966054682
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4247405329593268,
+      "val": 0.35399719495091164,
+      "test": 0.22126227208976157
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8901876211166382,
+    "se": 0.00140139823072447,
+    "pct_nodes_remaining": 0.8560632956332099,
+    "pct_edges_remaining": 0.8936625755798214,
+    "n_connected_components": 255.1,
+    "giant_component_pct": 0.9822501333017358,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.16377358490566038,
+        "1": 0.40815094339622643,
+        "2": 0.4280754716981132
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.3924995556608804,
+      "val": 0.37383731263700454,
+      "test": 0.23366313170211506
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8889959335327149,
+    "se": 0.001438682344024396,
+    "pct_nodes_remaining": 0.9952325404473296,
+    "pct_edges_remaining": 0.8933760490930421,
+    "n_connected_components": 616.9,
+    "giant_component_pct": 0.9682668297406103,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21485750880563562,
+        "1": 0.38851531646920695,
+        "2": 0.39662717472515746
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.47744993120317997,
+      "val": 0.3215614330122815,
+      "test": 0.20098863578453854
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8856997966766358,
+    "se": 0.0015800844478559611,
+    "pct_nodes_remaining": 0.9760105492722018,
+    "pct_edges_remaining": 0.7088191498962189,
+    "n_connected_components": 2001.5,
+    "giant_component_pct": 0.8938578258158385,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2171301446051168,
+        "1": 0.38954393770856505,
+        "2": 0.39332591768631814
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46715859488671796,
+      "val": 0.327894408646851,
+      "test": 0.2049469964664311
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8817951321601868,
+    "se": 0.001631725987313195,
+    "pct_nodes_remaining": 0.9520210985444033,
+    "pct_edges_remaining": 0.5765296453388682,
+    "n_connected_components": 3428.4,
+    "giant_component_pct": 0.8105108944648659,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2190912293060937,
+        "1": 0.3902782669954209,
+        "2": 0.3906305036984854
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45373182036119547,
+      "val": 0.33615683767513715,
+      "test": 0.21011134196366735
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8789553642272949,
+    "se": 0.0015692238448888757,
+    "pct_nodes_remaining": 0.9040421970888065,
+    "pct_edges_remaining": 0.4413726197996571,
+    "n_connected_components": 4918.3,
+    "giant_component_pct": 0.7060308555399719,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.22018227446836613,
+        "1": 0.3877955355963545,
+        "2": 0.3920221899352794
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4247405329593268,
+      "val": 0.35399719495091164,
+      "test": 0.22126227208976157
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8778143942356109,
+    "se": 0.0017498402263648968,
+    "pct_nodes_remaining": 0.8560632956332099,
+    "pct_edges_remaining": 0.3847351322082844,
+    "n_connected_components": 5290.7,
+    "giant_component_pct": 0.6613069494638308,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2218867924528302,
+        "1": 0.3868679245283019,
+        "2": 0.3912452830188679
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.3924995556608804,
+      "val": 0.37383731263700454,
+      "test": 0.23366313170211506
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8908214926719665,
+    "se": 0.0013243960521179385,
+    "pct_nodes_remaining": 0.9952325404473296,
+    "pct_edges_remaining": 0.9978792527750203,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21218913437933612,
+        "1": 0.38968940121677875,
+        "2": 0.39812146440388513
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.47744993120317997,
+      "val": 0.3215614330122815,
+      "test": 0.20098863578453854
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8908975720405579,
+    "se": 0.0013654343554431517,
+    "pct_nodes_remaining": 0.9760105492722018,
+    "pct_edges_remaining": 0.9893285804530277,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21167964404894327,
+        "1": 0.3897664071190211,
+        "2": 0.3985539488320356
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46715859488671796,
+      "val": 0.327894408646851,
+      "test": 0.2049469964664311
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8908468604087829,
+    "se": 0.0014127276942373067,
+    "pct_nodes_remaining": 0.9520210985444033,
+    "pct_edges_remaining": 0.9786571609060554,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2119290830104497,
+        "1": 0.38980861805800165,
+        "2": 0.3982622989315487
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45373182036119547,
+      "val": 0.33615683767513715,
+      "test": 0.21011134196366735
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8909736275672913,
+    "se": 0.0014525561924067741,
+    "pct_nodes_remaining": 0.9040421970888065,
+    "pct_edges_remaining": 0.9573143218121108,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21450270770043586,
+        "1": 0.3871351208558975,
+        "2": 0.39836217144366665
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4247405329593268,
+      "val": 0.35399719495091164,
+      "test": 0.22126227208976157
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8911764621734619,
+    "se": 0.0016321212652529967,
+    "pct_nodes_remaining": 0.8560632956332099,
+    "pct_edges_remaining": 0.9359714827181662,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21222641509433962,
+        "1": 0.3852075471698113,
+        "2": 0.40256603773584904
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.3924995556608804,
+      "val": 0.37383731263700454,
+      "test": 0.23366313170211506
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8904411733150482,
+    "se": 0.0015328522353845826,
+    "pct_nodes_remaining": 0.9952325404473296,
+    "pct_edges_remaining": 0.9317841350058659,
+    "n_connected_components": 314.9,
+    "giant_component_pct": 0.9838454874382101,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21411036396627176,
+        "1": 0.3893691962856228,
+        "2": 0.39652043974810547
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.47744993120317997,
+      "val": 0.3215614330122815,
+      "test": 0.20098863578453854
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.88919877409935,
+    "se": 0.0013808566726846022,
+    "pct_nodes_remaining": 0.9760105492722018,
+    "pct_edges_remaining": 0.8240456637487592,
+    "n_connected_components": 943.7,
+    "giant_component_pct": 0.9492776969445021,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21401557285873193,
+        "1": 0.39087875417130147,
+        "2": 0.3951056729699666
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46715859488671796,
+      "val": 0.327894408646851,
+      "test": 0.2049469964664311
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8881085097789765,
+    "se": 0.0012565672949095793,
+    "pct_nodes_remaining": 0.9520210985444033,
+    "pct_edges_remaining": 0.7751173179315947,
+    "n_connected_components": 1443.9,
+    "giant_component_pct": 0.9174364711523093,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2120464952448045,
+        "1": 0.38863449571445347,
+        "2": 0.399319009040742
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45373182036119547,
+      "val": 0.33615683767513715,
+      "test": 0.21011134196366735
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8889705896377563,
+    "se": 0.0014349441332041654,
+    "pct_nodes_remaining": 0.9040421970888065,
+    "pct_edges_remaining": 0.7527908131035105,
+    "n_connected_components": 1569.3,
+    "giant_component_pct": 0.9021150070126227,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.1993131686699247,
+        "1": 0.3870030379078061,
+        "2": 0.4136837934222692
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4247405329593268,
+      "val": 0.35399719495091164,
+      "test": 0.22126227208976157
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.889477676153183,
+    "se": 0.0012151595720896705,
+    "pct_nodes_remaining": 0.8560632956332099,
+    "pct_edges_remaining": 0.7621175886652829,
+    "n_connected_components": 1268.6,
+    "giant_component_pct": 0.9133597961964574,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.18535849056603773,
+        "1": 0.3932075471698113,
+        "2": 0.4214339622641509
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.3924995556608804,
+      "val": 0.37383731263700454,
+      "test": 0.23366313170211506
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8908468544483185,
+    "se": 0.0013814417687784105,
+    "pct_nodes_remaining": 0.9952325404473296,
+    "pct_edges_remaining": 0.997326504828084,
+    "n_connected_components": 2.4,
+    "giant_component_pct": 0.9999031748458442,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21368342405806381,
+        "1": 0.38862205144625894,
+        "2": 0.3976945244956772
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.47744993120317997,
+      "val": 0.3215614330122815,
+      "test": 0.20098863578453854
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8907707870006562,
+    "se": 0.0014157055838160848,
+    "pct_nodes_remaining": 0.9760105492722018,
+    "pct_edges_remaining": 0.9853217218662575,
+    "n_connected_components": 12.5,
+    "giant_component_pct": 0.9991270006235711,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21468298109010012,
+        "1": 0.3870967741935484,
+        "2": 0.3982202447163515
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46715859488671796,
+      "val": 0.327894408646851,
+      "test": 0.2049469964664311
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8909989833831787,
+    "se": 0.0013843207775861616,
+    "pct_nodes_remaining": 0.9520210985444033,
+    "pct_edges_remaining": 0.9685858677014709,
+    "n_connected_components": 39.7,
+    "giant_component_pct": 0.9974588460923766,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21603851121286838,
+        "1": 0.3875777856052601,
+        "2": 0.39638370318187155
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45373182036119547,
+      "val": 0.33615683767513715,
+      "test": 0.21011134196366735
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8898833632469177,
+    "se": 0.0013592975194922738,
+    "pct_nodes_remaining": 0.9040421970888065,
+    "pct_edges_remaining": 0.9301123544806427,
+    "n_connected_components": 106.5,
+    "giant_component_pct": 0.9927854137447405,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.22401267996301677,
+        "1": 0.3852859595826179,
+        "2": 0.3907013604543653
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4247405329593268,
+      "val": 0.35399719495091164,
+      "test": 0.22126227208976157
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8904411792755127,
+    "se": 0.0014690369608441538,
+    "pct_nodes_remaining": 0.8560632956332099,
+    "pct_edges_remaining": 0.8864813644977889,
+    "n_connected_components": 192.7,
+    "giant_component_pct": 0.9868653356241482,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2398490566037736,
+        "1": 0.37645283018867925,
+        "2": 0.38369811320754715
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.3924995556608804,
+      "val": 0.37383731263700454,
+      "test": 0.23366313170211506
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8899594247341156,
+    "se": 0.001368228571734076,
+    "pct_nodes_remaining": 0.9952325404473296,
+    "pct_edges_remaining": 0.963940528833138,
+    "n_connected_components": 282.7,
+    "giant_component_pct": 0.9854558426336443,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21496424378268758,
+        "1": 0.38915572633151885,
+        "2": 0.39588002988579357
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.47744993120317997,
+      "val": 0.3215614330122815,
+      "test": 0.20098863578453854
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8890973687171936,
+    "se": 0.0012914613427073413,
+    "pct_nodes_remaining": 0.9760105492722018,
+    "pct_edges_remaining": 0.8963022290407003,
+    "n_connected_components": 642.3,
+    "giant_component_pct": 0.9655373103304926,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21824249165739712,
+        "1": 0.3902113459399333,
+        "2": 0.39154616240266965
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46715859488671796,
+      "val": 0.327894408646851,
+      "test": 0.2049469964664311
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8879310369491578,
+    "se": 0.0013349333443282746,
+    "pct_nodes_remaining": 0.9520210985444033,
+    "pct_edges_remaining": 0.833629636314412,
+    "n_connected_components": 908.9,
+    "giant_component_pct": 0.9492781418145009,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.222143947399319,
+        "1": 0.389573793589292,
+        "2": 0.38828225901138896
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45373182036119547,
+      "val": 0.33615683767513715,
+      "test": 0.21011134196366735
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8865618646144867,
+    "se": 0.0012354915612345448,
+    "pct_nodes_remaining": 0.9040421970888065,
+    "pct_edges_remaining": 0.7292550311343742,
+    "n_connected_components": 1363.1,
+    "giant_component_pct": 0.918844319775596,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.226390173028662,
+        "1": 0.38911636507726854,
+        "2": 0.38449346189406947
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4247405329593268,
+      "val": 0.35399719495091164,
+      "test": 0.22126227208976157
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8845334649085999,
+    "se": 0.001364089751005431,
+    "pct_nodes_remaining": 0.8560632956332099,
+    "pct_edges_remaining": 0.6459006407363956,
+    "n_connected_components": 1729.0,
+    "giant_component_pct": 0.8898098228568043,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2270188679245283,
+        "1": 0.387622641509434,
+        "2": 0.3853584905660377
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.3924995556608804,
+      "val": 0.37383731263700454,
+      "test": 0.23366313170211506
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8906947195529937,
+    "se": 0.0013044638577174663,
+    "pct_nodes_remaining": 0.9952325404473296,
+    "pct_edges_remaining": 0.9949801461961917,
+    "n_connected_components": 35.7,
+    "giant_component_pct": 0.9979972481271977,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21293627921869998,
+        "1": 0.38958266623972676,
+        "2": 0.3974810545415733
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.47744993120317997,
+      "val": 0.3215614330122815,
+      "test": 0.20098863578453854
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8903397440910339,
+    "se": 0.001434853700159817,
+    "pct_nodes_remaining": 0.9760105492722018,
+    "pct_edges_remaining": 0.9694025809944951,
+    "n_connected_components": 150.0,
+    "giant_component_pct": 0.9913635418831845,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21401557285873193,
+        "1": 0.38987764182424917,
+        "2": 0.39610678531701893
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46715859488671796,
+      "val": 0.327894408646851,
+      "test": 0.2049469964664311
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8903397560119629,
+    "se": 0.0012668594881239754,
+    "pct_nodes_remaining": 0.9520210985444033,
+    "pct_edges_remaining": 0.9366054507715911,
+    "n_connected_components": 286.9,
+    "giant_component_pct": 0.9830270097490809,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21157684630738524,
+        "1": 0.3933309850886462,
+        "2": 0.3950921686039685
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45373182036119547,
+      "val": 0.33615683767513715,
+      "test": 0.21011134196366735
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8899594306945801,
+    "se": 0.0013330076659392848,
+    "pct_nodes_remaining": 0.9040421970888065,
+    "pct_edges_remaining": 0.8765973287609421,
+    "n_connected_components": 530.2,
+    "giant_component_pct": 0.9669340813464234,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21054021925769384,
+        "1": 0.3966450931184784,
+        "2": 0.39281468762382776
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4247405329593268,
+      "val": 0.35399719495091164,
+      "test": 0.22126227208976157
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8895284056663513,
+    "se": 0.001209117721300882,
+    "pct_nodes_remaining": 0.8560632956332099,
+    "pct_edges_remaining": 0.8168892699214872,
+    "n_connected_components": 743.2,
+    "giant_component_pct": 0.9514603945731382,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2049811320754717,
+        "1": 0.4001509433962264,
+        "2": 0.3948679245283019
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.3924995556608804,
+      "val": 0.37383731263700454,
+      "test": 0.23366313170211506
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8907961428165436,
+    "se": 0.001356457453545967,
+    "pct_nodes_remaining": 0.9952325404473296,
+    "pct_edges_remaining": 0.990607797130223,
+    "n_connected_components": 43.3,
+    "giant_component_pct": 0.9976660041787697,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21400362898921976,
+        "1": 0.38904899135446686,
+        "2": 0.3969473796563134
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.47744993120317997,
+      "val": 0.3215614330122815,
+      "test": 0.20098863578453854
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8893509030342102,
+    "se": 0.001530230841953871,
+    "pct_nodes_remaining": 0.9760105492722018,
+    "pct_edges_remaining": 0.9515499503654905,
+    "n_connected_components": 232.1,
+    "giant_component_pct": 0.9873155269174806,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.21279199110122357,
+        "1": 0.3901001112347052,
+        "2": 0.3971078976640712
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46715859488671796,
+      "val": 0.327894408646851,
+      "test": 0.2049469964664311
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8892241299152375,
+    "se": 0.0017373053300238947,
+    "pct_nodes_remaining": 0.9520210985444033,
+    "pct_edges_remaining": 0.9059313238877358,
+    "n_connected_components": 427.5,
+    "giant_component_pct": 0.9756645889936605,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2142773276975461,
+        "1": 0.3891041446518727,
+        "2": 0.3966185276505812
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45373182036119547,
+      "val": 0.33615683767513715,
+      "test": 0.21011134196366735
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8885649144649506,
+    "se": 0.0014911005876847407,
+    "pct_nodes_remaining": 0.9040421970888065,
+    "pct_edges_remaining": 0.8155040158830429,
+    "n_connected_components": 856.3,
+    "giant_component_pct": 0.9480785413744741,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2168802007660811,
+        "1": 0.3851538766345265,
+        "2": 0.3979659225993924
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4247405329593268,
+      "val": 0.35399719495091164,
+      "test": 0.22126227208976157
+    }
+  },
+  {
+    "dataset": "pubmed",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.886942183971405,
+    "se": 0.0014232483912621314,
+    "pct_nodes_remaining": 0.8560632956332099,
+    "pct_edges_remaining": 0.7343786661853623,
+    "n_connected_components": 1220.9,
+    "giant_component_pct": 0.9218911072930862,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.2131320754716981,
+        "1": 0.3852075471698113,
+        "2": 0.4016603773584906
+      },
+      "val": {
+        "0": 0.19952456418383518,
+        "1": 0.3998415213946117,
+        "2": 0.4006339144215531
+      },
+      "test": {
+        "0": 0.2086713995943205,
+        "1": 0.3894523326572008,
+        "2": 0.4018762677484787
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.4799411675204139,
+      "val": 0.32002840188669673,
+      "test": 0.20003043059288939
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.3924995556608804,
+      "val": 0.37383731263700454,
+      "test": 0.23366313170211506
+    }
+  }
+]

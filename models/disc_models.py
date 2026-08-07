@@ -11,7 +11,8 @@ from torch import nn
 from models.sheaf_base import SheafDiffusion
 from models import laplacian_builders as lb
 from lib import laplace as lap
-from models.sheaf_models import LocalConcatSheafLearner, EdgeWeightLearner, LocalConcatSheafLearnerVariant,  OpinionDynamicsFixedSheaf, OpinionDynamicsSheafInitLearner, RotationInvariantSheafLearner
+from models.sheaf_models import LocalConcatSheafLearner, EdgeWeightLearner, DiagEdgeWeightLearner, LocalNodeSheafLearner, LocalConcatSheafLearnerVariant,  OpinionDynamicsFixedSheaf, OpinionDynamicsSheafInitLearner, RotationInvariantSheafLearner
+from models.orthogonal import Orthogonal
 
 
 def _apply_gate(L, gate, final_d):
@@ -259,6 +260,246 @@ class DiscreteBundleSheafDiffusion(SheafDiffusion):
 
             x0 = (1 + torch.tanh(self.epsilons[layer]).tile(self.graph_size, 1)) * x0 - x
             x = x0
+        self._last_node_norms[self.layers] = x.detach().reshape(self.graph_size, -1).norm(dim=1).cpu()
+        x = x.reshape(self.graph_size, -1)
+        x = self.lin2(x)
+        return F.log_softmax(x, dim=1)
+
+
+class DiscreteBochnerSheafDiffusion(SheafDiffusion):
+    """Bundle sheaf diffusion whose restriction maps are F_{v<=e} = Sigma_e @ O_{v<=e}: an
+    orthogonal map individual to each direction, scaled by a diagonal Sigma_e shared symmetrically
+    between both endpoints of edge e. Reduces to BundleSheaf when Sigma_e = I.
+
+    Because F_{v<=e}^T F_{v<=e} = O_{v<=e}^T Sigma_e^2 O_{v<=e} is a genuine d x d matrix (not a
+    multiple of the identity like in the scalar-weighted Bundle case), the Laplacian diagonal
+    blocks can't use NormConnectionLaplacianBuilder's scalar-degree shortcut and are instead built
+    with GeneralLaplacianBuilder, which accumulates them densely.
+    """
+
+    def __init__(self, edge_index, args):
+        super(DiscreteBochnerSheafDiffusion, self).__init__(edge_index, args)
+        assert args['d'] > 1
+
+        self.lin_right_weights = nn.ModuleList()
+        self.lin_left_weights = nn.ModuleList()
+
+        if self.right_weights:
+            for i in range(self.layers):
+                self.lin_right_weights.append(nn.Linear(self.hidden_channels, self.hidden_channels, bias=False))
+                nn.init.orthogonal_(self.lin_right_weights[-1].weight.data)
+        if self.left_weights:
+            for i in range(self.layers):
+                self.lin_left_weights.append(nn.Linear(self.final_d, self.final_d, bias=False))
+                nn.init.eye_(self.lin_left_weights[-1].weight.data)
+
+        self.sheaf_learners = nn.ModuleList()
+        self.sigma_learners = nn.ModuleList()
+
+        num_sheaf_learners = min(self.layers, self.layers if self.nonlinear else 1)
+        for i in range(num_sheaf_learners):
+            if self.sparse_learner:
+                self.sheaf_learners.append(LocalConcatSheafLearnerVariant(self.final_d,
+                    self.hidden_channels, out_shape=(self.get_param_size(),), sheaf_act=self.sheaf_act))
+            else:
+                self.sheaf_learners.append(LocalConcatSheafLearner(
+                    self.hidden_dim, out_shape=(self.get_param_size(),), sheaf_act=self.sheaf_act))
+            self.sigma_learners.append(DiagEdgeWeightLearner(self.hidden_dim, self.d, scale=1.0))
+
+        self.orth_transform = Orthogonal(d=self.d, orthogonal_map=self.orth_trans)
+        self.laplacian_builder = lb.GeneralLaplacianBuilder(
+            self.graph_size, edge_index, d=self.d, add_hp=self.add_hp, add_lp=self.add_lp,
+            normalised=self.normalised, deg_normalised=self.deg_normalised)
+
+        self.epsilons = nn.ParameterList()
+        for i in range(self.layers):
+            self.epsilons.append(nn.Parameter(torch.zeros((self.final_d, 1))))
+
+        self.lin1 = nn.Linear(self.input_dim, self.hidden_dim)
+        if self.second_linear:
+            self.lin12 = nn.Linear(self.hidden_dim, self.hidden_dim)
+        self.lin2 = nn.Linear(self.hidden_dim, self.output_dim)
+
+    def get_param_size(self):
+        if self.orth_trans in ['matrix_exp', 'cayley']:
+            return self.d * (self.d + 1) // 2
+        else:
+            return self.d * (self.d - 1) // 2
+
+    def left_right_linear(self, x, left, right):
+        if self.left_weights:
+            x = x.t().reshape(-1, self.final_d)
+            x = left(x)
+            x = x.reshape(-1, self.graph_size * self.final_d).t()
+
+        if self.right_weights:
+            x = right(x)
+
+        return x
+
+    def forward(self, x, gate=None):
+        x = F.dropout(x, p=self.input_dropout, training=self.training)
+        x = self.lin1(x)
+        if self.use_act:
+            x = F.elu(x)
+        x = F.dropout(x, p=self.dropout, training=self.training)
+        if self.second_linear:
+            x = self.lin12(x)
+        x = x.view(self.graph_size * self.final_d, -1)
+
+        x0, L = x, None
+        self._last_maps = {}
+        self._last_trans_maps = {}
+        self._last_laplacian = {}
+        self._last_node_norms = {}
+
+        for layer in range(self.layers):
+            self._last_node_norms[layer] = x.detach().reshape(self.graph_size, -1).norm(dim=1).cpu()
+            if layer == 0 or self.nonlinear:
+                x_maps = F.dropout(x, p=self.dropout if layer > 0 else 0., training=self.training)
+                x_maps = x_maps.reshape(self.graph_size, -1)
+                map_params = self.sheaf_learners[layer](x_maps, self.edge_index)
+                orth_maps = self.orth_transform(map_params)
+                sigma = self.sigma_learners[layer](x_maps, self.edge_index)
+                maps = orth_maps * sigma.unsqueeze(-1)
+                L, trans_maps = self.laplacian_builder(maps)
+                self.sheaf_learners[layer].set_L(trans_maps)
+                self._last_maps[layer] = maps
+                self._last_trans_maps[layer] = trans_maps
+                self._last_laplacian[layer] = L
+
+            x = F.dropout(x, p=self.dropout, training=self.training)
+
+            x = self.left_right_linear(x, self.lin_left_weights[layer], self.lin_right_weights[layer])
+
+            # Use the adjacency matrix rather than the diagonal
+            L_gated = _apply_gate(L, gate, self.final_d)
+            x = torch_sparse.spmm(L_gated[0], L_gated[1], x.size(0), x.size(0), x)
+
+            if self.use_act:
+                x = F.elu(x)
+
+            x0 = (1 + torch.tanh(self.epsilons[layer]).tile(self.graph_size, 1)) * x0 - x
+            x = x0
+
+        # To detect the numerical instabilities of SVD (used by GeneralLaplacianBuilder's normalisation).
+        assert torch.all(torch.isfinite(x))
+        self._last_node_norms[self.layers] = x.detach().reshape(self.graph_size, -1).norm(dim=1).cpu()
+        x = x.reshape(self.graph_size, -1)
+        x = self.lin2(x)
+        return F.log_softmax(x, dim=1)
+
+
+class DiscreteBochnerFlatSheafDiffusion(SheafDiffusion):
+    """Flat variant of BochnerSheaf: each vertex v has a single orthogonal map O_v shared by all
+    its incident edges (O_{v<=e} = O_v for every e touching v), so the restriction map for edge e
+    from v's side is F_{v<=e} = Sigma_e @ O_v. Since O_v doesn't depend on the edge, the diagonal
+    block collapses to O_v^T @ diag(sum_e Sigma_e^2) @ O_v -- a free spectral decomposition -- and
+    normalisation reduces to pure per-channel vector arithmetic (see FlatBochnerLaplacianBuilder),
+    with no SVD/Cholesky/matrix inversion anywhere. Equivalent to DiscreteDiagSheafDiffusion after
+    a per-node change of basis by O_v -- a curvature-zero ("flat") connection.
+    """
+
+    def __init__(self, edge_index, args):
+        super(DiscreteBochnerFlatSheafDiffusion, self).__init__(edge_index, args)
+        assert args['d'] > 1
+
+        self.lin_right_weights = nn.ModuleList()
+        self.lin_left_weights = nn.ModuleList()
+
+        if self.right_weights:
+            for i in range(self.layers):
+                self.lin_right_weights.append(nn.Linear(self.hidden_channels, self.hidden_channels, bias=False))
+                nn.init.orthogonal_(self.lin_right_weights[-1].weight.data)
+        if self.left_weights:
+            for i in range(self.layers):
+                self.lin_left_weights.append(nn.Linear(self.final_d, self.final_d, bias=False))
+                nn.init.eye_(self.lin_left_weights[-1].weight.data)
+
+        self.sheaf_learners = nn.ModuleList()
+        self.sigma_learners = nn.ModuleList()
+
+        num_sheaf_learners = min(self.layers, self.layers if self.nonlinear else 1)
+        for i in range(num_sheaf_learners):
+            self.sheaf_learners.append(LocalNodeSheafLearner(
+                self.hidden_dim, out_shape=(self.get_param_size(),), sheaf_act=self.sheaf_act))
+            self.sigma_learners.append(DiagEdgeWeightLearner(self.hidden_dim, self.d, scale=1.0))
+
+        self.orth_transform = Orthogonal(d=self.d, orthogonal_map=self.orth_trans)
+        self.laplacian_builder = lb.FlatBochnerLaplacianBuilder(
+            self.graph_size, edge_index, d=self.d, add_hp=self.add_hp, add_lp=self.add_lp,
+            normalised=self.normalised, deg_normalised=self.deg_normalised)
+
+        self.epsilons = nn.ParameterList()
+        for i in range(self.layers):
+            self.epsilons.append(nn.Parameter(torch.zeros((self.final_d, 1))))
+
+        self.lin1 = nn.Linear(self.input_dim, self.hidden_dim)
+        if self.second_linear:
+            self.lin12 = nn.Linear(self.hidden_dim, self.hidden_dim)
+        self.lin2 = nn.Linear(self.hidden_dim, self.output_dim)
+
+    def get_param_size(self):
+        if self.orth_trans in ['matrix_exp', 'cayley']:
+            return self.d * (self.d + 1) // 2
+        else:
+            return self.d * (self.d - 1) // 2
+
+    def left_right_linear(self, x, left, right):
+        if self.left_weights:
+            x = x.t().reshape(-1, self.final_d)
+            x = left(x)
+            x = x.reshape(-1, self.graph_size * self.final_d).t()
+
+        if self.right_weights:
+            x = right(x)
+
+        return x
+
+    def forward(self, x, gate=None):
+        x = F.dropout(x, p=self.input_dropout, training=self.training)
+        x = self.lin1(x)
+        if self.use_act:
+            x = F.elu(x)
+        x = F.dropout(x, p=self.dropout, training=self.training)
+        if self.second_linear:
+            x = self.lin12(x)
+        x = x.view(self.graph_size * self.final_d, -1)
+
+        x0, L = x, None
+        self._last_maps = {}
+        self._last_trans_maps = {}
+        self._last_laplacian = {}
+        self._last_node_norms = {}
+
+        for layer in range(self.layers):
+            self._last_node_norms[layer] = x.detach().reshape(self.graph_size, -1).norm(dim=1).cpu()
+            if layer == 0 or self.nonlinear:
+                x_maps = F.dropout(x, p=self.dropout if layer > 0 else 0., training=self.training)
+                x_maps = x_maps.reshape(self.graph_size, -1)
+                map_params = self.sheaf_learners[layer](x_maps)
+                O = self.orth_transform(map_params)
+                sigma = self.sigma_learners[layer](x_maps, self.edge_index)
+                L, trans_maps = self.laplacian_builder(O, sigma)
+                self.sheaf_learners[layer].set_L(trans_maps)
+                self._last_maps[layer] = O
+                self._last_trans_maps[layer] = trans_maps
+                self._last_laplacian[layer] = L
+
+            x = F.dropout(x, p=self.dropout, training=self.training)
+
+            x = self.left_right_linear(x, self.lin_left_weights[layer], self.lin_right_weights[layer])
+
+            # Use the adjacency matrix rather than the diagonal
+            L_gated = _apply_gate(L, gate, self.final_d)
+            x = torch_sparse.spmm(L_gated[0], L_gated[1], x.size(0), x.size(0), x)
+
+            if self.use_act:
+                x = F.elu(x)
+
+            x0 = (1 + torch.tanh(self.epsilons[layer]).tile(self.graph_size, 1)) * x0 - x
+            x = x0
+
         self._last_node_norms[self.layers] = x.detach().reshape(self.graph_size, -1).norm(dim=1).cpu()
         x = x.reshape(self.graph_size, -1)
         x = self.lin2(x)

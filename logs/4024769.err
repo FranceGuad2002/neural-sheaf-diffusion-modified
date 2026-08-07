@@ -1,0 +1,8 @@
+usage: conviction_masking_forward.py [-h] --model MODEL --normalised
+                                     {true,false} [--map_type MAP_TYPE]
+                                     [--cuda CUDA] [--dataset DATASET]
+                                     [--conviction_score {last,avg,avg_z}]
+                                     [--intervention {masking,pruning,gating}]
+                                     [--mask_mode {zero,mean}]
+                                     [--gate_mode {hard,soft}]
+conviction_masking_forward.py: error: argument --mask_mode: invalid choice: '' (choose from 'zero', 'mean')

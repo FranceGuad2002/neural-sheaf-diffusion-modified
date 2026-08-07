@@ -1,0 +1,1982 @@
+[
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8527088095025068,
+    "se": 0.0022432404087365417,
+    "pct_nodes_remaining": 0.9950671882973297,
+    "pct_edges_remaining": 0.9379512524084779,
+    "n_connected_components": 14.5,
+    "giant_component_pct": 0.9987179487179487,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7806218862738361,
+        "1": 0.2193781137261639
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4975213675213675,
+      "val": 0.25119658119658117,
+      "test": 0.2512820512820513
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8512982642362721,
+    "se": 0.002160379000283175,
+    "pct_nodes_remaining": 0.9750807960537508,
+    "pct_edges_remaining": 0.8452427745664739,
+    "n_connected_components": 34.6,
+    "giant_component_pct": 0.9967466201482775,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7755102040816326,
+        "1": 0.22448979591836735
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4872219799389446,
+      "val": 0.2563453990405582,
+      "test": 0.2564326210204972
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8500053208939645,
+    "se": 0.0022548036902349275,
+    "pct_nodes_remaining": 0.950076543629869,
+    "pct_edges_remaining": 0.7738526011560694,
+    "n_connected_components": 57.8,
+    "giant_component_pct": 0.9944141079581058,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7687074829931972,
+        "1": 0.23129251700680273
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4737266135529496,
+      "val": 0.2630919344731895,
+      "test": 0.2631814519738609
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8468930723994047,
+    "se": 0.0020512904740227827,
+    "pct_nodes_remaining": 0.9000680387821058,
+    "pct_edges_remaining": 0.6781479768786127,
+    "n_connected_components": 105.7,
+    "giant_component_pct": 0.9890673722006991,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7546768707482994,
+        "1": 0.2453231292517007
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4444864405178116,
+      "val": 0.27770953415855615,
+      "test": 0.27780402532363224
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.844295459413441,
+    "se": 0.002113762637414625,
+    "pct_nodes_remaining": 0.8500595339343425,
+    "pct_edges_remaining": 0.5962342967244701,
+    "n_connected_components": 143.6,
+    "giant_component_pct": 0.9839819909954979,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.738581146744412,
+        "1": 0.26141885325558795
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.41180590295147573,
+      "val": 0.2940470235117559,
+      "test": 0.2941470735367684
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8534659693245379,
+    "se": 0.002182794019388805,
+    "pct_nodes_remaining": 0.9950671882973297,
+    "pct_edges_remaining": 0.9993961464354527,
+    "n_connected_components": 7.3,
+    "giant_component_pct": 0.9993589743589745,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.783885930252534,
+        "1": 0.21611406974746608
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4975213675213675,
+      "val": 0.25119658119658117,
+      "test": 0.2512820512820513
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8530618186205532,
+    "se": 0.002199156645312825,
+    "pct_nodes_remaining": 0.9750807960537508,
+    "pct_edges_remaining": 0.983790944123314,
+    "n_connected_components": 21.4,
+    "giant_component_pct": 0.998020061055386,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.790905836018618,
+        "1": 0.20909416398138203
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4872219799389446,
+      "val": 0.2563453990405582,
+      "test": 0.2564326210204972
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8525974774217863,
+    "se": 0.002190715122997144,
+    "pct_nodes_remaining": 0.950076543629869,
+    "pct_edges_remaining": 0.9588714836223506,
+    "n_connected_components": 30.2,
+    "giant_component_pct": 0.9970011637275087,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7961073318216175,
+        "1": 0.20389266817838247
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4737266135529496,
+      "val": 0.2630919344731895,
+      "test": 0.2631814519738609
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8511234881205111,
+    "se": 0.002331078395410124,
+    "pct_nodes_remaining": 0.9000680387821058,
+    "pct_edges_remaining": 0.905666281310212,
+    "n_connected_components": 43.3,
+    "giant_component_pct": 0.9954171784938108,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8071853741496599,
+        "1": 0.19281462585034015
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4444864405178116,
+      "val": 0.27770953415855615,
+      "test": 0.27780402532363224
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8497063002095822,
+    "se": 0.0023576464199218895,
+    "pct_nodes_remaining": 0.8500595339343425,
+    "pct_edges_remaining": 0.8447876685934489,
+    "n_connected_components": 53.4,
+    "giant_component_pct": 0.9940270135067534,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8211856171039844,
+        "1": 0.17881438289601556
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.41180590295147573,
+      "val": 0.2940470235117559,
+      "test": 0.2941470735367684
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8524938724991798,
+    "se": 0.002301861818289026,
+    "pct_nodes_remaining": 0.9950671882973297,
+    "pct_edges_remaining": 0.8790206165703276,
+    "n_connected_components": 20.1,
+    "giant_component_pct": 0.9982820512820514,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7869781824428792,
+        "1": 0.21302181755712077
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4975213675213675,
+      "val": 0.25119658119658117,
+      "test": 0.2512820512820513
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8497965181696665,
+    "se": 0.002160876968074349,
+    "pct_nodes_remaining": 0.9750807960537508,
+    "pct_edges_remaining": 0.6674040462427746,
+    "n_connected_components": 59.2,
+    "giant_component_pct": 0.9943305713039686,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7943071965628357,
+        "1": 0.20569280343716434
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4872219799389446,
+      "val": 0.2563453990405582,
+      "test": 0.2564326210204972
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8479481683923987,
+    "se": 0.0021325335160557826,
+    "pct_nodes_remaining": 0.950076543629869,
+    "pct_edges_remaining": 0.5380872832369943,
+    "n_connected_components": 92.6,
+    "giant_component_pct": 0.9910124429325935,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7962962962962963,
+        "1": 0.2037037037037037
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4737266135529496,
+      "val": 0.2630919344731895,
+      "test": 0.2631814519738609
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8448290061247896,
+    "se": 0.002073058786958023,
+    "pct_nodes_remaining": 0.9000680387821058,
+    "pct_edges_remaining": 0.4107605009633911,
+    "n_connected_components": 148.1,
+    "giant_component_pct": 0.9850231503354436,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7986819727891157,
+        "1": 0.20131802721088435
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4444864405178116,
+      "val": 0.27770953415855615,
+      "test": 0.27780402532363224
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8424007805785336,
+    "se": 0.002083222767314252,
+    "pct_nodes_remaining": 0.8500595339343425,
+    "pct_edges_remaining": 0.3482019267822736,
+    "n_connected_components": 190.1,
+    "giant_component_pct": 0.9794997498749375,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8007774538386784,
+        "1": 0.19922254616132168
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.41180590295147573,
+      "val": 0.2940470235117559,
+      "test": 0.2941470735367684
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.853486066713843,
+    "se": 0.0022389284256229556,
+    "pct_nodes_remaining": 0.9950671882973297,
+    "pct_edges_remaining": 0.999888246628131,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7819962205806562,
+        "1": 0.21800377941934376
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4975213675213675,
+      "val": 0.25119658119658117,
+      "test": 0.2512820512820513
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8526804088073335,
+    "se": 0.0022059504098060744,
+    "pct_nodes_remaining": 0.9750807960537508,
+    "pct_edges_remaining": 0.9992874759152217,
+    "n_connected_components": 6.1,
+    "giant_component_pct": 0.9995377235063234,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.782312925170068,
+        "1": 0.21768707482993196
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4872219799389446,
+      "val": 0.2563453990405582,
+      "test": 0.2564326210204972
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8521841083537357,
+    "se": 0.0022303670332801204,
+    "pct_nodes_remaining": 0.950076543629869,
+    "pct_edges_remaining": 0.9978219653179192,
+    "n_connected_components": 19.3,
+    "giant_component_pct": 0.9982454569868409,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7817460317460317,
+        "1": 0.21825396825396826
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4737266135529496,
+      "val": 0.2630919344731895,
+      "test": 0.2631814519738609
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8517961236779102,
+    "se": 0.002255985578121501,
+    "pct_nodes_remaining": 0.9000680387821058,
+    "pct_edges_remaining": 0.9924641618497109,
+    "n_connected_components": 39.3,
+    "giant_component_pct": 0.9960502692998204,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7740221088435374,
+        "1": 0.22597789115646258
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4444864405178116,
+      "val": 0.27770953415855615,
+      "test": 0.27780402532363224
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8515635294404724,
+    "se": 0.0022588728486438495,
+    "pct_nodes_remaining": 0.8500595339343425,
+    "pct_edges_remaining": 0.9821651252408479,
+    "n_connected_components": 49.4,
+    "giant_component_pct": 0.9945872936468234,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7689504373177842,
+        "1": 0.23104956268221574
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.41180590295147573,
+      "val": 0.2940470235117559,
+      "test": 0.2941470735367684
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.853228664231934,
+    "se": 0.002196640859983371,
+    "pct_nodes_remaining": 0.9950671882973297,
+    "pct_edges_remaining": 0.9388408477842004,
+    "n_connected_components": 8.8,
+    "giant_component_pct": 0.9992222222222222,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7833705548874764,
+        "1": 0.21662944511252363
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4975213675213675,
+      "val": 0.25119658119658117,
+      "test": 0.2512820512820513
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8524305301372722,
+    "se": 0.0022384455851728272,
+    "pct_nodes_remaining": 0.9750807960537508,
+    "pct_edges_remaining": 0.8500098265895953,
+    "n_connected_components": 22.2,
+    "giant_component_pct": 0.9979590056694289,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7867883995703545,
+        "1": 0.21321160042964554
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4872219799389446,
+      "val": 0.2563453990405582,
+      "test": 0.2564326210204972
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8514535191104822,
+    "se": 0.002154687291952256,
+    "pct_nodes_remaining": 0.950076543629869,
+    "pct_edges_remaining": 0.7825643545279383,
+    "n_connected_components": 35.7,
+    "giant_component_pct": 0.9965714797242861,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7938397581254724,
+        "1": 0.20616024187452758
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4737266135529496,
+      "val": 0.2630919344731895,
+      "test": 0.2631814519738609
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8504996556669895,
+    "se": 0.0020866495778249943,
+    "pct_nodes_remaining": 0.9000680387821058,
+    "pct_edges_remaining": 0.7054217726396917,
+    "n_connected_components": 54.2,
+    "giant_component_pct": 0.9943872247944817,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8001700680272109,
+        "1": 0.19982993197278912
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4444864405178116,
+      "val": 0.27770953415855615,
+      "test": 0.27780402532363224
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8490851451485648,
+    "se": 0.002113948316821021,
+    "pct_nodes_remaining": 0.8500595339343425,
+    "pct_edges_remaining": 0.6712520231213872,
+    "n_connected_components": 68.7,
+    "giant_component_pct": 0.9924762381190595,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8104956268221575,
+        "1": 0.18950437317784258
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.41180590295147573,
+      "val": 0.2940470235117559,
+      "test": 0.2941470735367684
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.853523245189505,
+    "se": 0.002176005110385527,
+    "pct_nodes_remaining": 0.9950671882973297,
+    "pct_edges_remaining": 0.9993880539499036,
+    "n_connected_components": 2.5,
+    "giant_component_pct": 0.9998717948717948,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7821680123690088,
+        "1": 0.21783198763099124
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4975213675213675,
+      "val": 0.25119658119658117,
+      "test": 0.2512820512820513
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8528849073689976,
+    "se": 0.0022677915524092077,
+    "pct_nodes_remaining": 0.9750807960537508,
+    "pct_edges_remaining": 0.9835077071290945,
+    "n_connected_components": 8.2,
+    "giant_component_pct": 0.9992498909725249,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7799856784819191,
+        "1": 0.22001432151808092
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4872219799389446,
+      "val": 0.2563453990405582,
+      "test": 0.2564326210204972
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8519364664926024,
+    "se": 0.0022384931643060083,
+    "pct_nodes_remaining": 0.950076543629869,
+    "pct_edges_remaining": 0.9575936416184969,
+    "n_connected_components": 15.3,
+    "giant_component_pct": 0.9985856234893923,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7772108843537415,
+        "1": 0.2227891156462585
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4737266135529496,
+      "val": 0.2630919344731895,
+      "test": 0.2631814519738609
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8512618652546301,
+    "se": 0.002293656574618126,
+    "pct_nodes_remaining": 0.9000680387821058,
+    "pct_edges_remaining": 0.9023171483622351,
+    "n_connected_components": 30.2,
+    "giant_component_pct": 0.9968912406689974,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.766156462585034,
+        "1": 0.233843537414966
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4444864405178116,
+      "val": 0.27770953415855615,
+      "test": 0.27780402532363224
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8508350753330134,
+    "se": 0.0023307483197088294,
+    "pct_nodes_remaining": 0.8500595339343425,
+    "pct_edges_remaining": 0.8397421965317919,
+    "n_connected_components": 49.7,
+    "giant_component_pct": 0.9942271135567784,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.749271137026239,
+        "1": 0.25072886297376096
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.41180590295147573,
+      "val": 0.2940470235117559,
+      "test": 0.2941470735367684
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8537397411808725,
+    "se": 0.0021987731518440844,
+    "pct_nodes_remaining": 0.9950671882973297,
+    "pct_edges_remaining": 0.9909408477842003,
+    "n_connected_components": 1.3,
+    "giant_component_pct": 0.9999743589743592,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7797629273320735,
+        "1": 0.22023707266792647
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4975213675213675,
+      "val": 0.25119658119658117,
+      "test": 0.2512820512820513
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8537255069422415,
+    "se": 0.0021568342230628324,
+    "pct_nodes_remaining": 0.9750807960537508,
+    "pct_edges_remaining": 0.9663094412331408,
+    "n_connected_components": 3.8,
+    "giant_component_pct": 0.9997557784561708,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7706766917293233,
+        "1": 0.22932330827067668
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4872219799389446,
+      "val": 0.2563453990405582,
+      "test": 0.2564326210204972
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8536666720892339,
+    "se": 0.0021304902444380827,
+    "pct_nodes_remaining": 0.950076543629869,
+    "pct_edges_remaining": 0.9404100192678226,
+    "n_connected_components": 5.5,
+    "giant_component_pct": 0.9995882194969117,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7581254724111867,
+        "1": 0.2418745275888133
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4737266135529496,
+      "val": 0.2630919344731895,
+      "test": 0.2631814519738609
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8536351873090238,
+    "se": 0.0021297446299434857,
+    "pct_nodes_remaining": 0.9000680387821058,
+    "pct_edges_remaining": 0.8902163776493255,
+    "n_connected_components": 10.8,
+    "giant_component_pct": 0.999064537465747,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7289540816326531,
+        "1": 0.2710459183673469
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4444864405178116,
+      "val": 0.27770953415855615,
+      "test": 0.27780402532363224
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8522462984201351,
+    "se": 0.0021556462338926828,
+    "pct_nodes_remaining": 0.8500595339343425,
+    "pct_edges_remaining": 0.8318348747591522,
+    "n_connected_components": 22.6,
+    "giant_component_pct": 0.997808904452226,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.6967930029154519,
+        "1": 0.3032069970845481
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.41180590295147573,
+      "val": 0.2940470235117559,
+      "test": 0.2941470735367684
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8535246347223238,
+    "se": 0.0021655210085624417,
+    "pct_nodes_remaining": 0.9950671882973297,
+    "pct_edges_remaining": 0.9831709055876686,
+    "n_connected_components": 9.0,
+    "giant_component_pct": 0.9991880341880343,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7840577220408864,
+        "1": 0.21594227795911355
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4975213675213675,
+      "val": 0.25119658119658117,
+      "test": 0.2512820512820513
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.852471334954681,
+    "se": 0.00221055493220548,
+    "pct_nodes_remaining": 0.9750807960537508,
+    "pct_edges_remaining": 0.91657591522158,
+    "n_connected_components": 33.8,
+    "giant_component_pct": 0.9967466201482773,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7980665950590763,
+        "1": 0.20193340494092374
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4872219799389446,
+      "val": 0.2563453990405582,
+      "test": 0.2564326210204972
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8509353250422282,
+    "se": 0.0022162771148534115,
+    "pct_nodes_remaining": 0.950076543629869,
+    "pct_edges_remaining": 0.8477156069364163,
+    "n_connected_components": 59.3,
+    "giant_component_pct": 0.9940023274550175,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8159486016628874,
+        "1": 0.18405139833711262
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4737266135529496,
+      "val": 0.2630919344731895,
+      "test": 0.2631814519738609
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.849592426300535,
+    "se": 0.002150115003316975,
+    "pct_nodes_remaining": 0.9000680387821058,
+    "pct_edges_remaining": 0.7372526011560694,
+    "n_connected_components": 97.2,
+    "giant_component_pct": 0.9898044032882926,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8460884353741497,
+        "1": 0.15391156462585034
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4444864405178116,
+      "val": 0.27770953415855615,
+      "test": 0.27780402532363224
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8469439428569879,
+    "se": 0.0020383380348214537,
+    "pct_nodes_remaining": 0.8500595339343425,
+    "pct_edges_remaining": 0.6491591522157997,
+    "n_connected_components": 132.5,
+    "giant_component_pct": 0.9851725862931465,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8741496598639455,
+        "1": 0.12585034013605442
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.41180590295147573,
+      "val": 0.2940470235117559,
+      "test": 0.2941470735367684
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8535168397821213,
+    "se": 0.0021586575907678895,
+    "pct_nodes_remaining": 0.9950671882973297,
+    "pct_edges_remaining": 0.9907312138728323,
+    "n_connected_components": 3.0,
+    "giant_component_pct": 0.9998290598290598,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7818244287923037,
+        "1": 0.21817557120769626
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4975213675213675,
+      "val": 0.25119658119658117,
+      "test": 0.2512820512820513
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8529286945983097,
+    "se": 0.002130461383879221,
+    "pct_nodes_remaining": 0.9750807960537508,
+    "pct_edges_remaining": 0.9547687861271676,
+    "n_connected_components": 11.4,
+    "giant_component_pct": 0.9988922808547753,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7819548872180451,
+        "1": 0.21804511278195488
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4872219799389446,
+      "val": 0.2563453990405582,
+      "test": 0.2564326210204972
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8531048941379339,
+    "se": 0.002316333472922336,
+    "pct_nodes_remaining": 0.950076543629869,
+    "pct_edges_remaining": 0.903269556840077,
+    "n_connected_components": 23.9,
+    "giant_component_pct": 0.9977262554829469,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7821239606953893,
+        "1": 0.21787603930461075
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4737266135529496,
+      "val": 0.2630919344731895,
+      "test": 0.2631814519738609
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8518929842826892,
+    "se": 0.00246003299684633,
+    "pct_nodes_remaining": 0.9000680387821058,
+    "pct_edges_remaining": 0.8121608863198457,
+    "n_connected_components": 49.0,
+    "giant_component_pct": 0.9947840876878011,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7797619047619048,
+        "1": 0.22023809523809523
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.4444864405178116,
+      "val": 0.27770953415855615,
+      "test": 0.27780402532363224
+    }
+  },
+  {
+    "dataset": "tolokers",
+    "model": "GeneralSheaf",
+    "d": 3,
+    "layers": 4,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8512271947162506,
+    "se": 0.00208560694538001,
+    "pct_nodes_remaining": 0.8500595339343425,
+    "pct_edges_remaining": 0.7288558766859345,
+    "n_connected_components": 71.3,
+    "giant_component_pct": 0.9918659329664834,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.782312925170068,
+        "1": 0.21768707482993196
+      },
+      "val": {
+        "0": 0.781898604967676,
+        "1": 0.21810139503232392
+      },
+      "test": {
+        "0": 0.7816326530612245,
+        "1": 0.21836734693877552
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.5,
+      "val": 0.24995747576118388,
+      "test": 0.2500425242388161
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.41180590295147573,
+      "val": 0.2940470235117559,
+      "test": 0.2941470735367684
+    }
+  }
+]

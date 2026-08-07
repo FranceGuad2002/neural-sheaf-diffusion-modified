@@ -10,9 +10,10 @@ nodes the exact same way.
 """
 
 import os
-import re
+import csv
 import glob
 import json
+import zlib
 import collections
 from dataclasses import dataclass
 
@@ -26,13 +27,29 @@ from torch_geometric.data import Data
 from torch_geometric.utils import degree as pyg_degree
 
 from definitions import ROOT_DIR
-from exp.parser import get_parser
 
 # ── constants ─────────────────────────────────────────────────────────────────
 
 JOINT_MODELS = {'JointSheafParams', 'JointSheafParamsAlt'}
 TYPE_SHORT   = {'diagonal': 'diag', 'bundle': 'bundle', 'general': 'general'}
 EXCLUDE      = {'synthetic_exp'}
+
+# Binary, heavily class-imbalanced datasets scored by ROC-AUC rather than
+# accuracy. Single source of truth for every conviction analysis script, so a
+# dataset can never be tabulated under the wrong metric (exp/run.py keeps its
+# own copy for the training loop; the two must agree).
+AUC_DATASETS = {'minesweeper', 'tolokers', 'questions'}
+
+
+def metric_key(dataset):
+    """The headline metric for a dataset: 'auc' for the ROC-AUC datasets,
+    'acc' everywhere else. Use this instead of testing AUC_DATASETS inline, so
+    plots and tables can never disagree about which column is the result."""
+    return 'auc' if dataset in AUC_DATASETS else 'acc'
+
+
+def metric_label(dataset):
+    return 'ROC-AUC' if dataset in AUC_DATASETS else 'Accuracy'
 
 
 @dataclass
@@ -145,7 +162,9 @@ def _pool_idx(masks, pool):
 
 def conviction_ranking(args, fold, score='last', pool='train'):
     """Full sorted (ascending, lowest conviction first) node-id ranking over `pool`.
-    Caller slices ranking[:k] for whatever budget k it needs."""
+    Caller slices ranking[:k] for whatever budget k it needs. Ties fall back to
+    ascending node id; load_fold_rankings does NOT use this — it applies a random
+    tie-break instead (see _argsort_with_tiebreak) for permutation invariance."""
     idx        = _pool_idx(load_masks(args, fold), pool)
     conviction = load_conviction(args, fold, score=score)
     return idx[torch.argsort(conviction[idx], descending=False)]
@@ -160,25 +179,86 @@ def confidence_ranking(args, fold, pool='train'):
 
 # ── candidate selection (shared by the forward-eval and retrain scripts) ───────
 
-def load_fold_rankings(args, fold, edge_index, num_nodes, score='last', pool='train'):
+def draw_rng(dataset, fold, strategy, frac, base_seed=42):
+    """Generator for ONE candidate draw, derived from the identity of that draw
+    rather than shared as a running stream.
+
+    The randomised strategies ('random', 'deg_matched_*') used to consume a
+    single module-level generator threaded through every dataset, fold, budget
+    and strategy. Because a generator is a stream, each draw then depended on
+    how many draws preceded it — so running a subset of the manifest, reordering
+    it, or using a different strategy list (as the retrain script does) silently
+    changed the candidates for every dataset after the first.
+
+    Keying on (dataset, fold, strategy, frac) makes each draw independent and
+    reproducible: the same key always yields the same nodes, whatever else ran
+    before. It also makes the forward-eval and retrain scripts agree on the
+    randomised arms despite sweeping different strategy/budget lists.
+
+    crc32, not the builtin hash(): Python salts string hashing per process
+    (PYTHONHASHSEED), which would reintroduce exactly the irreproducibility
+    this function exists to remove — and only across runs, the hardest kind
+    to notice."""
+    key = zlib.crc32(f"{dataset}|{strategy}|{frac}".encode()) & 0xFFFFFFFF
+    return np.random.default_rng([int(base_seed), int(key), int(fold)])
+
+
+def _fold_tiebreak(num_nodes, args, fold, tiebreak_seed=None):
+    """Per-node random tie-break key (float in [0,1), length num_nodes, indexed
+    by global node id) for one fold. Seeded deterministically from args['seed']
+    and fold so the forward-eval and retrain scripts derive the SAME key and
+    therefore still pick identical candidates for a given (strategy, budget,
+    fold). Drawn from its own generator, independent of the sampling rng used by
+    the 'random'/'deg_matched' strategies, so those streams are unchanged."""
+    if tiebreak_seed is None:
+        tiebreak_seed = (int(args['seed']) * 1_000_003 + int(fold) * 9_973 + 0x5EED) & 0xFFFFFFFF
+    return np.random.default_rng(tiebreak_seed).random(num_nodes)
+
+
+def _argsort_with_tiebreak(values, idx, tiebreak, descending):
+    """Return `idx` reordered by `values[idx]`, breaking exact ties by
+    `tiebreak[idx]` (a per-node random key) instead of by ascending node id.
+    This removes the default low-id preference among equal-valued nodes, so
+    which of several tied nodes fall inside a top-k / bottom-k budget no longer
+    depends on the arbitrary graph labelling — the selection is permutation
+    invariant. `tiebreak` is indexed by global node id (same space as `idx`)."""
+    idx_np      = idx.cpu().numpy()
+    primary     = values[idx].cpu().numpy().astype(np.float64)
+    primary_key = -primary if descending else primary
+    # np.lexsort's LAST key is the primary sort key; `tiebreak` resolves ties.
+    order = np.lexsort((np.asarray(tiebreak)[idx_np], primary_key))
+    return idx[torch.as_tensor(order, dtype=torch.long)]
+
+
+def load_fold_rankings(args, fold, edge_index, num_nodes, score='last', pool='train',
+                       tiebreak_seed=None):
     """Bundle of everything select_candidates needs for one fold: the candidate
-    pool, per-node degree, and the deterministic strategy rankings (conviction
-    hi/lo, degree hi/lo, confidence lo). Computing this once per fold and handing
-    the same dict to select_candidates is what guarantees the forward-eval and
-    retrain scripts pick identical candidates for the same (strategy, budget, fold)."""
+    pool, per-node degree, and the strategy rankings (conviction hi/lo, degree
+    hi/lo, confidence hi/lo). Computing this once per fold and handing the same
+    dict to select_candidates is what guarantees the forward-eval and retrain
+    scripts pick identical candidates for the same (strategy, budget, fold).
+
+    Ties in each ranking (very common for degree) are broken by a per-node
+    random key (see _fold_tiebreak) rather than by node id, so selection does
+    not systematically favour low-id nodes and is permutation invariant. Both
+    scripts derive the same key from args['seed']+fold, preserving cross-script
+    agreement; pass tiebreak_seed to override."""
     pool_idx     = _pool_idx(load_masks(args, fold), pool)
     deg          = pyg_degree(edge_index[0].cpu(), num_nodes=num_nodes).long()
-    deg_pool     = deg[pool_idx]
-    rank_conv_lo = conviction_ranking(args, fold, score=score, pool=pool)
-    rank_conv_hi = torch.flip(rank_conv_lo, dims=[0])
-    rank_deg_hi  = pool_idx[torch.argsort(deg_pool, descending=True)]
-    rank_deg_lo  = pool_idx[torch.argsort(deg_pool, descending=False)]
-    rank_conf_lo = confidence_ranking(args, fold, pool=pool)
+    tiebreak     = _fold_tiebreak(num_nodes, args, fold, tiebreak_seed)
+    conviction   = load_conviction(args, fold, score=score)
+    confidence   = load_confidence(args, fold)
+    rank_conv_lo = _argsort_with_tiebreak(conviction, pool_idx, tiebreak, descending=False)
+    rank_conv_hi = _argsort_with_tiebreak(conviction, pool_idx, tiebreak, descending=True)
+    rank_deg_hi  = _argsort_with_tiebreak(deg,        pool_idx, tiebreak, descending=True)
+    rank_deg_lo  = _argsort_with_tiebreak(deg,        pool_idx, tiebreak, descending=False)
+    rank_conf_lo = _argsort_with_tiebreak(confidence, pool_idx, tiebreak, descending=False)
+    rank_conf_hi = _argsort_with_tiebreak(confidence, pool_idx, tiebreak, descending=True)
     return {
         'pool_idx': pool_idx, 'deg': deg,
         'rank_conv_lo': rank_conv_lo, 'rank_conv_hi': rank_conv_hi,
         'rank_deg_hi': rank_deg_hi, 'rank_deg_lo': rank_deg_lo,
-        'rank_conf_lo': rank_conf_lo,
+        'rank_conf_lo': rank_conf_lo, 'rank_conf_hi': rank_conf_hi,
     }
 
 
@@ -188,6 +268,15 @@ def _degree_matched_sample(hi_idx, all_deg, pool_idx, rng):
     replacement; falls back to the closest available degree bucket if a node's
     exact degree is exhausted."""
     pool = set(pool_idx.tolist()) - set(hi_idx.tolist())
+    # Sampling k nodes without replacement from pool\hi_idx needs
+    # k <= |pool| - k. Budgets up to 30% satisfy this comfortably; beyond 50%
+    # the greedy loop would run out of candidates and append None, which only
+    # surfaces as an opaque TypeError in torch.tensor() below.
+    if len(hi_idx) > len(pool):
+        raise ValueError(
+            f"degree-matched sampling needs a budget <= 50% of the pool: asked for "
+            f"{len(hi_idx)} nodes but only {len(pool)} remain after excluding the "
+            f"reference set")
     by_deg = collections.defaultdict(list)
     for v in pool:
         by_deg[int(all_deg[v].item())].append(v)
@@ -211,13 +300,16 @@ def _degree_matched_sample(hi_idx, all_deg, pool_idx, rng):
 
 
 def select_candidates(strategy, k, *, pool_idx, deg, rank_conv_lo, rank_conv_hi,
-                       rank_deg_hi, rank_deg_lo, rank_conf_lo, rng):
-    """Return the k candidate node ids for one of the 8 canonical strategies
-    (high/low conviction, high/low degree, degree-matched high/low, low
+                       rank_deg_hi, rank_deg_lo, rank_conf_lo, rank_conf_hi, rng):
+    """Return the k candidate node ids for one of the 9 canonical strategies
+    (high/low conviction, high/low degree, degree-matched high/low, high/low
     confidence, random). Shared dispatch so the forward-eval and retrain scripts
-    draw identical candidates for the same (strategy, k, fold) — note 'random'
-    and 'deg_matched_*' consume rng, so they only match across scripts if called
-    in the same order with the same seed."""
+    draw identical candidates for the same (strategy, k, fold).
+
+    That guarantee holds for the randomised strategies ('random',
+    'deg_matched_*') only when `rng` is built per draw with draw_rng() — pass a
+    shared running generator instead and the two scripts diverge, since they
+    sweep different strategy/budget lists and so consume it at different rates."""
     if strategy == 'high':
         return rank_conv_hi[:k]
     if strategy == 'low':
@@ -230,6 +322,8 @@ def select_candidates(strategy, k, *, pool_idx, deg, rank_conv_lo, rank_conv_hi,
         return _degree_matched_sample(rank_conv_hi[:k], deg, pool_idx, rng)
     if strategy == 'deg_matched_low':
         return _degree_matched_sample(rank_conv_lo[:k], deg, pool_idx, rng)
+    if strategy == 'conf_high':
+        return rank_conf_hi[:k]
     if strategy == 'conf_low':
         return rank_conf_lo[:k]
     if strategy == 'random':
@@ -392,6 +486,63 @@ def evaluate_checkpoint(args, fold, model_cls, data, device, is_auc=False):
     acc, conf, auc = forward_eval(model, data, test_idx, device, is_auc)
     return {'acc': acc, 'conf': conf, 'auc': auc}
 
+# ── table output ──────────────────────────────────────────────────────────────
+
+TABLES_ROOT_NAME = 'Conviction_experiments_tables'
+PLOTS_ROOT_NAME  = 'Conviction_experiments'
+
+
+def tables_path(plot_path, ext='.csv'):
+    """Mirror a plot path from the Conviction_experiments/ tree into the
+    parallel Conviction_experiments_tables/ tree, swapping the extension.
+    Directory layout below the root is identical in both, so a table always
+    sits at the same relative location as the figure it tabulates."""
+    parts = os.path.normpath(plot_path).split(os.sep)
+    try:
+        i = parts.index(PLOTS_ROOT_NAME)
+    except ValueError:
+        raise ValueError(f"'{PLOTS_ROOT_NAME}' not in path: {plot_path}")
+    parts[i] = TABLES_ROOT_NAME
+    return os.path.splitext(os.sep.join(parts))[0] + ext
+
+
+def table_meta(args, intervention, mode=''):
+    """Identifying columns repeated on every row, so tables from different
+    datasets/models can be concatenated and pivoted without losing provenance."""
+    return {
+        'dataset':          args['dataset'],
+        'model':            args['model'] + map_tag(args),
+        'd':                args['d'],
+        'layers':           args['layers'],
+        'normalised':       str(args.get('normalised')).lower(),
+        'conviction_score': args.get('conviction_score', 'last'),
+        'intervention':     intervention,
+        'mode':             mode,
+        'metric':           metric_key(args['dataset']),
+    }
+
+
+META_FIELDS = ['dataset', 'model', 'd', 'layers', 'normalised', 'conviction_score',
+               'intervention', 'mode', 'metric']
+
+
+def write_table(rows, out_path, extra_fields):
+    """Write rows (list of dicts) as CSV under the tables tree. Columns are the
+    shared meta fields followed by extra_fields."""
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    with open(out_path, 'w', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=META_FIELDS + extra_fields)
+        w.writeheader()
+        w.writerows(rows)
+    print(f"  Saved table to {out_path}")
+
+
+def mean_se(values, n_folds):
+    """Fold-mean and standard error, NaN-tolerant (a fold whose metric is NaN —
+    e.g. AUC on a degenerate split — is skipped rather than poisoning the mean)."""
+    arr = np.asarray(values, dtype=float)
+    return float(np.nanmean(arr)), float(np.nanstd(arr) / np.sqrt(n_folds))
+
 # ── model registry ────────────────────────────────────────────────────────────
 
 def model_classes():
@@ -416,69 +567,59 @@ def model_classes():
         'JointSheafVanilla':   DiscreteJointSheafVanillaDiffusion,
     }
 
-# ── experiment discovery ──────────────────────────────────────────────────────
+# ── manifest-based experiment loading (no glob discovery) ──────────────────────
 
-def infer_args_from_path(best_epoch_dir, model_name, normalised_str):
-    epochs_dir   = os.path.dirname(os.path.dirname(best_epoch_dir))
-    h_dir        = os.path.dirname(epochs_dir)
-    l_dir        = os.path.dirname(h_dir)
-    d_dir        = os.path.dirname(l_dir)
-    dataset_dir  = os.path.dirname(os.path.dirname(os.path.dirname(d_dir)))
-    try:
-        epochs          = int(os.path.basename(epochs_dir).split('-')[0])
-        hidden_channels = int(os.path.basename(h_dir).split('-')[0])
-        layers          = int(os.path.basename(l_dir).split('-')[0])
-        d               = int(os.path.basename(d_dir).split('-')[-1])
-        dataset_name    = os.path.basename(dataset_dir)
-    except (ValueError, IndexError):
-        return None
-    pth_files  = sorted(glob.glob(os.path.join(best_epoch_dir, '*.pth')))
-    seed_match = re.search(r'_seed(\d+)\.pth$', pth_files[0]) if pth_files else None
-    seed       = int(seed_match.group(1)) if seed_match else 43
-    defaults   = vars(get_parser().parse_args([]))
-    defaults.update({
-        'dataset': dataset_name, 'model': model_name, 'd': d, 'layers': layers,
-        'hidden_channels': hidden_channels, 'epochs': epochs, 'seed': seed,
-        'normalised': normalised_str == 'true', 'deg_normalised': False,
-        'folds': len(pth_files), 'edge_weights': False,
-    })
-    return defaults
+def load_manifest(manifest_path=None):
+    """Parse the plain-text experiment manifest into a list of dicts. Each
+    non-comment line: dataset model normalised d layers hidden epochs
+    (whitespace-separated); '#' starts a comment, blank lines ignored.
+    Replaces discover_experiments' glob walk over results/model_weights/ — the
+    set of trained models is small and known, so it's edited by hand instead
+    of rediscovered on every run."""
+    path = manifest_path or os.path.join(ROOT_DIR, 'quick_analysis', 'conviction_manifest.txt')
+    rows = []
+    with open(path) as f:
+        for line in f:
+            line = line.split('#', 1)[0].strip()
+            if not line:
+                continue
+            dataset, model, normalised, d, layers, hidden, epochs = line.split()
+            rows.append({
+                'dataset': dataset, 'model': model, 'normalised': normalised.lower(),
+                'd': int(d), 'layers': int(layers),
+                'hidden_channels': int(hidden), 'epochs': int(epochs),
+            })
+    return rows
 
 
-def discover_experiments(model_name, normalised_str, tag, dataset_filter=None):
-    """dataset_filter restricts discovery to one dataset directory instead of
-    globbing '*' — lets a single SLURM job own exactly one dataset (needed for
-    the retrain sweep, where each discovered experiment is far more expensive
-    to process than in the forward-eval script)."""
-    weights_root = os.path.join(ROOT_DIR, 'results', 'model_weights')
-    pattern = os.path.join(weights_root, dataset_filter or '*', model_name + tag,
-                           f'normalised-{normalised_str}',
-                           'stalk_dim-*', '*-layers', '*-hidden', '*-epochs',
-                           'checkpoints', 'best-epoch')
+def load_manifest_experiments(model_name, normalised_str, tag, manifest_path=None, dataset_filter=None):
+    """Manifest-based replacement for discover_experiments: same return shape
+    (list of training_args dicts carrying '_best_epoch_dir'/'_n_folds_found'),
+    but resolves each entry's checkpoint directory directly from the manifest
+    instead of globbing the whole results/ tree."""
     experiments = []
-    for best_epoch_dir in sorted(glob.glob(pattern)):
+    for row in load_manifest(manifest_path):
+        if row['model'] != model_name or row['normalised'] != normalised_str:
+            continue
+        if dataset_filter and row['dataset'] != dataset_filter:
+            continue
+        best_epoch_dir = os.path.join(
+            ROOT_DIR, 'results', 'model_weights', row['dataset'], model_name + tag,
+            f"normalised-{normalised_str}", f"stalk_dim-{row['d']}",
+            f"{row['layers']}-layers", f"{row['hidden_channels']}-hidden",
+            f"{row['epochs']}-epochs", 'checkpoints', 'best-epoch')
+        args_path = os.path.join(os.path.dirname(os.path.dirname(best_epoch_dir)), 'training_args.json')
+        if not os.path.exists(args_path):
+            print(f"  [WARNING] No training_args.json for {row['dataset']} — skipping"); continue
+        with open(args_path) as f:
+            targs = json.load(f)
         pth_files = glob.glob(os.path.join(best_epoch_dir, '*.pth'))
         if not pth_files:
-            continue
-        epochs_dir = os.path.dirname(os.path.dirname(best_epoch_dir))
-        args_path  = os.path.join(epochs_dir, 'training_args.json')
-        if os.path.exists(args_path):
-            with open(args_path) as f:
-                targs = json.load(f)
-        else:
-            targs = infer_args_from_path(best_epoch_dir, model_name, normalised_str)
-            if targs is None:
-                print(f"  Could not parse path: {best_epoch_dir} — skipping"); continue
-            saveable = {k: v for k, v in targs.items()
-                        if isinstance(v, (str, int, float, bool, list, type(None)))}
-            os.makedirs(epochs_dir, exist_ok=True)
-            with open(args_path, 'w') as f:
-                json.dump(saveable, f, indent=2)
-            print(f"  [WARNING] Inferred training_args.json written to {args_path}")
+            print(f"  [WARNING] No checkpoints for {row['dataset']} — skipping"); continue
         if targs.get('dataset', '') in EXCLUDE:
             continue
         targs['_best_epoch_dir'] = best_epoch_dir
         targs['_n_folds_found']  = len(pth_files)
         experiments.append(targs)
-        print(f"  found: {targs['dataset']}  d={targs['d']}  L={targs['layers']}  folds={len(pth_files)}")
+        print(f"  loaded: {targs['dataset']}  d={targs['d']}  L={targs['layers']}  folds={len(pth_files)}")
     return experiments

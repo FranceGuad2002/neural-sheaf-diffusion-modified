@@ -1,0 +1,5 @@
+=== score=last  intervention=pruning  dataset=tolokers ===
+Reading manifest for: model=GeneralSheaf  normalised=true  intervention=pruning  dataset=tolokers
+  loaded: tolokers  d=3  L=4  folds=10
+
+Found 1 experiment(s).

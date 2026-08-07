@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 """
 Conviction retrain-from-scratch experiment (Alessio's protocol, phase 2) —
-auto-discovery runner, companion to conviction_masking_forward.py.
+manifest-driven runner, companion to conviction_masking_forward.py.
+
+Which experiments run is read from quick_analysis/conviction_manifest.txt (one
+line per dataset/model/hyperparameter combo), filtered by --model/--normalised
+and optionally --dataset; nothing is discovered by globbing the results/ tree.
 
 Where conviction_masking_forward.py applies an intervention to a FROZEN,
 already-trained model and forward-evaluates it, this script applies the same
@@ -36,7 +40,7 @@ since — unlike the forward script — these are expensive to regenerate; pruni
 additionally writes a _diagnostics.json, same table as the forward script.)
 
 Usage (from repo root, one job per dataset is strongly recommended — see
-conversation on why a full auto-discovery sweep here can blow SLURM time
+conversation on why sweeping the whole manifest here can blow SLURM time
 limits much faster than the forward-eval script):
     python quick_analysis/run_conviction_experiments.py --model GeneralSheaf --normalised true --dataset roman_empire --intervention masking
     python quick_analysis/run_conviction_experiments.py --model GeneralSheaf --normalised true --dataset roman_empire --intervention pruning
@@ -59,12 +63,14 @@ sys.path.insert(0, ROOT)
 
 from utils.conviction import (
     JOINT_MODELS, TYPE_SHORT, map_tag, weights_path, load_masks,
-    load_fold_rankings, select_candidates, model_classes, discover_experiments,
+    load_fold_rankings, select_candidates, draw_rng, model_classes,
+    load_manifest_experiments,
     mask_features, prune_nodes, build_message_gate, load_conviction,
     evaluate_checkpoint,
+    AUC_DATASETS, metric_key, tables_path, table_meta, write_table, mean_se,
 )
 from quick_analysis.conviction_masking_forward import _save_pruning_diagnostics
-from exp.run import train, test, precompute_sheaf_mappings, AUC_DATASETS
+from exp.run import train, test, precompute_sheaf_mappings
 
 # ── constants ─────────────────────────────────────────────────────────────────
 
@@ -161,7 +167,7 @@ def _prepare_intervention(data, args, idx, conviction, intervention, mask_mode, 
 
 # ── per-fold experiment ───────────────────────────────────────────────────────
 
-def _run_fold_retrain(args, dataset, model_cls, fold, device, rng, intervention, mask_mode, gate_mode='hard'):
+def _run_fold_retrain(args, dataset, model_cls, fold, device, intervention, mask_mode, gate_mode='hard'):
     data  = dataset[0].clone()
     masks = load_masks(args, fold)
     data.train_mask = masks['train_mask']
@@ -194,7 +200,8 @@ def _run_fold_retrain(args, dataset, model_cls, fold, device, rng, intervention,
     for frac in RETRAIN_MASK_LEVELS:
         k = max(1, int(frac * len(pool_idx)))
         for strat in RETRAIN_STRATEGIES:
-            idx = select_candidates(strat, k, rng=rng, **rankings)
+            idx = select_candidates(
+                strat, k, rng=draw_rng(args['dataset'], fold, strat, frac), **rankings)
             train_data, train_args, gate, diag = _prepare_intervention(
                 data, args, idx, conviction, intervention, mask_mode, gate_mode, device)
             result = _retrain(model_cls, train_args, train_data, device, gate=gate, seed=seed)
@@ -257,6 +264,25 @@ def _plot(all_results, args, out_path, intervention):
     plt.close(fig)
 
 
+def _save_table(all_results, args, plot_path, intervention, mode=''):
+    """Headline metric only (ROC-AUC for the AUC datasets, accuracy otherwise;
+    no confidence), mean ± SE across folds, mirrored into the
+    Conviction_experiments_tables/ tree. Both horizontal reference lines of the
+    figure are included as their own rows."""
+    n_folds = len(all_results)
+    metric  = metric_key(args['dataset'])
+    meta    = table_meta(args, intervention, mode)
+    rows    = []
+    for name in ('reference', 'baseline'):
+        mu, se = mean_se([r[name].get(metric, float('nan')) for r in all_results], n_folds)
+        rows.append(dict(meta, strategy=name, pct='', mean=mu, se=se, n_folds=n_folds))
+    for strat in RETRAIN_STRATEGIES:
+        for i, frac in enumerate(RETRAIN_MASK_LEVELS):
+            mu, se = mean_se([r[strat][metric][i] for r in all_results], n_folds)
+            rows.append(dict(meta, strategy=strat, pct=frac, mean=mu, se=se, n_folds=n_folds))
+    write_table(rows, tables_path(plot_path), ['strategy', 'pct', 'mean', 'se', 'n_folds'])
+
+
 def _save_json(all_results, out_path):
     """Raw per-fold/strategy/budget numbers. Unlike the forward script, each
     point here cost a full retrain, so the numbers are persisted here, not
@@ -280,7 +306,7 @@ if __name__ == '__main__':
     parser.add_argument('--model',      required=True)
     parser.add_argument('--normalised', required=True, choices=['true', 'false'])
     parser.add_argument('--dataset',    default=None,
-                        help='Restrict auto-discovery to one dataset. Strongly recommended: '
+                        help='Restrict the run to one manifest dataset. Strongly recommended: '
                              'run one SLURM job per dataset, since every point here costs a '
                              'full retrain instead of a single forward pass.')
     parser.add_argument('--map_type',   default='identity',
@@ -300,10 +326,10 @@ if __name__ == '__main__':
     device = torch.device(f'cuda:{cli.cuda}' if torch.cuda.is_available() else 'cpu')
 
     if cli.model in JOINT_MODELS:
-        discovery_tag = '_first_maps_identity' if cli.map_type == 'identity' \
+        model_tag ='_first_maps_identity' if cli.map_type == 'identity' \
                   else f"_first_maps_{TYPE_SHORT.get(cli.map_type, cli.map_type)}"
     else:
-        discovery_tag = ''
+        model_tag =''
 
     out_dir_parts = [ROOT, 'quick_analysis', 'Conviction_experiments', 'retrain_experiment',
                      cli.intervention]
@@ -313,15 +339,18 @@ if __name__ == '__main__':
     out_dir = os.path.join(*out_dir_parts)
     os.makedirs(out_dir, exist_ok=True)
 
-    print(f"Discovering: model={cli.model}{discovery_tag}  normalised={cli.normalised}  "
+    print(f"Reading manifest for: model={cli.model}{model_tag}  normalised={cli.normalised}  "
           f"intervention={cli.intervention}"
           + (f"  dataset={cli.dataset}" if cli.dataset else "  (all datasets — consider --dataset)"))
-    experiments = discover_experiments(cli.model, cli.normalised, discovery_tag, dataset_filter=cli.dataset)
+    experiments = load_manifest_experiments(cli.model, cli.normalised, model_tag, dataset_filter=cli.dataset)
     if not experiments:
-        print("No experiments found. Have you run training with --save_norms=True?"); sys.exit(1)
+        print("No experiments found in the manifest. Have you added a line to "
+              "quick_analysis/conviction_manifest.txt for this model/normalised combo?"); sys.exit(1)
 
     print(f"\nFound {len(experiments)} experiment(s).")
-    rng = np.random.default_rng(seed=42)
+    # No module-level generator: each randomised draw builds its own from
+    # draw_rng(dataset, fold, strategy, budget), so this script and the
+    # forward-eval one agree despite sweeping different strategy/budget lists.
     MODEL_CLASSES = model_classes()
     from utils.heterophilic import get_dataset
 
@@ -357,7 +386,7 @@ if __name__ == '__main__':
         model_cls   = MODEL_CLASSES[targs['model']]
         all_results = []
         for fold in range(n_folds):
-            result = _run_fold_retrain(adict, dataset, model_cls, fold, device, rng,
+            result = _run_fold_retrain(adict, dataset, model_cls, fold, device,
                                        cli.intervention, cli.mask_mode, cli.gate_mode)
             if result is not None:
                 all_results.append(result)
@@ -375,11 +404,15 @@ if __name__ == '__main__':
             f"{targs['dataset']}_{targs['model']}{tag}_d{targs['d']}_{targs['layers']}L_"
             f"Norm_{Norm}_conv-{cli.conviction_score}{mode_tag}_conviction_retrain_{cli.intervention}")
 
+        _mode = cli.mask_mode if cli.intervention == 'masking' else (
+                cli.gate_mode if cli.intervention == 'gating' else '')
         _plot(all_results, adict, out_stem + '.pdf', cli.intervention)
+        _save_table(all_results, adict, out_stem + '.pdf', cli.intervention, _mode)
         _save_json(all_results, out_stem + '_results.json')
 
         if cli.intervention == 'pruning':
             _save_pruning_diagnostics(all_results, adict, out_stem + '_diagnostics.json',
-                                       strategies=RETRAIN_STRATEGIES)
+                                       strategies=RETRAIN_STRATEGIES,
+                                       levels=RETRAIN_MASK_LEVELS)
 
     print(f"\nDone. Plots in: {out_dir}")

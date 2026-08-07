@@ -1,0 +1,53 @@
+=== score=last  intervention=pruning  none=none  dataset=cora ===
+Reading manifest for: model=GeneralSheaf  normalised=true  intervention=pruning  bins=10
+  loaded: cora  d=5  L=3  folds=10
+
+Found 1 experiment(s).
+
+============================================================
+  cora  |  GeneralSheaf  d=5  L=3  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.813  conf=0.824
+  fold 1 done  |  baseline acc=0.855  conf=0.862
+  fold 2 done  |  baseline acc=0.843  conf=0.826
+  fold 3 done  |  baseline acc=0.807  conf=0.823
+  fold 4 done  |  baseline acc=0.851  conf=0.862
+  fold 5 done  |  baseline acc=0.809  conf=0.809
+  fold 6 done  |  baseline acc=0.809  conf=0.827
+  fold 7 done  |  baseline acc=0.813  conf=0.836
+  fold 8 done  |  baseline acc=0.845  conf=0.843
+  fold 9 done  |  baseline acc=0.849  conf=0.859
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/decile_experiment/pruning/last/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conv-last_decile_pruning.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/decile_experiment/pruning/last/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conv-last_decile_pruning.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/decile_experiment/pruning/last/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conv-last_decile_pruning_folds.csv
+
+Done. Plots in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/decile_experiment/pruning/last/GeneralSheaf/normalised_true
+=== score=last  intervention=pruning  none=none  dataset=citeseer ===
+Reading manifest for: model=GeneralSheaf  normalised=true  intervention=pruning  bins=10
+  loaded: citeseer  d=5  L=4  folds=10
+
+Found 1 experiment(s).
+
+============================================================
+  citeseer  |  GeneralSheaf  d=5  L=4  folds=10
+============================================================
+  fold 0 done  |  baseline acc=0.624  conf=0.708
+  fold 1 done  |  baseline acc=0.694  conf=0.690
+  fold 2 done  |  baseline acc=0.656  conf=0.765
+  fold 3 done  |  baseline acc=0.615  conf=0.696
+  fold 4 done  |  baseline acc=0.637  conf=0.545
+  fold 5 done  |  baseline acc=0.586  conf=0.637
+  fold 6 done  |  baseline acc=0.709  conf=0.869
+  fold 7 done  |  baseline acc=0.666  conf=0.714
+  fold 8 done  |  baseline acc=0.660  conf=0.627
+  fold 9 done  |  baseline acc=0.684  conf=0.649
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/decile_experiment/pruning/last/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conv-last_decile_pruning.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/decile_experiment/pruning/last/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conv-last_decile_pruning.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/decile_experiment/pruning/last/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conv-last_decile_pruning_folds.csv
+
+Done. Plots in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/decile_experiment/pruning/last/GeneralSheaf/normalised_true
+=== score=last  intervention=pruning  none=none  dataset=pubmed ===
+Reading manifest for: model=GeneralSheaf  normalised=true  intervention=pruning  bins=10
+  loaded: pubmed  d=3  L=4  folds=10
+
+Found 1 experiment(s).

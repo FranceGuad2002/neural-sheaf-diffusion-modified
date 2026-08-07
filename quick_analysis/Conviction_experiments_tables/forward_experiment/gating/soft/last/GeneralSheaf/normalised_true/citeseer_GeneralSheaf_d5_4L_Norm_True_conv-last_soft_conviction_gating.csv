@@ -1,0 +1,5 @@
+dataset,model,d,layers,normalised,conviction_score,intervention,mode,metric,indicator,mean,se,n_folds
+citeseer,GeneralSheaf,5,4,true,last,gating,soft,acc,baseline,0.6530809283256531,0.011382605263015133,10
+citeseer,GeneralSheaf,5,4,true,last,gating,soft,acc,conviction,0.6581066429615021,0.006855510348373193,10
+citeseer,GeneralSheaf,5,4,true,last,gating,soft,acc,confidence,0.6576142191886902,0.010894230484824817,10
+citeseer,GeneralSheaf,5,4,true,last,gating,soft,acc,degree,0.6553560197353363,0.0060702423530769765,10

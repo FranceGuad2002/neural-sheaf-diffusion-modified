@@ -1,0 +1,2387 @@
+[
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.006820598468333602,
+    "pct_nodes_remaining": 0.9960159362549803,
+    "pct_edges_remaining": 0.9359999999999999,
+    "n_connected_components": 7.2,
+    "giant_component_pct": 0.9664000000000001,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05042016806722689,
+        "1": 0.29411764705882354,
+        "2": 0.48739495798319327,
+        "3": 0.1092436974789916,
+        "4": 0.058823529411764705
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.476,
+      "val": 0.32,
+      "test": 0.204
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.006820598468333602,
+    "pct_nodes_remaining": 0.9760956175298805,
+    "pct_edges_remaining": 0.8844444444444445,
+    "n_connected_components": 10.7,
+    "giant_component_pct": 0.9469387755102041,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05263157894736842,
+        "1": 0.2982456140350877,
+        "2": 0.47368421052631576,
+        "3": 0.11403508771929824,
+        "4": 0.06140350877192982
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46530612244897956,
+      "val": 0.32653061224489793,
+      "test": 0.20816326530612245
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.006820598468333602,
+    "pct_nodes_remaining": 0.952191235059761,
+    "pct_edges_remaining": 0.8533333333333333,
+    "n_connected_components": 11.0,
+    "giant_component_pct": 0.9451882845188285,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05555555555555555,
+        "1": 0.2962962962962963,
+        "2": 0.46296296296296297,
+        "3": 0.12037037037037036,
+        "4": 0.06481481481481481
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45188284518828453,
+      "val": 0.33472803347280333,
+      "test": 0.21338912133891214
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.006820598468333602,
+    "pct_nodes_remaining": 0.9043824701195218,
+    "pct_edges_remaining": 0.7846666666666666,
+    "n_connected_components": 11.7,
+    "giant_component_pct": 0.9383259911894273,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.0625,
+        "1": 0.2916666666666667,
+        "2": 0.4375,
+        "3": 0.13541666666666666,
+        "4": 0.07291666666666667
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.42290748898678415,
+      "val": 0.3524229074889868,
+      "test": 0.22466960352422907
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8666666746139526,
+    "se": 0.006678190333684657,
+    "pct_nodes_remaining": 0.8565737051792828,
+    "pct_edges_remaining": 0.7133333333333333,
+    "n_connected_components": 13.9,
+    "giant_component_pct": 0.9046511627906977,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.07142857142857142,
+        "1": 0.2857142857142857,
+        "2": 0.4166666666666667,
+        "3": 0.15476190476190477,
+        "4": 0.07142857142857142
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.39069767441860465,
+      "val": 0.37209302325581395,
+      "test": 0.2372093023255814
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9960159362549803,
+    "pct_edges_remaining": 0.9917777777777778,
+    "n_connected_components": 1.2,
+    "giant_component_pct": 0.9987999999999999,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05042016806722689,
+        "1": 0.3025210084033613,
+        "2": 0.4789915966386555,
+        "3": 0.1092436974789916,
+        "4": 0.058823529411764705
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.476,
+      "val": 0.32,
+      "test": 0.204
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9760956175298805,
+    "pct_edges_remaining": 0.9628888888888889,
+    "n_connected_components": 2.1,
+    "giant_component_pct": 0.9946938775510205,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05263157894736842,
+        "1": 0.3157894736842105,
+        "2": 0.45614035087719296,
+        "3": 0.11403508771929824,
+        "4": 0.06140350877192982
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46530612244897956,
+      "val": 0.32653061224489793,
+      "test": 0.20816326530612245
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.952191235059761,
+    "pct_edges_remaining": 0.9146666666666666,
+    "n_connected_components": 4.6,
+    "giant_component_pct": 0.9832635983263598,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05555555555555555,
+        "1": 0.3148148148148148,
+        "2": 0.4444444444444444,
+        "3": 0.12037037037037036,
+        "4": 0.06481481481481481
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45188284518828453,
+      "val": 0.33472803347280333,
+      "test": 0.21338912133891214
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9043824701195218,
+    "pct_edges_remaining": 0.8364444444444444,
+    "n_connected_components": 7.3,
+    "giant_component_pct": 0.9691629955947137,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.0625,
+        "1": 0.3229166666666667,
+        "2": 0.4166666666666667,
+        "3": 0.125,
+        "4": 0.07291666666666667
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.42290748898678415,
+      "val": 0.3524229074889868,
+      "test": 0.22466960352422907
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.8565737051792828,
+    "pct_edges_remaining": 0.7746666666666666,
+    "n_connected_components": 9.7,
+    "giant_component_pct": 0.9548837209302325,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.047619047619047616,
+        "1": 0.35714285714285715,
+        "2": 0.40476190476190477,
+        "3": 0.11904761904761904,
+        "4": 0.07142857142857142
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.39069767441860465,
+      "val": 0.37209302325581395,
+      "test": 0.2372093023255814
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9960159362549803,
+    "pct_edges_remaining": 0.8973333333333334,
+    "n_connected_components": 10.9,
+    "giant_component_pct": 0.9460000000000001,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05042016806722689,
+        "1": 0.29411764705882354,
+        "2": 0.48739495798319327,
+        "3": 0.1092436974789916,
+        "4": 0.058823529411764705
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.476,
+      "val": 0.32,
+      "test": 0.204
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8666666746139526,
+    "se": 0.007231014829619776,
+    "pct_nodes_remaining": 0.9760956175298805,
+    "pct_edges_remaining": 0.7853333333333332,
+    "n_connected_components": 16.9,
+    "giant_component_pct": 0.9097959183673471,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05263157894736842,
+        "1": 0.2982456140350877,
+        "2": 0.5,
+        "3": 0.08771929824561403,
+        "4": 0.06140350877192982
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46530612244897956,
+      "val": 0.32653061224489793,
+      "test": 0.20816326530612245
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.864705890417099,
+    "se": 0.007568728594209293,
+    "pct_nodes_remaining": 0.952191235059761,
+    "pct_edges_remaining": 0.6988888888888888,
+    "n_connected_components": 23.1,
+    "giant_component_pct": 0.8686192468619247,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05555555555555555,
+        "1": 0.3055555555555556,
+        "2": 0.49074074074074076,
+        "3": 0.09259259259259259,
+        "4": 0.05555555555555555
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45188284518828453,
+      "val": 0.33472803347280333,
+      "test": 0.21338912133891214
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.864705890417099,
+    "se": 0.007042464284576773,
+    "pct_nodes_remaining": 0.9043824701195218,
+    "pct_edges_remaining": 0.5913333333333334,
+    "n_connected_components": 30.7,
+    "giant_component_pct": 0.7726872246696036,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.052083333333333336,
+        "1": 0.3020833333333333,
+        "2": 0.5104166666666666,
+        "3": 0.08333333333333333,
+        "4": 0.052083333333333336
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.42290748898678415,
+      "val": 0.3524229074889868,
+      "test": 0.22466960352422907
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.864705890417099,
+    "se": 0.007042464284576773,
+    "pct_nodes_remaining": 0.8565737051792828,
+    "pct_edges_remaining": 0.5166666666666667,
+    "n_connected_components": 37.4,
+    "giant_component_pct": 0.726046511627907,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.047619047619047616,
+        "1": 0.30952380952380953,
+        "2": 0.5238095238095238,
+        "3": 0.07142857142857142,
+        "4": 0.047619047619047616
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.39069767441860465,
+      "val": 0.37209302325581395,
+      "test": 0.2372093023255814
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9960159362549803,
+    "pct_edges_remaining": 0.9977777777777778,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05042016806722689,
+        "1": 0.3025210084033613,
+        "2": 0.4789915966386555,
+        "3": 0.1092436974789916,
+        "4": 0.058823529411764705
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.476,
+      "val": 0.32,
+      "test": 0.204
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9760956175298805,
+    "pct_edges_remaining": 0.9866666666666667,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05263157894736842,
+        "1": 0.2894736842105263,
+        "2": 0.49122807017543857,
+        "3": 0.10526315789473684,
+        "4": 0.06140350877192982
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46530612244897956,
+      "val": 0.32653061224489793,
+      "test": 0.20816326530612245
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.952191235059761,
+    "pct_edges_remaining": 0.9733333333333333,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.046296296296296294,
+        "1": 0.2962962962962963,
+        "2": 0.48148148148148145,
+        "3": 0.1111111111111111,
+        "4": 0.06481481481481481
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45188284518828453,
+      "val": 0.33472803347280333,
+      "test": 0.21338912133891214
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9043824701195218,
+    "pct_edges_remaining": 0.9466666666666667,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.041666666666666664,
+        "1": 0.3229166666666667,
+        "2": 0.4375,
+        "3": 0.125,
+        "4": 0.07291666666666667
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.42290748898678415,
+      "val": 0.3524229074889868,
+      "test": 0.22466960352422907
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.8565737051792828,
+    "pct_edges_remaining": 0.908,
+    "n_connected_components": 1.4,
+    "giant_component_pct": 0.9981395348837209,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.047619047619047616,
+        "1": 0.32142857142857145,
+        "2": 0.40476190476190477,
+        "3": 0.14285714285714285,
+        "4": 0.08333333333333333
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.39069767441860465,
+      "val": 0.37209302325581395,
+      "test": 0.2372093023255814
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9960159362549803,
+    "pct_edges_remaining": 0.9846666666666666,
+    "n_connected_components": 1.4,
+    "giant_component_pct": 0.998,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05042016806722689,
+        "1": 0.29411764705882354,
+        "2": 0.48739495798319327,
+        "3": 0.1092436974789916,
+        "4": 0.058823529411764705
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.476,
+      "val": 0.32,
+      "test": 0.204
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9760956175298805,
+    "pct_edges_remaining": 0.9542222222222222,
+    "n_connected_components": 2.8,
+    "giant_component_pct": 0.9906122448979591,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05263157894736842,
+        "1": 0.2982456140350877,
+        "2": 0.49122807017543857,
+        "3": 0.11403508771929824,
+        "4": 0.043859649122807015
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46530612244897956,
+      "val": 0.32653061224489793,
+      "test": 0.20816326530612245
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.952191235059761,
+    "pct_edges_remaining": 0.9208888888888888,
+    "n_connected_components": 3.9,
+    "giant_component_pct": 0.987029288702929,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05555555555555555,
+        "1": 0.28703703703703703,
+        "2": 0.5,
+        "3": 0.10185185185185185,
+        "4": 0.05555555555555555
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45188284518828453,
+      "val": 0.33472803347280333,
+      "test": 0.21338912133891214
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9043824701195218,
+    "pct_edges_remaining": 0.8486666666666667,
+    "n_connected_components": 4.3,
+    "giant_component_pct": 0.9828193832599119,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.052083333333333336,
+        "1": 0.3125,
+        "2": 0.4895833333333333,
+        "3": 0.09375,
+        "4": 0.052083333333333336
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.42290748898678415,
+      "val": 0.3524229074889868,
+      "test": 0.22466960352422907
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.8565737051792828,
+    "pct_edges_remaining": 0.7784444444444445,
+    "n_connected_components": 7.1,
+    "giant_component_pct": 0.9688372093023256,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.047619047619047616,
+        "1": 0.2976190476190476,
+        "2": 0.5,
+        "3": 0.10714285714285714,
+        "4": 0.047619047619047616
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.39069767441860465,
+      "val": 0.37209302325581395,
+      "test": 0.2372093023255814
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9960159362549803,
+    "pct_edges_remaining": 0.992,
+    "n_connected_components": 1.7,
+    "giant_component_pct": 0.9964000000000001,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05042016806722689,
+        "1": 0.3025210084033613,
+        "2": 0.4789915966386555,
+        "3": 0.1092436974789916,
+        "4": 0.058823529411764705
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.476,
+      "val": 0.32,
+      "test": 0.204
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9760956175298805,
+    "pct_edges_remaining": 0.9631111111111113,
+    "n_connected_components": 2.8,
+    "giant_component_pct": 0.9910204081632653,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.017543859649122806,
+        "1": 0.30701754385964913,
+        "2": 0.5,
+        "3": 0.11403508771929824,
+        "4": 0.06140350877192982
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46530612244897956,
+      "val": 0.32653061224489793,
+      "test": 0.20816326530612245
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.952191235059761,
+    "pct_edges_remaining": 0.915111111111111,
+    "n_connected_components": 3.6,
+    "giant_component_pct": 0.9874476987447698,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.046296296296296294,
+        "1": 0.2777777777777778,
+        "2": 0.5092592592592593,
+        "3": 0.12037037037037036,
+        "4": 0.046296296296296294
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45188284518828453,
+      "val": 0.33472803347280333,
+      "test": 0.21338912133891214
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9043824701195218,
+    "pct_edges_remaining": 0.8377777777777778,
+    "n_connected_components": 5.7,
+    "giant_component_pct": 0.9770925110132159,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.020833333333333332,
+        "1": 0.3020833333333333,
+        "2": 0.4791666666666667,
+        "3": 0.125,
+        "4": 0.07291666666666667
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.42290748898678415,
+      "val": 0.3524229074889868,
+      "test": 0.22466960352422907
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "deg_matched_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8666666746139526,
+    "se": 0.0077444770513859125,
+    "pct_nodes_remaining": 0.8565737051792828,
+    "pct_edges_remaining": 0.7737777777777778,
+    "n_connected_components": 6.6,
+    "giant_component_pct": 0.9702325581395348,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.047619047619047616,
+        "1": 0.2857142857142857,
+        "2": 0.5,
+        "3": 0.11904761904761904,
+        "4": 0.047619047619047616
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.39069767441860465,
+      "val": 0.37209302325581395,
+      "test": 0.2372093023255814
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.006820598468333602,
+    "pct_nodes_remaining": 0.9960159362549803,
+    "pct_edges_remaining": 0.989111111111111,
+    "n_connected_components": 1.1,
+    "giant_component_pct": 0.9996,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05042016806722689,
+        "1": 0.29411764705882354,
+        "2": 0.48739495798319327,
+        "3": 0.1092436974789916,
+        "4": 0.058823529411764705
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.476,
+      "val": 0.32,
+      "test": 0.204
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.006820598468333602,
+    "pct_nodes_remaining": 0.9760956175298805,
+    "pct_edges_remaining": 0.9686666666666668,
+    "n_connected_components": 1.2,
+    "giant_component_pct": 0.9991836734693876,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05263157894736842,
+        "1": 0.2982456140350877,
+        "2": 0.47368421052631576,
+        "3": 0.11403508771929824,
+        "4": 0.06140350877192982
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46530612244897956,
+      "val": 0.32653061224489793,
+      "test": 0.20816326530612245
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.006820598468333602,
+    "pct_nodes_remaining": 0.952191235059761,
+    "pct_edges_remaining": 0.9444444444444443,
+    "n_connected_components": 1.7,
+    "giant_component_pct": 0.997071129707113,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05555555555555555,
+        "1": 0.28703703703703703,
+        "2": 0.4722222222222222,
+        "3": 0.12037037037037036,
+        "4": 0.06481481481481481
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45188284518828453,
+      "val": 0.33472803347280333,
+      "test": 0.21338912133891214
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.006820598468333602,
+    "pct_nodes_remaining": 0.9043824701195218,
+    "pct_edges_remaining": 0.8735555555555555,
+    "n_connected_components": 3.2,
+    "giant_component_pct": 0.9894273127753305,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.0625,
+        "1": 0.2708333333333333,
+        "2": 0.4583333333333333,
+        "3": 0.13541666666666666,
+        "4": 0.07291666666666667
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.42290748898678415,
+      "val": 0.3524229074889868,
+      "test": 0.22466960352422907
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.006820598468333602,
+    "pct_nodes_remaining": 0.8565737051792828,
+    "pct_edges_remaining": 0.7964444444444444,
+    "n_connected_components": 5.0,
+    "giant_component_pct": 0.9790697674418605,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.07142857142857142,
+        "1": 0.25,
+        "2": 0.44047619047619047,
+        "3": 0.15476190476190477,
+        "4": 0.08333333333333333
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.39069767441860465,
+      "val": 0.37209302325581395,
+      "test": 0.2372093023255814
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9960159362549803,
+    "pct_edges_remaining": 0.9931111111111111,
+    "n_connected_components": 1.3,
+    "giant_component_pct": 0.9987999999999999,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05042016806722689,
+        "1": 0.3025210084033613,
+        "2": 0.4789915966386555,
+        "3": 0.1092436974789916,
+        "4": 0.058823529411764705
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.476,
+      "val": 0.32,
+      "test": 0.204
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9760956175298805,
+    "pct_edges_remaining": 0.9526666666666668,
+    "n_connected_components": 2.6,
+    "giant_component_pct": 0.993469387755102,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05263157894736842,
+        "1": 0.30701754385964913,
+        "2": 0.47368421052631576,
+        "3": 0.11403508771929824,
+        "4": 0.05263157894736842
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46530612244897956,
+      "val": 0.32653061224489793,
+      "test": 0.20816326530612245
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.952191235059761,
+    "pct_edges_remaining": 0.9064444444444444,
+    "n_connected_components": 4.7,
+    "giant_component_pct": 0.9803347280334729,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.046296296296296294,
+        "1": 0.32407407407407407,
+        "2": 0.48148148148148145,
+        "3": 0.12037037037037036,
+        "4": 0.027777777777777776
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45188284518828453,
+      "val": 0.33472803347280333,
+      "test": 0.21338912133891214
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8666666746139526,
+    "se": 0.0077444770513859125,
+    "pct_nodes_remaining": 0.9043824701195218,
+    "pct_edges_remaining": 0.8228888888888889,
+    "n_connected_components": 8.2,
+    "giant_component_pct": 0.9638766519823788,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.03125,
+        "1": 0.3541666666666667,
+        "2": 0.46875,
+        "3": 0.11458333333333333,
+        "4": 0.03125
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.42290748898678415,
+      "val": 0.3524229074889868,
+      "test": 0.22466960352422907
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "conf_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8666666746139526,
+    "se": 0.0077444770513859125,
+    "pct_nodes_remaining": 0.8565737051792828,
+    "pct_edges_remaining": 0.7286666666666666,
+    "n_connected_components": 15.3,
+    "giant_component_pct": 0.9223255813953489,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.023809523809523808,
+        "1": 0.38095238095238093,
+        "2": 0.5119047619047619,
+        "3": 0.07142857142857142,
+        "4": 0.011904761904761904
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.39069767441860465,
+      "val": 0.37209302325581395,
+      "test": 0.2372093023255814
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9960159362549803,
+    "pct_edges_remaining": 0.9942222222222222,
+    "n_connected_components": 1.1,
+    "giant_component_pct": 0.9996,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05042016806722689,
+        "1": 0.3025210084033613,
+        "2": 0.4789915966386555,
+        "3": 0.1092436974789916,
+        "4": 0.058823529411764705
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.476,
+      "val": 0.32,
+      "test": 0.204
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.9760956175298805,
+    "pct_edges_remaining": 0.958,
+    "n_connected_components": 2.0,
+    "giant_component_pct": 0.9951020408163265,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05263157894736842,
+        "1": 0.2807017543859649,
+        "2": 0.49122807017543857,
+        "3": 0.11403508771929824,
+        "4": 0.06140350877192982
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.46530612244897956,
+      "val": 0.32653061224489793,
+      "test": 0.20816326530612245
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.8686274588108063,
+    "se": 0.007362738131938185,
+    "pct_nodes_remaining": 0.952191235059761,
+    "pct_edges_remaining": 0.9235555555555555,
+    "n_connected_components": 3.3,
+    "giant_component_pct": 0.9895397489539748,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05555555555555555,
+        "1": 0.2962962962962963,
+        "2": 0.4722222222222222,
+        "3": 0.1111111111111111,
+        "4": 0.06481481481481481
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.45188284518828453,
+      "val": 0.33472803347280333,
+      "test": 0.21338912133891214
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8666666746139526,
+    "se": 0.006678190333684657,
+    "pct_nodes_remaining": 0.9043824701195218,
+    "pct_edges_remaining": 0.7835555555555556,
+    "n_connected_components": 11.6,
+    "giant_component_pct": 0.9409691629955947,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.0625,
+        "1": 0.23958333333333334,
+        "2": 0.5416666666666666,
+        "3": 0.10416666666666667,
+        "4": 0.052083333333333336
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.42290748898678415,
+      "val": 0.3524229074889868,
+      "test": 0.22466960352422907
+    }
+  },
+  {
+    "dataset": "wisconsin",
+    "model": "GeneralSheaf",
+    "d": 2,
+    "layers": 2,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "acc",
+    "strategy": "random",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.8666666746139526,
+    "se": 0.006678190333684657,
+    "pct_nodes_remaining": 0.8565737051792828,
+    "pct_edges_remaining": 0.7415555555555555,
+    "n_connected_components": 11.4,
+    "giant_component_pct": 0.9418604651162792,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.05952380952380952,
+        "1": 0.2857142857142857,
+        "2": 0.5357142857142857,
+        "3": 0.09523809523809523,
+        "4": 0.023809523809523808
+      },
+      "val": {
+        "0": 0.0375,
+        "1": 0.225,
+        "2": 0.4625,
+        "3": 0.15,
+        "4": 0.125
+      },
+      "test": {
+        "0": 0.0196078431372549,
+        "1": 0.3137254901960784,
+        "2": 0.45098039215686275,
+        "3": 0.13725490196078433,
+        "4": 0.0784313725490196
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.47808764940239046,
+      "val": 0.3187250996015936,
+      "test": 0.20318725099601595
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.39069767441860465,
+      "val": 0.37209302325581395,
+      "test": 0.2372093023255814
+    }
+  }
+]

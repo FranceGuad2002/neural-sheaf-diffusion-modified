@@ -68,10 +68,10 @@ def get_parser():
     parser.add_argument('--seed', type=int, default=43)
     parser.add_argument('--cuda', type=int, default=0)
     parser.add_argument('--folds', type=int, default=10)
-    parser.add_argument('--model', type=str, choices=['DiagSheaf', 'BundleSheaf', 'GeneralSheaf', 'DiagSheafODE',
-                                                      'BundleSheafODE', 'GeneralSheafODE', 'JointSheafParams',
-                                                      'JointSheafParamsAlt', 'JointSheafVanilla',
-                                                      'VanillaSheaf', 'ConvSheaf'], default=None)
+    parser.add_argument('--model', type=str, choices=['DiagSheaf', 'BundleSheaf', 'GeneralSheaf', 'BochnerSheaf',
+                                                      'BochnerFlatSheaf', 'DiagSheafODE', 'BundleSheafODE',
+                                                      'GeneralSheafODE', 'JointSheafParams', 'JointSheafParamsAlt',
+                                                      'JointSheafVanilla', 'VanillaSheaf', 'ConvSheaf'], default=None)
     parser.add_argument('--entity', type=str, default=None)
     parser.add_argument('--evectors', type=int, default=0, help="Number of Laplacian PE eigenvectors to use.")
 

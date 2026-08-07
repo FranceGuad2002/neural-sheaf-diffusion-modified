@@ -264,6 +264,79 @@ class NormConnectionLaplacianBuilder(LaplacianBuilder):
         return (edge_index, weights), saved_tril_maps
 
 
+class FlatBochnerLaplacianBuilder(LaplacianBuilder):
+    """Builds the Laplacian for the 'flat' Bochner sheaf: each vertex v has a single orthogonal
+    map O_v shared by all its incident edges (O_{v<=e} = O_v for every e touching v), and edges
+    only carry a diagonal scale Sigma_e. Takes O (per node, [N, d, d]) and Sigma (per edge,
+    [E, d]) as separate arguments rather than a premultiplied maps tensor.
+
+    Because O_v is shared across all of v's edges, its diagonal block collapses to
+    O_v^T @ diag(d_v) @ O_v with d_v = sum of Sigma_e^2 over incident edges -- a plain per-channel
+    vector, not a general d x d matrix. Normalising by it is therefore pure elementwise vector
+    arithmetic: no SVD, no Cholesky, no matrix inversion at all, and the normalised diagonal block
+    is exactly the identity.
+    """
+
+    def __init__(self, size, edge_index, d, normalised=False, deg_normalised=False,
+                 add_hp=False, add_lp=False, augmented=True):
+        super(FlatBochnerLaplacianBuilder, self).__init__(
+            size, edge_index, d, normalised=normalised, deg_normalised=deg_normalised,
+            add_hp=add_hp, add_lp=add_lp, augmented=augmented)
+
+        self.diag_indices, self.tril_indices = lap.compute_learnable_laplacian_indices(
+            size, self.vertex_tril_idx, self.d, self.final_d)
+
+    def forward(self, O, sigma):
+        assert torch.all(torch.isfinite(O)) and torch.all(torch.isfinite(sigma))
+        left_idx, _ = self.left_right_idx
+        tril_row, tril_col = self.vertex_tril_idx
+        tril_indices, diag_indices = self.tril_indices, self.diag_indices
+        row, col = self.edge_index
+
+        d_val = scatter_add(sigma ** 2, row, dim=0, dim_size=self.size)  # [N, d]
+
+        if self.normalised:
+            if self.augmented:
+                d_sqrt_inv = (d_val + 1).pow(-0.5)
+            else:
+                d_sqrt_inv = d_val.pow(-0.5)
+                d_sqrt_inv.masked_fill_(d_sqrt_inv == float('inf'), 0)
+            norm_sigma = d_sqrt_inv[row] * sigma * d_sqrt_inv[col]
+            diag_maps = torch.eye(self.d, device=self.device, dtype=O.dtype).unsqueeze(0).repeat(self.size, 1, 1)
+        elif self.deg_normalised:
+            deg_sqrt_inv = (self.deg + 1).pow(-0.5) if self.augmented else self.deg.pow(-0.5)
+            deg_sqrt_inv.masked_fill_(deg_sqrt_inv == float('inf'), 0)
+            deg_sqrt_inv = deg_sqrt_inv.unsqueeze(-1)
+            norm_sigma = deg_sqrt_inv[row] * sigma * deg_sqrt_inv[col]
+            diag_maps = torch.diag_embed(deg_sqrt_inv ** 2 * d_val)
+        else:
+            norm_sigma = sigma
+            diag_maps = torch.diag_embed(d_val)
+
+        # Off-diagonal blocks: -O_u^T @ diag(norm_sigma_e) @ O_v, one bmm per undirected edge.
+        O_u = torch.index_select(O, index=tril_row, dim=0)
+        O_v = torch.index_select(O, index=tril_col, dim=0)
+        edge_norm_sigma = torch.index_select(norm_sigma, index=left_idx, dim=0)
+        tril_maps = -torch.bmm(torch.transpose(O_u, -1, -2), O_v * edge_norm_sigma.unsqueeze(-1))
+        saved_tril_maps = tril_maps.detach().clone()
+
+        diag_maps, tril_maps = diag_maps.reshape(-1), tril_maps.reshape(-1)
+
+        # Append fixed diagonal values in the non-learnable dimensions.
+        (diag_indices, diag_maps), (tril_indices, tril_maps) = self.append_fixed_maps(
+            len(tril_row), diag_indices, diag_maps, tril_indices, tril_maps)
+
+        # Add the upper triangular part.
+        triu_indices = torch.empty_like(tril_indices)
+        triu_indices[0], triu_indices[1] = tril_indices[1], tril_indices[0]
+        non_diag_indices, non_diag_values = lap.mergesp(tril_indices, tril_maps, triu_indices, tril_maps)
+
+        # Merge diagonal and non-diagonal
+        edge_index, weights = lap.mergesp(non_diag_indices, non_diag_values, diag_indices, diag_maps)
+
+        return (edge_index, weights), saved_tril_maps
+
+
 class GeneralLaplacianBuilder(LaplacianBuilder):
     """Learns a multi-dimensional Sheaf Laplacian from data."""
 

@@ -1,0 +1,1982 @@
+[
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.9514050092034724,
+    "se": 0.002021445607967282,
+    "pct_nodes_remaining": 0.994,
+    "pct_edges_remaining": 0.9880361402974469,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.802020202020202,
+        "1": 0.19797979797979798
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5975855130784709,
+      "val": 0.2012072434607646,
+      "test": 0.2012072434607646
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.9405207774878264,
+    "se": 0.002743577829472745,
+    "pct_nodes_remaining": 0.9700000000000001,
+    "pct_edges_remaining": 0.9423988630018781,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8001754385964912,
+        "1": 0.19982456140350877
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5876288659793815,
+      "val": 0.20618556701030927,
+      "test": 0.20618556701030927
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.9257534568691976,
+    "se": 0.003551426425148908,
+    "pct_nodes_remaining": 0.9399999999999998,
+    "pct_edges_remaining": 0.8900639561443583,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7955555555555556,
+        "1": 0.20444444444444446
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.574468085106383,
+      "val": 0.2127659574468085,
+      "test": 0.2127659574468085
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.8998591810077488,
+    "se": 0.0038265781373671977,
+    "pct_nodes_remaining": 0.8800000000000001,
+    "pct_edges_remaining": 0.7939089386325568,
+    "n_connected_components": 2.0,
+    "giant_component_pct": 0.9998636363636365,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7779166666666667,
+        "1": 0.22208333333333333
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5454545454545454,
+      "val": 0.22727272727272727,
+      "test": 0.22727272727272727
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.876692989347236,
+    "se": 0.00423582281394083,
+    "pct_nodes_remaining": 0.82,
+    "pct_edges_remaining": 0.7023831277600122,
+    "n_connected_components": 4.4,
+    "giant_component_pct": 0.999390243902439,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7557142857142857,
+        "1": 0.24428571428571427
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5121951219512195,
+      "val": 0.24390243902439024,
+      "test": 0.24390243902439024
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.9544744052260201,
+    "se": 0.0019749865745910837,
+    "pct_nodes_remaining": 0.994,
+    "pct_edges_remaining": 0.9896984924623116,
+    "n_connected_components": 1.1,
+    "giant_component_pct": 0.999989939637827,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8033670033670034,
+        "1": 0.19663299663299663
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5975855130784709,
+      "val": 0.2012072434607646,
+      "test": 0.2012072434607646
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.9541390631503799,
+    "se": 0.0019580081202182496,
+    "pct_nodes_remaining": 0.9700000000000001,
+    "pct_edges_remaining": 0.9465813918075225,
+    "n_connected_components": 1.5,
+    "giant_component_pct": 0.9999175257731959,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8070175438596491,
+        "1": 0.19298245614035087
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5876288659793815,
+      "val": 0.20618556701030927,
+      "test": 0.20618556701030927
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.9529909798985322,
+    "se": 0.0019247036335412807,
+    "pct_nodes_remaining": 0.9399999999999998,
+    "pct_edges_remaining": 0.893683061773514,
+    "n_connected_components": 1.7,
+    "giant_component_pct": 0.999840425531915,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8127777777777778,
+        "1": 0.18722222222222223
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.574468085106383,
+      "val": 0.2127659574468085,
+      "test": 0.2127659574468085
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.9480923820985201,
+    "se": 0.0021108646040773043,
+    "pct_nodes_remaining": 0.8800000000000001,
+    "pct_edges_remaining": 0.7931196385970256,
+    "n_connected_components": 2.9,
+    "giant_component_pct": 0.9996136363636363,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8220833333333334,
+        "1": 0.17791666666666667
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5454545454545454,
+      "val": 0.22727272727272727,
+      "test": 0.22727272727272727
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.9407347459926229,
+    "se": 0.0020738691584987145,
+    "pct_nodes_remaining": 0.82,
+    "pct_edges_remaining": 0.6995558601086238,
+    "n_connected_components": 4.2,
+    "giant_component_pct": 0.9993780487804879,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8397619047619047,
+        "1": 0.16023809523809524
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5121951219512195,
+      "val": 0.24390243902439024,
+      "test": 0.24390243902439024
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.9534778476249823,
+    "se": 0.0018841189816300502,
+    "pct_nodes_remaining": 0.994,
+    "pct_edges_remaining": 0.9878660981676057,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8025252525252525,
+        "1": 0.19747474747474747
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5975855130784709,
+      "val": 0.2012072434607646,
+      "test": 0.2012072434607646
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.9494399888178331,
+    "se": 0.0019377996529023065,
+    "pct_nodes_remaining": 0.9700000000000001,
+    "pct_edges_remaining": 0.940010659357393,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8022807017543859,
+        "1": 0.19771929824561404
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5876288659793815,
+      "val": 0.20618556701030927,
+      "test": 0.20618556701030927
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.9435785366466861,
+    "se": 0.002272398964231438,
+    "pct_nodes_remaining": 0.9399999999999998,
+    "pct_edges_remaining": 0.8819983757169686,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8035185185185185,
+        "1": 0.19648148148148148
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.574468085106383,
+      "val": 0.2127659574468085,
+      "test": 0.2127659574468085
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.9310153208361397,
+    "se": 0.0024800955897107866,
+    "pct_nodes_remaining": 0.8800000000000001,
+    "pct_edges_remaining": 0.7711639003096289,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8041666666666667,
+        "1": 0.19583333333333333
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5454545454545454,
+      "val": 0.22727272727272727,
+      "test": 0.22727272727272727
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.917365015764957,
+    "se": 0.0022618217439931746,
+    "pct_nodes_remaining": 0.82,
+    "pct_edges_remaining": 0.6683214050048222,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8026190476190476,
+        "1": 0.19738095238095238
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5121951219512195,
+      "val": 0.24390243902439024,
+      "test": 0.24390243902439024
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.9539412440340774,
+    "se": 0.0019972398184882182,
+    "pct_nodes_remaining": 0.994,
+    "pct_edges_remaining": 0.9926932643013047,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8018518518518518,
+        "1": 0.19814814814814816
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5975855130784709,
+      "val": 0.2012072434607646,
+      "test": 0.2012072434607646
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.9507575729244782,
+    "se": 0.0019715015125504978,
+    "pct_nodes_remaining": 0.9700000000000001,
+    "pct_edges_remaining": 0.9611136490533475,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8021052631578948,
+        "1": 0.19789473684210526
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5876288659793815,
+      "val": 0.20618556701030927,
+      "test": 0.20618556701030927
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.9454384836292645,
+    "se": 0.0022092484019307908,
+    "pct_nodes_remaining": 0.9399999999999998,
+    "pct_edges_remaining": 0.9020049743667833,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8018518518518518,
+        "1": 0.19814814814814816
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.574468085106383,
+      "val": 0.2127659574468085,
+      "test": 0.2127659574468085
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.9335603066448916,
+    "se": 0.002618092218729441,
+    "pct_nodes_remaining": 0.8800000000000001,
+    "pct_edges_remaining": 0.7893939393939394,
+    "n_connected_components": 1.1,
+    "giant_component_pct": 0.9999886363636363,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8010416666666667,
+        "1": 0.19895833333333332
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5454545454545454,
+      "val": 0.22727272727272727,
+      "test": 0.22727272727272727
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.9187080772498843,
+    "se": 0.0025411495670792637,
+    "pct_nodes_remaining": 0.82,
+    "pct_edges_remaining": 0.6845946906248415,
+    "n_connected_components": 1.7,
+    "giant_component_pct": 0.9999146341463415,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8019047619047619,
+        "1": 0.1980952380952381
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5121951219512195,
+      "val": 0.24390243902439024,
+      "test": 0.24390243902439024
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.9536398396475919,
+    "se": 0.0020594498302501517,
+    "pct_nodes_remaining": 0.994,
+    "pct_edges_remaining": 0.9878864017054972,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.802020202020202,
+        "1": 0.19797979797979798
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5975855130784709,
+      "val": 0.2012072434607646,
+      "test": 0.2012072434607646
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.9495331563714646,
+    "se": 0.0018944907489211991,
+    "pct_nodes_remaining": 0.9700000000000001,
+    "pct_edges_remaining": 0.9401629358915791,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8015789473684211,
+        "1": 0.19842105263157894
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5876288659793815,
+      "val": 0.20618556701030927,
+      "test": 0.20618556701030927
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.9439656606893451,
+    "se": 0.0022742376429421745,
+    "pct_nodes_remaining": 0.9399999999999998,
+    "pct_edges_remaining": 0.882526267702147,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8053703703703704,
+        "1": 0.19462962962962962
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.574468085106383,
+      "val": 0.2127659574468085,
+      "test": 0.2127659574468085
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.9375062580004284,
+    "se": 0.002224496605442297,
+    "pct_nodes_remaining": 0.8800000000000001,
+    "pct_edges_remaining": 0.7749048271661337,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.81125,
+        "1": 0.18875
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5454545454545454,
+      "val": 0.22727272727272727,
+      "test": 0.22727272727272727
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.9298611259175585,
+    "se": 0.0024532332919252344,
+    "pct_nodes_remaining": 0.82,
+    "pct_edges_remaining": 0.6774072382112584,
+    "n_connected_components": 1.1,
+    "giant_component_pct": 0.9999878048780488,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8223809523809524,
+        "1": 0.17761904761904762
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5121951219512195,
+      "val": 0.24390243902439024,
+      "test": 0.24390243902439024
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.9533841069956137,
+    "se": 0.001967287070045324,
+    "pct_nodes_remaining": 0.994,
+    "pct_edges_remaining": 0.9891502969392416,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8016835016835017,
+        "1": 0.1983164983164983
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5975855130784709,
+      "val": 0.2012072434607646,
+      "test": 0.2012072434607646
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.9484377386170904,
+    "se": 0.0021325548207639213,
+    "pct_nodes_remaining": 0.9700000000000001,
+    "pct_edges_remaining": 0.9430105070808587,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8021052631578948,
+        "1": 0.19789473684210526
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5876288659793815,
+      "val": 0.20618556701030927,
+      "test": 0.20618556701030927
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.9419921362097812,
+    "se": 0.0020332905516925975,
+    "pct_nodes_remaining": 0.9399999999999998,
+    "pct_edges_remaining": 0.8860159382772448,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7994444444444444,
+        "1": 0.20055555555555554
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.574468085106383,
+      "val": 0.2127659574468085,
+      "test": 0.2127659574468085
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.9253133956335434,
+    "se": 0.002861948852357862,
+    "pct_nodes_remaining": 0.8800000000000001,
+    "pct_edges_remaining": 0.7783412009542663,
+    "n_connected_components": 1.1,
+    "giant_component_pct": 0.9999886363636363,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7952083333333333,
+        "1": 0.20479166666666668
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5454545454545454,
+      "val": 0.22727272727272727,
+      "test": 0.22727272727272727
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "deg_matched_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.9061731286716661,
+    "se": 0.0021412019344096626,
+    "pct_nodes_remaining": 0.82,
+    "pct_edges_remaining": 0.6790315212425766,
+    "n_connected_components": 1.7,
+    "giant_component_pct": 0.9998902439024391,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7876190476190477,
+        "1": 0.2123809523809524
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5121951219512195,
+      "val": 0.24390243902439024,
+      "test": 0.24390243902439024
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.9543795721676875,
+    "se": 0.0019698547573440877,
+    "pct_nodes_remaining": 0.994,
+    "pct_edges_remaining": 0.988043754124156,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8,
+        "1": 0.2
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5975855130784709,
+      "val": 0.2012072434607646,
+      "test": 0.2012072434607646
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.9530670052807635,
+    "se": 0.0019913039367970673,
+    "pct_nodes_remaining": 0.9700000000000001,
+    "pct_edges_remaining": 0.9423125729658393,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.791578947368421,
+        "1": 0.20842105263157895
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5876288659793815,
+      "val": 0.20618556701030927,
+      "test": 0.20618556701030927
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.9497934982820624,
+    "se": 0.0022446276738308474,
+    "pct_nodes_remaining": 0.9399999999999998,
+    "pct_edges_remaining": 0.8889548753870361,
+    "n_connected_components": 1.2,
+    "giant_component_pct": 0.9999787234042554,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.78,
+        "1": 0.22
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.574468085106383,
+      "val": 0.2127659574468085,
+      "test": 0.2127659574468085
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.9385982405251914,
+    "se": 0.0025394504674222597,
+    "pct_nodes_remaining": 0.8800000000000001,
+    "pct_edges_remaining": 0.7905816963605908,
+    "n_connected_components": 2.0,
+    "giant_component_pct": 0.9998750000000001,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7525,
+        "1": 0.2475
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5454545454545454,
+      "val": 0.22727272727272727,
+      "test": 0.22727272727272727
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_high",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.9262326787102774,
+    "se": 0.00276856653046506,
+    "pct_nodes_remaining": 0.82,
+    "pct_edges_remaining": 0.6957184914471346,
+    "n_connected_components": 6.7,
+    "giant_component_pct": 0.9990731707317074,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.7173809523809523,
+        "1": 0.2826190476190476
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5121951219512195,
+      "val": 0.24390243902439024,
+      "test": 0.24390243902439024
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.9537141679382083,
+    "se": 0.0019293943983614808,
+    "pct_nodes_remaining": 0.994,
+    "pct_edges_remaining": 0.987967615857063,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8057239057239057,
+        "1": 0.19427609427609427
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5975855130784709,
+      "val": 0.2012072434607646,
+      "test": 0.2012072434607646
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.9500684168616786,
+    "se": 0.0021686523135730604,
+    "pct_nodes_remaining": 0.9700000000000001,
+    "pct_edges_remaining": 0.9413278513781025,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8226315789473684,
+        "1": 0.1773684210526316
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5876288659793815,
+      "val": 0.20618556701030927,
+      "test": 0.20618556701030927
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.9454488070031809,
+    "se": 0.002182269934139227,
+    "pct_nodes_remaining": 0.9399999999999998,
+    "pct_edges_remaining": 0.8856936196132177,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8451851851851852,
+        "1": 0.15481481481481482
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.574468085106383,
+      "val": 0.2127659574468085,
+      "test": 0.2127659574468085
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.9345995701349589,
+    "se": 0.0021825050011598864,
+    "pct_nodes_remaining": 0.8800000000000001,
+    "pct_edges_remaining": 0.7826353992183137,
+    "n_connected_components": 1.5,
+    "giant_component_pct": 0.9998977272727272,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8785416666666667,
+        "1": 0.12145833333333333
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5454545454545454,
+      "val": 0.22727272727272727,
+      "test": 0.22727272727272727
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "conf_low",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.9180004499699301,
+    "se": 0.002889923011325364,
+    "pct_nodes_remaining": 0.82,
+    "pct_edges_remaining": 0.6878584843408964,
+    "n_connected_components": 3.5,
+    "giant_component_pct": 0.9995,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.9126190476190477,
+        "1": 0.08738095238095238
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5121951219512195,
+      "val": 0.24390243902439024,
+      "test": 0.24390243902439024
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.01,
+    "n_folds": 10,
+    "mean": 0.9535989025018793,
+    "se": 0.001885364836950257,
+    "pct_nodes_remaining": 0.994,
+    "pct_edges_remaining": 0.9880412161819198,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8016835016835017,
+        "1": 0.1983164983164983
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5975855130784709,
+      "val": 0.2012072434607646,
+      "test": 0.2012072434607646
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.05,
+    "n_folds": 10,
+    "mean": 0.9486552945297566,
+    "se": 0.0021858048658558024,
+    "pct_nodes_remaining": 0.9700000000000001,
+    "pct_edges_remaining": 0.9409700015227653,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8033333333333333,
+        "1": 0.19666666666666666
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5876288659793815,
+      "val": 0.20618556701030927,
+      "test": 0.20618556701030927
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.1,
+    "n_folds": 10,
+    "mean": 0.9443905746400162,
+    "se": 0.001756684864374786,
+    "pct_nodes_remaining": 0.9399999999999998,
+    "pct_edges_remaining": 0.8837749352824732,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8044444444444444,
+        "1": 0.19555555555555557
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.574468085106383,
+      "val": 0.2127659574468085,
+      "test": 0.2127659574468085
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.2,
+    "n_folds": 10,
+    "mean": 0.9305082362125452,
+    "se": 0.0024067342322859346,
+    "pct_nodes_remaining": 0.8800000000000001,
+    "pct_edges_remaining": 0.7743134866250445,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8020833333333334,
+        "1": 0.19791666666666666
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5454545454545454,
+      "val": 0.22727272727272727,
+      "test": 0.22727272727272727
+    }
+  },
+  {
+    "dataset": "minesweeper",
+    "model": "GeneralSheaf",
+    "d": 5,
+    "layers": 6,
+    "normalised": "true",
+    "conviction_score": "last",
+    "intervention": "pruning",
+    "mode": "",
+    "metric": "auc",
+    "strategy": "random",
+    "pct": 0.3,
+    "n_folds": 10,
+    "mean": 0.9168833172701752,
+    "se": 0.0027474263375307103,
+    "pct_nodes_remaining": 0.82,
+    "pct_edges_remaining": 0.6724100299477185,
+    "n_connected_components": 1.0,
+    "giant_component_pct": 1.0,
+    "class_balance_last_fold": {
+      "train": {
+        "0": 0.8004761904761905,
+        "1": 0.19952380952380952
+      },
+      "val": {
+        "0": 0.7945,
+        "1": 0.2055
+      },
+      "test": {
+        "0": 0.7995,
+        "1": 0.2005
+      }
+    },
+    "split_pct_before_last_fold": {
+      "train": 0.6,
+      "val": 0.2,
+      "test": 0.2
+    },
+    "split_pct_after_last_fold": {
+      "train": 0.5121951219512195,
+      "val": 0.24390243902439024,
+      "test": 0.24390243902439024
+    }
+  }
+]

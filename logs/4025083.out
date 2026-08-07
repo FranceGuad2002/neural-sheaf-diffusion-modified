@@ -1,0 +1,142 @@
+
+══════════════════════════════════════════════════════════════
+[1/3]  Harvest raw per-fold Wasserstein values -> long CSV
+══════════════════════════════════════════════════════════════
+
+== GeneralSheaf  norm=true  map_type=None  use_other=False ==
+  amazon_ratings   d=5 L=5  (GeneralSheaf, norm=true, other=False)  done  (700 rows so far)
+  citeseer         d=5 L=4  (GeneralSheaf, norm=true, other=False)  done  (1260 rows so far)
+  cora             d=3 L=3  (GeneralSheaf, norm=true, other=False)  done  (1680 rows so far)
+  cora             d=5 L=3  (GeneralSheaf, norm=true, other=False)  done  (2100 rows so far)
+  cornell          d=2 L=2  (GeneralSheaf, norm=true, other=False)  done  (2380 rows so far)
+  minesweeper      d=5 L=6  (GeneralSheaf, norm=true, other=False)  done  (3220 rows so far)
+  pubmed           d=5 L=4  (GeneralSheaf, norm=true, other=False)  done  (3780 rows so far)
+  questions        d=5 L=4  (GeneralSheaf, norm=true, other=False)  done  (4340 rows so far)
+  roman_empire     d=5 L=5  (GeneralSheaf, norm=true, other=False)  done  (5040 rows so far)
+  tolokers         d=3 L=4  (GeneralSheaf, norm=true, other=False)  done  (5600 rows so far)
+  wisconsin        d=2 L=2  (GeneralSheaf, norm=true, other=False)  done  (5880 rows so far)
+
+== GeneralSheaf  norm=false  map_type=None  use_other=False ==
+  amazon_ratings   d=5 L=5  (GeneralSheaf, norm=false, other=False)  done  (700 rows so far)
+  citeseer         d=5 L=4  (GeneralSheaf, norm=false, other=False)  done  (1260 rows so far)
+  cora             d=3 L=3  (GeneralSheaf, norm=false, other=False)  done  (1680 rows so far)
+  cora             d=5 L=3  (GeneralSheaf, norm=false, other=False)  done  (2100 rows so far)
+  cornell          d=2 L=2  (GeneralSheaf, norm=false, other=False)  done  (2380 rows so far)
+  minesweeper      d=5 L=6  (GeneralSheaf, norm=false, other=False)  done  (3220 rows so far)
+  pubmed           d=5 L=4  (GeneralSheaf, norm=false, other=False)  done  (3780 rows so far)
+  questions        d=5 L=4  (GeneralSheaf, norm=false, other=False)  done  (4340 rows so far)
+  roman_empire     d=5 L=5  (GeneralSheaf, norm=false, other=False)  done  (5040 rows so far)
+  tolokers         d=3 L=4  (GeneralSheaf, norm=false, other=False)  done  (5600 rows so far)
+  wisconsin        d=2 L=2  (GeneralSheaf, norm=false, other=False)  done  (5880 rows so far)
+
+== GeneralSheaf  norm=false  map_type=None  use_other=True ==
+  amazon_ratings   d=5 L=5  (GeneralSheaf, norm=false, other=True)  done  (700 rows so far)
+  citeseer         d=5 L=4  (GeneralSheaf, norm=false, other=True)  done  (1260 rows so far)
+  cora             d=5 L=3  (GeneralSheaf, norm=false, other=True)  done  (1680 rows so far)
+  cornell          d=2 L=2  (GeneralSheaf, norm=false, other=True)  done  (1960 rows so far)
+  minesweeper      d=5 L=6  (GeneralSheaf, norm=false, other=True)  done  (2800 rows so far)
+  pubmed           d=5 L=4  (GeneralSheaf, norm=false, other=True)  done  (3360 rows so far)
+  questions        d=5 L=4  (GeneralSheaf, norm=false, other=True)  done  (3920 rows so far)
+  roman_empire     d=5 L=5  (GeneralSheaf, norm=false, other=True)  done  (4620 rows so far)
+  tolokers         d=3 L=4  (GeneralSheaf, norm=false, other=True)  done  (5180 rows so far)
+  wisconsin        d=2 L=2  (GeneralSheaf, norm=false, other=True)  done  (5460 rows so far)
+
+== GeneralSheaf  norm=true  map_type=None  use_other=True ==
+  amazon_ratings   d=5 L=5  (GeneralSheaf, norm=true, other=True)  done  (700 rows so far)
+  citeseer         d=5 L=4  (GeneralSheaf, norm=true, other=True)  done  (1260 rows so far)
+  cora             d=5 L=3  (GeneralSheaf, norm=true, other=True)  done  (1680 rows so far)
+  cornell          d=2 L=2  (GeneralSheaf, norm=true, other=True)  done  (1960 rows so far)
+  minesweeper      d=5 L=6  (GeneralSheaf, norm=true, other=True)  done  (2800 rows so far)
+  pubmed           d=5 L=4  (GeneralSheaf, norm=true, other=True)  done  (3360 rows so far)
+  questions        d=5 L=4  (GeneralSheaf, norm=true, other=True)  done  (3920 rows so far)
+  roman_empire     d=5 L=5  (GeneralSheaf, norm=true, other=True)  done  (4620 rows so far)
+  tolokers         d=3 L=4  (GeneralSheaf, norm=true, other=True)  done  (5180 rows so far)
+  wisconsin        d=2 L=2  (GeneralSheaf, norm=true, other=True)  done  (5460 rows so far)
+
+== JointSheafParams  norm=false  map_type=identity  use_other=False ==
+  amazon_ratings   d=5 L=5  (JointSheafParams, norm=false, other=False)  done  (700 rows so far)
+  citeseer         d=5 L=4  (JointSheafParams, norm=false, other=False)  done  (1260 rows so far)
+  cora             d=3 L=3  (JointSheafParams, norm=false, other=False)  done  (1680 rows so far)
+  cornell          d=2 L=2  (JointSheafParams, norm=false, other=False)  done  (1960 rows so far)
+  minesweeper      d=5 L=6  (JointSheafParams, norm=false, other=False)  done  (2800 rows so far)
+  pubmed           d=5 L=4  (JointSheafParams, norm=false, other=False)  done  (3360 rows so far)
+  questions        d=5 L=4  (JointSheafParams, norm=false, other=False)  done  (3920 rows so far)
+  roman_empire     d=5 L=5  (JointSheafParams, norm=false, other=False)  done  (4620 rows so far)
+  tolokers         d=3 L=4  (JointSheafParams, norm=false, other=False)  done  (5180 rows so far)
+  wisconsin        d=2 L=2  (JointSheafParams, norm=false, other=False)  done  (5460 rows so far)
+
+== JointSheafParams  norm=true  map_type=identity  use_other=False ==
+  amazon_ratings   d=2 L=3  (JointSheafParams, norm=true, other=False)  done  (420 rows so far)
+  skip amazon_ratings (JointSheafParams, norm=true, other=False): no f0_top
+  citeseer         d=3 L=3  (JointSheafParams, norm=true, other=False)  done  (840 rows so far)
+  cora             d=2 L=3  (JointSheafParams, norm=true, other=False)  done  (1122 rows so far)
+  cora             d=3 L=3  (JointSheafParams, norm=true, other=False)  done  (1236 rows so far)
+  cornell          d=2 L=2  (JointSheafParams, norm=true, other=False)  done  (1516 rows so far)
+  minesweeper      d=3 L=3  (JointSheafParams, norm=true, other=False)  done  (1936 rows so far)
+  pubmed           d=2 L=3  (JointSheafParams, norm=true, other=False)  done  (2044 rows so far)
+  pubmed           d=3 L=3  (JointSheafParams, norm=true, other=False)  done  (2242 rows so far)
+  questions        d=2 L=4  (JointSheafParams, norm=true, other=False)  done  (2402 rows so far)
+  skip questions (JointSheafParams, norm=true, other=False): no f0_top
+  roman_empire     d=3 L=3  (JointSheafParams, norm=true, other=False)  done  (2822 rows so far)
+  skip tolokers (JointSheafParams, norm=true, other=False): no f0_top
+  skip tolokers (JointSheafParams, norm=true, other=False): no f0_top
+  wisconsin        d=2 L=2  (JointSheafParams, norm=true, other=False)  done  (3102 rows so far)
+
+== Cross-comparison Direction A (both normalised, GeneralSheaf) ==
+  no match for cora d=3 L=3
+  amazon_ratings   d=5 L=5  (cross A)  done  (350 rows so far)
+  citeseer         d=5 L=4  (cross A)  done  (630 rows so far)
+  cora             d=5 L=3  (cross A)  done  (840 rows so far)
+  cornell          d=2 L=2  (cross A)  done  (980 rows so far)
+  minesweeper      d=5 L=6  (cross A)  done  (1400 rows so far)
+  pubmed           d=5 L=4  (cross A)  done  (1680 rows so far)
+  questions        d=5 L=4  (cross A)  done  (1960 rows so far)
+  roman_empire     d=5 L=5  (cross A)  done  (2310 rows so far)
+  tolokers         d=3 L=4  (cross A)  done  (2590 rows so far)
+  wisconsin        d=2 L=2  (cross A)  done  (2730 rows so far)
+
+== Cross-comparison Direction B (both unnormalised, GeneralSheaf) ==
+  no match for cora d=3 L=3
+  amazon_ratings   d=5 L=5  (cross B)  done  (350 rows so far)
+  citeseer         d=5 L=4  (cross B)  done  (630 rows so far)
+  cora             d=5 L=3  (cross B)  done  (840 rows so far)
+  cornell          d=2 L=2  (cross B)  done  (980 rows so far)
+  minesweeper      d=5 L=6  (cross B)  done  (1400 rows so far)
+  pubmed           d=5 L=4  (cross B)  done  (1680 rows so far)
+  questions        d=5 L=4  (cross B)  done  (1960 rows so far)
+  roman_empire     d=5 L=5  (cross B)  done  (2310 rows so far)
+  tolokers         d=3 L=4  (cross B)  done  (2590 rows so far)
+  wisconsin        d=2 L=2  (cross B)  done  (2730 rows so far)
+
+Wrote 36702 rows -> quick_analysis/global_metrics/raw/forman_wasserstein_long.csv
+
+══════════════════════════════════════════════════════════════
+[2/3]  Aggregate -> per-(config, checkpoint, depth-bin) mean +/- SE
+══════════════════════════════════════════════════════════════
+Loaded 36702 raw rows from 1 file(s).
+Wrote 84 rows -> quick_analysis/global_metrics/agg/forman_wasserstein_agg_vs_reference.csv
+Wrote 42 rows -> quick_analysis/global_metrics/agg/forman_wasserstein_agg_cross.csv
+
+══════════════════════════════════════════════════════════════
+[3/3]  Emit LaTeX tables
+══════════════════════════════════════════════════════════════
+Table 1 — GeneralSheaf, normalised=True
+  wrote quick_analysis/tables/table1_general_norm.tex
+Table 2 — GeneralSheaf, normalised=False
+  wrote quick_analysis/tables/table2_general_unnorm.tex
+Table 3 — JointSheafParams (identity init), normalised=False
+  wrote quick_analysis/tables/table3_joint_unnorm.tex
+Table 4 — JointSheafParams (identity init), normalised=True
+  wrote quick_analysis/tables/table4_joint_norm.tex
+Table 5 — GeneralSheaf, other Laplacian (trained False, normalised content)
+  wrote quick_analysis/tables/table5_general_other_norm.tex
+Table 6 — GeneralSheaf, other Laplacian (trained True, unnormalised content)
+  wrote quick_analysis/tables/table6_general_other_unnorm.tex
+Table 7 — Cross-comparison Direction A
+  wrote quick_analysis/tables/table7_cross_a.tex
+Table 8 — Cross-comparison Direction B
+  wrote quick_analysis/tables/table8_cross_b.tex
+
+══════════════════════════════════════════════════════════════
+All done.
+══════════════════════════════════════════════════════════════

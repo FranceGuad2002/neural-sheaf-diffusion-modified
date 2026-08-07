@@ -25,7 +25,7 @@ ARGS=(
     --early_stopping=200
 
     # --- model [all models] ---
-    --model=BundleSheaf
+    --model=BochnerSheaf
 
     # --- sheaf architecture [all models] ---
     --d=5

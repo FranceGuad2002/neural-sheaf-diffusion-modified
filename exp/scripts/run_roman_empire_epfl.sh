@@ -24,7 +24,7 @@ ARGS=(
     --early_stopping=200
 
     # --- model [all models] ---
-    --model=BundleSheaf
+    --model=GeneralSheaf
 
     # --- sheaf architecture [all models] ---
     --d=5
@@ -32,7 +32,7 @@ ARGS=(
     --layers=5
     --add_hp=False
     --add_lp=False
-    --normalised=False
+    --normalised=True
     --deg_normalised=False
     --left_weights=True
     --right_weights=True
@@ -42,7 +42,7 @@ ARGS=(
     --sparse_learner=False
 
     # --- connection Laplacian [BundleSheaf, JointSheafParams*] ---
-    --edge_weights=False
+    --edge_weights=True
 
     # --- optimizer [all models] ---
     --lr=0.01
@@ -75,9 +75,9 @@ ARGS=(
     --save_laplacians=False
     # save_others: disabled for JointSheafParams (identity maps, no other_Laplacian needed)
     --save_others=False
-    --save_norms=True
-    --save_preds=True
-    --save_saliency=True
+    --save_norms=False
+    --save_preds=False
+    --save_saliency=False
     --entity="${WANDB_ENTITY}"
 )
 

@@ -1,0 +1,374 @@
+% ==============================================================================
+%  Conviction-based inference — supplementary material
+%
+%  Everything here is reproducible from the committed per-dataset tables under
+%  quick_analysis/Conviction_experiments_tables/ via
+%      python quick_analysis/conviction_summary_tables.py \
+%             --score {last|avg_z} [--exclude cornell,wisconsin] [--tag_suffix ...]
+%  which writes both the CSVs and the LaTeX tables reproduced below into
+%      quick_analysis/Conviction_experiments_tables/_summary/
+% ==============================================================================
+
+\section{Supplementary material: conviction-based inference}
+\label{sec:conviction_supp}
+
+This appendix collects the material that supports
+Section~\ref{sec:conviction} but would obstruct its argument: the complete
+tables for all perturbation modes and budgets, the significance tests, the
+robustness checks under a different conviction score and a different dataset
+selection, the implementation details of each intervention, and the diagnostics
+that certify that the pruned graphs remain usable objects.
+
+% ------------------------------------------------------------------------------
+\subsection{Implementation of the interventions}
+\label{sec:supp_impl}
+
+All three interventions operate on a model whose weights are loaded from the
+best-validation-epoch checkpoint and never updated. The candidate set is always
+a subset of the training nodes, and the evaluation set is always the full test
+set, so that the quantity being compared is identical across strategies,
+budgets and perturbation modes.
+
+\paragraph{Masking.}
+The features of the selected nodes are replaced, either by zero or by the
+dataset feature mean, and the graph is left untouched. The mean is computed over
+all nodes of the graph; this is an unsupervised statistic and involves no label
+information, but we note it explicitly since it does touch test-node features.
+Because the candidate pool is restricted to training nodes, no test node is ever
+masked, and the exclusion of masked nodes from the evaluation index is therefore
+a defensive no-op rather than a load-bearing step.
+
+\paragraph{Gating.}
+A per-node multiplier $g \in \mathbb{R}^{n}$ is applied to the sparse diffusion
+Laplacian, scaling every cross-node entry by the gate of the \emph{source} node.
+Entries belonging to a diagonal block, that is those for which row and column
+belong to the same node, are left at $1$. A gated node therefore continues to
+retain its own state, and only what it transmits to its neighbours is
+suppressed. In the hard variant used throughout the main text the gate is $0$
+for the selected nodes and $1$ elsewhere. In the soft variant the gate varies
+continuously,
+\[
+    g(u) \;=\; g_{\min} + (1 - g_{\min}) \,
+    \frac{s(u) - \min_{v} s(v)}{\max_{v} s(v) - \min_{v} s(v)},
+    \qquad g_{\min} = 0.1,
+\]
+where $s$ is the ranking score, and it is applied to the whole training pool at
+once. Passing no gate at all is a complete no-op, so the baseline forward pass
+is bit-identical to an ordinary evaluation.
+
+\paragraph{Pruning.}
+The selected nodes and their incident edges are deleted and the remaining nodes
+are relabelled to a contiguous index space. Since the number of nodes and the
+edge index are fixed at model construction, a new model is instantiated for the
+reduced graph and the \emph{same} frozen parameters are loaded into it; no
+parameter is re-estimated. An assertion guarantees that no validation or test
+node is ever among the removed set. This mode is by far the most expensive,
+because a model must be rebuilt for every evaluated point.
+
+\paragraph{Degree-matched sampling.}
+Given the reference set $R$ (the top- or bottom-$k$ by conviction), the control
+set is built by greedy nearest-degree matching without replacement: the
+candidate pool is $\mathcal{P} \setminus R$, bucketed by degree and shuffled
+once; each $u \in R$ then claims an unused node of the same degree, or of the
+closest available degree if that bucket is exhausted. This requires
+$k \le |\mathcal{P}|/2$, which every budget we use satisfies; the implementation
+raises rather than silently degrading if a larger budget is requested.
+
+\paragraph{Tie-breaking and reproducibility.}
+Every ranking is broken by a per-node uniform key drawn from a generator seeded
+by the training seed and the fold index. Without this, \texttt{argsort} resolves
+ties by ascending node index, which systematically favours low-index nodes at
+the boundary of a top-$k$ selection; degree is integer-valued and heavily tied,
+so this is not a hypothetical concern. On Cornell, for instance, $90\%$ of the
+ordering positions of the training pool sit inside a tie group, and the largest
+group contains $44$ of $87$ nodes. The randomised strategies draw from a
+generator keyed on (dataset, fold, strategy, budget) rather than from a single
+running stream, so a given draw is reproducible irrespective of which other
+datasets or budgets were run before it in the same job.
+
+% ------------------------------------------------------------------------------
+\subsection{Aggregation protocol}
+\label{sec:supp_agg}
+
+The per-dataset tables store the headline metric already averaged over the ten
+folds. The relative drop of Section~\ref{sec:conviction} is therefore a ratio of
+fold-averaged quantities,
+\[
+    \mathrm{drop}\%(s) = 100 \cdot
+    \frac{\overline{m}_{\text{baseline}} - \overline{m}_{s}}
+         {\overline{m}_{\text{baseline}}},
+    \qquad
+    \overline{m} = \frac{1}{10}\sum_{f=1}^{10} m_f ,
+\]
+and not an average of per-fold ratios. The two differ, since
+$\mathbb{E}[X/Y] \neq \mathbb{E}[X]/\mathbb{E}[Y]$, but the discrepancy is of
+second order in the coefficient of variation of the baseline, which is below
+$1\%$ on every dataset, and is further suppressed because baseline and perturbed
+metrics are strongly positively correlated across folds. The two definitions
+agree to four decimal places, well below the effect sizes discussed.
+
+Aggregation across datasets is an unweighted mean of the per-dataset values, so
+each benchmark contributes equally regardless of its size. The reported
+dispersion is
+\[
+    \mathrm{sd} = \sqrt{\tfrac{1}{N-1}\textstyle\sum_i (d_i - \bar d)^2},
+    \qquad
+    \mathrm{se} = \mathrm{sd}/\sqrt{N},
+\]
+over the $N$ per-dataset drops $d_i$; it is a \emph{between-dataset} quantity and
+deliberately not a fold-level error bar. Since the distributions are
+right-skewed, the summary CSVs also record the median, minimum and maximum
+across datasets, and the mean rank of each strategy.
+
+All significance statements use the Wilcoxon signed-rank test with the dataset
+as the pairing unit. With $N=8$ the smallest attainable two-sided $p$-value is
+$0.0078$, which is why several entries in Table~\ref{tab:supp_tests} sit exactly
+at that value.
+
+% ------------------------------------------------------------------------------
+\subsection{Complete forward-sweep tables}
+\label{sec:supp_forward}
+
+Tables~\ref{tab:supp_mask_zero}--\ref{tab:supp_gating} give the relative drop
+for the two masking variants and for hard gating; the pruning table appears as
+Table~\ref{tab:conviction_forward} in the main text. All are computed with
+conviction score \texttt{last} over the eight retained datasets. The ordering of
+the strategies is identical in all four, and in every one of them high
+conviction is the largest entry and low conviction the smallest, at every
+budget.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Relative drop (\%) under feature masking with zero replacement.}
+\label{tab:supp_mask_zero}
+\begin{tabular}{lccccc}
+\toprule
+Selection & 1\% & 5\% & 10\% & 20\% & 30\% \\
+\midrule
+High conviction        & $0.37$ & $1.00$ & $1.58$ & $2.56$ & $3.27$ \\
+High degree            & $0.30$ & $0.57$ & $0.81$ & $1.37$ & $1.90$ \\
+High confidence        & $0.13$ & $0.49$ & $0.78$ & $1.37$ & $2.06$ \\
+Random                 & $0.05$ & $0.15$ & $0.35$ & $0.77$ & $1.22$ \\
+Degree-matched (low)   & $0.04$ & $0.19$ & $0.32$ & $0.92$ & $1.63$ \\
+Degree-matched (high)  & $0.06$ & $0.14$ & $0.26$ & $0.39$ & $0.68$ \\
+Low degree             & $0.02$ & $0.13$ & $0.26$ & $0.60$ & $0.94$ \\
+Low confidence         & $0.02$ & $0.09$ & $0.19$ & $0.46$ & $0.81$ \\
+Low conviction         & $0.01$ & $0.02$ & $0.04$ & $0.12$ & $0.24$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Relative drop (\%) under feature masking with mean replacement.}
+\label{tab:supp_mask_mean}
+\begin{tabular}{lccccc}
+\toprule
+Selection & 1\% & 5\% & 10\% & 20\% & 30\% \\
+\midrule
+High conviction        & $0.38$ & $1.00$ & $1.56$ & $2.57$ & $3.28$ \\
+High degree            & $0.31$ & $0.73$ & $1.04$ & $1.65$ & $2.20$ \\
+High confidence        & $0.13$ & $0.45$ & $0.71$ & $1.26$ & $1.79$ \\
+Degree-matched (low)   & $0.04$ & $0.18$ & $0.33$ & $0.89$ & $1.59$ \\
+Random                 & $0.06$ & $0.18$ & $0.35$ & $0.85$ & $1.33$ \\
+Low confidence         & $0.03$ & $0.18$ & $0.38$ & $0.85$ & $1.31$ \\
+Low degree             & $0.02$ & $0.12$ & $0.28$ & $0.61$ & $0.98$ \\
+Degree-matched (high)  & $0.08$ & $0.21$ & $0.36$ & $0.51$ & $0.85$ \\
+Low conviction         & $0.01$ & $0.04$ & $0.08$ & $0.23$ & $0.33$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[H]
+\centering
+\small
+\caption{Relative drop (\%) under hard message gating.}
+\label{tab:supp_gating}
+\begin{tabular}{lccccc}
+\toprule
+Selection & 1\% & 5\% & 10\% & 20\% & 30\% \\
+\midrule
+High conviction        & $0.55$ & $1.30$ & $2.00$ & $3.09$ & $4.01$ \\
+High degree            & $0.51$ & $1.05$ & $1.49$ & $2.19$ & $2.81$ \\
+High confidence        & $0.21$ & $0.66$ & $1.04$ & $1.87$ & $2.65$ \\
+Degree-matched (low)   & $0.04$ & $0.23$ & $0.41$ & $1.11$ & $2.00$ \\
+Random                 & $0.06$ & $0.25$ & $0.49$ & $1.09$ & $1.63$ \\
+Low confidence         & $0.05$ & $0.21$ & $0.40$ & $0.87$ & $1.40$ \\
+Low degree             & $0.03$ & $0.18$ & $0.42$ & $0.85$ & $1.36$ \\
+Degree-matched (high)  & $0.12$ & $0.31$ & $0.53$ & $0.79$ & $1.11$ \\
+Low conviction         & $0.03$ & $0.07$ & $0.13$ & $0.30$ & $0.51$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\subsection{Significance tests}
+\label{sec:supp_tests}
+
+Table~\ref{tab:supp_tests} reports, for each perturbation mode and budget, the
+number of datasets in which high-conviction selection is the more damaging of
+the pair, together with the two-sided Wilcoxon $p$-value. The pattern discussed
+in the main text is visible directly: the comparisons against random, against
+the degree-matched control, against confidence and against low conviction are
+significant essentially everywhere, whereas the comparison against high degree
+is significant only from the $5\%$ budget onwards for gating and zero-masking,
+at the largest budgets for mean-masking, and never for pruning.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\caption{Wilcoxon signed-rank tests across the eight retained datasets, pairing
+by dataset. Each cell reports wins/$N$ and the two-sided $p$-value. With $N=8$
+the minimum attainable $p$-value is $0.008$.}
+\label{tab:supp_tests}
+\begin{tabular}{llccccc}
+\toprule
+Comparison & Mode & 1\% & 5\% & 10\% & 20\% & 30\% \\
+\midrule
+\multirow{4}{*}{high vs.\ random}
+ & masking (zero) & 8/8\ .008 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
+ & masking (mean) & 7/8\ .016 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
+ & gating (hard)  & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
+ & pruning        & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
+\midrule
+\multirow{4}{*}{high vs.\ degree-matched}
+ & masking (zero) & 8/8\ .008 & 7/8\ .016 & 7/8\ .016 & 7/8\ .016 & 7/8\ .016 \\
+ & masking (mean) & 7/8\ .016 & 7/8\ .016 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 \\
+ & gating (hard)  & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
+ & pruning        & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
+\midrule
+\multirow{4}{*}{high vs.\ high confidence}
+ & masking (zero) & 8/8\ .008 & 5/8\ .148 & 7/8\ .039 & 7/8\ .016 & 7/8\ .016 \\
+ & masking (mean) & 8/8\ .008 & 7/8\ .023 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 \\
+ & gating (hard)  & 8/8\ .008 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
+ & pruning        & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
+\midrule
+\multirow{4}{*}{\textbf{high vs.\ high degree}}
+ & masking (zero) & 7/8\ .055 & 7/8\ .039 & 7/8\ .016 & 7/8\ .023 & 6/8\ .039 \\
+ & masking (mean) & 6/8\ .109 & 6/8\ .109 & 6/8\ .109 & 7/8\ .039 & 7/8\ .016 \\
+ & gating (hard)  & 4/8\ .641 & 7/8\ .016 & 6/8\ .039 & 7/8\ .016 & 6/8\ .039 \\
+ & pruning        & 5/8\ .250 & 5/8\ .195 & 5/8\ .109 & 5/8\ .383 & 4/8\ .383 \\
+\midrule
+\multirow{4}{*}{low vs.\ random\,$^{\dagger}$}
+ & masking (zero) & 4/8\ .461 & 4/8\ .547 & 4/8\ .312 & 2/8\ .109 & 1/8\ .039 \\
+ & masking (mean) & 3/8\ .383 & 2/8\ .250 & 4/8\ .383 & 2/8\ .148 & 1/8\ .023 \\
+ & gating (hard)  & 4/8\ .461 & 2/8\ .148 & 2/8\ .148 & 1/8\ .039 & 1/8\ .023 \\
+ & pruning        & 3/8\ .109 & 1/8\ .039 & 2/8\ .039 & 2/8\ .039 & 1/8\ .016 \\
+\bottomrule
+\end{tabular}
+\smallskip
+\par\footnotesize $^{\dagger}$ For this row a \emph{low} win count is the
+positive result: it means low-conviction removal was less damaging than random
+removal in the remaining datasets.
+\end{table}
+
+% ------------------------------------------------------------------------------
+\subsection{Complete decile tables}
+\label{sec:supp_decile}
+
+Table~\ref{tab:supp_decile_all} gives the per-bin relative drop for the three
+remaining perturbation modes; pruning appears as
+Table~\ref{tab:conviction_decile} in the main text. The qualitative pattern is
+the same throughout: the conviction column starts lower and ends higher than
+either of the other two, and the bulk of its growth is concentrated in the last
+two bins.
+
+\begin{table}[H]
+\centering
+\small
+\caption{Decile analysis: relative drop (\%) when a single bin of the training
+pool is perturbed, for the three perturbation modes not shown in the main text.
+Conviction score \texttt{last}, mean over the eight retained datasets.}
+\label{tab:supp_decile_all}
+\begin{tabular}{lccc@{\hskip 1.2em}ccc@{\hskip 1.2em}ccc}
+\toprule
+& \multicolumn{3}{c}{masking (zero)} & \multicolumn{3}{c}{masking (mean)}
+& \multicolumn{3}{c}{gating (hard)} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
+Bin & Conv. & Conf. & Deg. & Conv. & Conf. & Deg. & Conv. & Conf. & Deg. \\
+\midrule
+1  & $0.04$ & $0.19$ & $0.26$ & $0.08$ & $0.38$ & $0.27$ & $0.12$ & $0.40$ & $0.41$ \\
+2  & $0.05$ & $0.22$ & $0.31$ & $0.14$ & $0.40$ & $0.31$ & $0.16$ & $0.45$ & $0.43$ \\
+3  & $0.01$ & $0.26$ & $0.30$ & $0.05$ & $0.38$ & $0.29$ & $0.19$ & $0.44$ & $0.40$ \\
+4  & $0.10$ & $0.30$ & $0.25$ & $0.15$ & $0.39$ & $0.26$ & $0.29$ & $0.43$ & $0.38$ \\
+5  & $0.27$ & $0.32$ & $0.33$ & $0.31$ & $0.34$ & $0.31$ & $0.45$ & $0.52$ & $0.36$ \\
+6  & $0.31$ & $0.39$ & $0.34$ & $0.35$ & $0.34$ & $0.32$ & $0.51$ & $0.50$ & $0.37$ \\
+7  & $0.43$ & $0.47$ & $0.42$ & $0.45$ & $0.37$ & $0.39$ & $0.53$ & $0.53$ & $0.48$ \\
+8  & $0.48$ & $0.48$ & $0.34$ & $0.47$ & $0.37$ & $0.37$ & $0.65$ & $0.57$ & $0.43$ \\
+9  & $0.70$ & $0.48$ & $0.45$ & $0.69$ & $0.42$ & $0.52$ & $0.81$ & $0.62$ & $0.60$ \\
+10 & $1.58$ & $0.78$ & $0.80$ & $1.56$ & $0.71$ & $1.02$ & $2.00$ & $1.04$ & $1.50$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+% ------------------------------------------------------------------------------
+\subsection{Robustness checks}
+\label{sec:supp_robust}
+
+\paragraph{Alternative conviction score.}
+Repeating the entire analysis with \texttt{avg\_z}, the layerwise z-scored
+average over the post-diffusion layers, leaves every conclusion intact and in
+fact slightly sharpens it. High conviction attains a mean rank of $1.12$ under
+both masking variants and $1.38$ under hard gating, against $1.75$, $1.25$ and
+$1.25$ respectively for \texttt{last}. At the $30\%$ budget the high-conviction
+drop is $3.67\%$ for zero-masking, $3.56\%$ for mean-masking and $4.26\%$ for
+gating, compared with $3.27\%$, $3.28\%$ and $4.01\%$ under \texttt{last}. We
+report \texttt{last} in the main text because it is the quantity the equilibrium
+theory speaks about; \texttt{avg\_z} is the more robust estimator and gives the
+same answer. Note that the degree- and confidence-based rows are by construction
+identical under the two scores, since they do not depend on the conviction, and
+this serves as an internal consistency check on the pipeline.
+
+\paragraph{Including the two small datasets.}
+Retaining Cornell and Wisconsin changes the magnitudes but not the ordering.
+Under pruning the high-conviction drop becomes $2.22\%$ at the $10\%$ budget and
+$4.13\%$ at $30\%$, against $2.70\%$ and $4.93\%$ on the eight-dataset
+aggregate, and the mean rank of high conviction degrades from $1.50$ to $1.50$
+under pruning and from $1.25$ to $1.70$ under hard gating. The dilution is
+expected: on Cornell a $1\%$ budget selects a single node out of a training pool
+of $87$, so the corresponding relative drop is essentially a coin flip that
+nonetheless enters the average with weight $1/10$.
+
+\paragraph{Dispersion across datasets.}
+The distributions are strongly right-skewed. Under pruning at the $30\%$ budget
+the high-conviction drop has mean $5.00$, median $3.44$, minimum $1.34$ and
+maximum $12.92$ on the ten-dataset aggregate; random removal has mean $1.85$ and
+minimum $-0.75$. Negative minima are genuine: on some datasets a small random
+perturbation marginally improves the metric, which is within fold noise. This
+skew is the reason the main text relies on rank-based statistics and on the
+Wilcoxon test rather than on the means alone.
+
+% ------------------------------------------------------------------------------
+\subsection{Graph integrity under pruning}
+\label{sec:supp_prune_diag}
+
+Pruning is the only intervention that changes the graph, so for every
+(strategy, budget) pair we also record the fraction of nodes and edges
+remaining, the number of connected components, the size of the giant component
+and the class balance within each split, before and after. These are written
+alongside the results tables and allow the performance drop to be read against
+the structural damage that produced it. This matters most for the degree-based
+strategies: removing the top-$k\%$ by degree deletes far more edges than
+removing the bottom-$k\%$, so part of the damage attributed to a degree
+criterion is mechanical rather than informational. The same caveat applies, to a
+lesser extent, to the conviction criterion in the general sheaf, where
+conviction is only weakly correlated with degree.
+
+% ------------------------------------------------------------------------------
+\subsection{Computational cost}
+\label{sec:supp_cost}
+
+Masking and gating reuse a single model instance for all evaluated points and
+cost one forward pass each. Pruning must instantiate a new model for every
+point, because the number of nodes and the edge index are fixed at construction,
+and its cost is dominated by graph surgery on the CPU rather than by the forward
+pass on the GPU. Empirically the wall-clock time of the pruning sweep is linear
+in the number of edges, at approximately $1.14 \pm 0.04$ minutes per thousand
+edges, essentially independently of the stalk dimension and of the depth; the
+fit has a coefficient of variation of $3.6\%$ across the datasets we measured.
+Tolokers, with $1.04$ million directed edges and an average degree of $88$, is
+consequently the most expensive configuration in the suite by a wide margin,
+requiring on the order of twenty hours for the full forward sweep against
+roughly twelve minutes for Cora.

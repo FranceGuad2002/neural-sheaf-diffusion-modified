@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/conviction_masking.py", line 44, in <module>
-    from models.disc_models import (
-  File "/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/models/disc_models.py", line 6, in <module>
-    import torch_sparse
-ModuleNotFoundError: No module named 'torch_sparse'

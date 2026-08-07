@@ -29,7 +29,8 @@ from exp.parser import get_parser
 from models.positional_encodings import append_top_k_evectors
 from models.cont_models import DiagSheafDiffusion, BundleSheafDiffusion, GeneralSheafDiffusion
 from models.disc_models import (DiscreteDiagSheafDiffusion, DiscreteBundleSheafDiffusion,
-    DiscreteGeneralSheafDiffusion, DiscreteVanillaDiffusion, DiscreteVanillaDiffusionAlt,
+    DiscreteGeneralSheafDiffusion, DiscreteBochnerSheafDiffusion, DiscreteBochnerFlatSheafDiffusion,
+    DiscreteVanillaDiffusion, DiscreteVanillaDiffusionAlt,
     DiscreteJointSheafVanillaDiffusion, DiscreteJointSheafDiffusionParams,
     DiscreteJointSheafDiffusionParamsAlt)
 from utils.heterophilic import get_dataset, get_fixed_splits
@@ -789,6 +790,10 @@ if __name__ == '__main__':
         model_cls = DiscreteBundleSheafDiffusion
     elif args.model == 'GeneralSheaf':
         model_cls = DiscreteGeneralSheafDiffusion
+    elif args.model == 'BochnerSheaf':
+        model_cls = DiscreteBochnerSheafDiffusion
+    elif args.model == 'BochnerFlatSheaf':
+        model_cls = DiscreteBochnerFlatSheafDiffusion
     elif args.model == 'JointSheafParams':
         model_cls = DiscreteJointSheafDiffusionParams
     elif args.model == 'JointSheafParamsAlt':

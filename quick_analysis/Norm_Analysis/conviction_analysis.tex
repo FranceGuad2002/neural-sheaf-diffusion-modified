@@ -209,18 +209,22 @@ Fix model weights at best-epoch. Zero the input features of a selected subset of
 
 
 \begin{frame}{Analysis 3 --- Conviction Masking: Selection Strategies}
-Five \textbf{node selection strategies} are compared at each mask level $k$:
-\bigskip
+Nine \textbf{node selection strategies} are compared at each mask level $k$:
+\medskip
 \begin{enumerate}
-    \setlength\itemsep{0.9em}
+    \setlength\itemsep{0.55em}
     \item \textbf{high} --- top-$k$\% nodes by final conviction $c_L$
     \item \textbf{low} --- bottom-$k$\% nodes by $c_L$
     \item \textbf{deg\_high} --- top-$k$\% nodes by degree
-    \item \textbf{deg\_matched} --- $k$\% nodes sampled to \emph{match the degree distribution} of the high-conviction group (same structural role, random identity)
+    \item \textbf{deg\_low} --- bottom-$k$\% nodes by degree
+    \item \textbf{deg\_matched\_high} --- $k$\% nodes matching the degree distribution of the \emph{high}-conviction group
+    \item \textbf{deg\_matched\_low} --- $k$\% nodes matching the degree distribution of the \emph{low}-conviction group
+    \item \textbf{conf\_high} --- top-$k$\% nodes by model prediction confidence $\max_c \hat{p}(y=c)$
+    \item \textbf{conf\_low} --- bottom-$k$\% nodes by model prediction confidence
     \item \textbf{random} --- $k$\% uniformly random nodes
 \end{enumerate}
-\bigskip
-\small The degree-matched sample is built by matching each high-conviction node to a candidate of the same degree (or nearest available), drawn from a pre-shuffled pool. This gives a control group with the same topology as ``high'', but random otherwise.
+\medskip
+\small The degree-matched samples are built by matching each target node to a candidate of the same degree (or nearest available), drawn from a pre-shuffled pool.
 \end{frame}
 
 

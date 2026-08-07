@@ -1,47 +1,0 @@
-/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/utils/classic.py:27: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  self.data, self.slices = torch.load(self.processed_paths[0])
-wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from WANDB_API_KEY.
-wandb: Currently logged in as: franceguad2002 (franceguad2002-epfl) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
-wandb: setting up run nck8ipfv
-wandb: Tracking run with wandb version 0.26.1
-wandb: Run data is saved locally in /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/wandb/run-20260709_213446-nck8ipfv
-wandb: Run `wandb offline` to turn off syncing.
-wandb: Syncing run GeneralSheaf_citeseer_normalised-true_stalk-5_4layers_16hidden_500epochs_seed43
-wandb: ⭐️ View project at https://wandb.ai/franceguad2002-epfl/sheaf
-wandb: 🚀 View run at https://wandb.ai/franceguad2002-epfl/sheaf/runs/nck8ipfv
-  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [00:14<02:06, 14.03s/it] 20%|██        | 2/10 [00:21<01:21, 10.21s/it] 30%|███       | 3/10 [00:29<01:03,  9.06s/it] 40%|████      | 4/10 [00:37<00:51,  8.60s/it] 50%|█████     | 5/10 [00:44<00:40,  8.19s/it] 60%|██████    | 6/10 [00:52<00:31,  7.94s/it] 70%|███████   | 7/10 [01:01<00:24,  8.30s/it] 80%|████████  | 8/10 [01:08<00:16,  8.05s/it] 90%|█████████ | 9/10 [01:16<00:08,  8.07s/it]100%|██████████| 10/10 [01:24<00:00,  8.11s/it]100%|██████████| 10/10 [01:24<00:00,  8.49s/it]
-wandb: uploading history steps 234-234, summary, console lines 392-448; updating run metadata
-wandb: uploading history steps 234-234, summary, console lines 392-448; uploading output.log; uploading wandb-summary.json; uploading config.yaml
-wandb: uploading history steps 234-234, summary, console lines 392-448
-wandb: uploading history steps 235-237, summary, console lines 449-531
-wandb: 
-wandb: Run history:
-wandb:          best_epoch ▂▂▂▂▁▁█▂▁▂
-wandb:       best_test_acc ▃▇▅▃▄▁█▆▅▇
-wandb:        best_val_acc ▅▅▅▃▁▄█▄▄▅
-wandb:  fold0_tmp_test_acc ▁▁▂▄▅▅▆▆▇▇▇██████████████▇█▇████▇███████
-wandb: fold0_tmp_test_loss ██▇▇▄▃▂▁▂▂▃▄▄▄▄▄▃▃▄▅▄▆▆▆▆▆▇▇▅▆▇▇▆▅▅▆▆▆▇▅
-wandb:     fold0_train_acc ▁▂▂▄▆███████████████████████████████████
-wandb:    fold0_train_loss █▇▆▄▃▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-wandb:       fold0_val_acc ▁▃▃▆▆▆▆▇▇▇▇▇▇▇▇▇▇███████████████████████
-wandb:      fold0_val_loss ██▇▆▃▂▂▂▁▃▃▃▃▅▅▃▄▅▄▄▄▆▅▆▆▅▅▄▄▄▆▆▆▅▅▅▅▆▆▆
-wandb:       last_test_acc ▅▅▃▃█▁▅▅▆▇
-wandb:                  +3 ...
-wandb: 
-wandb: Run summary:
-wandb:          best_epoch 27
-wandb:       best_test_acc 0.68373
-wandb:        best_val_acc 0.66698
-wandb:  fold0_tmp_test_acc 0.7188
-wandb: fold0_tmp_test_loss 1.50271
-wandb:     fold0_train_acc 1
-wandb:    fold0_train_loss 0.00519
-wandb:       fold0_val_acc 0.73987
-wandb:      fold0_val_loss 1.47676
-wandb:       last_test_acc 0.73343
-wandb:                  +3 ...
-wandb: 
-wandb: 🚀 View run GeneralSheaf_citeseer_normalised-true_stalk-5_4layers_16hidden_500epochs_seed43 at: https://wandb.ai/franceguad2002-epfl/sheaf/runs/nck8ipfv
-wandb: ⭐️ View project at: https://wandb.ai/franceguad2002-epfl/sheaf
-wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
-wandb: Find logs at: ./wandb/run-20260709_213446-nck8ipfv/logs

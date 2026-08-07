@@ -1,0 +1,5 @@
+dataset,model,d,layers,normalised,conviction_score,intervention,mode,metric,indicator,mean,se,n_folds
+tolokers,GeneralSheaf,3,4,true,last,gating,soft,auc,baseline,0.8536273245867326,0.00219234695208469,10
+tolokers,GeneralSheaf,3,4,true,last,gating,soft,auc,conviction,0.8420394681546192,0.002793096742927151,10
+tolokers,GeneralSheaf,3,4,true,last,gating,soft,auc,confidence,0.8503656165865483,0.00219692292473207,10
+tolokers,GeneralSheaf,3,4,true,last,gating,soft,auc,degree,0.8376188220015237,0.0023902400391964365,10

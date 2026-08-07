@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 """
-Conviction forward (diagnostic) experiment (Alessio's protocol) — auto-discovery runner.
+Conviction forward (diagnostic) experiment (Alessio's protocol) — manifest-driven runner.
+
+Which experiments run is read from quick_analysis/conviction_manifest.txt (one
+line per dataset/model/hyperparameter combo), filtered by --model/--normalised;
+nothing is discovered by globbing the results/ tree.
 
 Train the SNN normally, then — without retraining — apply one of three
 interventions to a subset of nodes and measure accuracy / confidence drop on
@@ -51,7 +55,6 @@ import sys
 import os
 import json
 import argparse
-import collections
 
 import numpy as np
 import torch
@@ -62,23 +65,25 @@ import matplotlib.pyplot as plt
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 sys.path.insert(0, ROOT)
 
+from torch_geometric.utils import degree as pyg_degree
+
 from utils.conviction import (
     JOINT_MODELS, TYPE_SHORT, map_tag, weights_path, load_masks,
-    load_fold_rankings, select_candidates, model_classes, discover_experiments,
-    mask_features, prune_nodes, build_message_gate, load_conviction, forward_eval,
+    load_fold_rankings, select_candidates, draw_rng, model_classes,
+    load_manifest_experiments, mask_features, prune_nodes, build_message_gate,
+    load_conviction, load_confidence, forward_eval,
+    AUC_DATASETS, metric_key, tables_path, table_meta, write_table, mean_se,
 )
 
 # ── constants ─────────────────────────────────────────────────────────────────
 
-AUC_DATASETS = {'minesweeper', 'tolokers', 'questions'}
-
 MASK_LEVELS = [0.01, 0.05, 0.10, 0.20, 0.30]
 
-STRATEGIES  = ['high',      'low',       'deg_high',  'deg_low',   'deg_matched_high',   'deg_matched_low',   'conf_low',  'random']
-LABELS      = ['High conv', 'Low conv',  'High deg',  'Low deg',   'Deg-matched (high)', 'Deg-matched (low)', 'Low conf',  'Random']
-COLORS      = ['firebrick', 'steelblue', 'darkorange','seagreen',  'goldenrod',          'purple',            'teal',      'gray']
-LINESTYLES  = ['-',         '--',        '-',         '--',        ':',                  ':',                 '-',         ':']
-MARKERS     = ['o',         'o',         's',         's',         'o',                  'D',                 'v',         '^']
+STRATEGIES  = ['high',      'low',       'deg_high',  'deg_low',   'deg_matched_high',   'deg_matched_low',   'conf_high',   'conf_low',  'random']
+LABELS      = ['High conv', 'Low conv',  'High deg',  'Low deg',   'Deg-matched (high)', 'Deg-matched (low)', 'High conf',   'Low conf',  'Random']
+COLORS      = ['firebrick', 'steelblue', 'darkorange','seagreen',  'goldenrod',          'purple',            'darkcyan',    'teal',      'gray']
+LINESTYLES  = ['-',         '--',        '-',         '--',        ':',                  ':',                 '-',           '--',        ':']
+MARKERS     = ['o',         'o',         's',         's',         'o',                  'D',                 'P',           'v',         '^']
 
 # ── evaluation ────────────────────────────────────────────────────────────────
 
@@ -139,7 +144,7 @@ def _eval_gating_soft(model, data, conviction, train_idx, device, is_auc=False, 
 
 # ── per-fold experiment ───────────────────────────────────────────────────────
 
-def _run_fold(args, dataset, model_cls, fold, device, rng, intervention, mask_mode, gate_mode='hard'):
+def _run_fold(args, dataset, model_cls, fold, device, intervention, mask_mode, gate_mode='hard'):
     data   = dataset[0].clone()
     masks  = load_masks(args, fold)
     data.train_mask = masks['train_mask']
@@ -165,16 +170,27 @@ def _run_fold(args, dataset, model_cls, fold, device, rng, intervention, mask_mo
     # simpler path than masking/pruning/hard-gating's STRATEGIES x MASK_LEVELS
     # loop below, and returns a differently-shaped result.
     if intervention == 'gating' and gate_mode == 'soft':
-        conviction = load_conviction(args, fold, score=score)
         train_idx  = data.train_mask.nonzero(as_tuple=True)[0].cpu()
         empty      = torch.tensor([], dtype=torch.long)
-        acc0, conf0, auc0 = _eval_gating_soft(model, data, conviction, empty, device, is_auc)
-        acc1, conf1, auc1 = _eval_gating_soft(model, data, conviction, train_idx, device, is_auc)
-        print(f"  fold {fold} done (soft gate)  |  baseline acc={acc0:.3f}  soft-gated acc={acc1:.3f}")
-        return {
-            'baseline':  {'acc': acc0, 'conf': conf0, 'auc': auc0},
-            'soft_gate': {'acc': acc1, 'conf': conf1, 'auc': auc1},
+        # Three continuous indicators, each gated identically: within the train
+        # pool the lowest value maps to min_scale, the highest to ~1.0 (see
+        # build_message_gate). Conviction is the original; confidence and degree
+        # are the same recipe applied to a different per-node score.
+        indicators = {
+            'conviction': load_conviction(args, fold, score=score),
+            'confidence': load_confidence(args, fold),
+            'degree':     pyg_degree(data.edge_index[0].cpu(), num_nodes=n).float(),
         }
+        # Baseline is one no-op pass (empty gate ignores the score vector).
+        acc0, conf0, auc0 = _eval_gating_soft(model, data, indicators['conviction'], empty, device, is_auc)
+        result = {'baseline': {'acc': acc0, 'conf': conf0, 'auc': auc0}}
+        msg = f"  fold {fold} done (soft gate)  |  baseline acc={acc0:.3f}"
+        for name, scores in indicators.items():
+            a, c, u = _eval_gating_soft(model, data, scores, train_idx, device, is_auc)
+            result[f'soft_gate_{name}'] = {'acc': a, 'conf': c, 'auc': u}
+            msg += f"  {name}={a:.3f}"
+        print(msg)
+        return result
 
     rankings     = load_fold_rankings(args, fold, data.edge_index, n, score=score, pool='train')
     pool_idx     = rankings['pool_idx']
@@ -197,7 +213,8 @@ def _run_fold(args, dataset, model_cls, fold, device, rng, intervention, mask_mo
     for frac in MASK_LEVELS:
         k = max(1, int(frac * len(pool_idx)))
         for strat in STRATEGIES:
-            idx = select_candidates(strat, k, rng=rng, **rankings)
+            idx = select_candidates(
+                strat, k, rng=draw_rng(args['dataset'], fold, strat, frac), **rankings)
             a, c, u, diag = _eval(idx)
             fold_result[strat]['acc'].append(a)
             fold_result[strat]['conf'].append(c)
@@ -267,12 +284,19 @@ def _plot(all_results, args, out_path, intervention):
     plt.close(fig)
 
 
+SOFT_INDICATORS = ['conviction',       'confidence', 'degree']
+SOFT_IND_LABELS = ['Conviction',        'Confidence', 'Degree']
+SOFT_IND_COLORS = ['purple',            'darkcyan',   'darkorange']
+
+
 def _plot_soft_gate(all_results, args, out_path):
     """Baseline-vs-soft-gated bar comparison — no budget axis, since soft
-    gating has no candidate selection/sweep, just one number per fold."""
+    gating has no candidate selection/sweep, just one number per fold. One
+    gated bar per indicator (conviction/confidence/degree), each gating the
+    whole train pool by that score with the same low->min_scale recipe."""
     n_folds = len(all_results)
     is_auc  = args.get('dataset') in AUC_DATASETS
-    fig, axes = plt.subplots(1, 2, figsize=(8, 5))
+    fig, axes = plt.subplots(1, 2, figsize=(10, 5))
 
     for ax, (metric, title) in zip(axes, [
         ('auc' if is_auc else 'acc',
@@ -280,11 +304,17 @@ def _plot_soft_gate(all_results, args, out_path):
         ('conf', 'Mean confidence on test set'),
     ]):
         baseline_vals = np.array([r['baseline'].get(metric, float('nan')) for r in all_results])
-        soft_vals     = np.array([r['soft_gate'].get(metric, float('nan')) for r in all_results])
-        means = [np.nanmean(baseline_vals), np.nanmean(soft_vals)]
-        ses   = [np.nanstd(baseline_vals) / np.sqrt(n_folds), np.nanstd(soft_vals) / np.sqrt(n_folds)]
-        ax.bar(['No gating', 'Soft gate\n(whole train pool)'], means, yerr=ses,
-               color=['gray', 'purple'], capsize=6, alpha=0.85)
+        labels = ['No gating']
+        means  = [np.nanmean(baseline_vals)]
+        ses    = [np.nanstd(baseline_vals) / np.sqrt(n_folds)]
+        colors = ['gray']
+        for name, lbl, col in zip(SOFT_INDICATORS, SOFT_IND_LABELS, SOFT_IND_COLORS):
+            vals = np.array([r[f'soft_gate_{name}'].get(metric, float('nan')) for r in all_results])
+            means.append(np.nanmean(vals))
+            ses.append(np.nanstd(vals) / np.sqrt(n_folds))
+            labels.append(f'Soft gate\n({lbl})')
+            colors.append(col)
+        ax.bar(labels, means, yerr=ses, color=colors, capsize=6, alpha=0.85)
         ax.set_title(title, fontsize=11, fontweight='bold')
         ax.grid(True, axis='y', alpha=0.3)
 
@@ -308,21 +338,110 @@ def _plot_soft_gate(all_results, args, out_path):
     plt.close(fig)
 
 
-def _save_pruning_diagnostics(all_results, args, out_path, strategies=None):
+def _save_table(all_results, args, plot_path, intervention, mode=''):
+    """Tabulate exactly what the left-hand panel plots: the headline metric
+    (ROC-AUC for the AUC datasets, accuracy otherwise — never both, never
+    confidence) per strategy and budget, mean ± SE across folds."""
+    n_folds = len(all_results)
+    metric  = metric_key(args['dataset'])
+    meta    = table_meta(args, intervention, mode)
+    rows = [dict(meta, strategy='baseline', pct='',
+                 **dict(zip(('mean', 'se'),
+                            mean_se([r['baseline'].get(metric, float('nan'))
+                                     for r in all_results], n_folds))),
+                 n_folds=n_folds)]
+    for strat, lbl in zip(STRATEGIES, LABELS):
+        for i, frac in enumerate(MASK_LEVELS):
+            mu, se = mean_se([r[strat][metric][i] for r in all_results], n_folds)
+            rows.append(dict(meta, strategy=strat, pct=frac,
+                             mean=mu, se=se, n_folds=n_folds))
+    write_table(rows, tables_path(plot_path), ['strategy', 'pct', 'mean', 'se', 'n_folds'])
+    _save_folds_table(all_results, args, plot_path, intervention, mode)
+
+
+def _save_folds_table(all_results, args, plot_path, intervention, mode=''):
+    """The per-fold values behind _save_table's means, one row per (fold,
+    strategy, budget). Written alongside the aggregated table because that one
+    collapses the fold axis before any downstream script sees it, making
+    fold-level statistics unrecoverable without re-running the whole sweep.
+    'fold' indexes completed folds, so it skips any that were missing weights."""
+    metric = metric_key(args['dataset'])
+    meta   = table_meta(args, intervention, mode)
+    rows   = []
+    for fold, r in enumerate(all_results):
+        rows.append(dict(meta, fold=fold, strategy='baseline', pct='',
+                         value=r['baseline'].get(metric, float('nan'))))
+        for strat in STRATEGIES:
+            for i, frac in enumerate(MASK_LEVELS):
+                rows.append(dict(meta, fold=fold, strategy=strat, pct=frac,
+                                 value=r[strat][metric][i]))
+    write_table(rows, tables_path(plot_path).replace('.csv', '_folds.csv'),
+                ['fold', 'strategy', 'pct', 'value'])
+
+
+def _save_table_soft_gate(all_results, args, plot_path):
+    """One row per indicator (plus the ungated baseline) — the bar heights of
+    the soft-gating figure, headline metric only."""
+    n_folds = len(all_results)
+    metric  = metric_key(args['dataset'])
+    meta    = table_meta(args, 'gating', 'soft')
+    rows    = []
+    for name, key in [('baseline', 'baseline')] + [(n, f'soft_gate_{n}') for n in SOFT_INDICATORS]:
+        mu, se = mean_se([r[key].get(metric, float('nan')) for r in all_results], n_folds)
+        rows.append(dict(meta, indicator=name, mean=mu, se=se, n_folds=n_folds))
+    write_table(rows, tables_path(plot_path), ['indicator', 'mean', 'se', 'n_folds'])
+    _save_folds_table_soft_gate(all_results, args, plot_path)
+
+
+def _save_folds_table_soft_gate(all_results, args, plot_path):
+    """The per-fold values behind _save_table_soft_gate's means, one row per
+    (fold, indicator) — same rationale as _save_folds_table: the aggregated
+    file collapses the fold axis, so keep it here or it is gone. No budget/pct
+    column, unlike the other folds tables: soft gating has no candidate
+    selection or sweep, just one value per fold per indicator."""
+    metric = metric_key(args['dataset'])
+    meta   = table_meta(args, 'gating', 'soft')
+    rows   = []
+    for fold, r in enumerate(all_results):
+        rows.append(dict(meta, fold=fold, indicator='baseline',
+                         value=r['baseline'].get(metric, float('nan'))))
+        for name in SOFT_INDICATORS:
+            rows.append(dict(meta, fold=fold, indicator=name,
+                             value=r[f'soft_gate_{name}'].get(metric, float('nan'))))
+    write_table(rows, tables_path(plot_path).replace('.csv', '_folds.csv'),
+                ['fold', 'indicator', 'value'])
+
+
+def _save_pruning_diagnostics(all_results, args, out_path, strategies=None, levels=None):
     """Alessio's required table: for each (strategy, budget), pct nodes/edges
     remaining, # connected components, class balance per split, split
-    composition drift, giant component size — averaged across folds.
-    strategies defaults to this module's full 8-strategy STRATEGIES list;
-    run_conviction_experiments.py passes its own (shorter) RETRAIN_STRATEGIES."""
+    composition drift, giant component size — averaged across folds — PLUS the
+    headline metric (ROC-AUC for the AUC datasets, accuracy otherwise) so the
+    structural damage and the performance drop can be read off one table.
+    Every pre-existing field is retained; the metric and provenance columns are
+    additions. Written to the Conviction_experiments_tables/ mirror.
+
+    strategies/levels default to this module's STRATEGIES/MASK_LEVELS;
+    run_conviction_experiments.py passes its own (shorter) retrain lists."""
+    strategies = strategies if strategies is not None else STRATEGIES
+    levels     = levels     if levels     is not None else MASK_LEVELS
+    metric     = metric_key(args['dataset'])
+    n_folds    = len(all_results)
+    meta       = table_meta(args, 'pruning', '')
     table = []
-    for strat in (strategies if strategies is not None else STRATEGIES):
-        by_frac = collections.defaultdict(list)
-        for r in all_results:
-            for entry in r[strat]['diagnostics']:
-                if entry is not None:
-                    by_frac[entry['pct']].append(entry)
-        for pct, entries in sorted(by_frac.items()):
-            row = {'strategy': strat, 'pct': pct, 'n_folds': len(entries)}
+    for strat in strategies:
+        for i, frac in enumerate(levels):
+            entries = [r[strat]['diagnostics'][i] for r in all_results
+                       if r[strat]['diagnostics'][i] is not None]
+            if not entries:
+                continue
+            # diagnostics carry their own budget; keep them the authority so a
+            # mismatch surfaces instead of silently pairing the wrong rows.
+            assert all(e['pct'] == frac for e in entries), \
+                f"budget mismatch for {strat}: expected {frac}"
+            mu, se = mean_se([r[strat][metric][i] for r in all_results], n_folds)
+            row = dict(meta, strategy=strat, pct=frac, n_folds=len(entries),
+                       mean=mu, se=se)
             for key in ('pct_nodes_remaining', 'pct_edges_remaining',
                         'n_connected_components', 'giant_component_pct'):
                 row[key] = float(np.mean([e[key] for e in entries]))
@@ -330,10 +449,11 @@ def _save_pruning_diagnostics(all_results, args, out_path, strategies=None):
             row['split_pct_before_last_fold'] = entries[-1]['split_pct_before']
             row['split_pct_after_last_fold']  = entries[-1]['split_pct_after']
             table.append(row)
-    os.makedirs(os.path.dirname(out_path), exist_ok=True)
-    with open(out_path, 'w') as f:
+    out = tables_path(out_path, ext='.json')
+    os.makedirs(os.path.dirname(out), exist_ok=True)
+    with open(out, 'w') as f:
         json.dump(table, f, indent=2)
-    print(f"  Saved pruning diagnostics to {out_path}")
+    print(f"  Saved pruning diagnostics table to {out}")
 
 # ── main ─────────────────────────────────────────────────────────────────────
 
@@ -344,6 +464,11 @@ if __name__ == '__main__':
     parser.add_argument('--map_type',   default='identity',
                         help='For Joint models: identity | general | diag | bundle')
     parser.add_argument('--cuda',       type=int, default=0)
+    parser.add_argument('--dataset',    default=None,
+                        help='Restrict the run to one manifest dataset. Use this to shard '
+                             'across SLURM jobs — pruning in particular rebuilds a model '
+                             'per evaluation and rarely finishes the whole manifest in one '
+                             'time window.')
     parser.add_argument('--conviction_score', default='last', choices=['last', 'avg', 'avg_z'],
                         help='last = X_L norm only; avg = mean norm over post-diffusion layers 1..L')
     parser.add_argument('--intervention', default='masking', choices=['masking', 'pruning', 'gating'],
@@ -361,10 +486,10 @@ if __name__ == '__main__':
     device = torch.device(f'cuda:{cli.cuda}' if torch.cuda.is_available() else 'cpu')
 
     if cli.model in JOINT_MODELS:
-        discovery_tag = '_first_maps_identity' if cli.map_type == 'identity' \
+        model_tag ='_first_maps_identity' if cli.map_type == 'identity' \
                   else f"_first_maps_{TYPE_SHORT.get(cli.map_type, cli.map_type)}"
     else:
-        discovery_tag = ''
+        model_tag =''
 
     out_dir_parts = [ROOT, 'quick_analysis', 'Conviction_experiments', 'forward_experiment',
                      cli.intervention]
@@ -375,14 +500,19 @@ if __name__ == '__main__':
     os.makedirs(out_dir, exist_ok=True)
 
     gate_info = f"  gate_mode={cli.gate_mode}" if cli.intervention == 'gating' else ''
-    print(f"Discovering: model={cli.model}{discovery_tag}  normalised={cli.normalised}  "
-          f"intervention={cli.intervention}{gate_info}")
-    experiments = discover_experiments(cli.model, cli.normalised, discovery_tag)
+    print(f"Reading manifest for: model={cli.model}{model_tag}  normalised={cli.normalised}  "
+          f"intervention={cli.intervention}{gate_info}"
+          + (f"  dataset={cli.dataset}" if cli.dataset else "  (all datasets)"))
+    experiments = load_manifest_experiments(cli.model, cli.normalised, model_tag,
+                                            dataset_filter=cli.dataset)
     if not experiments:
-        print("No experiments found. Have you run training with --save_norms=True?"); sys.exit(1)
+        print("No experiments found in the manifest. Have you added a line to "
+              "quick_analysis/conviction_manifest.txt for this model/normalised combo?"); sys.exit(1)
 
     print(f"\nFound {len(experiments)} experiment(s).")
-    rng = np.random.default_rng(seed=42)
+    # No module-level generator: each randomised draw builds its own from
+    # draw_rng(dataset, fold, strategy, budget), so results no longer depend on
+    # how many datasets/folds ran first (see draw_rng in utils/conviction.py).
     MODEL_CLASSES = model_classes()
     from utils.heterophilic import get_dataset
 
@@ -418,7 +548,7 @@ if __name__ == '__main__':
         model_cls   = MODEL_CLASSES[targs['model']]
         all_results = []
         for fold in range(n_folds):
-            result = _run_fold(adict, dataset, model_cls, fold, device, rng,
+            result = _run_fold(adict, dataset, model_cls, fold, device,
                                cli.intervention, cli.mask_mode, cli.gate_mode)
             if result is not None:
                 all_results.append(result)
@@ -436,10 +566,14 @@ if __name__ == '__main__':
             f"{targs['dataset']}_{targs['model']}{tag}_d{targs['d']}_{targs['layers']}L_"
             f"Norm_{Norm}_conv-{cli.conviction_score}{mode_tag}_conviction_{cli.intervention}.pdf")
 
+        mode = cli.mask_mode if cli.intervention == 'masking' else (
+               cli.gate_mode if cli.intervention == 'gating' else '')
         if cli.intervention == 'gating' and cli.gate_mode == 'soft':
             _plot_soft_gate(all_results, adict, out_path)
+            _save_table_soft_gate(all_results, adict, out_path)
         else:
             _plot(all_results, adict, out_path, cli.intervention)
+            _save_table(all_results, adict, out_path, cli.intervention, mode)
 
         if cli.intervention == 'pruning':
             diag_path = out_path.replace('.pdf', '_diagnostics.json')

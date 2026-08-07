@@ -1,47 +1,0 @@
-/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/utils/classic.py:27: FutureWarning: You are using `torch.load` with `weights_only=False` (the current default value), which uses the default pickle module implicitly. It is possible to construct malicious pickle data which will execute arbitrary code during unpickling (See https://github.com/pytorch/pytorch/blob/main/SECURITY.md#untrusted-models for more details). In a future release, the default value for `weights_only` will be flipped to `True`. This limits the functions that could be executed during unpickling. Arbitrary objects will no longer be allowed to be loaded via this mode unless they are explicitly allowlisted by the user via `torch.serialization.add_safe_globals`. We recommend you start setting `weights_only=True` for any use case where you don't have full control of the loaded file. Please open an issue on GitHub for any issues related to this experimental feature.
-  self.data, self.slices = torch.load(self.processed_paths[0])
-wandb: [wandb.login()] Loaded credentials for https://api.wandb.ai from WANDB_API_KEY.
-wandb: Currently logged in as: franceguad2002 (franceguad2002-epfl) to https://api.wandb.ai. Use `wandb login --relogin` to force relogin
-wandb: setting up run hor7a3zs
-wandb: Tracking run with wandb version 0.26.1
-wandb: Run data is saved locally in /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/wandb/run-20260710_142545-hor7a3zs
-wandb: Run `wandb offline` to turn off syncing.
-wandb: Syncing run GeneralSheaf_pubmed_normalised-true_stalk-3_4layers_16hidden_500epochs_seed43
-wandb: ⭐️ View project at https://wandb.ai/franceguad2002-epfl/sheaf
-wandb: 🚀 View run at https://wandb.ai/franceguad2002-epfl/sheaf/runs/hor7a3zs
-  0%|          | 0/10 [00:00<?, ?it/s] 10%|█         | 1/10 [05:02<45:23, 302.63s/it] 20%|██        | 2/10 [06:28<23:19, 174.94s/it] 30%|███       | 3/10 [07:14<13:34, 116.41s/it] 40%|████      | 4/10 [07:47<08:19, 83.19s/it]  50%|█████     | 5/10 [08:18<05:21, 64.40s/it] 60%|██████    | 6/10 [09:01<03:48, 57.09s/it] 70%|███████   | 7/10 [09:33<02:27, 49.05s/it] 80%|████████  | 8/10 [10:04<01:26, 43.32s/it] 90%|█████████ | 9/10 [10:36<00:39, 39.62s/it]100%|██████████| 10/10 [11:08<00:00, 37.20s/it]100%|██████████| 10/10 [11:08<00:00, 66.80s/it]
-wandb: updating run metadata
-wandb: uploading wandb-summary.json; uploading output.log
-wandb: uploading output.log
-wandb: uploading history steps 291-292, summary, console lines 502-531
-wandb: 
-wandb: Run history:
-wandb:          best_epoch ▂▄▁▂▁█▂▁▂▂
-wandb:       best_test_acc ▅█▂▅▆▃▅▃▁▅
-wandb:        best_val_acc ▆█▂▅▄▁█▄▅▇
-wandb:  fold0_tmp_test_acc ▁▄▆▇████████████████████████████████████
-wandb: fold0_tmp_test_loss ██▇▄▄▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-wandb:     fold0_train_acc ▁▁▂▂▆▇▇▇▇▇▇▇▇▇▇█████▇███████████████████
-wandb:    fold0_train_loss ██▅▄▃▂▂▂▂▂▂▂▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-wandb:       fold0_val_acc ▁▂▄▅▄▇██████████████████████████████████
-wandb:      fold0_val_loss █▅▂▂▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁▁
-wandb:       last_test_acc ▇█▁▇▆▅██▂█
-wandb:                  +3 ...
-wandb: 
-wandb: Run summary:
-wandb:          best_epoch 83
-wandb:       best_test_acc 0.89249
-wandb:        best_val_acc 0.89778
-wandb:  fold0_tmp_test_acc 0.89148
-wandb: fold0_tmp_test_loss 0.33662
-wandb:     fold0_train_acc 0.94632
-wandb:    fold0_train_loss 0.14513
-wandb:       fold0_val_acc 0.89667
-wandb:      fold0_val_loss 0.3094
-wandb:       last_test_acc 0.893
-wandb:                  +3 ...
-wandb: 
-wandb: 🚀 View run GeneralSheaf_pubmed_normalised-true_stalk-3_4layers_16hidden_500epochs_seed43 at: https://wandb.ai/franceguad2002-epfl/sheaf/runs/hor7a3zs
-wandb: ⭐️ View project at: https://wandb.ai/franceguad2002-epfl/sheaf
-wandb: Synced 5 W&B file(s), 0 media file(s), 0 artifact file(s) and 0 other file(s)
-wandb: Find logs at: ./wandb/run-20260710_142545-hor7a3zs/logs

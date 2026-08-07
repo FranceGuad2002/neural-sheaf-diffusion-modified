@@ -1,0 +1,186 @@
+=== score=last  intervention=gating  --gate_mode=soft  dataset=ALL ===
+Reading manifest for: model=GeneralSheaf  normalised=true  intervention=gating  gate_mode=soft  (all datasets)
+  loaded: amazon_ratings  d=5  L=5  folds=10
+  loaded: citeseer  d=5  L=4  folds=10
+  loaded: cora  d=5  L=3  folds=10
+  loaded: cornell  d=2  L=2  folds=10
+  loaded: minesweeper  d=5  L=6  folds=10
+  loaded: pubmed  d=3  L=4  folds=10
+  loaded: questions  d=5  L=4  folds=10
+  loaded: roman_empire  d=5  L=5  folds=10
+  loaded: tolokers  d=3  L=4  folds=10
+  loaded: wisconsin  d=2  L=2  folds=10
+
+Found 10 experiment(s).
+
+============================================================
+  amazon_ratings  |  GeneralSheaf  d=5  L=5  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.474  conviction=0.448  confidence=0.463  degree=0.439
+  fold 1 done (soft gate)  |  baseline acc=0.457  conviction=0.431  confidence=0.441  degree=0.427
+  fold 2 done (soft gate)  |  baseline acc=0.452  conviction=0.422  confidence=0.436  degree=0.416
+  fold 3 done (soft gate)  |  baseline acc=0.461  conviction=0.424  confidence=0.446  degree=0.421
+  fold 4 done (soft gate)  |  baseline acc=0.468  conviction=0.431  confidence=0.458  degree=0.428
+  fold 5 done (soft gate)  |  baseline acc=0.459  conviction=0.437  confidence=0.450  degree=0.436
+  fold 6 done (soft gate)  |  baseline acc=0.466  conviction=0.439  confidence=0.452  degree=0.433
+  fold 7 done (soft gate)  |  baseline acc=0.462  conviction=0.432  confidence=0.446  degree=0.429
+  fold 8 done (soft gate)  |  baseline acc=0.472  conviction=0.436  confidence=0.458  degree=0.430
+  fold 9 done (soft gate)  |  baseline acc=0.466  conviction=0.441  confidence=0.457  degree=0.441
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+============================================================
+  citeseer  |  GeneralSheaf  d=5  L=4  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.624  conviction=0.642  confidence=0.639  degree=0.638
+  fold 1 done (soft gate)  |  baseline acc=0.694  conviction=0.688  confidence=0.696  degree=0.678
+  fold 2 done (soft gate)  |  baseline acc=0.656  conviction=0.636  confidence=0.653  degree=0.637
+  fold 3 done (soft gate)  |  baseline acc=0.615  conviction=0.632  confidence=0.611  degree=0.630
+  fold 4 done (soft gate)  |  baseline acc=0.637  conviction=0.677  confidence=0.651  degree=0.667
+  fold 5 done (soft gate)  |  baseline acc=0.586  conviction=0.631  confidence=0.593  degree=0.631
+  fold 6 done (soft gate)  |  baseline acc=0.709  conviction=0.691  confidence=0.709  degree=0.685
+  fold 7 done (soft gate)  |  baseline acc=0.666  conviction=0.663  confidence=0.669  degree=0.667
+  fold 8 done (soft gate)  |  baseline acc=0.660  conviction=0.651  confidence=0.671  degree=0.651
+  fold 9 done (soft gate)  |  baseline acc=0.684  conviction=0.670  confidence=0.685  degree=0.669
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+============================================================
+  cora  |  GeneralSheaf  d=5  L=3  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.813  conviction=0.771  confidence=0.807  degree=0.765
+  fold 1 done (soft gate)  |  baseline acc=0.855  conviction=0.843  confidence=0.853  degree=0.839
+  fold 2 done (soft gate)  |  baseline acc=0.843  conviction=0.827  confidence=0.841  degree=0.823
+  fold 3 done (soft gate)  |  baseline acc=0.807  conviction=0.811  confidence=0.809  degree=0.805
+  fold 4 done (soft gate)  |  baseline acc=0.851  conviction=0.827  confidence=0.849  degree=0.817
+  fold 5 done (soft gate)  |  baseline acc=0.809  conviction=0.787  confidence=0.807  degree=0.787
+  fold 6 done (soft gate)  |  baseline acc=0.809  conviction=0.785  confidence=0.811  degree=0.785
+  fold 7 done (soft gate)  |  baseline acc=0.813  conviction=0.791  confidence=0.815  degree=0.787
+  fold 8 done (soft gate)  |  baseline acc=0.845  conviction=0.805  confidence=0.841  degree=0.801
+  fold 9 done (soft gate)  |  baseline acc=0.849  conviction=0.829  confidence=0.851  degree=0.821
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+============================================================
+  cornell  |  GeneralSheaf  d=2  L=2  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.676  conviction=0.676  confidence=0.676  degree=0.676
+  fold 1 done (soft gate)  |  baseline acc=0.865  conviction=0.865  confidence=0.865  degree=0.865
+  fold 2 done (soft gate)  |  baseline acc=0.946  conviction=0.919  confidence=0.946  degree=0.946
+  fold 3 done (soft gate)  |  baseline acc=0.703  conviction=0.676  confidence=0.703  degree=0.676
+  fold 4 done (soft gate)  |  baseline acc=0.892  conviction=0.892  confidence=0.892  degree=0.892
+  fold 5 done (soft gate)  |  baseline acc=0.784  conviction=0.784  confidence=0.784  degree=0.838
+  fold 6 done (soft gate)  |  baseline acc=0.811  conviction=0.838  confidence=0.811  degree=0.838
+  fold 7 done (soft gate)  |  baseline acc=0.757  conviction=0.757  confidence=0.757  degree=0.784
+  fold 8 done (soft gate)  |  baseline acc=0.838  conviction=0.838  confidence=0.838  degree=0.838
+  fold 9 done (soft gate)  |  baseline acc=0.838  conviction=0.811  confidence=0.838  degree=0.811
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+============================================================
+  minesweeper  |  GeneralSheaf  d=5  L=6  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.900  conviction=0.885  confidence=0.899  degree=0.901
+  fold 1 done (soft gate)  |  baseline acc=0.910  conviction=0.892  confidence=0.901  degree=0.911
+  fold 2 done (soft gate)  |  baseline acc=0.910  conviction=0.891  confidence=0.907  degree=0.910
+  fold 3 done (soft gate)  |  baseline acc=0.891  conviction=0.863  confidence=0.885  degree=0.887
+  fold 4 done (soft gate)  |  baseline acc=0.895  conviction=0.868  confidence=0.891  degree=0.893
+  fold 5 done (soft gate)  |  baseline acc=0.905  conviction=0.877  confidence=0.896  degree=0.905
+  fold 6 done (soft gate)  |  baseline acc=0.906  conviction=0.886  confidence=0.904  degree=0.907
+  fold 7 done (soft gate)  |  baseline acc=0.904  conviction=0.878  confidence=0.893  degree=0.905
+  fold 8 done (soft gate)  |  baseline acc=0.908  conviction=0.896  confidence=0.913  degree=0.907
+  fold 9 done (soft gate)  |  baseline acc=0.905  conviction=0.887  confidence=0.903  degree=0.905
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+============================================================
+  pubmed  |  GeneralSheaf  d=3  L=4  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.892  conviction=0.884  confidence=0.895  degree=0.881
+  fold 1 done (soft gate)  |  baseline acc=0.899  conviction=0.888  confidence=0.898  degree=0.886
+  fold 2 done (soft gate)  |  baseline acc=0.886  conviction=0.884  confidence=0.886  degree=0.884
+  fold 3 done (soft gate)  |  baseline acc=0.891  conviction=0.887  confidence=0.891  degree=0.885
+  fold 4 done (soft gate)  |  baseline acc=0.895  conviction=0.887  confidence=0.895  degree=0.888
+  fold 5 done (soft gate)  |  baseline acc=0.888  conviction=0.876  confidence=0.887  degree=0.875
+  fold 6 done (soft gate)  |  baseline acc=0.893  conviction=0.889  confidence=0.894  degree=0.888
+  fold 7 done (soft gate)  |  baseline acc=0.888  conviction=0.891  confidence=0.889  degree=0.889
+  fold 8 done (soft gate)  |  baseline acc=0.883  conviction=0.876  confidence=0.883  degree=0.875
+  fold 9 done (soft gate)  |  baseline acc=0.892  conviction=0.890  confidence=0.894  degree=0.889
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d3_4L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d3_4L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d3_4L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+============================================================
+  questions  |  GeneralSheaf  d=5  L=4  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.971  conviction=0.971  confidence=0.971  degree=0.970
+  fold 1 done (soft gate)  |  baseline acc=0.972  conviction=0.972  confidence=0.972  degree=0.972
+  fold 2 done (soft gate)  |  baseline acc=0.971  conviction=0.971  confidence=0.971  degree=0.971
+  fold 3 done (soft gate)  |  baseline acc=0.972  conviction=0.972  confidence=0.972  degree=0.972
+  fold 4 done (soft gate)  |  baseline acc=0.971  conviction=0.971  confidence=0.971  degree=0.971
+  fold 5 done (soft gate)  |  baseline acc=0.971  conviction=0.971  confidence=0.971  degree=0.971
+  fold 6 done (soft gate)  |  baseline acc=0.972  conviction=0.972  confidence=0.972  degree=0.972
+  fold 7 done (soft gate)  |  baseline acc=0.972  conviction=0.972  confidence=0.972  degree=0.972
+  fold 8 done (soft gate)  |  baseline acc=0.972  conviction=0.972  confidence=0.972  degree=0.972
+  fold 9 done (soft gate)  |  baseline acc=0.972  conviction=0.972  confidence=0.972  degree=0.972
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+============================================================
+  roman_empire  |  GeneralSheaf  d=5  L=5  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.860  conviction=0.812  confidence=0.855  degree=0.721
+  fold 1 done (soft gate)  |  baseline acc=0.874  conviction=0.803  confidence=0.870  degree=0.716
+  fold 2 done (soft gate)  |  baseline acc=0.872  conviction=0.819  confidence=0.867  degree=0.729
+  fold 3 done (soft gate)  |  baseline acc=0.878  conviction=0.818  confidence=0.868  degree=0.732
+  fold 4 done (soft gate)  |  baseline acc=0.871  conviction=0.813  confidence=0.861  degree=0.715
+  fold 5 done (soft gate)  |  baseline acc=0.877  conviction=0.826  confidence=0.869  degree=0.747
+  fold 6 done (soft gate)  |  baseline acc=0.876  conviction=0.815  confidence=0.870  degree=0.731
+  fold 7 done (soft gate)  |  baseline acc=0.872  conviction=0.813  confidence=0.865  degree=0.745
+  fold 8 done (soft gate)  |  baseline acc=0.857  conviction=0.807  confidence=0.853  degree=0.716
+  fold 9 done (soft gate)  |  baseline acc=0.873  conviction=0.810  confidence=0.867  degree=0.739
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+============================================================
+  tolokers  |  GeneralSheaf  d=3  L=4  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.819  conviction=0.810  confidence=0.817  degree=0.810
+  fold 1 done (soft gate)  |  baseline acc=0.818  conviction=0.814  confidence=0.817  degree=0.811
+  fold 2 done (soft gate)  |  baseline acc=0.833  conviction=0.816  confidence=0.819  degree=0.806
+  fold 3 done (soft gate)  |  baseline acc=0.824  conviction=0.818  confidence=0.823  degree=0.815
+  fold 4 done (soft gate)  |  baseline acc=0.828  conviction=0.817  confidence=0.822  degree=0.809
+  fold 5 done (soft gate)  |  baseline acc=0.814  conviction=0.812  confidence=0.813  degree=0.806
+  fold 6 done (soft gate)  |  baseline acc=0.818  conviction=0.813  confidence=0.820  degree=0.807
+  fold 7 done (soft gate)  |  baseline acc=0.815  conviction=0.815  confidence=0.814  degree=0.810
+  fold 8 done (soft gate)  |  baseline acc=0.819  conviction=0.809  confidence=0.822  degree=0.811
+  fold 9 done (soft gate)  |  baseline acc=0.823  conviction=0.815  confidence=0.819  degree=0.812
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+============================================================
+  wisconsin  |  GeneralSheaf  d=2  L=2  folds=10
+============================================================
+  fold 0 done (soft gate)  |  baseline acc=0.824  conviction=0.824  confidence=0.824  degree=0.824
+  fold 1 done (soft gate)  |  baseline acc=0.882  conviction=0.882  confidence=0.882  degree=0.882
+  fold 2 done (soft gate)  |  baseline acc=0.863  conviction=0.843  confidence=0.863  degree=0.843
+  fold 3 done (soft gate)  |  baseline acc=0.902  conviction=0.902  confidence=0.902  degree=0.902
+  fold 4 done (soft gate)  |  baseline acc=0.863  conviction=0.863  confidence=0.863  degree=0.863
+  fold 5 done (soft gate)  |  baseline acc=0.902  conviction=0.902  confidence=0.902  degree=0.902
+  fold 6 done (soft gate)  |  baseline acc=0.863  conviction=0.863  confidence=0.863  degree=0.863
+  fold 7 done (soft gate)  |  baseline acc=0.863  conviction=0.863  confidence=0.863  degree=0.863
+  fold 8 done (soft gate)  |  baseline acc=0.843  conviction=0.843  confidence=0.843  degree=0.843
+  fold 9 done (soft gate)  |  baseline acc=0.882  conviction=0.882  confidence=0.882  degree=0.882
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_conv-last_soft_conviction_gating.pdf
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_conv-last_soft_conviction_gating.csv
+  Saved table to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_conv-last_soft_conviction_gating_folds.csv
+
+Done. Plots in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments/forward_experiment/gating/soft/last/GeneralSheaf/normalised_true
