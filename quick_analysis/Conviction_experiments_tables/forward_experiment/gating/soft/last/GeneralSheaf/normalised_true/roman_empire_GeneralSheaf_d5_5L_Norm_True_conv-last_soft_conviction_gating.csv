@@ -1,5 +1,0 @@
-dataset,model,d,layers,normalised,conviction_score,intervention,mode,metric,indicator,mean,se,n_folds
-roman_empire,GeneralSheaf,5,5,true,last,gating,soft,acc,baseline,0.8709463953971863,0.0021164231955113242,10
-roman_empire,GeneralSheaf,5,5,true,last,gating,soft,acc,conviction,0.8134568631649017,0.0019325749796951165,10
-roman_empire,GeneralSheaf,5,5,true,last,gating,soft,acc,confidence,0.8646591603755951,0.0018742919281573634,10
-roman_empire,GeneralSheaf,5,5,true,last,gating,soft,acc,degree,0.7290977358818054,0.0035990323768442783,10

@@ -1,5 +1,0 @@
-dataset,model,d,layers,normalised,conviction_score,intervention,mode,metric,indicator,mean,se,n_folds
-minesweeper,GeneralSheaf,5,6,true,last,gating,soft,auc,baseline,0.954587098854668,0.0019660607926917746,10
-minesweeper,GeneralSheaf,5,6,true,last,gating,soft,auc,conviction,0.9334120040349271,0.0030022563495426245,10
-minesweeper,GeneralSheaf,5,6,true,last,gating,soft,auc,confidence,0.9486044610990862,0.0021442599906381756,10
-minesweeper,GeneralSheaf,5,6,true,last,gating,soft,auc,degree,0.9542555882176286,0.0019973281086348793,10
