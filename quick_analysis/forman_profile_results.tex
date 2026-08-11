@@ -1,995 +1,364 @@
-\documentclass[11pt]{beamer}
+\section{Empirical Contributions}
+\label{sec:empirical_contributions}
 
-\title[Forman Profile --- Results]{Forman Profile Alignment: Results}
-\author{Francesco Maria Guadagnuolo}
-\date{\today}
-\usetheme{Madrid}
-\usecolortheme{whale}
-\setbeamertemplate{navigation symbols}{}
-\setbeamertemplate{headline}{}
-
-\usepackage{graphicx}
-\usepackage[english]{babel}
-\usepackage{mathtools}
-\usepackage{amssymb}
-\usepackage{tikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\F}{\mathcal{F}}
-\newcommand{\Ltil}{\widetilde{\Delta}_{\F}}
-\newcommand{\norm}[1]{\left\|#1\right\|}
-
-\begin{document}
-
-\frame{\titlepage}
+\subsection{Forman Profile diagnostic}
+\label{sec:forman_profile}
 
 
+The theory currently available for Sheaf Neural Networks is of two kinds.
+Convergence results describe sheaf diffusion as a dynamical system and characterize its equilibria, while the Universal Approximation for Sheaves proved in ~\cite{bodnar2022neural} establishes that a Neural Network could learn any sheaf that is defined on a graph.
+In this work we would like to go beyond these two theoretical paradigms.
+On one hand, since the sheaf is learnt at each layer via the update rule $\restrv{v}{e}^{(\ell)} = \varsigma(V[x_v^{(\ell)} \,\|\, x_u^{(\ell)}])$, the Sheaf Neural mechanism could be interpreted as a geometric flow, where the Laplacian changes according to the local data (the attributes in this setting, or the metric in differential geometry) defined on the graph.
+Moreover, to our knowledge the ``navigability'' of the sheaf space is still underexplored, i.e.\ how the sheaf learning mechanism navigates the space of possible sheaves and whether different learning mechanisms induce different learning biases that constrain the learning process into sub-trajectories of the space.
+To address both issues, it is necessary to study the properties of the Laplacians that are learnt by each sheaf mechanism.
+To this aim we introduce an observable: a quantity that can be computed on the sheaf
+while it is being learnt, layer by layer and epoch by epoch, and that is cheap
+enough to be tracked along an entire training run. We propose the \emph{Forman
+profile}, read from the Bochner decomposition of cellular sheaves in Section~\ref{sec:bochner_matrices},
+as such a diagnostic, and we use it to compare the sheaves produced by
+different learning pipelines.
 
+\subsubsection{Methods}
+\paragraph{The Forman profile.}
+The Bochner decomposition of a sheaf Laplacian
+$L_{\mathcal{F}} = B_{\mathcal{F}} + F_{\mathcal{F}}$ produces a
+block-diagonal curvature term whose block at node $u$ is, by
+\eqref{eq:sheaf_forman}, an endomorphism
+$(F_{\mathcal{F}})_{uu} \in \mathbb{R}^{d\times d}$ of the stalk at $u$
+depending only on the restriction maps of the edges incident to $u$. Since this
+block is a matrix rather than a scalar, we summarise it by its spectrum.
 
+\begin{definition}[Forman profile]
+\label{def:forman_profile}
+Let $\mathcal{F}$ be a sheaf with $d$-dimensional stalks on a graph with $n$
+nodes. For each node $u$ let $\lambda_1(u) \leq \dots \leq \lambda_d(u)$ be the
+eigenvalues of the curvature block $(F_{\mathcal{F}})_{uu}$. The \emph{Forman
+profile} of $\mathcal{F}$ is the matrix
+\[
+  f(\mathcal{F}) \;=\; \bigl(\lambda_k(u)\bigr)_{u=1,\dots,n;\; k=1,\dots,d}
+  \;\in\; \mathbb{R}^{n\times d},
+\]
+whose $k$-th column $f_k \in \mathbb{R}^n$ is the distribution of the $k$-th
+Forman term eigenvalue across nodes.
+\end{definition}
 
-% ══════════════════════════════════════════════════════════════════════════════
-%  METHODS
-% ══════════════════════════════════════════════════════════════════════════════
+Extracting it from a trained model requires only taking the sheaf Laplacian
+produced at layer $\ell$ by the learnt restriction maps, applying
+Definition~\ref{def:block_bochner} to isolate the curvature term, and
+diagonalising each of its $n$ diagonal blocks. 
 
-\begin{frame}{Models and Configurations}
-Two model families are studied, each run on 10 datasets with 10-fold cross-validation ($500$ epochs, early stopping at $200$):
-\begin{itemize}
-    \item \textbf{GeneralSheaf}: a neural sheaf learner maps each edge to an unconstrained $d\times d$ restriction map; the resulting sheaf Laplacian drives signal diffusion. Run with \texttt{save\_others=True}: the \emph{other Laplacian} (opposite normalisation, same maps) is also saved at every checkpoint.
-    \item \textbf{JointSheafParams (Joint Diffusion)}: node signals and restriction maps are diffused jointly at each layer (\texttt{dual\_normalised=True}). Two initial-map modes:
-    \begin{itemize}
-        \item \textbf{Identity} (\texttt{learn\_first\_maps=False}): maps start as $I_d$; joint diffusion evolves them.
-        \item \textbf{General} (\texttt{learn\_first\_maps=True}, \texttt{learnt\_map\_type=general}): a neural learner initialises maps before joint diffusion.
-    \end{itemize}
-    \item \textbf{Normalisation}: \texttt{normalised=True} applies symmetric normalisation $\widetilde{\Delta}_{\mathcal{F}} = D^{-1/2}\Delta_{\mathcal{F}} D^{-1/2}$; \texttt{normalised=False} uses the raw Laplacian. Every combination is run independently.
-\end{itemize}
-\end{frame}
+This diagnostic is defined for any sheaf Laplacian, so it can be compared across learning mechanisms.
+Moreover, it is local, as it uses only the information within a node's neighbourhood, and it is cheap, requiring $n$ eigendecompositions of size $d$ rather than one of size $nd$.
+Nonetheless, the results proved in Section~\ref{sec:bochner} show that it is related to global properties of the complex.
+It is instructive to compare it with the spectral decomposition:
+computing the Forman term is considerably cheaper, particularly for large graphs; moreover, as we discussed above, spectral theory for sheaves is still a developing field, and, as a consequence, spectral quantities and eigenvectors still lack the interpretability that the Forman term can instead provide.
+A profile is informative only against a baseline, and we use two. The
+\emph{topological reference} $f^{\mathrm{top}}$ is the Forman profile of the
+augmented normalised graph Laplacian, that is, of the trivial sheaf on the same
+graph; it depends on the graph alone, involves no learnt parameter, and is
+computed once per fold. The \emph{zero reference} is the profile of the
+unnormalised graph Laplacian, which vanishes identically as recalled in
+Section~\ref{sec:bochner_decomposition}.
 
-\begin{frame}{Forman Profile Extraction}
-\begin{itemize}
-    \item \textbf{Bochner decomposition:} the sheaf Laplacian $\Delta_{\mathcal{F}}$ admits a block-diagonal curvature endomorphism $\mathrm{Ric}_{\mathcal{F}}$. Its per-node diagonal block $F_{u,u} \in \mathbb{R}^{d\times d}$ encodes how the learned maps deform the local geometry at node $u$.
-    \item \textbf{Forman profile:} the $d$ eigenvalues of $F_{u,u}$ form the \emph{Forman profile} at node $u$. Stacking over all $n$ nodes gives an $(n,d)$ matrix of per-node curvature eigenvalues.
-    \item \textbf{Checkpoint saving:} profiles are extracted and saved at epochs $\{0, 1, 5, 15, 50, 200\}$ \emph{and} at the best-validation-epoch (early stopping), for every fold and every layer. This yields a full training trajectory of the sheaf geometry.
-    \item \textbf{Topological reference ($f_0^{\mathrm{top}}$):} the Forman profile of the \emph{augmented graph Laplacian} (topology-only, no learned maps) is saved once per fold and serves as the fixed geometric baseline.
-\end{itemize}
-\end{frame}
+\paragraph{Experimental setup.}
+Every configuration follows the same loop: we train the network on the node
+classification task, and at selected epochs we extract, for each layer, the
+Forman profile of the sheaf Laplacian currently produced by the restriction
+maps and compare it to the reference profiles. The sheaf is therefore observed
+while it is being learnt, and not only at convergence.
 
-\begin{frame}{Alignment Metrics, Normalised Laplacian (\texttt{normalised=True})}
-For each eigenvalue channel $k=1,\dots,d$, per fold, per layer, and per checkpoint epoch, the following metrics compare the learned profile $f_k$ to the topological reference $f_k^{\mathrm{top}}$:
-\begin{itemize}
-    \item \textbf{Spearman $\rho$}: rank correlation between $f_k$ and $f_k^{\mathrm{top}}$ (node-level).
-    \item \textbf{Pearson $r$}: linear correlation between $f_k$ and $f_k^{\mathrm{top}}$ (node-level).
-    \item \textbf{Wasserstein}: Wasserstein distance between the empirical distributions of $f_k$ and $f_k^{\mathrm{top}}$.
-    \item \textbf{RMSE}: $\ell_2$ distance between raw profile values and the topological reference.
-    \item \textbf{NRMSE}: same as RMSE but after z-scoring both profiles (scale-invariant).
-\end{itemize}
-\medskip
-All five metrics are averaged over eigenvalue channels $k$ and over folds, yielding one scalar per (checkpoint epoch, layer) cell. Visualised as heatmaps: rows = checkpoints, columns = layers.
-\end{frame}
+We study two model families. In \textbf{GeneralSheaf} a neural learner maps each
+edge to an unconstrained $d\times d$ restriction map,
+$\restrv{v}{e}^{(\ell)} = \varsigma(V[x_v^{(\ell)} \,\|\, x_u^{(\ell)}])$. In
+\textbf{JointSheafParams} ~\cite{caralt2024jointdiffusionprocessesinductive} node signals and
+restriction maps are diffused jointly at each layer via the update $\begin{cases}
+X(t+1) = X(t) - \sigma\big((\mathbf{I}_{nd} - \alpha \Delta_{\mathcal{F}}(t))(I_n \otimes W_1(t))XW_2(t)\big) \\
+\mathcal{F}^T(t+1) = \mathcal{F}^T(t) - \sigma\big((\mathbf{I}_{2md} - \beta \Delta_{X(t)})(I_n \otimes W_1^T(t))\mathcal{F}^TW_2^T(t)\big)
+\end{cases}$. For this process we consider the
+identity initialisation $\mathcal{F}^{(0)} = I_d$; in this case the Forman profile also measures how far the
+joint process drifts from the trivial sheaf. 
+Each model is trained independently under both
+normalisation regimes, namely with
+$\Delta_{\mathcal{F}} = D^{-1/2}L_{\mathcal{F}}D^{-1/2}$ and
+with the raw $L_{\mathcal{F}}$.
+We outline that a normalised sheaf Laplacian can be seen as the standard sheaf Laplacian of another sheaf.
+As a consequence, all our experiments lie within the same sheaf space, and the comparison between them is fair.
+Experiments are run on ten node classification benchmarks: Amazon Ratings,
+Citeseer, Cora, Cornell, Minesweeper, Pubmed, Questions, Roman Empire, Tolokers
+and Wisconsin  ~\cite{sen2008collective,tang2009social,pei2020geomgcn,platonov2023critical}.
+%The selection follows the critical evaluation of (METTERE REF: Platonov et al., 2024), which flags Chameleon, Squirrel and Texas for duplicate nodes and severe class imbalance; we exclude those. 
+Performance is reported as
+test accuracy, and as AUC-ROC for Minesweeper, Tolokers and Questions. We use $10$-fold
+cross-validation with $500$ epochs and early stopping with patience $200$, and
+average every metric over folds.
+Stalk dimension and depth are chosen per
+dataset, with $d \in \{2,3,5\}$ and $L \in \{2,\dots,6\}$: small datasets such
+as Cornell and Wisconsin use $d=2$ and $L=2$, larger ones up to $d=5$ and $L=6$.
+Profiles are saved at epochs $\{0,1,5,15,50,200\}$ and in the last
+epoch, for every fold and every layer.
+Doing the checkpoint analysis allows us to understand how the sheaf changes during the learning process, in a task-driven way, since epoch $0$ is an untrained sheaf that is randomly initialised and therefore acts as a control.
 
-\begin{frame}{Alignment Metrics, Unnormalised Laplacian (\texttt{normalised=False})}
-When the Laplacian is unnormalised, we could continue to compare it to the normalized ggraph Laplacian (topological reference), but also to the unnormalized graph Lpalacian, that has constant Forman profile $=0$. A different metric set is therefore used:
-\begin{itemize}
-    \item \textbf{Wasserstein vs.\ topological} ($W_1(f_k, f_k^{\mathrm{top}})$): distribution distance to the topological profile.
-    \item \textbf{Wasserstein vs.\ zero} ($W(f_k, \mathbf{0})$): distribution distance to the flat (all-zero) reference --- measures absolute spectral mass.
-    \item \textbf{Pearson $r$ vs.\ topological}: linear correlation with $f_k^{\mathrm{top}}$ (shape alignment regardless of scale).
-    \item \textbf{NRMSE vs.\ topological}: z-scored $\ell_2$ distance to $f_k^{\mathrm{top}}$ (scale-invariant divergence from topology).
-    \item \textbf{RMSE vs.\ zero} ($\|f_k\|_2 / \sqrt{n}$): root-mean-square magnitude of the learned profile itself.
-\end{itemize}
+\paragraph{Alignment metrics.}
+All metrics are computed per eigenvalue term, per layer, per checkpoint and per fold,
+and then \textbf{averaged over eigenvalues and folds}, so that each configuration yields one
+scalar per (checkpoint, layer) cell; we display these as heatmaps whose rows are
+checkpoints and whose columns are layers.
+For normalised runs we compare each
+$k$ eigenvalue Forman term $f_k$ to $f^{\mathrm{top}}$ using Spearman $\rho$ and Pearson $r$ for
+node-level rank and linear correlation, the $1$-Wasserstein distance $W_1$
+between the two empirical distributions, the RMSE between raw values, and the
+NRMSE, that is the same $\ell_2$ distance computed after z-scoring both
+profiles.
+We would outline that RMSE and NRMSE differ only by
+the z-scoring, so RMSE sees location and scale whereas NRMSE does not, and a
+disagreement between them localises the discrepancy in the mean or the scale
+rather than in the shape.
+For unnormalised runs the natural baseline is ambiguous, since the unnormalised
+graph Laplacian has identically zero profile, and we therefore measure against
+both references. We report $W_1(f_k, f_k^{\mathrm{top}})$ and $W(f_k,\mathbf{0})$
+for the distributional distance to the topological and to the flat reference,
+Pearson $r$ and NRMSE against $f_k^{\mathrm{top}}$ for shape alignment
+independent of scale, and the RMSE against $\mathbf{0}$, which is simply the
+root-mean-square magnitude of the learnt profile itself.
 
-\end{frame}
+\paragraph{Global summary.}
+Alongside the per-dataset heatmaps (Supplementary, Section~\ref{sec:forman_supplementary}), we report the Wasserstein distance as a single global statistic per checkpoint: for each of the ten datasets we average over folds and eigenvalues as above, and further average across datasets. Since depth $L$ differs across datasets, we bin each network's layers by relative depth, first, middle or last layer, rather than by absolute layer index, and report mean $\pm$ standard error across datasets.
+When a depth bin spans more than one actual layer, for instance the middle bin of a six-layer network, those layers are averaged together with the ten folds into a single number per dataset, exactly as the eigenvalue channels already are; only after this do we average across datasets to obtain the value shown in a cell. The uncertainty reported alongside it is likewise computed across datasets, and not by pooling the underlying fold-and-layer measurements: since the folds and the layers within a bin all come from the same trained model on the same graph, they are correlated re-measurements of one quantity rather than independent samples, and pooling them directly would understate the true uncertainty. 
 
-\begin{frame}{The \emph{Other Laplacian}: Isolating the Role of Normalisation}
-For \textbf{GeneralSheaf} only, a parallel Laplacian is computed at every checkpoint using the \emph{same learned restriction maps} but the \emph{opposite normalisation}:
-\begin{itemize}
-    \item If the model was trained with \texttt{normalised=True}, the other Laplacian is $\Delta_{\mathcal{F}}$ (unnormalised). Its Forman profile is saved in \texttt{other\_Laplacian/}.
-    \item If trained with \texttt{normalised=False}, the other Laplacian is $\widetilde{\Delta}_{\mathcal{F}} = D^{-1/2}\Delta_{\mathcal{F}} D^{-1/2}$ (normalised).
-\end{itemize}
-This allows four analysis modes (XOR logic on content type):
-\begin{enumerate}
-    \item Norm=True primary: normalised profile vs.\ normalised topology.
-    \item Norm=False primary: unnormalised profile vs.\ topological reference.
-    \item \texttt{--use\_other} from Norm=True run: unnormalised profile (same maps!) vs.\ topological reference.
-    \item \texttt{--use\_other} from Norm=False run: normalised profile (same maps!) vs.\ topological reference.
-\end{enumerate}
-Modes 1 \& 4 both have normalised content; modes 2 \& 3 both have unnormalised content and use the unnormalised metric set.
-\end{frame}
+\paragraph{Distinguishing normalisation and training effects.}
 
-
-
-
-\begin{frame}{Cross-Comparison: Motivation}
-The primary runs and the \emph{other Laplacian} give us \textbf{four Forman profiles} for each dataset, two normalised and two unnormalised:
-
-\medskip
+To really disentangle the effect of the learning process from that of the
+normalisation, we recompute, for GeneralSheaf and at every
+checkpoint, a second Laplacian built from the \emph{same learnt restriction
+maps} but with the opposite normalisation, which we call the \emph{other
+Laplacian}. This yields four profiles per dataset.
 \begin{center}
-\renewcommand{\arraystretch}{1.4}
-\begin{tabular}{l|cc}
- & \textbf{Normalised} $\widetilde{\Delta}_\mathcal{F}$ & \textbf{Unnormalised} $\Delta_\mathcal{F}$ \\
-\hline
-Maps trained with \texttt{norm=True}  & \textit{primary run}         & \texttt{other\_Laplacian} \\
-Maps trained with \texttt{norm=False} & \texttt{other\_Laplacian}    & \textit{primary run}      \\
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{lcc}
+\toprule
+ & \textbf{Evaluated normalised} $\Delta_{\mathcal{F}}$
+ & \textbf{Evaluated unnormalised} $L_{\mathcal{F}}$ \\
+\midrule
+Maps trained \texttt{norm=True}  & primary run    & other Laplacian \\
+Maps trained \texttt{norm=False} & other Laplacian & primary run     \\
+\bottomrule
 \end{tabular}
 \end{center}
 
-\medskip
-\textbf{Key idea:} by comparing entries \emph{within the same column}, the normalisation (and hence spectral scaling) is \emph{identical} between the two profiles. The \emph{only} difference is whether the restriction maps were trained with or without normalisation.
+Each column of the table fixes the normalisation used at evaluation, and varies
+only the regime under which the maps were trained. Comparing the two entries of
+a single column therefore isolates the role of the training regime rather than
+that of the normalisation.
 
-\medskip
-This isolates a precise question: \emph{does the training objective (normalised vs.\ unnormalised loss) push the learned maps toward a geometrically different sheaf, even when we evaluate both under the same Laplacian normalisation?}
-\end{frame}
-
-\begin{frame}{Cross-Comparison: The Two Directions}
-\begin{itemize}
-    \item \textbf{Direction A} (left column, both normalised):
-    \begin{itemize}
-        \item Profile 1: primary run with \texttt{norm=True} $\;\to\;$ $\widetilde{\Delta}_\mathcal{F}$ from maps trained normalised.
-        \item Profile 2: \texttt{other\_Laplacian} of \texttt{norm=False} run $\;\to\;$ $\widetilde{\Delta}_\mathcal{F}$ from maps trained unnormalised.
-        \item Both are \textbf{normalised Laplacians}; only the training regime differs.
-    \end{itemize}
-    \medskip
-    \item \textbf{Direction B} (right column, both unnormalised):
-    \begin{itemize}
-        \item Profile 1: primary run with \texttt{norm=False} $\;\to\;$ $\Delta_\mathcal{F}$ from maps trained unnormalised.
-        \item Profile 2: \texttt{other\_Laplacian} of \texttt{norm=True} run $\;\to\;$ $\Delta_\mathcal{F}$ from maps trained normalised.
-        \item Both are \textbf{unnormalised Laplacians}; only the training regime differs.
-    \end{itemize}
-\end{itemize}
-\medskip
-\textbf{Metrics:} Spearman $\rho$, Pearson $r$, Wasserstein $W_1$, RMSE, NRMSE --- computed \emph{between the two learned profiles} (not against a topological baseline). Aggregated over folds and eigenvalue channels; displayed as heatmaps (rows = checkpoint epochs, columns = layers).
-\end{frame}
+Moreover, to obtain a finer picture of how normalisation and training interact,
+we perform two analyses. First, we compare each \emph{other Laplacian} against
+the reference profiles, using the same metric sets as for the primary runs.
+Second, we cross-compare the two Laplacians lying in the same column. That is,
+we train once with \texttt{norm=True} and once with \texttt{norm=False}, and we
+compute the distance metrics between the primary Laplacian of the first run and
+the \emph{other Laplacian} of the second. In other words, we compute the
+differences between the Forman profiles of the two Laplacians sitting in the
+same column of the table above.
 
 
-\begin{frame}{How these slides are sturctured}
-\begin{itemize}
-    \item   \textbf{We first tell the main results of the analysis}
-    \item then we plot 5/6 images to give a meaningful visualization of what we are saying
-    \item and then we plot ALL the complete images (that are a lot) afterwards, so that one could see all the results that we obtained
-\end{itemize}
+\subsubsection{Results}
+\paragraph{Normalised sheaf Laplacians align with the graph Laplacian.}
+Our most striking result is that, across the majority of datasets, the Forman profile of the learnt normalised sheaf Laplacian aligns with the topological reference, that is, with the profile of the normalised graph Laplacian. The alignment is robust across the Spearman, Pearson, Wasserstein and NRMSE metrics.
+The alignment strengthens along both axes of the heatmap,
+increasing with the number of epochs and, at fixed epoch, with depth, so that
+the deepest layers are the most aligned and the heatmaps display a
+characteristic triangular pattern, as we show in Table~\ref{tab:global_general_norm} and, for a single dataset, in Figure~\ref{fig: RM_Norm} (Supplementary).
+Of the five metrics, the Wasserstein distance
+is the most stable across datasets, stalk dimensions and depths.
+The exception
+is the RMSE, which behaves differently from the NRMSE; since the two differ only
+by the z-scoring, we read this as evidence that the learnt profile and the
+topological one agree in shape but differ by a mean offset or a scale factor.
+This could also mean that the RMSE is not a good metric for this kind of comparison.
+It is worth observing that this behaviour is task-driven and manifests during learning.
+Indeed, at epoch $0$, where the learnt sheaf is random, the alignment is absent, and it develops as training proceeds.
+Normalisation alone therefore does not produce it, and the behaviour is better read as an \textbf{implicit bias} of the neural mechanism that learns the sheaf.
+\newline 
+A clear exception to this pattern is Minesweeper: at no layer or epoch does its
+Forman profile show an appreciable alignment with the topological reference,
+across any of the five metrics. Tolokers and Questions depart from the pattern
+as well, though less markedly. In none of these cases is the departure
+accompanied by a corresponding drop in task performance, since the models still
+attain good AUC-ROC scores. This dissociation between predictive performance
+and curvature alignment is itself informative: it shows that the implicit bias
+we describe is not a prerequisite for the sheaf to solve the task well, but a
+tendency of the learning dynamics that some datasets do not follow. We return
+to this point in the Discussion paragraph.
 
-\end{frame}
+\input{sma_projet_files/Sections/tables/table1_general_norm.tex}
 
+\paragraph{Unnormalised sheaf Laplacians do not align.}
+When the Laplacian is left unnormalised, the learnt profile matches neither the
+topological reference nor the zero reference.
+Interestingly, the metrics with respect to the topological reference are almost constant with the layers and epochs. 
+Regarding the zero reference, the disalignment is generally very high.
+It usually increases with the layers and epochs; however, in large heterophilic datasets the peak disalignment is observed at middle layers and epochs, and then decreases slightly towards the final ones, while retaining a considerable magnitude.
+We do not have a clear explanation for this, but we hypothesise that, since these datasets require non-trivial sheaves to capture the heterophily, during the learning process the learnt sheaf may be pushed too far, possibly also due to numerical instabilities, towards a complete disalignment phase, and then be corrected towards milder values in the final layers.
+The global pattern is summarised in Table~\ref{tab:global_general_unnorm}; an example of a typical unnormalised behaviour for a single dataset is shown in Figure~\ref{fig: Citeseer_Not_Norm} (Supplementary).
 
-\begin{frame}{Main results: Normalised}
-\begin{itemize}
-    \item The normalized Sheaf Laplacian locally aligns with the standard normalized graph Laplacian, as the training goes on
-    \item this alignment happens during training
-    \item there is a "double" alignment flow, both in the epochs, and both in the layers: the last layers are usually the ones aligned the most
-    \item from the heatmaps, one could see clearly an increasing alignment with the number of epochs and often also with the layers
-    \item as we put in the plot, one usually gets a "triangle-shaped" pattern
-    \item The RMSE has usually different results than all the other measures. In particular it is quite different from the pattern in the NMRSE. 
-    This may tell us that \textbf{there is a shift or change of scale across the Forman profile and the topological one}.
-    \item Still, all the metrics, Wasserstein, Spearman, Pearson and NMRSE tell us that there is an alognment according to them.
-\end{itemize}
+\input{sma_projet_files/Sections/tables/table2_general_unnorm.tex}
 
+\paragraph{Alignment tracks both normalization and learning objective.}
+The analysis with the ``other'' Laplacians and the subsequent cross-comparison sharpens the picture considerably.
+Maps trained with normalisation but evaluated unnormalised lose their alignment entirely, both to the topological and to the zero reference.
+This deserves emphasis, because it constrains how the alignment of the previous paragraphs should be read.
+One might suspect that local alignment with the normalised graph Laplacian indicates that the learnt restriction maps have become essentially identity-like.
+If that were so, the same maps evaluated without normalisation would reproduce the unnormalised graph Laplacian, whose Forman profile vanishes identically, and we would therefore expect alignment with the zero reference.
+This is not what we observe: the profile is far from zero.
+The learnt maps are consequently \textbf{not} close to the identity, and the alignment we report is an effect mediated by the normalisation rather than evidence that the sheaf has collapsed onto a trivial configuration.
+Interestingly, these maps do not show exactly the same behaviour as the maps trained in an unnormalised way, since they always show a pattern of increasing disalignment with respect to the zero reference that, as we saw earlier, was more nuanced when the maps are originally unnormalised.
+Instead, the maps trained in an unnormalised way but evaluated with normalisation show a similar alignment with the topological reference, with a high correlation. Also the Wasserstein distance closely aligns with the topological reference. 
+This also tells us, that while the unnormalized restriction maps are not the identity, they stilll align with a Laplacian that, when normalized, is close to the reference. 
+This effect is non random, becase as we show at initialization the random sheaf does not show this alignment. 
+In addition to this analysis, the cross-comparison gives a finer-grained picture of how the learning and normalisation effects are interlaced with each other.
+The normalised maps show a moderately high correlation, and a Wasserstein distance that stays moderate to high and sustained across checkpoints, neither vanishing nor blowing up.
+The RMSE and NRMSE instead highlight the difference between these representations, which is non-negligible and consistent across all the datasets.
+The unnormalised cross-comparison shows the same sustained pattern: the correlation is generally low and the RMSE and NRMSE are rather high throughout training.
+The corresponding global summaries are reported in Supplementary Tables~\ref{tab:global_general_other_norm}, \ref{tab:global_general_other_unnorm}, \ref{tab:global_cross_a} and \ref{tab:global_cross_b}.
+As an example, we consider the Pubmed dataset, whose results are shown in
+Supplementary Figures~\ref{fig: Pubmed_Other_Norm}, ~\ref{fig: Pubmed_Other_Unnorm},
+~\ref{fig: Pubmed_Cross_A} and ~\ref{fig: Pubmed_Cross_B}: the two \emph{other
+Laplacian} (normalised and not normalised) profiles against their own references, and the two cross-comparisons along
+the normalised and unnormalised columns.
+\newline 
+Taken together, this analysis serves as a form of \textbf{ablation study}: it establishes that the effects we observe in the Forman profile certainly depend on the normalisation, which plays a considerable role in how sheaf learning navigates the space, but also depend on the learning process of the chosen Sheaf Neural Network.
 
-\end{frame}
+\paragraph{Joint diffusion produces a different signature.}
 
+We compute the Forman profile also for the Joint Diffusion Sheaf process ~\cite{caralt2024jointdiffusionprocessesinductive}, which simulates an opinion dynamics model where both opinions and beliefs are adaptive and are modified towards a flexible equilibrium configuration.
+Formally, the equation that governs this mechanism is $\begin{cases}
+X(t+1) = X(t) - \sigma\big((\mathbf{I}_{nd} - \alpha \Delta_{\mathcal{F}}(t))(I_n \otimes W_1(t))XW_2(t)\big) \\
+\mathcal{F}^T(t+1) = \mathcal{F}^T(t) - \sigma\big((\mathbf{I}_{2md} - \beta \Delta_{X(t)})(I_n \otimes W_1^T(t))\mathcal{F}^TW_2^T(t)\big)
+\end{cases}$.
+We tested it both in the unnormalised and in the normalised version, setting in both cases the initialisation of the restriction maps to the identity.
+In this way, the Forman profile metrics also tell us how much the learnt sheaf deviates from the identity.
+Unlike the standard Sheaf Neural Network, the unnormalised regime is presumably the standard one for this architecture.
+In this modality, we observed that for very small datasets (Wisconsin, Cornell) the Joint Sheaf remains very close to the identity sheaf, as its Forman profile is essentially the same as that of the standard graph Laplacian. We show an example of this for the Wisconsin dataset in Figure~\ref{fig: Wisconsin_Joint_Unnorm} (Supplementary).
+Instead, across all the bigger datasets there is a recurrent pattern: the maps deviate from the identity as one moves through the layers, but this disalignment is attenuated as the epochs increase. At random initialisation the sheaf therefore has a Forman profile very far from the identity, whereas as the epochs increase some disalignment remains but stays quite mild.
+This is shown for the Questions dataset in Figure~\ref{fig: Questions_Joint_Unnorm} (Supplementary); the global pattern across all ten datasets is summarised in Table~\ref{tab:global_joint_unnorm}.
 
-\begin{frame}{Roman Empire --- GeneralSheaf, $d=5$, $L=5$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
+\input{sma_projet_files/Sections/tables/table3_joint_unnorm.tex}
 
-\begin{frame}{Main results: unnormalized}
-    \begin{itemize}
-        \item We compare it both to the normalized forman profile and the unnormalized one ( the  0 vector) 
-        \item \textbf{The unnormalized Forman Profile is not aligned to neither of them}
-        \item In general, the disalingment increases as one increases \textbf{both layers and epochs}, but this is not true for the Amazon Ratings, Minesweeper, Questions, Roman Empire, Tolokers, where there is a \textbf{decreasing in the disalignment} in the last layers and pochs, while the alignment is maximum in the middle layers and in the middle / early epochs.
-        \item However, in general, there is a similar pattern of disalignment wrt to both the graph and normalized graph Laplacian
-    \end{itemize}
-\end{frame}
+The normalised regime is instead generally more unstable, and requires a lower stalk dimension and fewer layers.
+In this case we observed a consistent pattern across all the datasets: the maps deviate consistently from the identity, and this deviation becomes stronger as the number of epochs increases.
+What happens is therefore the opposite of the pattern observed with unnormalised joint diffusion.
+We show an example of this for the Minesweeper dataset in Figure~\ref{fig: Minesweeper_Joint_Norm} (Supplementary); the global summary is reported in Supplementary Table~\ref{tab:global_joint_norm}.
 
+\paragraph{Discussion}
 
+The results show that the Forman profile characterises each sheaf learning
+mechanism and tracks how a Sheaf Neural Network \emph{navigates} the sheaf
+space during training. This gives a first tool to observe, layer by layer and
+epoch by epoch, how the learnt sheaf evolves and how far it departs from
+specific reference sheaves, providing a more interpretable lens on a process
+that is otherwise opaque.
 
-\begin{frame}{Main results: unnormalized}
-    \begin{itemize}
-        \item We compare it both to the normalized forman profile and the unnormalized one ( the  0 vector) 
-        \item \textbf{The unnormalized Forman Profile is not aligned to neither of them}
-        \item In general, the disalingment increases as one increases \textbf{both layers and epochs}, but this is not true for the Amazon Ratings, Minesweeper, Questions, Roman Empire, Tolokers, where there is a \textbf{decreasing in the disalignment} in the last layers and pochs, while the alignment is maximum in the middle layers and in the middle / early epochs.
-        \item However, in general, there is a similar pattern of disalignment wrt to both the graph and normalized graph Laplacian
-    \end{itemize}
-\end{frame}
+Read together, our observations point to a concrete implicit bias of sheaf
+learning: the normalised learning mechanism converges to a representation
+whose Forman curvature is locally aligned with that of the standard
+normalised graph Laplacian. This offers a concrete mechanism behind the
+observation that identity sheaves often match learnt ones in accuracy
+~\cite{caralt2026necessitylearnablesheaflaplacians}: the learnt sheaf is already drifting
+towards that region of the sheaf space, so little expressive power is lost by
+starting there.
 
-\begin{frame}{Citeseer --- GeneralSheaf, $d=5$, $L=4$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/citeseer_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
+The role of normalisation is clarified by the same data: a normalised sheaf
+Laplacian is itself the sheaf Laplacian of another sheaf, so normalisation is
+a move \emph{inside} the sheaf space rather than outside it. This suggests
+that normalisation confines learning to a preferred subspace, and that the
+operative constraint on sheaf learning is the \emph{navigability} of the
+sheaf space rather than its size, as the mechanism-dependence below
+illustrates.
 
-\begin{frame}{Main results: cross comparison}
-    The main results are: 
-    \begin{itemize}
-        \item When I train the SNN with the Normalised= True, and then I take the Forman profile of the unnormalized Laplacian (built from the same maps) then the alignment (with graph or normalized graph Laplacian) is no more, similarly to justlearning in the unnormalized case
-        \item When I train the SNN with the Normalised = False, and then I take the Forman Profile of the normalized Laplacian (built from the same maps) then \textbf{there is an alignment} wrt to the graph normalized Laplacian. \textbf{This happens in some different nuances, comapred to the SNN with normalised = True pipeline}. Nonetheless, it is present, and robust across datasets.
-        \item Nevertheless, if I take the cross comparison, the Laplacians that are learnt are quite dissimilar between one another. Both in the normalized and unnormalized case.
-        There is for sure some correlation, above all when comparing the normalized case, but is not as strong as the comaprison wrt to the reference topological Laplacian. 
-    \end{itemize}
-\end{frame}
-
-
-\begin{frame}{Pubmed --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=5$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true_other/pubmed_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-
-\begin{frame}{Pubmed --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=5$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false_other/pubmed_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/pubmed_GeneralSheaf_d5_4L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/pubmed_GeneralSheaf_d5_4L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-
-\begin{frame}{JointDiffusion Normalised = False main results:}
-    \begin{itemize}
-        \item we consider both starting from the identity and from a general sheaf that is learnt.
-        \item In this deck of slides we report primarily the results from a situation where the initials maps are the identity, as this \textbf{measures how much the JointDiffusion process deviates} from the identity sheaf.
-        \item \textbf{For very small datasets (Wisconsin, Cornell)} the Joint Sheaf, having only 2 layers, remains incredibly close to the identity sheaf, as its Forman profile is basically the same of the standard graph Laplacian
-        \item for bigger datasets, there is a recurrent pattern: \textbf{the maps deviates from the identity as one moves through layers, but this disalignment is softened as the epochs increase}. So, randomizing the sheaf gets a Forman profile very far from the identity, while as epochs increases then there is still disalignment but this is still quite mild.
-    \end{itemize}
-\end{frame}
-
-
-\begin{frame}{Wisconsin --- Joint, $d=2$, $L=2$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/wisconsin_JointSheafParams_d2_2L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Questions --- Joint, $d=5$, $L=4$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/questions_JointSheafParams_d5_4L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-
-
-\begin{frame}{JointDiffusion Normalised = True main results:}
-    \begin{itemize}
-        \item This method is quite unstable, we only cosndier identity as starting maps, and we also needed to decrease the stalk dimension and number of layers
-        \item for basically all the datasets, there is a recurrent pattern that is the opposite of the JointSheafDiffusion with Normalised = Fase: \textbf{the maps deviates cosnistenly from the identity, and this deviation is stronger as the number of epochs increase}. 
-    \end{itemize}
-\end{frame}
-
-
-\begin{frame}{Minesweeper --- Joint, $d=5$, $L=6$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/minesweeper_JointSheafParams_d5_6L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-
-\begin{frame}{Other considerations}
-\textbf{Exceptions to the patterns explained above are in general Minesweeper, Tolokers and Questions (to some extent).}
-Alessio conjectured this may be due to homophily vs heterophily. 
-It doesn't seem to me this is the case.
-To me it is most plausible because these datasets are different then the other ones in the way they are 2 class datasets.
-Maybe the dataset structure or the feature vs structure relationship in those datasets are inherently different from the other ones. 
-\textbf{I actually do not know what other explainations I could consider.}
-Instead, regarding the JointSheafDiffusion, the patters seems quite similar to the other datasets.
-\end{frame}
-
-
-\begin{frame}{How the next slides are organized}
-The remaining slides present the complete heatmaps for all 10 datasets, grouped into 8 sections:
+We emphasise that the Forman profile behaves differently for each sheaf
+learning mechanism we consider, which we read as a sort of
+\textbf{fingerprint} of the process itself:
 \begin{enumerate}
-    \item \textbf{GeneralSheaf, Norm=True} --- normalised $\widetilde{\Delta}_{\mathcal{F}}$ vs.\ topological reference (5 metrics)
-    \item \textbf{GeneralSheaf, Norm=False} --- unnormalised $\Delta_{\mathcal{F}}$ vs.\ topological reference (5 metrics)
-    \item \textbf{Cross-comparison, Dir A} --- both normalised: maps from \texttt{norm=True} training vs.\ \texttt{norm=False} training
-    \item \textbf{Cross-comparison, Dir B} --- both unnormalised: maps from \texttt{norm=False} training vs.\ \texttt{norm=True} training
-    \item \textbf{JointSheafParams, Norm=False, identity maps} --- unnormalised $\Delta_{\mathcal{F}}$ starting from $F_0 = I_d$
-    \item \textbf{JointSheafParams, Norm=True, identity maps} --- normalised $\widetilde{\Delta}_{\mathcal{F}}$ starting from $F_0 = I_d$
-    \item \textbf{GeneralSheaf, Other Laplacian from Norm=False} --- same maps, evaluated as normalised $\widetilde{\Delta}_{\mathcal{F}}$
-    \item \textbf{GeneralSheaf, Other Laplacian from Norm=True} --- same maps, evaluated as unnormalised $\Delta_{\mathcal{F}}$
+    \item normalised general sheaf learning converges to local alignment with
+    the normalised graph Laplacian;
+    \item unnormalised general sheaf learning aligns with neither reference:
+    the metrics against the topological reference stay almost constant across
+    layers and epochs, while the disalignment from the zero reference is large
+    and generally grows, peaking at intermediate depth and then partially
+    receding in the large heterophilic datasets;
+    \item joint diffusion shows the reverse relationship with normalisation:
+    in its unnormalised form it remains close to the identity on small
+    datasets, and on larger ones drifts from it before the drift is
+    attenuated with training, while its normalised counterpart instead departs
+    from the identity increasingly as training proceeds.
 \end{enumerate}
-\end{frame}
+It is exactly this mechanism-dependence, the same optimiser producing three
+distinct signatures under three training regimes, that a single, general
+low-rank-solutions argument does not by itself explain.
+
+The bias is dataset-dependent as well. A natural question is why Minesweeper,
+and to a lesser extent Tolokers and Questions, depart from it. Node homophily
+does not appear to be the deciding factor: Roman Empire is itself a strongly
+heterophilic benchmark, yet its Forman
+profile aligns with the topological reference as cleanly as the homophilic
+datasets in our study. A more plausible candidate is that these are the only
+binary classification tasks in our benchmark suite, so that the
+feature-structure relationship the sheaf must encode may differ structurally
+from the multi-class case; we leave a systematic test of this hypothesis to
+future work. What the Minesweeper case does establish is that curvature
+alignment is a tendency of the learning dynamics rather than a condition for
+the sheaf to be predictive, since the model attains a strong AUC-ROC score
+while departing from it entirely.
+
+A recent, independent line of work interprets a related phenomenon,
+oversmoothing in Sheaf Neural Networks, as a form of \emph{representation
+degeneracy} ~\cite{donmez2026oversmoothingrepresentationdegeneracyneural}, arguing that the optimiser is drawn toward a
+trivial subrepresentation of the learned sheaf. Both accounts describe an
+implicit bias toward simple sheaf configurations, but the two differ in kind
+rather than in degree: they diagnose a specific failure mode and correct it
+architecturally, whereas we propose an observable that measures Laplacian
+evolution without presupposing what a degenerate sheaf looks like. What we
+find is accordingly softer, and our own data argue against reading it as
+degeneracy: the same maps evaluated without normalisation do not approach the
+zero profile, so they are not identity-like, and the cross-comparison shows
+learnt sheaves remaining distinct from one another even as each aligns locally
+with the same reference. We therefore read this as an inductive bias rather than a
+degeneracy, and, as the two paragraphs above show, one that depends on both
+the learning mechanism and the dataset. Their evidence, moreover, rests on
+small graphs pushed to extreme depth to induce oversmoothing, while ours is
+measured at ordinary depths on far larger datasets, where oversmoothing is not
+yet the concern.
+
+Beyond the specific findings, our results support reading the training
+dynamics as a geometric flow. Because the sheaf is re-estimated at each layer from the current
+features, the network is better described as a process that deforms the
+geometry than as a diffusion with a fixed operator, in analogy with the Ricci
+flow $\partial_t g = -2\,\mathrm{Ric}(g)$ ~\cite{Hamilton1982ThreemanifoldsWP}. An
+analytic treatment of the sheaf flow is intractable in practice, but the
+Forman profile gives a direct, computable measurement of it, tracking how the
+sheaf Laplacian changes through the layers of the network and where it
+converges.
+
+To contextualise these results, we outline the main limitation of the
+diagnostic: it captures only local characteristics of the sheaf. Each
+curvature block sees only the neighbourhood of its node, and its eigenvalues
+are computed in the stalk basis of that node, which differs from node to
+node; long-range dependencies and global spectral structure are therefore
+invisible to it. Local alignment with the graph Laplacian does not imply that
+the learnt operator is globally equivalent to it, so the learnt sheaf may
+still possess global, e.g.\ spectral, features to which the Forman profile is
+blind. Even so, it is this locality that makes the profile cheap
+enough to be tracked continuously, across ten datasets, three learning
+mechanisms and every layer and checkpoint of training; a global spectral
+descriptor would be a natural complement to it rather than a replacement.
+
+\subsection{Convinction-based inference}
+
+\subsection{Bochner Sheaf variant}
 
 
 
 
-% ══════════════════════════════════════════════════════════════════════════════
-%  SECTION 1 — GeneralSheaf, normalised = True
-% ══════════════════════════════════════════════════════════════════════════════
 
-\begin{frame}{}
-\centering
-\Huge\textbf{GeneralSheaf}\\[6pt]
-\Large Normalised Laplacian (\texttt{normalised=True})
-\end{frame}
 
-\begin{frame}{Amazon Ratings --- GeneralSheaf, $d=5$, $L=5$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
 
-\begin{frame}{Citeseer --- GeneralSheaf, $d=5$, $L=4$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- GeneralSheaf, $d=3$, $L=3$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/cora_GeneralSheaf_d3_3L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- GeneralSheaf, $d=5$, $L=3$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cornell --- GeneralSheaf, $d=2$, $L=2$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Minesweeper --- GeneralSheaf, $d=5$, $L=6$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- GeneralSheaf, $d=5$, $L=4$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Questions --- GeneralSheaf, $d=5$, $L=4$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Roman Empire --- GeneralSheaf, $d=5$, $L=5$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Tolokers --- GeneralSheaf, $d=3$, $L=4$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Wisconsin --- GeneralSheaf, $d=2$, $L=2$, Norm=True}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-% ══════════════════════════════════════════════════════════════════════════════
-%  SECTION 2 — GeneralSheaf, normalised = False
-% ══════════════════════════════════════════════════════════════════════════════
-
-\begin{frame}{}
-\centering
-\Huge\textbf{GeneralSheaf}\\[6pt]
-\Large Unnormalised Laplacian (\texttt{normalised=False})
-\end{frame}
-
-\begin{frame}{Amazon Ratings --- GeneralSheaf, $d=5$, $L=5$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/amazon_ratings_GeneralSheaf_d5_5L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Citeseer --- GeneralSheaf, $d=5$, $L=4$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/citeseer_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- GeneralSheaf, $d=3$, $L=3$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/cora_GeneralSheaf_d3_3L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- GeneralSheaf, $d=5$, $L=3$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/cora_GeneralSheaf_d5_3L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cornell --- GeneralSheaf, $d=2$, $L=2$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/GeneralSheaf/normalised_false/cornell_GeneralSheaf_d2_2L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Minesweeper --- GeneralSheaf, $d=5$, $L=6$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/minesweeper_GeneralSheaf_d5_6L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- GeneralSheaf, $d=5$, $L=4$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/pubmed_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Questions --- GeneralSheaf, $d=5$, $L=4$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/questions_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Roman Empire --- GeneralSheaf, $d=5$, $L=5$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/roman_empire_GeneralSheaf_d5_5L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Tolokers --- GeneralSheaf, $d=3$, $L=4$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false/tolokers_GeneralSheaf_d3_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Wisconsin --- GeneralSheaf, $d=2$, $L=2$, Norm=False}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/GeneralSheaf/normalised_false/wisconsin_GeneralSheaf_d2_2L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-
-
-% ══════════════════════════════════════════════════════════════════════════════
-%  SECTION 3 — Cross-comparison Direction A: both normalised, different training objectives
-% ══════════════════════════════════════════════════════════════════════════════
-
-\begin{frame}{}
-\centering
-\Huge\textbf{Cross-Comparison --- Direction A}\\[6pt]
-\Large Both profiles: normalised $\widetilde{\Delta}_{\mathcal{F}}$\\[4pt]
-\large Maps from \texttt{norm=True} training \textbf{vs} maps from \texttt{norm=False} training\\[4pt]
-\normalsize (same Laplacian normalisation, different training objective)
-\end{frame}
-
-\begin{frame}{Amazon Ratings --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/amazon_ratings_GeneralSheaf_d5_5L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Citeseer --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/citeseer_GeneralSheaf_d5_4L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/cora_GeneralSheaf_d5_3L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cornell --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/cornell_GeneralSheaf_d2_2L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Minesweeper --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/minesweeper_GeneralSheaf_d5_6L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/pubmed_GeneralSheaf_d5_4L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Questions --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/questions_GeneralSheaf_d5_4L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Roman Empire --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/roman_empire_GeneralSheaf_d5_5L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Tolokers --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/tolokers_GeneralSheaf_d3_4L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Wisconsin --- Dir A: maps norm=True vs maps norm=False (both normalised $\widetilde{\Delta}_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/comparison/norm_true_vs_other_norm_false/wisconsin_GeneralSheaf_d2_2L_norm_true_primary_vs_other_norm_false_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-% ══════════════════════════════════════════════════════════════════════════════
-%  SECTION 4 — Cross-comparison Direction B: both unnormalised, different training objectives
-% ══════════════════════════════════════════════════════════════════════════════
-
-\begin{frame}{}
-\centering
-\Huge\textbf{Cross-Comparison --- Direction B}\\[6pt]
-\Large Both profiles: unnormalised $\Delta_{\mathcal{F}}$\\[4pt]
-\large Maps from \texttt{norm=False} training \textbf{vs} maps from \texttt{norm=True} training\\[4pt]
-\normalsize (same Laplacian normalisation, different training objective)
-\end{frame}
-
-\begin{frame}{Amazon Ratings --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/amazon_ratings_GeneralSheaf_d5_5L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Citeseer --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/citeseer_GeneralSheaf_d5_4L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/cora_GeneralSheaf_d5_3L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cornell --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/cornell_GeneralSheaf_d2_2L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Minesweeper --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/minesweeper_GeneralSheaf_d5_6L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/pubmed_GeneralSheaf_d5_4L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Questions --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/questions_GeneralSheaf_d5_4L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Roman Empire --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/roman_empire_GeneralSheaf_d5_5L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Tolokers --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/tolokers_GeneralSheaf_d3_4L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Wisconsin --- Dir B: maps norm=False vs maps norm=True (both unnorm. $\Delta_{\mathcal{F}}$)}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/comparison/norm_false_vs_other_norm_true/wisconsin_GeneralSheaf_d2_2L_norm_false_primary_vs_other_norm_true_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-
-
-
-
-
-% ══════════════════════════════════════════════════════════════════════════════
-%  SECTION 5 — JointSheafParams, normalised=False, identity maps
-% ══════════════════════════════════════════════════════════════════════════════
-
-\begin{frame}{}
-\centering
-\Huge\textbf{JointSheafParams}\\[6pt]
-\Large Norm=False, Identity Initial Maps
-\end{frame}
-
-\begin{frame}{Amazon Ratings --- Joint, $d=5$, $L=5$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/amazon_ratings_JointSheafParams_d5_5L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Citeseer --- Joint, $d=5$, $L=4$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/citeseer_JointSheafParams_d5_4L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- Joint, $d=3$, $L=3$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/cora_JointSheafParams_d3_3L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cornell --- Joint, $d=2$, $L=2$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/cornell_JointSheafParams_d2_2L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Minesweeper --- Joint, $d=5$, $L=6$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/minesweeper_JointSheafParams_d5_6L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- Joint, $d=5$, $L=4$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/pubmed_JointSheafParams_d5_4L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Questions --- Joint, $d=5$, $L=4$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/questions_JointSheafParams_d5_4L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Roman Empire --- Joint, $d=5$, $L=5$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/roman_empire_JointSheafParams_d5_5L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Tolokers --- Joint, $d=3$, $L=4$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/tolokers_JointSheafParams_d3_4L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Wisconsin --- Joint, $d=2$, $L=2$, Norm=False, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/JointSheafParams/normalised_false/first_maps_identity/wisconsin_JointSheafParams_d2_2L_Norm_False_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-% ══════════════════════════════════════════════════════════════════════════════
-%  SECTION 6 — JointSheafParams, normalised=True, identity maps
-% ══════════════════════════════════════════════════════════════════════════════
-
-\begin{frame}{}
-\centering
-\Huge\textbf{JointSheafParams}\\[6pt]
-\Large Norm=True, Identity Initial Maps
-\end{frame}
-
-\begin{frame}{Amazon Ratings --- Joint, $d=2$, $L=3$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/amazon_ratings_JointSheafParams_d2_3L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Citeseer --- Joint, $d=3$, $L=3$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/citeseer_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- Joint, $d=2$, $L=3$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/cora_JointSheafParams_d2_3L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- Joint, $d=3$, $L=3$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/cora_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cornell --- Joint, $d=2$, $L=2$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/cornell_JointSheafParams_d2_2L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Minesweeper --- Joint, $d=3$, $L=3$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/minesweeper_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- Joint, $d=2$, $L=3$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/pubmed_JointSheafParams_d2_3L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- Joint, $d=3$, $L=3$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/pubmed_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Questions --- Joint, $d=2$, $L=4$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/questions_JointSheafParams_d2_4L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Roman Empire --- Joint, $d=3$, $L=3$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/roman_empire_JointSheafParams_d3_3L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Wisconsin --- Joint, $d=2$, $L=2$, Norm=True, Identity}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/JointSheafParams/normalised_true/first_maps_identity/wisconsin_JointSheafParams_d2_2L_Norm_True_first_maps_identity_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-% ══════════════════════════════════════════════════════════════════════════════
-%  SECTION 7 — GeneralSheaf: other Laplacian from Norm=False run
-%              content = normalised, maps trained unnormalised
-%              (--normalised=false --use_other  →  normalised_true_other/)
-% ══════════════════════════════════════════════════════════════════════════════
-
-\begin{frame}{}
-\centering
-\Huge\textbf{GeneralSheaf --- Other Laplacian}\\[6pt]
-\Large Maps trained with \texttt{norm=False}\\
-evaluated as normalised $\widetilde{\Delta}_{\mathcal{F}}$\\[4pt]
-\normalsize (normalised metrics apply)
-\end{frame}
-
-\begin{frame}{Amazon Ratings --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=5$, $L=5$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true_other/amazon_ratings_GeneralSheaf_d5_5L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Citeseer --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=5$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true_other/citeseer_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=5$, $L=3$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true_other/cora_GeneralSheaf_d5_3L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cornell --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=2$, $L=2$}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/GeneralSheaf/normalised_true_other/cornell_GeneralSheaf_d2_2L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Minesweeper --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=5$, $L=6$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true_other/minesweeper_GeneralSheaf_d5_6L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=5$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true_other/pubmed_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Questions --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=5$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true_other/questions_GeneralSheaf_d5_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Roman Empire --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=5$, $L=5$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true_other/roman_empire_GeneralSheaf_d5_5L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Tolokers --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=3$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_true_other/tolokers_GeneralSheaf_d3_4L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Wisconsin --- Other $\widetilde{\Delta}_\mathcal{F}$ from Norm=False maps, $d=2$, $L=2$}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/GeneralSheaf/normalised_true_other/wisconsin_GeneralSheaf_d2_2L_Norm_False_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-% ══════════════════════════════════════════════════════════════════════════════
-%  SECTION 8 — GeneralSheaf: other Laplacian from Norm=True run
-%              content = unnormalised, maps trained normalised
-%              (--normalised=true --use_other  →  normalised_false_other/)
-% ══════════════════════════════════════════════════════════════════════════════
-
-\begin{frame}{}
-\centering
-\Huge\textbf{GeneralSheaf --- Other Laplacian}\\[6pt]
-\Large Maps trained with \texttt{norm=True}\\
-evaluated as unnormalised $\Delta_{\mathcal{F}}$\\[4pt]
-\normalsize (unnormalised metrics apply)
-\end{frame}
-
-\begin{frame}{Amazon Ratings --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=5$, $L=5$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false_other/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Citeseer --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=5$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false_other/citeseer_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cora --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=5$, $L=3$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false_other/cora_GeneralSheaf_d5_3L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Cornell --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=2$, $L=2$}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/GeneralSheaf/normalised_false_other/cornell_GeneralSheaf_d2_2L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Minesweeper --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=5$, $L=6$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false_other/minesweeper_GeneralSheaf_d5_6L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Pubmed --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=5$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false_other/pubmed_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Questions --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=5$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false_other/questions_GeneralSheaf_d5_4L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Roman Empire --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=5$, $L=5$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false_other/roman_empire_GeneralSheaf_d5_5L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Tolokers --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=3$, $L=4$}
-\begin{figure}
-    \centering
-    \includegraphics[width=\linewidth]{heatmaps/GeneralSheaf/normalised_false_other/tolokers_GeneralSheaf_d3_4L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\begin{frame}{Wisconsin --- Other $\Delta_\mathcal{F}$ from Norm=True maps, $d=2$, $L=2$}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8 \linewidth]{heatmaps/GeneralSheaf/normalised_false_other/wisconsin_GeneralSheaf_d2_2L_Norm_True_heatmap.pdf}
-\end{figure}
-\end{frame}
-
-\end{document}

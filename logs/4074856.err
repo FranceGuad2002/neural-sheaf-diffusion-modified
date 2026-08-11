@@ -1,0 +1,30 @@
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/torch_geometric/io/fs.py:229: UserWarning: Weights only load failed. Please file an issue to make `torch.load(weights_only=True)` compatible in your case. Please use `torch.serialization.add_safe_globals([GlobalStorage])` to allowlist this global.
+  warnings.warn(f"{warn_msg} Please use "
+/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/conviction_heatmap.py:248: RuntimeWarning: Mean of empty slice
+  'd_train_mean':  np.nanmean(a['d_train'], 0), 'd_train_std':  np.nanstd(a['d_train'], 0),
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/numpy/lib/_nanfunctions_impl.py:2035: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/torch_geometric/io/fs.py:229: UserWarning: Weights only load failed. Please file an issue to make `torch.load(weights_only=True)` compatible in your case. Please use `torch.serialization.add_safe_globals([GlobalStorage])` to allowlist this global.
+  warnings.warn(f"{warn_msg} Please use "
+/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/conviction_heatmap.py:248: RuntimeWarning: Mean of empty slice
+  'd_train_mean':  np.nanmean(a['d_train'], 0), 'd_train_std':  np.nanstd(a['d_train'], 0),
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/numpy/lib/_nanfunctions_impl.py:2035: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/torch_geometric/io/fs.py:229: UserWarning: Weights only load failed. Please file an issue to make `torch.load(weights_only=True)` compatible in your case. Please use `torch.serialization.add_safe_globals([GlobalStorage])` to allowlist this global.
+  warnings.warn(f"{warn_msg} Please use "
+/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/conviction_heatmap.py:248: RuntimeWarning: Mean of empty slice
+  'd_train_mean':  np.nanmean(a['d_train'], 0), 'd_train_std':  np.nanstd(a['d_train'], 0),
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/numpy/lib/_nanfunctions_impl.py:2035: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/torch_geometric/io/fs.py:229: UserWarning: Weights only load failed. Please file an issue to make `torch.load(weights_only=True)` compatible in your case. Please use `torch.serialization.add_safe_globals([GlobalStorage])` to allowlist this global.
+  warnings.warn(f"{warn_msg} Please use "
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/torch_geometric/io/fs.py:229: UserWarning: Weights only load failed. Please file an issue to make `torch.load(weights_only=True)` compatible in your case. Please use `torch.serialization.add_safe_globals([GlobalStorage])` to allowlist this global.
+  warnings.warn(f"{warn_msg} Please use "
+/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/conviction_heatmap.py:248: RuntimeWarning: Mean of empty slice
+  'd_train_mean':  np.nanmean(a['d_train'], 0), 'd_train_std':  np.nanstd(a['d_train'], 0),
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/numpy/lib/_nanfunctions_impl.py:2035: RuntimeWarning: Degrees of freedom <= 0 for slice.
+  var = nanvar(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+/home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/conviction_heatmap.py:214: ConstantInputWarning: An input array is constant; the correlation coefficient is not defined.
+  row['conf'].append(spearmanr(nt, conf_vec).statistic if conf_vec is not None else float('nan'))
+/home/fguadagn/miniconda3/envs/Do_nsd/lib/python3.9/site-packages/torch_geometric/io/fs.py:229: UserWarning: Weights only load failed. Please file an issue to make `torch.load(weights_only=True)` compatible in your case. Please use `torch.serialization.add_safe_globals([GlobalStorage])` to allowlist this global.
+  warnings.warn(f"{warn_msg} Please use "

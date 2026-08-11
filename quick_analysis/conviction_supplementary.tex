@@ -4,20 +4,182 @@
 %  Everything here is reproducible from the committed per-dataset tables under
 %  quick_analysis/Conviction_experiments_tables/ via
 %      python quick_analysis/conviction_summary_tables.py \
-%             --score {last|avg_z} [--exclude cornell,wisconsin] [--tag_suffix ...]
-%  which writes both the CSVs and the LaTeX tables reproduced below into
-%      quick_analysis/Conviction_experiments_tables/_summary/
+%             --score {last|avg|avg_z} --exclude cornell,wisconsin \
+%             --out_dir quick_analysis/conviction_tables
+%  which writes one .tex file per (experiment, intervention), each already
+%  carrying its own caption and \label, plus the matching CSVs.
+%
+%  Path convention follows the Forman section: quick_analysis/conviction_tables/
+%  is sma_projet_files/Sections/conviction_tables/, and
+%  quick_analysis/Norm_Analysis/ is Deck_slides/.
 % ==============================================================================
 
 \section{Supplementary material: conviction-based inference}
 \label{sec:conviction_supp}
 
 This appendix collects the material that supports
-Section~\ref{sec:conviction} but would obstruct its argument: the complete
-tables for all perturbation modes and budgets, the significance tests, the
-robustness checks under a different conviction score and a different dataset
-selection, the implementation details of each intervention, and the diagnostics
-that certify that the pruned graphs remain usable objects.
+Section~\ref{sec:conviction} but would obstruct its argument: the scope of the
+equilibrium prediction, the per-dataset figures behind the observational claims,
+the complete tables for the three perturbation modes not shown in the main text,
+the robustness check under a different conviction score, the implementation
+details of each intervention, and the diagnostics that certify that the pruned
+graphs remain usable objects.
+
+% ------------------------------------------------------------------------------
+\subsection{Scope of the equilibrium prediction}
+\label{sec:supp_conv_scope}
+
+The equilibrium result that Section~\ref{sec:conviction} tests is proved in a
+setting slightly narrower than the one we measure, and we record the discrepancy
+here rather than in the main text. In the theorem the state of a node is an
+element of $\mathbb{R}^d$, whereas the hidden state of a Sheaf Neural Network is
+a matrix $X_t[u] \in \mathbb{R}^{d \times F}$, since the network carries $F$
+feature channels alongside the $d$ stalk dimensions and interleaves the
+diffusion with weight matrices. Our setting is therefore richer than the one in
+which the equilibrium is derived, and the prediction should be read as a guide
+rather than as a statement that applies verbatim.
+
+We nonetheless regard the comparison as meaningful, for two reasons. The
+quantity the theorem constrains, the magnitude of a node's representation, is
+exactly the one we measure; and the conclusion we draw from the comparison is
+negative, namely that the process does not do what the equilibrium prescribes.
+A negative conclusion is the direction in which the mismatch is harmless: a
+richer state space gives the process more room to depart from the prediction,
+not less, so observing that it departs is not an artefact of the extra
+dimensions. What we could not do on this evidence is the converse, and we make
+no claim that would require the theorem to hold verbatim.
+
+% ------------------------------------------------------------------------------
+\subsection{What the conviction correlates with}
+\label{sec:supp_conv_observational}
+
+Section~\ref{sec:conviction} settles by intervention the question of whether the
+conviction identifies the nodes a trained network relies on, and we stress there
+that no correlation could have settled it. It is nonetheless worth recording
+what the conviction does correlate with, both because it is the natural first
+question a reader will ask and because the untrained checkpoint tells us
+something the trained one cannot. Table~\ref{tab:conv_observational} collects
+the six observables, averaged over the folds of a dataset and then over the
+eight datasets, at the last diffusion layer.
+
+The epoch-$0$ column of Table~\ref{tab:conv_observational} is what makes each
+configuration legible, since it says how
+much of what we measure is already present before any learning has happened. In
+the normalised general sheaf, the configuration the main text is about, the
+correlation with degree is absent at initialisation and builds up gradually,
+growing with depth and with the number of epochs, so whatever ordering the
+conviction ends up expressing is produced by training rather than handed down by
+the architecture. We would be accurate about its size: the conviction of the
+general sheaf is not \emph{uncorrelated} with degree, it is moderately
+correlated with it. Roman Empire is a representative case, going from $-0.143$
+to $0.432$ across the layers (Figure~\ref{fig: RM_General_Scatter}). Of the
+other observables, the conviction is most strongly associated with the model's
+softmax confidence, at $0.66 \pm 0.05$, more strongly than with either
+topological quantity, while its correlation with input-gradient saliency is
+modest and, alone among the six, negative on average. The Cohen's $d$ separating correctly from
+incorrectly classified nodes is moderate at the best epoch; its trajectory along
+the checkpoint axis is not the same on every dataset, growing with training on
+some and peaking in the first epochs on others, so we do not read a common
+pattern into it.
+
+In the unnormalised bundle sheaf the conviction is instead coupled to the degree
+from the start. Reading the second column group of
+Table~\ref{tab:conv_observational}, the coupling is already $0.57 \pm 0.08$ in the untrained
+network, and training barely moves it, to $0.53 \pm 0.09$; a single diffusion
+step is enough to produce it, as Figure~\ref{fig: Tolokers_Bundle_Scatter} shows
+for the most extreme dataset, where the correlation is $0.956$ at $X_1$. This is
+the behaviour one should expect of an unnormalised Laplacian, whose operator carries
+the degree in its own scale, and it is consistent with the reading of
+Section~\ref{sec:conviction}: the norms are ordered by the topology rather than
+by the task, which is a further way of saying that the process has not settled
+where the equilibrium result would put it.
+
+We would outline that the two configurations differ both in the family of
+restriction maps and in the normalisation, so nothing in
+Table~\ref{tab:conv_observational} isolates either factor, and we do not read
+the difference between its column groups as an ablation. What the table gives is
+a description of what each pipeline does.
+
+% Produced by:
+%   python quick_analysis/conviction_heatmap.py --model GeneralSheaf --normalised true
+%   python quick_analysis/conviction_heatmap.py --model BundleSheaf  --normalised false
+%   python quick_analysis/conviction_observational_table.py
+% or, in one job:  sbatch exp/scripts/run_conviction_heatmap_epfl.sh
+\input{sma_projet_files/Sections/conviction_tables/observational_summary.tex}
+
+% ------------------------------------------------------------------------------
+\subsection{Per-dataset observational figures}
+\label{sec:supp_conv_scatter}
+
+Figure~\ref{fig: RM_General_Scatter} is the counterpart, for the normalised
+general sheaf, of Figure~\ref{fig: RM_Bundle_Scatter} of
+Section~\ref{sec:conviction}. Comparing the two on the same dataset is the
+cleanest way of seeing the difference discussed in the main text: both models
+start from essentially no relation between conviction and degree on the input
+features, and in both the relation strengthens with each diffusion step, but the
+bundle sheaf reaches a markedly higher correlation than the general sheaf does.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Deck_slides/conviction_scatter/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_conviction_scatter.pdf}
+    \caption{Conviction against node degree, one panel per diffusion layer, for
+    the normalised general sheaf on Roman Empire ($d=5$, $L=5$). Norms are taken
+    at the best-validation-epoch checkpoint and averaged over the ten folds; the
+    dashed line is a linear fit and the annotated $\rho_s$ is the Spearman rank
+    correlation with degree. The correlation grows from $-0.143$ at $X_0$ to
+    $0.432$ at $X_5$, against $-0.116$ and $0.652$ for the bundle sheaf on the
+    same graph (Figure~\ref{fig: RM_Bundle_Scatter}).}
+    \label{fig: RM_General_Scatter}
+\end{figure}
+
+Figure~\ref{fig: Tolokers_Bundle_Scatter} shows the most extreme case of the
+bundle-sheaf behaviour in our suite. On Tolokers the conviction of the
+unnormalised bundle sheaf is almost a monotone function of the degree from the
+very first diffusion step onwards, which is the clearest illustration of the
+point made in the main text: in an unnormalised Laplacian the degree enters the
+scale of the operator itself, so the ordering of the stalk norms is fixed by the
+topology rather than learnt from the task.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Deck_slides/conviction_scatter/BundleSheaf/normalised_false/tolokers_BundleSheaf_d3_4L_Norm_False_conviction_scatter.pdf}
+    \caption{Conviction against node degree for the unnormalised bundle sheaf on
+    Tolokers ($d=3$, $L=4$), at the best-validation-epoch checkpoint and averaged
+    over folds. The Spearman correlation with degree is $-0.119$ on the input
+    features and $0.956$ already after one diffusion step, settling at $0.881$ at
+    the last layer.}
+    \label{fig: Tolokers_Bundle_Scatter}
+\end{figure}
+
+Both the figures above and Table~\ref{tab:conv_observational} come from the same
+computation, which we describe here in full since the main text only summarises
+its outcome. For each dataset and each configuration we compare the conviction
+against other node properties at every training checkpoint and every diffusion
+layer, producing a grid of heatmaps whose rows are checkpoints and whose columns
+are layers. Each cell reports one scalar: the Spearman correlation of
+$\mathbf{c}_t$ with node degree, with betweenness centrality, with the model's
+softmax confidence and with input-gradient saliency, together with the absolute
+Cohen's $d$ separating the conviction of correctly and incorrectly classified
+nodes, computed separately on train and test. We take the absolute value of
+Cohen's $d$ before averaging over folds, so that sign cancellations across folds
+do not hide an effect that is present in each of them; it is undefined when the
+training accuracy reaches $100\%$, since the wrong group is then empty, and those
+cells are annotated as such rather than imputed. As in the Forman analysis, the
+epoch-$0$ row is an untrained sheaf and therefore acts as a control: it tells us
+which part of what we measure is produced by the architecture and which part is
+produced by learning.
+
+The heatmaps average the folds away before anything reaches disk, so
+Table~\ref{tab:conv_observational} is built from the per-fold values written
+alongside them, and aggregated exactly as the intervention tables are: per fold,
+then averaged over the folds of a dataset, then averaged over datasets with the
+spread taken between datasets. The scatter figures are a different projection of
+the same quantity: they fix the best-epoch checkpoint, average the node norms
+over folds, and plot them against degree one panel per diffusion layer, which is
+the most direct way of inspecting whether high-conviction nodes are simply hubs.
+The Spearman value annotated on a scatter panel is therefore computed on
+fold-averaged norms, whereas the table averages per-fold correlations; the two
+answer slightly different questions and need not agree to the last decimal.
 
 % ------------------------------------------------------------------------------
 \subsection{Implementation of the interventions}
@@ -79,9 +241,7 @@ Every ranking is broken by a per-node uniform key drawn from a generator seeded
 by the training seed and the fold index. Without this, \texttt{argsort} resolves
 ties by ascending node index, which systematically favours low-index nodes at
 the boundary of a top-$k$ selection; degree is integer-valued and heavily tied,
-so this is not a hypothetical concern. On Cornell, for instance, $90\%$ of the
-ordering positions of the training pool sit inside a tie group, and the largest
-group contains $44$ of $87$ nodes. The randomised strategies draw from a
+so this is not a hypothetical concern. The randomised strategies draw from a
 generator keyed on (dataset, fold, strategy, budget) rather than from a single
 running stream, so a given draw is reproducible irrespective of which other
 datasets or budgets were run before it in the same job.
@@ -90,255 +250,108 @@ datasets or budgets were run before it in the same job.
 \subsection{Aggregation protocol}
 \label{sec:supp_agg}
 
-The per-dataset tables store the headline metric already averaged over the ten
-folds. The relative drop of Section~\ref{sec:conviction} is therefore a ratio of
-fold-averaged quantities,
+Each per-dataset experiment writes both an aggregated table and a
+\texttt{\_folds} table, the latter holding one value per fold. The relative drop
+of Section~\ref{sec:conviction} is formed fold by fold, each fold against its
+\emph{own} unperturbed baseline, and only then averaged: this keeps the baseline
+and the perturbed metric paired within a fold, which is how they were actually
+measured. The normalisation is by the headroom above chance,
 \[
     \mathrm{drop}\%(s) = 100 \cdot
-    \frac{\overline{m}_{\text{baseline}} - \overline{m}_{s}}
-         {\overline{m}_{\text{baseline}}},
+    \frac{m_{\text{baseline}} - m_{s}}{m_{\text{baseline}} - m_{\text{chance}}},
     \qquad
-    \overline{m} = \frac{1}{10}\sum_{f=1}^{10} m_f ,
+    m_{\text{chance}} = \begin{cases} 0 & \text{accuracy} \\ 0.5 & \text{ROC-AUC},\end{cases}
 \]
-and not an average of per-fold ratios. The two differ, since
-$\mathbb{E}[X/Y] \neq \mathbb{E}[X]/\mathbb{E}[Y]$, but the discrepancy is of
-second order in the coefficient of variation of the baseline, which is below
-$1\%$ on every dataset, and is further suppressed because baseline and perturbed
-metrics are strongly positively correlated across folds. The two definitions
-agree to four decimal places, well below the effect sizes discussed.
+so that a cell of any table means the same thing on an accuracy dataset and on
+an AUC one, namely the percentage of the learnt signal that the intervention
+destroys. Without the floor, an AUC drop divided by the raw baseline would be
+understated by roughly a factor of three, since a model at AUC $0.5$ has already
+learnt nothing and the raw baseline treats $0$ as the worst attainable score.
 
-Aggregation across datasets is an unweighted mean of the per-dataset values, so
-each benchmark contributes equally regardless of its size. The reported
-dispersion is
+Folds are then averaged within a dataset, and the datasets are averaged
+unweighted, so each benchmark contributes equally regardless of its size. The
+reported dispersion is
 \[
     \mathrm{sd} = \sqrt{\tfrac{1}{N-1}\textstyle\sum_i (d_i - \bar d)^2},
     \qquad
     \mathrm{se} = \mathrm{sd}/\sqrt{N},
 \]
 over the $N$ per-dataset drops $d_i$; it is a \emph{between-dataset} quantity and
-deliberately not a fold-level error bar. Since the distributions are
-right-skewed, the summary CSVs also record the median, minimum and maximum
-across datasets, and the mean rank of each strategy.
-
-All significance statements use the Wilcoxon signed-rank test with the dataset
-as the pairing unit. With $N=8$ the smallest attainable two-sided $p$-value is
-$0.0078$, which is why several entries in Table~\ref{tab:supp_tests} sit exactly
-at that value.
+deliberately not a fold-level error bar. The ten folds of one dataset share a
+graph, an architecture and overlapping splits, so pooling all folds of all
+datasets and dividing by $\sqrt{N \cdot 10}$ would produce an error bar several
+times too small. The summary CSVs record that naive pooled quantity as
+\texttt{total\_se} alongside the reported one, so that the size of the
+understatement can be inspected rather than merely asserted.
 
 % ------------------------------------------------------------------------------
 \subsection{Complete forward-sweep tables}
 \label{sec:supp_forward}
 
-Tables~\ref{tab:supp_mask_zero}--\ref{tab:supp_gating} give the relative drop
-for the two masking variants and for hard gating; the pruning table appears as
-Table~\ref{tab:conviction_forward} in the main text. All are computed with
-conviction score \texttt{last} over the eight retained datasets. The ordering of
-the strategies is identical in all four, and in every one of them high
-conviction is the largest entry and low conviction the smallest, at every
-budget.
+Tables~\ref{tab:conv_fwd_masking-mean_last}--\ref{tab:conv_fwd_pruning_last}
+give the budget sweep for the three perturbation modes not shown in the main
+text; masking with zero replacement appears as
+Table~\ref{tab:conv_fwd_masking-zero_last} there. All four are computed with
+conviction score \texttt{last} over the eight retained datasets, and in each of
+them the shading marks the most and the least damaging selection at each budget.
+High conviction is the most damaging entry in all four tables and at all five
+budgets, and low conviction the least, with the single exception of the $1\%$
+gating budget, where low degree comes out marginally below it.
 
-\begin{table}[H]
-\centering
-\small
-\caption{Relative drop (\%) under feature masking with zero replacement.}
-\label{tab:supp_mask_zero}
-\begin{tabular}{lccccc}
-\toprule
-Selection & 1\% & 5\% & 10\% & 20\% & 30\% \\
-\midrule
-High conviction        & $0.37$ & $1.00$ & $1.58$ & $2.56$ & $3.27$ \\
-High degree            & $0.30$ & $0.57$ & $0.81$ & $1.37$ & $1.90$ \\
-High confidence        & $0.13$ & $0.49$ & $0.78$ & $1.37$ & $2.06$ \\
-Random                 & $0.05$ & $0.15$ & $0.35$ & $0.77$ & $1.22$ \\
-Degree-matched (low)   & $0.04$ & $0.19$ & $0.32$ & $0.92$ & $1.63$ \\
-Degree-matched (high)  & $0.06$ & $0.14$ & $0.26$ & $0.39$ & $0.68$ \\
-Low degree             & $0.02$ & $0.13$ & $0.26$ & $0.60$ & $0.94$ \\
-Low confidence         & $0.02$ & $0.09$ & $0.19$ & $0.46$ & $0.81$ \\
-Low conviction         & $0.01$ & $0.02$ & $0.04$ & $0.12$ & $0.24$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+\input{sma_projet_files/Sections/conviction_tables/forward_masking-mean_GeneralSheaf_norm-true_conv-last.tex}
 
-\begin{table}[H]
-\centering
-\small
-\caption{Relative drop (\%) under feature masking with mean replacement.}
-\label{tab:supp_mask_mean}
-\begin{tabular}{lccccc}
-\toprule
-Selection & 1\% & 5\% & 10\% & 20\% & 30\% \\
-\midrule
-High conviction        & $0.38$ & $1.00$ & $1.56$ & $2.57$ & $3.28$ \\
-High degree            & $0.31$ & $0.73$ & $1.04$ & $1.65$ & $2.20$ \\
-High confidence        & $0.13$ & $0.45$ & $0.71$ & $1.26$ & $1.79$ \\
-Degree-matched (low)   & $0.04$ & $0.18$ & $0.33$ & $0.89$ & $1.59$ \\
-Random                 & $0.06$ & $0.18$ & $0.35$ & $0.85$ & $1.33$ \\
-Low confidence         & $0.03$ & $0.18$ & $0.38$ & $0.85$ & $1.31$ \\
-Low degree             & $0.02$ & $0.12$ & $0.28$ & $0.61$ & $0.98$ \\
-Degree-matched (high)  & $0.08$ & $0.21$ & $0.36$ & $0.51$ & $0.85$ \\
-Low conviction         & $0.01$ & $0.04$ & $0.08$ & $0.23$ & $0.33$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+\input{sma_projet_files/Sections/conviction_tables/forward_gating-hard_GeneralSheaf_norm-true_conv-last.tex}
 
-\begin{table}[H]
-\centering
-\small
-\caption{Relative drop (\%) under hard message gating.}
-\label{tab:supp_gating}
-\begin{tabular}{lccccc}
-\toprule
-Selection & 1\% & 5\% & 10\% & 20\% & 30\% \\
-\midrule
-High conviction        & $0.55$ & $1.30$ & $2.00$ & $3.09$ & $4.01$ \\
-High degree            & $0.51$ & $1.05$ & $1.49$ & $2.19$ & $2.81$ \\
-High confidence        & $0.21$ & $0.66$ & $1.04$ & $1.87$ & $2.65$ \\
-Degree-matched (low)   & $0.04$ & $0.23$ & $0.41$ & $1.11$ & $2.00$ \\
-Random                 & $0.06$ & $0.25$ & $0.49$ & $1.09$ & $1.63$ \\
-Low confidence         & $0.05$ & $0.21$ & $0.40$ & $0.87$ & $1.40$ \\
-Low degree             & $0.03$ & $0.18$ & $0.42$ & $0.85$ & $1.36$ \\
-Degree-matched (high)  & $0.12$ & $0.31$ & $0.53$ & $0.79$ & $1.11$ \\
-Low conviction         & $0.03$ & $0.07$ & $0.13$ & $0.30$ & $0.51$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-% ------------------------------------------------------------------------------
-\subsection{Significance tests}
-\label{sec:supp_tests}
-
-Table~\ref{tab:supp_tests} reports, for each perturbation mode and budget, the
-number of datasets in which high-conviction selection is the more damaging of
-the pair, together with the two-sided Wilcoxon $p$-value. The pattern discussed
-in the main text is visible directly: the comparisons against random, against
-the degree-matched control, against confidence and against low conviction are
-significant essentially everywhere, whereas the comparison against high degree
-is significant only from the $5\%$ budget onwards for gating and zero-masking,
-at the largest budgets for mean-masking, and never for pruning.
-
-\begin{table}[H]
-\centering
-\footnotesize
-\caption{Wilcoxon signed-rank tests across the eight retained datasets, pairing
-by dataset. Each cell reports wins/$N$ and the two-sided $p$-value. With $N=8$
-the minimum attainable $p$-value is $0.008$.}
-\label{tab:supp_tests}
-\begin{tabular}{llccccc}
-\toprule
-Comparison & Mode & 1\% & 5\% & 10\% & 20\% & 30\% \\
-\midrule
-\multirow{4}{*}{high vs.\ random}
- & masking (zero) & 8/8\ .008 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
- & masking (mean) & 7/8\ .016 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
- & gating (hard)  & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
- & pruning        & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
-\midrule
-\multirow{4}{*}{high vs.\ degree-matched}
- & masking (zero) & 8/8\ .008 & 7/8\ .016 & 7/8\ .016 & 7/8\ .016 & 7/8\ .016 \\
- & masking (mean) & 7/8\ .016 & 7/8\ .016 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 \\
- & gating (hard)  & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
- & pruning        & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
-\midrule
-\multirow{4}{*}{high vs.\ high confidence}
- & masking (zero) & 8/8\ .008 & 5/8\ .148 & 7/8\ .039 & 7/8\ .016 & 7/8\ .016 \\
- & masking (mean) & 8/8\ .008 & 7/8\ .023 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 \\
- & gating (hard)  & 8/8\ .008 & 7/8\ .016 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
- & pruning        & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 & 8/8\ .008 \\
-\midrule
-\multirow{4}{*}{\textbf{high vs.\ high degree}}
- & masking (zero) & 7/8\ .055 & 7/8\ .039 & 7/8\ .016 & 7/8\ .023 & 6/8\ .039 \\
- & masking (mean) & 6/8\ .109 & 6/8\ .109 & 6/8\ .109 & 7/8\ .039 & 7/8\ .016 \\
- & gating (hard)  & 4/8\ .641 & 7/8\ .016 & 6/8\ .039 & 7/8\ .016 & 6/8\ .039 \\
- & pruning        & 5/8\ .250 & 5/8\ .195 & 5/8\ .109 & 5/8\ .383 & 4/8\ .383 \\
-\midrule
-\multirow{4}{*}{low vs.\ random\,$^{\dagger}$}
- & masking (zero) & 4/8\ .461 & 4/8\ .547 & 4/8\ .312 & 2/8\ .109 & 1/8\ .039 \\
- & masking (mean) & 3/8\ .383 & 2/8\ .250 & 4/8\ .383 & 2/8\ .148 & 1/8\ .023 \\
- & gating (hard)  & 4/8\ .461 & 2/8\ .148 & 2/8\ .148 & 1/8\ .039 & 1/8\ .023 \\
- & pruning        & 3/8\ .109 & 1/8\ .039 & 2/8\ .039 & 2/8\ .039 & 1/8\ .016 \\
-\bottomrule
-\end{tabular}
-\smallskip
-\par\footnotesize $^{\dagger}$ For this row a \emph{low} win count is the
-positive result: it means low-conviction removal was less damaging than random
-removal in the remaining datasets.
-\end{table}
+\input{sma_projet_files/Sections/conviction_tables/forward_pruning_GeneralSheaf_norm-true_conv-last.tex}
 
 % ------------------------------------------------------------------------------
 \subsection{Complete decile tables}
 \label{sec:supp_decile}
 
-Table~\ref{tab:supp_decile_all} gives the per-bin relative drop for the three
-remaining perturbation modes; pruning appears as
-Table~\ref{tab:conviction_decile} in the main text. The qualitative pattern is
-the same throughout: the conviction column starts lower and ends higher than
-either of the other two, and the bulk of its growth is concentrated in the last
-two bins.
+Tables~\ref{tab:conv_dec_masking-mean_last}--\ref{tab:conv_dec_pruning_last}
+give the per-bin relative drop for the three remaining perturbation modes;
+masking with zero replacement appears as
+Table~\ref{tab:conv_dec_masking-zero_last} in the main text. The qualitative
+pattern is the same throughout, and it is the one the experiment was built to
+test: in all four modes the conviction column has both the smallest bin $1$ and
+the largest bin $10$ of the three criteria, its lower bins are flat and close to
+zero, and the bulk of its growth is concentrated in the last two bins. Neither
+confidence nor degree produces a profile of that shape.
 
-\begin{table}[H]
-\centering
-\small
-\caption{Decile analysis: relative drop (\%) when a single bin of the training
-pool is perturbed, for the three perturbation modes not shown in the main text.
-Conviction score \texttt{last}, mean over the eight retained datasets.}
-\label{tab:supp_decile_all}
-\begin{tabular}{lccc@{\hskip 1.2em}ccc@{\hskip 1.2em}ccc}
-\toprule
-& \multicolumn{3}{c}{masking (zero)} & \multicolumn{3}{c}{masking (mean)}
-& \multicolumn{3}{c}{gating (hard)} \\
-\cmidrule(lr){2-4}\cmidrule(lr){5-7}\cmidrule(lr){8-10}
-Bin & Conv. & Conf. & Deg. & Conv. & Conf. & Deg. & Conv. & Conf. & Deg. \\
-\midrule
-1  & $0.04$ & $0.19$ & $0.26$ & $0.08$ & $0.38$ & $0.27$ & $0.12$ & $0.40$ & $0.41$ \\
-2  & $0.05$ & $0.22$ & $0.31$ & $0.14$ & $0.40$ & $0.31$ & $0.16$ & $0.45$ & $0.43$ \\
-3  & $0.01$ & $0.26$ & $0.30$ & $0.05$ & $0.38$ & $0.29$ & $0.19$ & $0.44$ & $0.40$ \\
-4  & $0.10$ & $0.30$ & $0.25$ & $0.15$ & $0.39$ & $0.26$ & $0.29$ & $0.43$ & $0.38$ \\
-5  & $0.27$ & $0.32$ & $0.33$ & $0.31$ & $0.34$ & $0.31$ & $0.45$ & $0.52$ & $0.36$ \\
-6  & $0.31$ & $0.39$ & $0.34$ & $0.35$ & $0.34$ & $0.32$ & $0.51$ & $0.50$ & $0.37$ \\
-7  & $0.43$ & $0.47$ & $0.42$ & $0.45$ & $0.37$ & $0.39$ & $0.53$ & $0.53$ & $0.48$ \\
-8  & $0.48$ & $0.48$ & $0.34$ & $0.47$ & $0.37$ & $0.37$ & $0.65$ & $0.57$ & $0.43$ \\
-9  & $0.70$ & $0.48$ & $0.45$ & $0.69$ & $0.42$ & $0.52$ & $0.81$ & $0.62$ & $0.60$ \\
-10 & $1.58$ & $0.78$ & $0.80$ & $1.56$ & $0.71$ & $1.02$ & $2.00$ & $1.04$ & $1.50$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+\input{sma_projet_files/Sections/conviction_tables/decile_masking-mean_GeneralSheaf_norm-true_conv-last.tex}
+
+\input{sma_projet_files/Sections/conviction_tables/decile_gating-hard_GeneralSheaf_norm-true_conv-last.tex}
+
+\input{sma_projet_files/Sections/conviction_tables/decile_pruning_GeneralSheaf_norm-true_conv-last.tex}
 
 % ------------------------------------------------------------------------------
-\subsection{Robustness checks}
+\subsection{Robustness under a different conviction score}
 \label{sec:supp_robust}
 
-\paragraph{Alternative conviction score.}
-Repeating the entire analysis with \texttt{avg\_z}, the layerwise z-scored
-average over the post-diffusion layers, leaves every conclusion intact and in
-fact slightly sharpens it. High conviction attains a mean rank of $1.12$ under
-both masking variants and $1.38$ under hard gating, against $1.75$, $1.25$ and
-$1.25$ respectively for \texttt{last}. At the $30\%$ budget the high-conviction
-drop is $3.67\%$ for zero-masking, $3.56\%$ for mean-masking and $4.26\%$ for
-gating, compared with $3.27\%$, $3.28\%$ and $4.01\%$ under \texttt{last}. We
-report \texttt{last} in the main text because it is the quantity the equilibrium
-theory speaks about; \texttt{avg\_z} is the more robust estimator and gives the
-same answer. Note that the degree- and confidence-based rows are by construction
-identical under the two scores, since they do not depend on the conviction, and
-this serves as an internal consistency check on the pipeline.
+The main text ranks nodes by \texttt{last}, the conviction at the final
+diffusion layer, because that is the quantity the equilibrium theory speaks
+about. A reader may reasonably worry that this rests on a single layer, whose
+scale is arbitrary. We therefore repeat the whole analysis with \texttt{avg\_z},
+in which the conviction of each post-diffusion layer $1,\dots,L$ is z-scored
+separately and the results averaged, so that no single layer can dominate the
+ranking. Tables~\ref{tab:conv_fwd_masking-zero_avg_z}
+and~\ref{tab:conv_dec_masking-zero_avg_z} give the zero-masking sweep and decile
+profile under this score, to be read against
+Tables~\ref{tab:conv_fwd_masking-zero_last} and
+\ref{tab:conv_dec_masking-zero_last} of the main text.
 
-\paragraph{Including the two small datasets.}
-Retaining Cornell and Wisconsin changes the magnitudes but not the ordering.
-Under pruning the high-conviction drop becomes $2.22\%$ at the $10\%$ budget and
-$4.13\%$ at $30\%$, against $2.70\%$ and $4.93\%$ on the eight-dataset
-aggregate, and the mean rank of high conviction degrades from $1.50$ to $1.50$
-under pruning and from $1.25$ to $1.70$ under hard gating. The dilution is
-expected: on Cornell a $1\%$ budget selects a single node out of a training pool
-of $87$, so the corresponding relative drop is essentially a coin flip that
-nonetheless enters the average with weight $1/10$.
+Every conclusion is unchanged, and the effect is if anything slightly sharper:
+high conviction remains the most damaging selection and low conviction the least
+at every budget, and the decile profile keeps the same shape. We report
+\texttt{last} in the main text on theoretical grounds rather than because it is
+the more favourable of the two. We also note an internal consistency check that
+this comparison provides for free: the degree- and confidence-based rows are by
+construction identical under the two scores, since they do not depend on the
+conviction at all, and they do indeed come out identical.
 
-\paragraph{Dispersion across datasets.}
-The distributions are strongly right-skewed. Under pruning at the $30\%$ budget
-the high-conviction drop has mean $5.00$, median $3.44$, minimum $1.34$ and
-maximum $12.92$ on the ten-dataset aggregate; random removal has mean $1.85$ and
-minimum $-0.75$. Negative minima are genuine: on some datasets a small random
-perturbation marginally improves the metric, which is within fold noise. This
-skew is the reason the main text relies on rank-based statistics and on the
-Wilcoxon test rather than on the means alone.
+\input{sma_projet_files/Sections/conviction_tables/forward_masking-zero_GeneralSheaf_norm-true_conv-avg_z.tex}
+
+\input{sma_projet_files/Sections/conviction_tables/decile_masking-zero_GeneralSheaf_norm-true_conv-avg_z.tex}
 
 % ------------------------------------------------------------------------------
 \subsection{Graph integrity under pruning}
@@ -347,28 +360,74 @@ Wilcoxon test rather than on the means alone.
 Pruning is the only intervention that changes the graph, so for every
 (strategy, budget) pair we also record the fraction of nodes and edges
 remaining, the number of connected components, the size of the giant component
-and the class balance within each split, before and after. These are written
-alongside the results tables and allow the performance drop to be read against
-the structural damage that produced it. This matters most for the degree-based
-strategies: removing the top-$k\%$ by degree deletes far more edges than
-removing the bottom-$k\%$, so part of the damage attributed to a degree
-criterion is mechanical rather than informational. The same caveat applies, to a
-lesser extent, to the conviction criterion in the general sheaf, where
-conviction is only weakly correlated with degree.
+and the class balance within each split, before and after. This lets the
+performance drop of Table~\ref{tab:conv_fwd_pruning_last} be read against the
+structural damage that produced it, which is what
+Table~\ref{tab:conv_prune_edges_last} reports.
+
+The comparison matters most for the degree-based strategies, and we would rather
+verify the point than assert it. Removing the top-$k\%$ by degree deletes by
+construction the largest possible number of edges: reading
+Table~\ref{tab:conv_prune_edges_last}, $51.6 \pm 4.3\%$ of the graph at the
+$30\%$ budget, against $39.4 \pm 2.8\%$ for the top-$k\%$ by conviction.
+The two criteria therefore do not pay the same structural price for the same
+budget, and Table~\ref{tab:conv_prune_evd_last} sets the two prices side by side
+with what each of them buys.
+
+Read per dataset in Table~\ref{tab:conv_prune_evd_last}, the picture is
+unambiguous. At the $30\%$ budget the degree
+selection deletes a larger fraction of the edges than the conviction selection
+on all eight datasets, and on four of them, Amazon Ratings, Citeseer,
+Minesweeper and Roman Empire, it nonetheless does less damage. The clearest case
+is Citeseer, where degree deletes $48.1\%$ of the edges for a drop of $1.01\%$
+while conviction deletes $37.0\%$ for a drop of $3.27\%$: a third fewer edges,
+three times the damage. Minesweeper shows the same thing with larger numbers,
+$33.2\%$ of edges for a drop of $8.19\%$ against $29.8\%$ for $17.15\%$. On the
+remaining four datasets the degree selection does come out ahead on the drop,
+but it does so while cutting far more of the graph, most extremely on Tolokers,
+where it deletes $65.2\%$ of the edges against $40.4\%$ for a drop of $3.17\%$
+against $2.63\%$. Fragmentation tells the same story from the other side, and is
+reported in Table~\ref{tab:conv_prune_comps_last}: at the $30\%$ budget the
+degree selection leaves the graph in $3225$ connected components on average,
+against $2142$ for the conviction selection.
+
+We should be equally explicit about a limitation of the degree-matched control
+that the same diagnostics expose. The control is built to reproduce the degree
+distribution of the high-conviction group, and at small budgets it does so and
+deletes a comparable share of the graph. Reading
+Table~\ref{tab:conv_prune_edges_last} at the $1\%$ budget, it deletes
+$5.0 \pm 1.3\%$ against $7.7 \pm 3.1\%$ for the high-conviction group and five
+times what a random selection of the same size deletes, while costing, in
+Table~\ref{tab:conv_fwd_pruning_last}, $0.20 \pm 0.05\%$ against
+$1.65 \pm 0.96\%$. At the largest budgets the matching is diluted,
+because the pool of unused high-degree candidates is exhausted, and by the
+$30\%$ budget the control deletes $28.3 \pm 1.7\%$ of the edges, which is
+indistinguishable from the $28.3 \pm 1.0\%$ deleted by a random selection. The
+degree-matched comparison is therefore at its strongest at the small budgets,
+and should be read with that in mind at the large ones.
+
+\input{sma_projet_files/Sections/conviction_tables/prune_edges_GeneralSheaf_norm-true_conv-last.tex}
+
+\input{sma_projet_files/Sections/conviction_tables/prune_components_GeneralSheaf_norm-true_conv-last.tex}
+
+\input{sma_projet_files/Sections/conviction_tables/prune_edges_vs_drop_GeneralSheaf_norm-true_conv-last.tex}
 
 % ------------------------------------------------------------------------------
-\subsection{Computational cost}
-\label{sec:supp_cost}
+\subsection{Soft gating}
+\label{sec:supp_soft}
 
-Masking and gating reuse a single model instance for all evaluated points and
-cost one forward pass each. Pruning must instantiate a new model for every
-point, because the number of nodes and the edge index are fixed at construction,
-and its cost is dominated by graph surgery on the CPU rather than by the forward
-pass on the GPU. Empirically the wall-clock time of the pruning sweep is linear
-in the number of edges, at approximately $1.14 \pm 0.04$ minutes per thousand
-edges, essentially independently of the stalk dimension and of the depth; the
-fit has a coefficient of variation of $3.6\%$ across the datasets we measured.
-Tolokers, with $1.04$ million directed edges and an average degree of $88$, is
-consequently the most expensive configuration in the suite by a wide margin,
-requiring on the order of twenty hours for the full forward sweep against
-roughly twelve minutes for Cora.
+Besides the three perturbation modes of Section~\ref{sec:conviction} we ran a
+\emph{soft} gating variant, which we report here because it is a negative
+result and no claim in the main text rests on it. Unlike every other experiment,
+it has no budget and no selection axis: the whole training pool is attenuated at
+once, each node's outgoing message in proportion to its own score, the
+lowest-scoring node being suppressed the most. Table~\ref{tab:conv_soft_last}
+gives the outcome. Attenuating by conviction costs $3.09 \pm 0.95\%$, by degree
+$4.19 \pm 1.95\%$ and by confidence $0.67 \pm 0.37\%$, with error bars so wide
+that the three cannot be separated. This is expected in hindsight, since the
+soft variant simultaneously suppresses the low-conviction nodes and preserves
+the high-conviction ones, so the two effects that the budget sweep isolates are
+here superimposed and partly cancel. We include the table so that the negative
+result is as inspectable as the positive ones.
+
+\input{sma_projet_files/Sections/conviction_tables/soft_gating_GeneralSheaf_norm-true_conv-last.tex}

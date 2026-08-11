@@ -1,0 +1,2352 @@
+
+==============================================================
+  conviction_heatmap: model=GeneralSheaf  normalised=true
+==============================================================
+Discovering: model=GeneralSheaf  normalised=true
+  found: amazon_ratings  d=5  L=5
+  found: citeseer  d=5  L=4
+  found: cora  d=5  L=3
+  found: cornell  d=2  L=2
+  found: minesweeper  d=5  L=6
+  found: pubmed  d=3  L=4
+  found: questions  d=5  L=4
+  found: roman_empire  d=5  L=5
+  found: tolokers  d=3  L=4
+  found: wisconsin  d=2  L=2
+
+Found 10 experiment(s).
+
+============================================================
+  amazon_ratings  |  GeneralSheaf  d=5  L=5
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 24492 nodes, 93050 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.010  conf ρ@X_L=0.234  d_test@X_L=0.090
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.024  conf ρ@X_L=0.895  d_test@X_L=0.090
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.126  conf ρ@X_L=0.771  d_test@X_L=0.075
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.185  conf ρ@X_L=0.831  d_test@X_L=0.122
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.159  conf ρ@X_L=0.675  d_test@X_L=0.175
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.195  conf ρ@X_L=0.692  d_test@X_L=0.250
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.189  conf ρ@X_L=0.721  d_test@X_L=0.237
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.216  conf ρ@X_L=0.680  d_test@X_L=0.215
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_conviction_heatmap.pdf
+  -> wrote 2880 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/amazon_ratings_GeneralSheaf_d5_5L_Norm_True_conviction_scatter.pdf
+
+============================================================
+  citeseer  |  GeneralSheaf  d=5  L=4
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 3327 nodes, 4552 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.021  conf ρ@X_L=0.016  d_test@X_L=0.138
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.092  conf ρ@X_L=0.295  d_test@X_L=0.485
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.116  conf ρ@X_L=0.700  d_test@X_L=1.020
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.285  conf ρ@X_L=0.704  d_test@X_L=0.296
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.591  conf ρ@X_L=0.657  d_test@X_L=0.208
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.651  conf ρ@X_L=0.735  d_test@X_L=0.324
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.529  conf ρ@X_L=0.685  d_test@X_L=0.273
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.636  conf ρ@X_L=0.728  d_test@X_L=0.332
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conviction_heatmap.pdf
+  -> wrote 2400 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/citeseer_GeneralSheaf_d5_4L_Norm_True_conviction_scatter.pdf
+
+============================================================
+  cora  |  GeneralSheaf  d=5  L=3
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 2708 nodes, 5278 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.032  conf ρ@X_L=0.073  d_test@X_L=0.252
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.055  conf ρ@X_L=0.332  d_test@X_L=0.459
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.062  conf ρ@X_L=0.909  d_test@X_L=1.254
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.023  conf ρ@X_L=0.883  d_test@X_L=0.746
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.500  conf ρ@X_L=0.826  d_test@X_L=0.356
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.555  conf ρ@X_L=0.842  d_test@X_L=0.349
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.543  conf ρ@X_L=0.833  d_test@X_L=0.358
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.547  conf ρ@X_L=0.838  d_test@X_L=0.331
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conviction_heatmap.pdf
+  -> wrote 1920 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/cora_GeneralSheaf_d5_3L_Norm_True_conviction_scatter.pdf
+
+============================================================
+  cornell  |  GeneralSheaf  d=2  L=2
+============================================================
+  Computing betweenness (k=183) …
+  Graph: 183 nodes, 277 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.018  conf ρ@X_L=0.100  d_test@X_L=0.625
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.061  conf ρ@X_L=0.358  d_test@X_L=1.163
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.053  conf ρ@X_L=0.973  d_test@X_L=0.965
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.058  conf ρ@X_L=0.908  d_test@X_L=0.813
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.436  conf ρ@X_L=0.831  d_test@X_L=0.423
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.438  conf ρ@X_L=0.842  d_test@X_L=0.278
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.398  conf ρ@X_L=0.838  d_test@X_L=0.331
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.417  conf ρ@X_L=0.824  d_test@X_L=0.469
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_conviction_heatmap.pdf
+  -> wrote 1440 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/cornell_GeneralSheaf_d2_2L_Norm_True_conviction_scatter.pdf
+
+============================================================
+  minesweeper  |  GeneralSheaf  d=5  L=6
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 10000 nodes, 39402 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.136  conf ρ@X_L=0.233  d_test@X_L=0.274
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.126  conf ρ@X_L=0.746  d_test@X_L=0.096
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.055  conf ρ@X_L=0.475  d_test@X_L=0.111
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.007  conf ρ@X_L=0.682  d_test@X_L=0.526
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.005  conf ρ@X_L=0.743  d_test@X_L=0.704
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.046  conf ρ@X_L=0.763  d_test@X_L=0.794
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.060  conf ρ@X_L=0.729  d_test@X_L=0.834
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.061  conf ρ@X_L=0.721  d_test@X_L=0.868
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_conviction_heatmap.pdf
+  -> wrote 3360 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/minesweeper_GeneralSheaf_d5_6L_Norm_True_conviction_scatter.pdf
+
+============================================================
+  pubmed  |  GeneralSheaf  d=3  L=4
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 19717 nodes, 44324 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.014  conf ρ@X_L=-0.092  d_test@X_L=0.148
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.008  conf ρ@X_L=0.170  d_test@X_L=0.551
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.024  conf ρ@X_L=0.630  d_test@X_L=0.961
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.168  conf ρ@X_L=0.818  d_test@X_L=0.487
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.494  conf ρ@X_L=0.739  d_test@X_L=0.406
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.537  conf ρ@X_L=0.664  d_test@X_L=0.315
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.527  conf ρ@X_L=0.697  d_test@X_L=0.394
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.562  conf ρ@X_L=0.657  d_test@X_L=0.307
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d3_4L_Norm_True_conviction_heatmap.pdf
+  -> wrote 2400 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d3_4L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/pubmed_GeneralSheaf_d3_4L_Norm_True_conviction_scatter.pdf
+
+============================================================
+  questions  |  GeneralSheaf  d=5  L=4
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 48921 nodes, 153540 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.144  conf ρ@X_L=0.087  d_test@X_L=0.559
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.125  conf ρ@X_L=0.925  d_test@X_L=0.138
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.456  conf ρ@X_L=0.867  d_test@X_L=0.428
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.294  conf ρ@X_L=0.147  d_test@X_L=0.272
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.068  conf ρ@X_L=0.668  d_test@X_L=0.071
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.166  conf ρ@X_L=0.601  d_test@X_L=0.248
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.049  conf ρ@X_L=0.655  d_test@X_L=0.083
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.243  conf ρ@X_L=0.547  d_test@X_L=0.346
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_conviction_heatmap.pdf
+  -> wrote 2400 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/questions_GeneralSheaf_d5_4L_Norm_True_conviction_scatter.pdf
+
+============================================================
+  roman_empire  |  GeneralSheaf  d=5  L=5
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 22662 nodes, 32927 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.108  conf ρ@X_L=0.556  d_test@X_L=0.291
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.104  conf ρ@X_L=0.820  d_test@X_L=1.118
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.136  conf ρ@X_L=0.937  d_test@X_L=1.184
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.151  conf ρ@X_L=0.830  d_test@X_L=0.945
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.328  conf ρ@X_L=0.464  d_test@X_L=0.389
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.403  conf ρ@X_L=0.390  d_test@X_L=0.346
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.415  conf ρ@X_L=0.377  d_test@X_L=0.366
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.417  conf ρ@X_L=0.384  d_test@X_L=0.366
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_conviction_heatmap.pdf
+  -> wrote 2880 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/roman_empire_GeneralSheaf_d5_5L_Norm_True_conviction_scatter.pdf
+
+============================================================
+  tolokers  |  GeneralSheaf  d=3  L=4
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 11758 nodes, 519000 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.743  conf ρ@X_L=0.236  d_test@X_L=0.172
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.773  conf ρ@X_L=0.731  d_test@X_L=0.138
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.301  conf ρ@X_L=0.489  d_test@X_L=0.139
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.197  conf ρ@X_L=0.706  d_test@X_L=0.494
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.195  conf ρ@X_L=0.727  d_test@X_L=0.651
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.315  conf ρ@X_L=0.569  d_test@X_L=0.431
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.297  conf ρ@X_L=0.551  d_test@X_L=0.399
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.302  conf ρ@X_L=0.532  d_test@X_L=0.380
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_conviction_heatmap.pdf
+  -> wrote 2400 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/tolokers_GeneralSheaf_d3_4L_Norm_True_conviction_scatter.pdf
+
+============================================================
+  wisconsin  |  GeneralSheaf  d=2  L=2
+============================================================
+  Computing betweenness (k=251) …
+  Graph: 251 nodes, 450 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.011  conf ρ@X_L=0.063  d_test@X_L=0.567
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.259  conf ρ@X_L=0.245  d_test@X_L=1.151
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.274  conf ρ@X_L=0.912  d_test@X_L=1.455
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.260  conf ρ@X_L=0.919  d_test@X_L=1.054
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.044  conf ρ@X_L=0.906  d_test@X_L=0.858
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.085  conf ρ@X_L=0.905  d_test@X_L=0.869
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.061  conf ρ@X_L=0.878  d_test@X_L=0.890
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=-0.080  conf ρ@X_L=0.885  d_test@X_L=0.734
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_conviction_heatmap.pdf
+  -> wrote 1440 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true/wisconsin_GeneralSheaf_d2_2L_Norm_True_conviction_scatter.pdf
+
+Done. Heatmaps in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/GeneralSheaf/normalised_true
+      Scatters in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/GeneralSheaf/normalised_true
+      Per-fold CSVs in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/GeneralSheaf/normalised_true
+
+==============================================================
+  conviction_heatmap: model=BundleSheaf  normalised=false
+==============================================================
+Discovering: model=BundleSheaf  normalised=false
+  [WARNING] training_args.json missing, inferred from path
+  found: amazon_ratings  d=5  L=5
+  [WARNING] training_args.json missing, inferred from path
+  found: citeseer  d=5  L=4
+  [WARNING] training_args.json missing, inferred from path
+  found: cora  d=5  L=3
+  found: cornell  d=2  L=2
+  [WARNING] training_args.json missing, inferred from path
+  found: minesweeper  d=5  L=6
+  [WARNING] training_args.json missing, inferred from path
+  found: pubmed  d=5  L=4
+  found: questions  d=5  L=4
+  found: roman_empire  d=5  L=5
+  [WARNING] training_args.json missing, inferred from path
+  found: tolokers  d=3  L=4
+  [WARNING] training_args.json missing, inferred from path
+  found: wisconsin  d=2  L=2
+
+Found 10 experiment(s).
+
+============================================================
+  amazon_ratings  |  BundleSheaf  d=5  L=5
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 24492 nodes, 93050 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.143  conf ρ@X_L=0.363  d_test@X_L=0.026
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.139  conf ρ@X_L=0.374  d_test@X_L=0.024
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.130  conf ρ@X_L=0.326  d_test@X_L=0.026
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.123  conf ρ@X_L=0.347  d_test@X_L=0.023
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.116  conf ρ@X_L=0.573  d_test@X_L=0.033
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.115  conf ρ@X_L=0.832  d_test@X_L=0.028
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.110  conf ρ@X_L=0.726  d_test@X_L=0.035
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.111  conf ρ@X_L=0.728  d_test@X_L=0.032
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/amazon_ratings_BundleSheaf_d5_5L_Norm_False_conviction_heatmap.pdf
+  -> wrote 2880 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/amazon_ratings_BundleSheaf_d5_5L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/amazon_ratings_BundleSheaf_d5_5L_Norm_False_conviction_scatter.pdf
+
+============================================================
+  citeseer  |  BundleSheaf  d=5  L=4
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 3327 nodes, 4552 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.754  conf ρ@X_L=0.947  d_test@X_L=0.480
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.741  conf ρ@X_L=0.954  d_test@X_L=0.278
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.735  conf ρ@X_L=0.963  d_test@X_L=0.480
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.735  conf ρ@X_L=0.961  d_test@X_L=0.522
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.740  conf ρ@X_L=0.943  d_test@X_L=0.643
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.746  conf ρ@X_L=0.854  d_test@X_L=0.529
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.748  conf ρ@X_L=0.824  d_test@X_L=0.429
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.748  conf ρ@X_L=0.745  d_test@X_L=0.432
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/citeseer_BundleSheaf_d5_4L_Norm_False_conviction_heatmap.pdf
+  -> wrote 2400 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/citeseer_BundleSheaf_d5_4L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/citeseer_BundleSheaf_d5_4L_Norm_False_conviction_scatter.pdf
+
+============================================================
+  cora  |  BundleSheaf  d=5  L=3
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 2708 nodes, 5278 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.661  conf ρ@X_L=0.950  d_test@X_L=0.343
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.650  conf ρ@X_L=0.950  d_test@X_L=0.191
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.629  conf ρ@X_L=0.955  d_test@X_L=0.128
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.616  conf ρ@X_L=0.948  d_test@X_L=0.270
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.603  conf ρ@X_L=0.935  d_test@X_L=0.537
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.598  conf ρ@X_L=0.808  d_test@X_L=0.532
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.633  conf ρ@X_L=0.512  d_test@X_L=0.391
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.626  conf ρ@X_L=0.451  d_test@X_L=0.361
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/cora_BundleSheaf_d5_3L_Norm_False_conviction_heatmap.pdf
+  -> wrote 1920 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/cora_BundleSheaf_d5_3L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/cora_BundleSheaf_d5_3L_Norm_False_conviction_scatter.pdf
+
+============================================================
+  cornell  |  BundleSheaf  d=2  L=2
+============================================================
+  Computing betweenness (k=183) …
+  Graph: 183 nodes, 277 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.327  conf ρ@X_L=-0.128  d_test@X_L=0.502
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.283  conf ρ@X_L=0.804  d_test@X_L=0.747
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.222  conf ρ@X_L=0.736  d_test@X_L=0.645
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.224  conf ρ@X_L=0.761  d_test@X_L=0.430
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.235  conf ρ@X_L=0.273  d_test@X_L=0.446
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.385  conf ρ@X_L=0.539  d_test@X_L=0.503
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.560  conf ρ@X_L=0.788  d_test@X_L=0.400
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.593  conf ρ@X_L=0.774  d_test@X_L=0.359
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/cornell_BundleSheaf_d2_2L_Norm_False_conviction_heatmap.pdf
+  -> wrote 1440 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/cornell_BundleSheaf_d2_2L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/cornell_BundleSheaf_d2_2L_Norm_False_conviction_scatter.pdf
+
+============================================================
+  minesweeper  |  BundleSheaf  d=5  L=6
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 10000 nodes, 39402 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.336  conf ρ@X_L=0.022  d_test@X_L=0.105
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.335  conf ρ@X_L=0.019  d_test@X_L=0.092
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.333  conf ρ@X_L=0.014  d_test@X_L=0.109
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.330  conf ρ@X_L=0.018  d_test@X_L=0.125
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.326  conf ρ@X_L=0.044  d_test@X_L=0.171
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.270  conf ρ@X_L=0.119  d_test@X_L=0.140
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.224  conf ρ@X_L=0.443  d_test@X_L=0.162
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.210  conf ρ@X_L=0.642  d_test@X_L=0.119
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/minesweeper_BundleSheaf_d5_6L_Norm_False_conviction_heatmap.pdf
+  -> wrote 3360 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/minesweeper_BundleSheaf_d5_6L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/minesweeper_BundleSheaf_d5_6L_Norm_False_conviction_scatter.pdf
+
+============================================================
+  pubmed  |  BundleSheaf  d=5  L=4
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 19717 nodes, 44324 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.570  conf ρ@X_L=0.847  d_test@X_L=0.048
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.566  conf ρ@X_L=0.849  d_test@X_L=0.040
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.557  conf ρ@X_L=0.849  d_test@X_L=0.047
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.552  conf ρ@X_L=0.860  d_test@X_L=0.030
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.543  conf ρ@X_L=0.889  d_test@X_L=0.065
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.522  conf ρ@X_L=0.435  d_test@X_L=0.075
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.528  conf ρ@X_L=0.489  d_test@X_L=0.117
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.532  conf ρ@X_L=0.540  d_test@X_L=0.102
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/pubmed_BundleSheaf_d5_4L_Norm_False_conviction_heatmap.pdf
+  -> wrote 2400 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/pubmed_BundleSheaf_d5_4L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/pubmed_BundleSheaf_d5_4L_Norm_False_conviction_scatter.pdf
+
+============================================================
+  questions  |  BundleSheaf  d=5  L=4
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 48921 nodes, 153540 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.476  conf ρ@X_L=0.389  d_test@X_L=0.041
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.479  conf ρ@X_L=0.390  d_test@X_L=0.056
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.486  conf ρ@X_L=0.265  d_test@X_L=0.185
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.490  conf ρ@X_L=0.297  d_test@X_L=0.078
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.513  conf ρ@X_L=0.306  d_test@X_L=0.128
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.548  conf ρ@X_L=0.401  d_test@X_L=0.210
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.554  conf ρ@X_L=0.553  d_test@X_L=0.137
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.553  conf ρ@X_L=0.498  d_test@X_L=0.238
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/questions_BundleSheaf_d5_4L_Norm_False_conviction_heatmap.pdf
+  -> wrote 2400 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/questions_BundleSheaf_d5_4L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/questions_BundleSheaf_d5_4L_Norm_False_conviction_scatter.pdf
+
+============================================================
+  roman_empire  |  BundleSheaf  d=5  L=5
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 22662 nodes, 32927 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.764  conf ρ@X_L=0.615  d_test@X_L=0.125
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.756  conf ρ@X_L=0.613  d_test@X_L=0.093
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.739  conf ρ@X_L=0.635  d_test@X_L=0.064
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.713  conf ρ@X_L=0.752  d_test@X_L=0.057
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.694  conf ρ@X_L=0.700  d_test@X_L=0.056
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.671  conf ρ@X_L=0.633  d_test@X_L=0.111
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.619  conf ρ@X_L=0.620  d_test@X_L=0.288
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.619  conf ρ@X_L=0.622  d_test@X_L=0.289
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/roman_empire_BundleSheaf_d5_5L_Norm_False_conviction_heatmap.pdf
+  -> wrote 2880 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/roman_empire_BundleSheaf_d5_5L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/roman_empire_BundleSheaf_d5_5L_Norm_False_conviction_scatter.pdf
+
+============================================================
+  tolokers  |  BundleSheaf  d=3  L=4
+============================================================
+  Computing betweenness (k=500) …
+  Graph: 11758 nodes, 519000 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.833  conf ρ@X_L=0.103  d_test@X_L=0.084
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.843  conf ρ@X_L=0.107  d_test@X_L=0.068
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.841  conf ρ@X_L=0.109  d_test@X_L=0.036
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.846  conf ρ@X_L=0.118  d_test@X_L=0.058
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.847  conf ρ@X_L=0.141  d_test@X_L=0.033
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.850  conf ρ@X_L=0.184  d_test@X_L=0.068
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.848  conf ρ@X_L=0.212  d_test@X_L=0.070
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.864  conf ρ@X_L=0.185  d_test@X_L=0.098
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/tolokers_BundleSheaf_d3_4L_Norm_False_conviction_heatmap.pdf
+  -> wrote 2400 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/tolokers_BundleSheaf_d3_4L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/tolokers_BundleSheaf_d3_4L_Norm_False_conviction_scatter.pdf
+
+============================================================
+  wisconsin  |  BundleSheaf  d=2  L=2
+============================================================
+  Computing betweenness (k=251) …
+  Graph: 251 nodes, 450 edges
+
+  --- epoch-0 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.551  conf ρ@X_L=0.372  d_test@X_L=0.502
+
+  --- epoch-1 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.524  conf ρ@X_L=0.726  d_test@X_L=0.308
+
+  --- epoch-5 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.455  conf ρ@X_L=0.820  d_test@X_L=0.339
+
+  --- epoch-15 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.390  conf ρ@X_L=0.760  d_test@X_L=0.446
+
+  --- epoch-50 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.394  conf ρ@X_L=0.274  d_test@X_L=0.372
+
+  --- epoch-200 ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.235  conf ρ@X_L=0.170  d_test@X_L=0.298
+
+  --- best-epoch ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.278  conf ρ@X_L=0.759  d_test@X_L=0.449
+
+  --- last ---
+    fold 0 done
+    fold 1 done
+    fold 2 done
+    fold 3 done
+    fold 4 done
+    fold 5 done
+    fold 6 done
+    fold 7 done
+    fold 8 done
+    fold 9 done
+  -> 10 fold(s) | deg ρ@X_L=0.172  conf ρ@X_L=0.661  d_test@X_L=0.579
+  Saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false/wisconsin_BundleSheaf_d2_2L_Norm_False_conviction_heatmap.pdf
+  -> wrote 1440 fold rows to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false/wisconsin_BundleSheaf_d2_2L_Norm_False_observational_folds.csv
+  Scatter saved to /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false/wisconsin_BundleSheaf_d2_2L_Norm_False_conviction_scatter.pdf
+
+Done. Heatmaps in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_heatmap/BundleSheaf/normalised_false
+      Scatters in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/normalised_false
+      Per-fold CSVs in: /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational/BundleSheaf/normalised_false
+
+==============================================================
+  conviction_observational_table
+==============================================================
+Reading /home/fguadagn/FMG_Master_Thesis/neural-sheaf-diffusion-modified/quick_analysis/Conviction_experiments_tables/observational
+  configs=[('GeneralSheaf', 'true'), ('BundleSheaf', 'false')]  checkpoints=['epoch-0', 'best-epoch']  layer=last  excluding=('cornell', 'wisconsin')
+
+  GeneralSheaf/normalised_true:
+    degree          epoch-0      +0.071 ± 0.100  (n=8)
+    degree          best-epoch   +0.326 ± 0.074  (n=8)
+    betweenness     epoch-0      +0.051 ± 0.078  (n=8)
+    betweenness     best-epoch   +0.283 ± 0.058  (n=8)
+    confidence      epoch-0      +0.168 ± 0.069  (n=8)
+    confidence      best-epoch   +0.656 ± 0.049  (n=8)
+    saliency        epoch-0      +0.067 ± 0.103  (n=8)
+    saliency        best-epoch   -0.181 ± 0.088  (n=8)
+    cohens_d_train  epoch-0      +0.213 ± 0.046  (n=8)
+    cohens_d_train  best-epoch   +0.538 ± 0.093  (n=8)
+    cohens_d_test   epoch-0      +0.240 ± 0.052  (n=8)
+    cohens_d_test   best-epoch   +0.368 ± 0.076  (n=8)
+  BundleSheaf/normalised_false:
+    degree          epoch-0      +0.567 ± 0.084  (n=8)
+    degree          best-epoch   +0.533 ± 0.088  (n=8)
+    betweenness     epoch-0      +0.461 ± 0.067  (n=8)
+    betweenness     best-epoch   +0.454 ± 0.069  (n=8)
+    confidence      epoch-0      +0.530 ± 0.130  (n=8)
+    confidence      best-epoch   +0.547 ± 0.066  (n=8)
+    saliency        epoch-0      +0.819 ± 0.098  (n=8)
+    saliency        best-epoch   +0.651 ± 0.120  (n=8)
+    cohens_d_train  epoch-0      +0.098 ± 0.039  (n=8)
+    cohens_d_train  best-epoch   +0.174 ± 0.050  (n=8)
+    cohens_d_test   epoch-0      +0.157 ± 0.058  (n=8)
+    cohens_d_test   best-epoch   +0.204 ± 0.052  (n=8)
+
+  wrote quick_analysis/conviction_tables/observational_summary.csv
+  wrote quick_analysis/conviction_tables/observational_summary.tex
+
+Done. Table in: quick_analysis/conviction_tables
+
+Done.
+  Heatmaps/scatters: quick_analysis/Norm_Analysis/
+  Per-fold CSVs:     quick_analysis/Conviction_experiments_tables/observational/
+  Table:             quick_analysis/conviction_tables/observational_summary.tex

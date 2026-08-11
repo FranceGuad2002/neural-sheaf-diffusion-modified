@@ -18,6 +18,7 @@ Usage (from repo root):
 import sys
 import os
 import re
+import csv
 import glob
 import json
 import argparse
@@ -42,6 +43,16 @@ _WEBKB_DATASETS = {"cornell", "texas", "wisconsin"}
 _JOINT_MODELS   = {'JointSheafParams', 'JointSheafParamsAlt'}
 _TYPE_SHORT     = {'diagonal': 'diag', 'bundle': 'bundle', 'general': 'general'}
 EXCLUDE         = {'synthetic_exp'}
+
+# Internal buffer key -> name used in the per-fold CSV and in the summary table.
+OBSERVABLE_NAME = {
+    'deg':     'degree',
+    'bet':     'betweenness',
+    'conf':    'confidence',
+    'sal':     'saliency',
+    'd_train': 'cohens_d_train',
+    'd_test':  'cohens_d_test',
+}
 
 HEATMAP_SPECS = [
     ('rho_deg_mean',  'Spearman ρ\n(conviction vs degree)',      'RdBu_r', -1.0, 0, 1.0),
@@ -153,14 +164,23 @@ def _cohens_d(conv_subset, correct_mask):
 
 
 def _compute(args, node_deg, node_bet):
+    """Returns (results, checkpoint_names, fold_rows).
+
+    `results` holds the fold-averaged grids the heatmap plots. `fold_rows` keeps
+    the SAME quantities one row per (checkpoint, layer, fold, observable) before
+    any averaging, so that a cross-dataset table can average folds within a
+    dataset and take its spread across datasets, exactly as the intervention
+    tables do. The plot cannot do this for us: it averages the folds away."""
     checkpoint_names = _available_checkpoints(args)
     num_snapshots    = args['layers'] + 1
     n_folds          = args.get('folds', 10)
     results          = {}
+    fold_rows        = []
 
     for ckpt_name in checkpoint_names:
         print(f"\n  --- {ckpt_name} ---")
-        bufs = {k: [] for k in ('deg', 'bet', 'conf', 'sal', 'd_train', 'd_test')}
+        bufs      = {k: [] for k in ('deg', 'bet', 'conf', 'sal', 'd_train', 'd_test')}
+        fold_ids  = []
 
         for fold in range(n_folds):
             np_path = _ckpt_path('node_norms',    args, fold, ckpt_name)
@@ -201,11 +221,23 @@ def _compute(args, node_deg, node_bet):
 
             if ok:
                 for k in bufs: bufs[k].append(row[k])
+                fold_ids.append(fold)
                 print(f"    fold {fold} done")
 
         n_avail = len(bufs['deg'])
         if n_avail == 0:
             print("  No folds available — skipping."); continue
+
+        for i, fold in enumerate(fold_ids):
+            for k, observable in OBSERVABLE_NAME.items():
+                for t in range(num_snapshots):
+                    fold_rows.append({
+                        'dataset': args['dataset'], 'model': args['model'],
+                        'normalised': 'true' if args.get('normalised') else 'false',
+                        'd': args['d'], 'layers': args['layers'],
+                        'checkpoint': ckpt_name, 'layer': t, 'fold': fold,
+                        'observable': observable, 'value': bufs[k][i][t],
+                    })
 
         a = {k: np.array(bufs[k]) for k in bufs}
         results[ckpt_name] = {
@@ -222,7 +254,18 @@ def _compute(args, node_deg, node_bet):
               f"conf ρ@X_L={r['rho_conf_mean'][-1]:.3f}  "
               f"d_test@X_L={r['d_test_mean'][-1]:.3f}")
 
-    return results, checkpoint_names
+    return results, checkpoint_names, fold_rows
+
+
+def _write_fold_csv(fold_rows, path):
+    """Per-fold observational values, the input to conviction_observational_table.py."""
+    if not fold_rows:
+        print("  (no fold rows to write)"); return
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, 'w', newline='') as f:
+        w = csv.DictWriter(f, fieldnames=list(fold_rows[0]))
+        w.writeheader(); w.writerows(fold_rows)
+    print(f"  -> wrote {len(fold_rows)} fold rows to {path}")
 
 # ── plot ──────────────────────────────────────────────────────────────────────
 
@@ -428,8 +471,11 @@ if __name__ == '__main__':
                                cli.model, f"normalised_{cli.normalised}")
     scatter_dir = os.path.join(ROOT_DIR, 'quick_analysis', 'Norm_Analysis', 'conviction_scatter',
                                cli.model, f"normalised_{cli.normalised}")
+    folds_dir   = os.path.join(ROOT_DIR, 'quick_analysis', 'Conviction_experiments_tables',
+                               'observational', cli.model, f"normalised_{cli.normalised}")
     os.makedirs(out_dir,     exist_ok=True)
     os.makedirs(scatter_dir, exist_ok=True)
+    os.makedirs(folds_dir,   exist_ok=True)
 
     print(f"Discovering: model={cli.model}{map_tag}  normalised={cli.normalised}")
     experiments = _discover(cli.model, cli.normalised, map_tag)
@@ -442,22 +488,23 @@ if __name__ == '__main__':
         Norm = 'True' if targs.get('normalised') else 'False'
         print(f"\n{'='*60}\n  {targs['dataset']}  |  {targs['model']}{tag}  d={targs['d']}  L={targs['layers']}\n{'='*60}")
         deg, bet = _build_topology(targs['dataset'])
-        results, ckpt_names = _compute(targs, deg, bet)
+        results, ckpt_names, fold_rows = _compute(targs, deg, bet)
         if not results:
             continue
-        out_path = os.path.join(out_dir,
-            f"{targs['dataset']}_{targs['model']}{tag}_d{targs['d']}_{targs['layers']}L_"
-            f"Norm_{Norm}_conviction_heatmap.pdf")
-        _plot(results, ckpt_names, targs, out_path)
+        stem = (f"{targs['dataset']}_{targs['model']}{tag}_d{targs['d']}_{targs['layers']}L_"
+                f"Norm_{Norm}")
+        _plot(results, ckpt_names, targs,
+              os.path.join(out_dir, f"{stem}_conviction_heatmap.pdf"))
+        _write_fold_csv(fold_rows,
+              os.path.join(folds_dir, f"{stem}_observational_folds.csv"))
 
         norms_avg, fold_count = _load_norms_avg(targs, 'best-epoch')
         if norms_avg is not None:
-            scatter_path = os.path.join(scatter_dir,
-                f"{targs['dataset']}_{targs['model']}{tag}_d{targs['d']}_{targs['layers']}L_"
-                f"Norm_{Norm}_conviction_scatter.pdf")
-            _plot_scatter(norms_avg, fold_count, deg, targs, scatter_path)
+            _plot_scatter(norms_avg, fold_count, deg, targs,
+                          os.path.join(scatter_dir, f"{stem}_conviction_scatter.pdf"))
         else:
             print("  No best-epoch norms found — scatter skipped.")
 
     print(f"\nDone. Heatmaps in: {out_dir}")
     print(f"      Scatters in: {scatter_dir}")
+    print(f"      Per-fold CSVs in: {folds_dir}")

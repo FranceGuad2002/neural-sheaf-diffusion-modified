@@ -1,9 +1,19 @@
 % ==============================================================================
 %  Conviction-based inference — main subsection
-%  Numbers come from quick_analysis/Conviction_experiments_tables/_summary/,
+%
+%  Every number quoted here comes from the tables in quick_analysis/conviction_tables/,
 %  produced by quick_analysis/conviction_summary_tables.py with
-%      --score last --exclude cornell,wisconsin
-%  Full tables, robustness checks and procedural detail: conviction_supplementary.tex
+%      --score last --exclude cornell,wisconsin --out_dir quick_analysis/conviction_tables
+%  Each table is now its own file, so main and supplementary \input exactly the
+%  ones they need. Path convention follows the Forman section: the local folder
+%  quick_analysis/conviction_tables/ is the thesis folder
+%  sma_projet_files/Sections/conviction_tables/, and the local folder
+%  quick_analysis/Norm_Analysis/ is Deck_slides/.
+%
+%  Tables used in the main text:
+%      forward_masking-zero_GeneralSheaf_norm-true_conv-last.tex
+%      decile_masking-zero_GeneralSheaf_norm-true_conv-last.tex
+%  Everything else lives in conviction_supplementary.tex
 % ==============================================================================
 
 \subsection{Conviction-based inference}
@@ -20,21 +30,23 @@ of view. In this reading the magnitude of a node's representation is not an
 incidental quantity: it measures how strongly that node holds its position, and
 we therefore call it the node's \emph{conviction}.
 
-What makes this quantity interesting is that the theory tells us where it should
-end up. For a Bochner Laplacian, that is for an unnormalised bundle sheaf
-without edge weights, the equilibrium configuration requires all the stalk norms
-to coincide (METTERE REF, TEOREMA). The conviction is therefore not merely a
-descriptive statistic, but a quantity for which we have a theoretical
-prediction, and whose deviation from that prediction is itself informative.
+The question we ask of this quantity is \emph{operational}, and it is the
+contribution of this section: does the conviction identify the nodes on which
+the trained network actually relies? We answer it by intervention rather than by
+correlation. We freeze a trained network, perturb sets of nodes chosen by their
+conviction, and measure the damage, so that a quantity read off the Bochner
+decomposition becomes an experimentally verifiable score of node importance. The
+configuration we care about here is the normalised general sheaf, which is the
+most expressive of the sheaf learners we consider and the one of interest from
+the machine learning standpoint.
 
-We use this in two ways. First \emph{observationally}, asking whether the
-conviction that the network actually produces behaves as the equilibrium theory
-predicts, and how it relates to simpler node properties such as degree. Second,
-and this is the main contribution of this section, \emph{operationally}: we ask
-whether conviction identifies the nodes on which the trained network relies, by
-perturbing nodes of different conviction and measuring the damage. In this way a
-quantity derived from the Bochner theory becomes an experimentally verifiable
-score of node importance.
+The same quantity also admits a second, theoretical reading, which we take up at
+the end of the section. For a Bochner Laplacian, that is for an unnormalised
+bundle sheaf without edge weights, the equilibrium configuration requires all
+the stalk norms to coincide (METTERE REF, TEOREMA). The conviction is therefore
+not only a score we can put to work, but a quantity for which we have a
+theoretical prediction, and whose deviation from that prediction is itself
+informative about what sheaf diffusion is doing.
 
 \subsubsection{Methods}
 
@@ -55,23 +67,19 @@ and the \emph{conviction vector} is
 $\mathbf{c}_t = (c_t(1),\dots,c_t(n)) \in \mathbb{R}^n$.
 \end{definition}
 
-We outline immediately a discrepancy with the theory that should be kept in
-mind throughout. In the equilibrium result the state of a node is an element of
-$\mathbb{R}^d$, whereas here it lives in $\mathbb{R}^{d \times F}$, since the
-network also carries feature channels and interleaves the diffusion with weight
-matrices. The setting is therefore richer than the one in which the theorem is
-proved, and the equilibrium prediction should be read as a guide rather than as
-a statement that applies verbatim. We nonetheless find it meaningful, because
-the quantity it constrains, the magnitude of a node's representation, is exactly
-the one we measure.
+We outline immediately a discrepancy with the theory that should be kept in mind
+throughout: in the equilibrium result the state of a node is an element of
+$\mathbb{R}^d$, whereas here it lives in $\mathbb{R}^{d \times F}$, so the
+prediction should be read as a guide rather than as a statement that applies
+verbatim. We discuss the scope of the mismatch in the Supplementary,
+Section~\ref{sec:supp_conv_scope}.
 
 Unless stated otherwise we use the conviction at the \textbf{last diffusion
 layer}, $\mathbf{c}_L$, taken at the best-validation-epoch checkpoint and
 denoted \texttt{last}. As a robustness check we also considered
-\texttt{avg\_z}, obtained by z-scoring the conviction of each post-diffusion
-layer $1,\dots,L$ separately and averaging, so that no single layer's scale can
-dominate; the conclusions below are unchanged under this choice, and the
-corresponding tables are reported in the supplementary material.
+\texttt{avg\_z}, the layerwise z-scored average over the post-diffusion layers,
+under which the conclusions below are unchanged (Supplementary,
+Section~\ref{sec:supp_robust}).
 
 \paragraph{Models and datasets.}
 We study two model families. \textbf{GeneralSheaf} with
@@ -91,291 +99,226 @@ and ROC-AUC for Minesweeper, Tolokers and Questions, which are binary and
 strongly imbalanced.
 
 \paragraph{Observational analysis.}
-For each dataset and model we compare the conviction against other node
-properties at every training checkpoint and every diffusion layer, producing a
-grid of heatmaps whose rows are checkpoints and whose columns are layers. Each
-cell reports one scalar averaged over folds: the Spearman correlation of
-$\mathbf{c}_t$ with node degree, with betweenness centrality, with the model's
-softmax confidence and with input-gradient saliency, together with the absolute
-Cohen's $d$ separating the conviction of correctly and incorrectly classified
-nodes, computed separately on train and test. We use the absolute value of
-Cohen's $d$ before averaging over folds, so that sign cancellations across folds
-do not hide an effect that is present in each of them. In addition, at the
-best-epoch checkpoint we plot conviction against degree, one panel per diffusion
-layer, to inspect directly whether high-conviction nodes are simply hubs.
+Alongside the interventions we compare the conviction against other node
+properties, namely degree, betweenness centrality, the model's softmax
+confidence and input-gradient saliency, at every training checkpoint and every
+diffusion layer, and we measure how far it separates correctly from incorrectly
+classified nodes. Since these comparisons support none of the claims of this
+section on their own, we report them in the Supplementary,
+Section~\ref{sec:supp_conv_observational}, and use here only the projection we
+need: at the best-epoch checkpoint, the conviction plotted against degree, one
+panel per diffusion layer, with fold-averaged norms.
 
 \paragraph{From observation to intervention.}
-The observational analysis can only tell us what conviction correlates with. To
+A correlation can only tell us what conviction resembles. To
 establish that it identifies nodes the network actually depends on, we move to
 an interventional setting. The protocol is deliberately \emph{inference-only}:
 we load the frozen best-epoch weights, perturb a selected set of nodes, and
 re-evaluate. Nothing is retrained, so any change in performance is attributable
 to the perturbation rather than to a different optimisation trajectory.
 
-We use three perturbation modes, which act on different parts of the mechanism:
-\begin{enumerate}
-    \item \textbf{masking}, which sets the selected nodes' input features to
-    zero, or replaces them with the dataset feature mean; the topology is
-    untouched, so this probes the reliance on those nodes' \emph{features};
-    \item \textbf{gating}, which multiplies the selected nodes' outgoing
-    messages by zero while leaving their self-term and every other node's
-    messages intact, so this probes the reliance on what those nodes
-    \emph{send};
-    \item \textbf{pruning}, which removes the selected nodes together with their
-    incident edges and forward-passes on the smaller graph, reloading the same
-    frozen weights into a model shaped for the new graph.
-\end{enumerate}
-Using three modes is not redundancy: an effect that survives all three cannot be
-an artefact of one particular way of perturbing the network.
+We use three perturbation modes, acting on different parts of the mechanism.
+\textbf{Masking} sets the selected nodes' input features to zero, or replaces
+them with the dataset feature mean, leaving the topology untouched, so it probes
+the reliance on those nodes' \emph{features}. \textbf{Gating} multiplies their
+outgoing messages by zero while leaving their self-term and every other node's
+messages intact, so it probes what those nodes \emph{send}. \textbf{Pruning}
+removes them together with their incident edges and forward-passes on the
+smaller graph. Using three modes is not redundancy: an effect that survives all
+three cannot be an artefact of one particular way of perturbing the network. The
+implementation of each is given in the Supplementary,
+Section~\ref{sec:supp_impl}.
 
 \paragraph{Selection strategies.}
 Candidates are always drawn from the \textbf{training nodes only}, so that the
 test set on which we evaluate is identical across every strategy and every
-budget, and no test node is ever perturbed. At each budget
-$k \in \{1\%, 5\%, 10\%, 20\%, 30\%\}$ of the training pool we compare nine
-selection strategies: the top and bottom $k\%$ by conviction, by degree and by
-prediction confidence; $k$ uniformly random nodes; and two
-\emph{degree-matched} controls, in which $k$ nodes are sampled to reproduce the
-degree distribution of the high- or low-conviction group while being otherwise
-random.
+budget. At each budget $k \in \{1\%, 5\%, 10\%, 20\%, 30\%\}$ of the training
+pool we compare nine selection strategies: the top and bottom $k\%$ by
+conviction, by degree and by prediction confidence; $k$ uniformly random nodes;
+and two \emph{degree-matched} controls, in which $k$ nodes are sampled to
+reproduce the degree distribution of the high- or low-conviction group while
+being otherwise random.
 
 The degree-matched controls are the decisive comparison of this section. Degree
 is the obvious competing explanation for any effect we might find, and matching
 the degree distribution while randomising the identity of the nodes isolates
-exactly the information that conviction carries \emph{beyond} topology. Ties in
-any ranking, which are extremely common for degree, are broken by a per-node
-random key seeded deterministically from the fold, so that the selection does
-not systematically favour low-index nodes and is invariant to the arbitrary
-labelling of the graph.
+exactly the information that conviction carries \emph{beyond} topology.
 
 \paragraph{Decile analysis.}
-The budget sweep is cumulative: at $k\%$ we perturb the top $k\%$ all at once,
-so the high-conviction nodes of the $1\%$ budget are contained in every larger
-one. This tells us that high conviction matters, but not \emph{how} the damage
-is distributed across the conviction range. We therefore also run a decile
-experiment, in which the training pool is sorted by a criterion, split into ten
-equal bins, and \textbf{exactly one bin is perturbed at a time}. Every bin has
-the same size, so the ten resulting numbers are directly comparable, and they
-answer a sharper question: is conviction a binary high/low label, or a
-calibrated ordering along which importance grows smoothly? We run the same
-decile experiment for conviction, for confidence and for degree, since the
-comparison between the three is the entire point.
+The budget sweep is cumulative, so it tells us that high conviction matters but
+not \emph{how} the damage is distributed across the conviction range. We
+therefore also run a decile experiment, in which the training pool is sorted by
+a criterion, split into ten equal bins, and \textbf{exactly one bin is perturbed
+at a time}. Every bin has the same size, so the ten numbers are directly
+comparable, and they answer a sharper question: is conviction a binary high/low
+label, or a calibrated ordering along which importance grows smoothly? We run it
+for conviction, for confidence and for degree, since the comparison between the
+three is the entire point.
 
 \paragraph{Aggregation.}
-Reporting ten datasets $\times$ nine strategies $\times$ five budgets $\times$
-three perturbation modes separately would be unreadable. We therefore express
-every result as a \emph{relative drop} with respect to that dataset's own
-unperturbed baseline,
-\[
-    \mathrm{drop}\%(s) \;=\; 100 \cdot
-    \frac{\overline{m}_{\text{baseline}} - \overline{m}_{s}}
-         {\overline{m}_{\text{baseline}}},
-\]
-where $\overline{m}$ denotes the headline metric already averaged over the ten
-folds, and we then average over datasets. Each dataset contributes one value and
-counts equally, so that the large graphs do not dominate the aggregate, and the
-quoted uncertainty is the spread \emph{across datasets}, which is what tells us
-whether an effect would reproduce on a new benchmark.
+Every result is expressed as a \emph{relative drop} with respect to that
+dataset's own unperturbed baseline, measured as a fraction of the baseline's
+headroom above chance, which is $0$ for accuracy and $0.5$ for ROC-AUC, so that
+a cell means the same thing on an accuracy dataset and on an AUC one, namely the
+percentage of the learnt signal the intervention destroys. We then average over
+datasets, each contributing one value, and the quoted uncertainty is the
+standard error \emph{across datasets}, which is what tells us whether an effect
+would reproduce on a new benchmark; the ten folds of one dataset share a graph
+and overlapping splits, so pooling them would report an error bar several times
+too small. The protocol is set out in full in the Supplementary,
+Section~\ref{sec:supp_agg}.
 
-We exclude Cornell and Wisconsin from the aggregation. Their training pools
-contain fewer than $130$ nodes, so a $1\%$ budget is a single node and a decile
-fewer than ten, and the resulting values are dominated by sampling noise while
-entering the average with the same weight as a graph with tens of thousands of
-nodes. Including them does not change the ordering of the strategies, only its
-sharpness; we report the eight-dataset aggregate throughout, and give the
-ten-dataset version in the supplementary material.
-
-Because the relative drops are strongly right-skewed across datasets, we do not
-rely on the mean alone. We report, per strategy, the mean rank within each
-dataset (rank $1$ = most damaging), and we test the comparisons the section
-turns on with a Wilcoxon signed-rank test in which \textbf{the pairing unit is
-the dataset}, following the standard practice for comparing methods over a
-benchmark suite (METTERE REF: Dem\v{s}ar, 2006). We stress that the test is
-across datasets and not across folds: the per-dataset tables store fold
-averages, and the baseline and perturbed metrics share the same folds, so
-propagating fold-level errors into the ratio would ignore that correlation.
+We exclude Cornell and Wisconsin from the aggregation, since their training
+pools are too small for a percentage budget to be meaningful, so every number we
+report is computed over the remaining eight datasets.
 
 \subsubsection{Results}
 
-\paragraph{The bundle sheaf does not reach the predicted equilibrium.}
-We begin with the observational analysis of the unnormalised bundle sheaf, the
-configuration for which the theory makes a prediction. If the learnt dynamics
-converged to the equilibrium of the Bochner Laplacian, the conviction at the
-final diffusion layer would be constant across nodes. This is emphatically not
-what we observe: the conviction at the last layers remains spread over a wide
-range of values, and the nodes retain markedly different magnitudes. In
-addition, the conviction of the bundle sheaf is strongly correlated with node
-degree and with betweenness centrality, so the surviving structure in the norms
-is largely topological.
-
-We regard this as the mathematically interesting finding of the observational
-part. The system is \textbf{not at equilibrium}, and consequently the standard
-kernel-theoretic machinery used to study the convergence and the limit points of
-sheaf diffusion, or of graph convolutional networks, does not describe what the
-trained network is doing. The reason, in our reading, is the same one that
-motivated the Forman profile: a Sheaf Neural Network is not only a diffusion,
-since the sheaf itself is re-estimated at every layer from the current features.
-It is a \textbf{geometric flow}, and a geometric flow has no reason to settle at
-the equilibrium of the frozen diffusion associated with any one of its
-instantaneous operators. The narrative according to which representations
-converge to a common value is therefore perturbed, and the observed
-out-of-equilibrium behaviour is a direct empirical signature of the flow.
-
-We repeat the caveat of the Methods here, because it bears on how strongly this
-should be read: our states live in $\mathbb{R}^{d\times F}$ rather than
-$\mathbb{R}^d$, and the network interleaves weight matrices with the diffusion,
-so the equilibrium theorem does not apply verbatim. What we can say is that the
-quantity the theorem constrains does not behave as the theorem would suggest,
-and that the geometric-flow reading accounts for this naturally.
-
-\paragraph{In the general sheaf, conviction is not degree.}
-For the normalised general sheaf the picture is different, and it is this
-configuration that matters for the machine learning question. The conviction is
-only weakly correlated with degree and with betweenness, and inspecting the
-scatter plots layer by layer confirms that the ordering induced by conviction
-does not coincide with the ordering induced by degree; Roman Empire, Questions
-and Pubmed are clear examples, and the same holds for the majority of the
-datasets we consider. Conviction is instead appreciably correlated with the
-model's softmax confidence, while its correlation with input-gradient saliency
-is weak and sometimes negative. The Cohen's $d$ separating correctly from
-incorrectly classified nodes is appreciable at early epochs and becomes small
-later in training.
-
-Since conviction is neither a restatement of degree nor a restatement of
-confidence, the question of whether it identifies something the network actually
-uses is a genuine one, and it cannot be settled by correlations. This is what
-motivates the interventional experiments.
-
 \paragraph{High-conviction nodes are the ones the trained network relies on.}
-The central result is summarised in Table~\ref{tab:conviction_forward} and is
-remarkably stable. Across all three perturbation modes and at every budget,
-removing the highest-conviction nodes is the most damaging thing one can do, and
-removing the lowest-conviction nodes is the least damaging. Under pruning at a
-$30\%$ budget, for instance, the high-conviction selection costs $4.93\%$ of the
-metric while the low-conviction selection costs $0.55\%$, an order of magnitude
-less, with random removal at $1.97\%$ sitting between them.
+The central result is Table~\ref{tab:conv_fwd_masking-zero_last}. Removing the
+highest-conviction nodes is the most damaging thing one can do at every budget,
+and removing the lowest-conviction nodes is the least damaging: zeroing the top
+$30\%$ of the training pool by conviction costs $4.55 \pm 1.83\%$ of the learnt
+signal, against $0.39 \pm 0.32\%$ for the bottom $30\%$, with random removal at
+$1.69 \pm 0.89\%$ between them. The mirror-image statement is the one we would
+emphasise for applications: low-conviction nodes are not merely unimportant,
+they are demonstrably more dispensable than an arbitrary node would be.
 
-The margin over the controls is statistically reliable. Against random
-selection, against the degree-matched control, against confidence-based
-selection and against low-conviction selection, the high-conviction strategy is
-more damaging in seven or eight of the eight datasets at essentially every
-budget and in every perturbation mode, with Wilcoxon $p \leq 0.016$ throughout.
-The degree-matched comparison deserves emphasis: a set of nodes reproducing the
-degree distribution of the high-conviction group, but otherwise random, costs
-only $0.65\%$ under pruning at $10\%$, against $2.70\%$ for the high-conviction
-group itself. Conviction is therefore \textbf{not} a proxy for degree; knowing
-how connected the nodes are is not enough, one has to know which nodes they are.
+The same ordering holds in all four perturbation modes, high and low conviction
+being the two extremes of every table at every budget, with one exception at the
+smallest gating budget (Supplementary,
+Tables~\ref{tab:conv_fwd_masking-mean_last}--\ref{tab:conv_fwd_pruning_last}).
+An effect that survives being probed on the features, on the messages and on the
+topology is not an artefact of one particular way of perturbing the network.
 
-We must however be precise about one comparison, since it constrains the claim.
-Selecting the top-$k\%$ nodes \emph{by degree} is also a strong strategy, and
-although high conviction has the larger mean drop in every mode, the difference
-between the two is not always reliable. It becomes significant from the $5\%$
-budget onwards for hard gating and for zero-masking, and at the largest budgets
-for mean-masking, but it is never significant under pruning. This last exception
-has a natural mechanistic explanation: pruning deletes nodes together with their
-incident edges, so it is precisely the mode in which a degree-based criterion is
-maximally advantaged, since degree is by definition the number of edges removed.
-We therefore do not claim that conviction outperforms degree as a selection
-rule at a fixed budget; we claim that it is the most damaging criterion overall,
-that it is reliably better than every control that is not degree itself, and
-that it carries information beyond the degree distribution.
+The degree-matched control is the comparison we would emphasise. A set of nodes
+reproducing the degree distribution of the high-conviction group, but otherwise
+random, costs $0.38 \pm 0.32\%$ at the $10\%$ budget of
+Table~\ref{tab:conv_fwd_masking-zero_last} against $2.18 \pm 0.70\%$ for the
+high-conviction group itself, a factor of nearly six, and the same separation
+appears at every budget and in every mode. Conviction is
+therefore \textbf{not} a proxy for degree; knowing how connected the nodes are
+is not enough, one has to know which nodes they are.
 
-The mirror-image statement is equally useful and is the one we would emphasise
-for applications. Low-conviction removal is significantly \emph{less} damaging
-than random removal at the larger budgets, in seven or eight of eight datasets
-($p \leq 0.039$ under pruning from the $5\%$ budget onwards). Low-conviction
-nodes are thus not merely unimportant, they are demonstrably more dispensable
-than an arbitrary node would be.
+We must be precise about one further comparison. Selecting the top-$k\%$ nodes
+\emph{by degree} is also a strong strategy, and although its mean drop is below
+that of high conviction in every mode and at every budget, $2.46 \pm 0.98\%$
+against $4.55 \pm 1.83\%$ at the $30\%$ budget of
+Table~\ref{tab:conv_fwd_masking-zero_last}, the between-dataset spread does
+not resolve the gap, and we do not claim that conviction beats degree as a
+selection rule at a fixed budget. Under pruning the two are not even on the same
+footing, since a degree criterion deletes by construction the largest possible
+number of edges, so that part of what it costs is structural rather than
+informational; we develop this, with the per-dataset numbers, in the
+Supplementary, Section~\ref{sec:supp_prune_diag}.
 
-\begin{table}[H]
-\centering
-\small
-\caption{Relative drop (\%) in the headline metric under node pruning, as a
-function of the fraction of the training pool perturbed. Conviction score
-\texttt{last}; mean over the eight datasets retained, with the standard error of
-the cross-dataset mean in parentheses. Larger is more damaging. The equivalent
-tables for the other two perturbation modes are given in the supplementary
-material.}
-\label{tab:conviction_forward}
-\begin{tabular}{lccccc}
-\toprule
-Selection & 1\% & 5\% & 10\% & 20\% & 30\% \\
-\midrule
-High conviction        & $0.91$ & $1.88$ & $2.70$ & $3.92$ & $4.93$ \\
-High degree            & $0.79$ & $1.68$ & $2.28$ & $3.32$ & $4.02$ \\
-High confidence        & $0.24$ & $0.73$ & $1.12$ & $2.02$ & $2.81$ \\
-Degree-matched (high)  & $0.16$ & $0.40$ & $0.65$ & $0.96$ & $1.27$ \\
-Random                 & $0.08$ & $0.30$ & $0.60$ & $1.20$ & $1.97$ \\
-Low confidence         & $0.07$ & $0.28$ & $0.54$ & $1.21$ & $1.90$ \\
-Degree-matched (low)   & $0.04$ & $0.27$ & $0.45$ & $1.23$ & $2.12$ \\
-Low degree             & $0.03$ & $0.16$ & $0.38$ & $0.78$ & $1.32$ \\
-Low conviction         & $0.01$ & $0.06$ & $0.12$ & $0.29$ & $0.55$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+\input{sma_projet_files/Sections/conviction_tables/forward_masking-zero_GeneralSheaf_norm-true_conv-last.tex}
 
 \paragraph{Conviction grades importance, it does not merely label it.}
 The decile experiment sharpens the previous paragraph considerably, and is
-reported in Table~\ref{tab:conviction_decile}. Perturbing a single decile at a
-time, the damage caused by the conviction bins grows monotonically from the
-bottom of the distribution to the top, spanning more than an order of magnitude:
-under pruning it rises from $0.12\%$ for the lowest decile to $2.70\%$ for the
-highest. The comparison with the other two criteria is what makes this
-informative. Confidence produces an almost flat profile, from $0.54\%$ to
-$1.12\%$, a factor of two across the entire range; degree grows, but from a
-higher floor and to a lower ceiling.
+reported in Table~\ref{tab:conv_dec_masking-zero_last}. Perturbing a single bin
+at a time, the damage caused by the conviction bins is flat and close to zero
+across the bottom of the distribution, then rises steadily from the fifth bin
+onwards, so that the top decile costs $2.18 \pm 0.70\%$ against
+$0.07 \pm 0.07\%$ for the bottom one. The comparison with the other two criteria
+is what makes this informative. Confidence produces an almost flat profile, from
+$0.35\%$ to $0.92\%$, less than a factor of three across the entire range;
+degree grows from $0.38\%$ to $1.06\%$, so from a much higher floor and to a
+much lower ceiling.
 
 Conviction therefore has simultaneously the \emph{least} damaging bottom bin and
-the \emph{most} damaging top bin of the three criteria, which is precisely what
-it means for a score to be well calibrated. It is not that conviction separates
-an important group from an unimportant one, a binary distinction that degree
-also achieves; it is that the position of a node along the conviction range
-predicts how much the network depends on it. This is the sense in which the
-Bochner theory yields an operational quantity, and it is also the place where
-conviction distinguishes itself most clearly from the degree baseline that
+the \emph{most} damaging top bin of the three criteria, and this holds in all
+four perturbation modes without exception (Supplementary,
+Tables~\ref{tab:conv_dec_masking-mean_last}--\ref{tab:conv_dec_pruning_last}).
+This is what it means for a score to be well calibrated. It is not that
+conviction separates an important group from an unimportant one, a binary
+distinction that degree also achieves; it is that the position of a node along
+the conviction range predicts how much the network depends on it. It is also
+where conviction distinguishes itself most clearly from the degree baseline that
 competes with it in the fixed-budget experiment.
 
-\begin{table}[H]
-\centering
-\small
-\caption{Decile analysis under node pruning: relative drop (\%) in the headline
-metric when a single bin of the training pool is removed, the pool being split
-into ten equal bins ranked by each criterion (bin $1$ = lowest score, bin $10$ =
-highest). Conviction score \texttt{last}; mean over the eight datasets retained.
-Only conviction produces a profile that grows by more than an order of magnitude
-from the bottom bin to the top one.}
-\label{tab:conviction_decile}
-\begin{tabular}{lccc}
-\toprule
-Bin & Conviction & Confidence & Degree \\
-\midrule
-1  & $0.12$ & $0.54$ & $0.37$ \\
-2  & $0.15$ & $0.61$ & $0.40$ \\
-3  & $0.20$ & $0.57$ & $0.44$ \\
-4  & $0.36$ & $0.57$ & $0.40$ \\
-5  & $0.51$ & $0.66$ & $0.49$ \\
-6  & $0.58$ & $0.61$ & $0.48$ \\
-7  & $0.63$ & $0.65$ & $0.54$ \\
-8  & $0.75$ & $0.62$ & $0.54$ \\
-9  & $0.94$ & $0.69$ & $0.79$ \\
-10 & $2.70$ & $1.12$ & $2.30$ \\
-\bottomrule
-\end{tabular}
-\end{table}
+\input{sma_projet_files/Sections/conviction_tables/decile_masking-zero_GeneralSheaf_norm-true_conv-last.tex}
 
-\paragraph{Soft gating is inconclusive.}
-For completeness we also ran a \emph{soft} gating variant, in which no subset is
-selected and instead every training node's outgoing message is attenuated
-continuously in proportion to its own score, the lowest-scoring node being
-suppressed the most. This yields a single number per fold rather than a budget
-sweep. The result is not interpretable in the same way as the others:
-attenuating by conviction costs $2.44 \pm 0.96\%$, by degree $3.72 \pm 1.99\%$
-and by confidence $0.50 \pm 0.36\%$, with error bars so wide that the three
-cannot be separated. This is expected in hindsight, since the soft variant
-simultaneously suppresses the low-conviction nodes and preserves the
-high-conviction ones, so the two effects that the budget sweep isolates are here
-superimposed and partly cancel. We report it as a negative result and base no
-claim on it.
+\paragraph{Conviction is not a restatement of degree, nor of confidence.}
+The degree-matched control above already shows that conviction carries something
+the degree distribution does not, and we would stress that no correlation could
+have shown this, which is why we settle the question by intervention. It is
+nonetheless worth recording what the conviction of the general sheaf does
+correlate with, and we do so in the Supplementary,
+Section~\ref{sec:supp_conv_observational}. In brief: its correlation with degree
+is absent in the untrained network and is built up by training, growing with
+depth and with the number of epochs, and it remains moderate rather than
+negligible; among the quantities we measure it tracks the model's softmax
+confidence more closely than any topological one; and it separates correctly
+from incorrectly classified nodes only moderately. It is therefore a quantity of
+its own, and this is what makes the interventional question a genuine one rather
+than a restatement of something already known.
+
+\paragraph{Furthermore, the same quantity reads the Bochner prediction.}
+Everything above concerns the normalised general sheaf, where the question is
+what the network relies on. The conviction admits a second reading in the
+configuration where the theory speaks, namely the unnormalised bundle sheaf
+without edge weights, whose Laplacian is a Bochner Laplacian. There the
+equilibrium configuration requires the conviction to be \emph{the same at every
+node} (METTERE REF, TEOREMA), which is a prediction we can check directly on the
+trained network.
+
+The check fails. Figure~\ref{fig: RM_Bundle_Scatter} shows the conviction of the
+Roman Empire dataset layer by layer: at every one of them the norms remain
+spread over a wide range, and the nodes retain markedly different magnitudes.
+The conviction is not constant, and the system is therefore \textbf{not at
+equilibrium}.
+
+The consequence follows in three steps. The conviction is not constant, so the
+diffusion has not reached the equilibrium its own operator prescribes. If a
+fixed kernel governed the process it would converge to that equilibrium, and
+that convergence is exactly what we do not observe.
+The description of sheaf diffusion as the action of a kernel is therefore
+\textbf{not sufficient} to account for what the trained network does. What
+remains is the reading that already motivated the Forman profile: the sheaf is
+re-estimated at every layer from the current features, so the operator itself
+changes as the signal moves through it, and the process is a \textbf{geometric
+flow} rather than a diffusion with a fixed generator. A flow has no reason to
+settle at the equilibrium of any one of its instantaneous operators, which is
+why the narrative according to which representations converge to a common value
+does not describe these networks.
+
+What replaces the equilibrium is a topological ordering, the conviction becoming
+increasingly correlated with degree as the diffusion proceeds, from $-0.116$ at
+$X_0$ to $0.652$ at the last layer in Figure~\ref{fig: RM_Bundle_Scatter}. We
+would stress that this ordering is not itself a product of learning, since it is
+already present in the untrained network (Supplementary,
+Section~\ref{sec:supp_conv_observational}), as one should expect of an
+unnormalised Laplacian whose operator carries the degree in its own scale. It is
+the failure of the norms to equalise, not their correlation with degree, that
+carries the argument above.
+
+One caveat bears on how strongly this should be read, and we discuss it in the
+Supplementary, Section~\ref{sec:supp_conv_scope}: our states live in
+$\mathbb{R}^{d\times F}$ rather than in $\mathbb{R}^d$, so the equilibrium
+theorem does not apply verbatim. The mismatch is in the harmless direction for a
+negative conclusion, since a richer state space gives the process more room to
+depart from the prediction, not less.
+
+% ------------------------------------------------------------------------------
+%  Figure: BundleSheaf conviction-vs-degree scatter, Roman Empire.
+%  Local file: quick_analysis/Norm_Analysis/conviction_scatter/BundleSheaf/
+%              normalised_false/roman_empire_BundleSheaf_d5_5L_Norm_False_conviction_scatter.pdf
+% ------------------------------------------------------------------------------
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\linewidth]{Deck_slides/conviction_scatter/BundleSheaf/normalised_false/roman_empire_BundleSheaf_d5_5L_Norm_False_conviction_scatter.pdf}
+    \caption{Conviction against node degree, one panel per diffusion layer, for
+    the unnormalised bundle sheaf on Roman Empire ($d=5$, $L=5$). Norms are taken
+    at the best-validation-epoch checkpoint and averaged over the ten folds; the
+    dashed line is a linear fit and the annotated $\rho_s$ is the Spearman rank
+    correlation with degree. The equilibrium of the Bochner Laplacian would
+    require the norms to collapse onto a single value: instead they stay spread,
+    and their ordering aligns with degree more and more strongly as the diffusion
+    proceeds. The counterpart for the general sheaf is Figure~\ref{fig: RM_General_Scatter}
+    in the Supplementary.}
+    \label{fig: RM_Bundle_Scatter}
+\end{figure}
 
 \subsubsection{Discussion}
 
@@ -385,47 +328,35 @@ an equilibrium theorem; it leaves as an \textbf{operational score of node
 importance}, whose predictions about which nodes matter are verified by
 intervention on a trained network.
 
-We would state the conclusion conservatively, because the conservative version
-is the one the data supports and it is already a strong claim. High-conviction
-nodes are those on which the learnt sheaf diffusion relies most, and
-low-conviction nodes are correspondingly \emph{dispensable} for the already
-trained model. What we do \emph{not} claim is that removing low-conviction nodes
-improves the model. An inspection of the individual masking curves suggested a
-slight improvement when low-conviction nodes were suppressed, but once the
-results are aggregated across datasets with error bars this effect does not
-survive: the honest statement is that low-conviction removal is the least
-destructive intervention available, not that it is beneficial. This is a more
-defensible claim, and it is also the more useful one, since it is what would
-justify using conviction for interpretability, for robustness analysis, or for
-compressing a trained model.
+We would state the conclusion conservatively, because the conservative version is
+the one the data supports and it is already a strong claim. High-conviction nodes
+are those on which the learnt sheaf diffusion relies most, and low-conviction
+nodes are correspondingly \emph{dispensable} for the already trained model. What
+we do \emph{not} claim is that removing low-conviction nodes improves the model:
+individual masking curves suggested as much, but the effect does not survive
+aggregation across datasets. The honest statement is that low-conviction removal
+is the least destructive intervention available, not that it is beneficial, and
+it is that statement which would justify using conviction for interpretability,
+for robustness analysis, or for compressing a trained model.
 
-Two properties make the result more than an accuracy comparison. The first is
-its robustness across perturbation modes: masking acts on features and leaves
-the graph intact, gating acts on messages and leaves both features and graph
-intact, pruning acts on the topology, and the ordering of the strategies is the
-same in all three. An artefact of one mechanism would not survive this. The
-second is the degree-matched control, which rules out the most natural
-deflationary explanation. Conviction correlates only weakly with degree in the
-general sheaf, and nodes reproducing the degree distribution of the
-high-conviction set are far less important than the high-conviction set itself.
+Two properties make the result more than an accuracy comparison. The first is its
+robustness across perturbation modes, which act respectively on the features, on
+the messages and on the topology, and agree on the ordering of the strategies.
+The second is the degree-matched control, which rules out the most natural
+deflationary explanation. The honest limitation is the comparison with degree as
+a selection rule: at a fixed budget the two cannot be separated by the
+between-dataset spread, and what distinguishes them is the decile experiment
+rather than the sweep. The value of conviction, on this evidence, is that it is
+\emph{calibrated}, not that it is the sharpest way of finding the single most
+important node.
 
-The honest limitation is the comparison with degree as a selection rule, which
-we have stated in the Results and do not wish to bury. At a fixed budget,
-sorting by degree is competitive with sorting by conviction, and under pruning
-the two cannot be distinguished at all. What separates them is not the
-fixed-budget experiment but the decile one, where conviction alone produces a
-graded profile spanning an order of magnitude. The value of conviction, on this
-evidence, is that it is \emph{calibrated}, not that it is the sharpest possible
-way of finding the single most important node.
-
-Finally, the observational half of this section connects back to
-Section~\ref{sec:forman_profile}, and the two support the same reading from
-opposite directions. There we found that the learnt Laplacian is not the object
-the static theory would predict, and here we find that the signal it propagates
-does not reach the equilibrium the static theory would predict either. Both are
-consequences of the same fact: the sheaf is re-estimated at every layer, and the
-network therefore deforms its own geometry as it diffuses. That the resulting
-out-of-equilibrium conviction turns out to be a useful importance score is, we
-think, the most interesting aspect of the result, since it suggests that what
-the static theory treats as a failure to converge is in fact where the useful
-structure resides.
+Finally, the reading of the bundle sheaf with which we closed the Results
+connects back to Section~\ref{sec:forman_profile}, and the two support the same
+conclusion from opposite directions. There we found that the learnt Laplacian is
+not the object the static theory would predict; here we find that the signal it
+propagates does not reach the equilibrium that theory would predict either. Both
+follow from the same fact: the sheaf is re-estimated at every layer, so the
+network deforms its own geometry as it diffuses. That the resulting
+out-of-equilibrium conviction turns out to be a useful importance score is the
+most interesting aspect of the result, since it suggests that what the static
+theory treats as a failure to converge is where the useful structure resides.
