@@ -12,7 +12,8 @@
 export WANDB_MODE=online
 export WANDB_ENTITY=franceguad2002-epfl
 export WANDB_PROJECT=sheaf
-export WANDB_API_KEY=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
+# API key intentionally not stored here: run `wandb login` once; it writes
+# ~/.netrc (mode 0600), which SLURM jobs inherit. Never hardcode the key.
 
 source ~/miniconda3/etc/profile.d/conda.sh
 conda activate nsd
