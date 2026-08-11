@@ -11,3 +11,4 @@ results/*
 .venv/
 to_read_list.md
 *datasets/*
+*.tex
